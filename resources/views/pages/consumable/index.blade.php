@@ -30,7 +30,8 @@
                             <tr>
                                 <th class="ir_w_1"> @lang('index.sn')</th>
                                 <th class="ir_w_16">@lang('index.ppcrc_no')</th>
-                                <th class="ir_w_16">@lang('index.part_name') (@lang('index.part_no'))</th>
+                                <th class="ir_w_16">@lang('index.part_name') </th>
+                                <th class="ir_w_16">@lang('index.part_no')</th>
                                 <th class="ir_w_16">@lang('index.po_no')</th>
                                 <th class="ir_w_16">@lang('index.customer_name')<br>(@lang('index.code'))</th>
                                 <th class="ir_w_16">@lang('index.start_date')</th>
@@ -41,10 +42,12 @@
                         <tbody>
                             @if ($manufactures && !empty($manufactures))
                                 @foreach ($manufactures as $value)
+                                    @php $prodInfo = getFinishedProductInfo($value->product_id); @endphp
                                     <tr>
                                         <td class="ir_txt_center">{{ $loop->iteration }}</td>
                                         <td>{{ $value->reference_no }}</td>
-                                        <td>{{ getFinishProduct($value->product_id) }}</td>
+                                        <td>{{ $prodInfo->name }}</td>
+                                        <td>{{ $prodInfo->code }}</td>
                                         <td>{{ getPoNo($value->customer_order_id) }}</td>
                                         <td>{{ getCustomerNameById($value->customer_id).' ('.getCustomerCodeById($value->customer_id).')' }}</td>
                                         <td>{{ getDateFormat($value->start_date) }}</td>

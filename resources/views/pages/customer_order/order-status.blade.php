@@ -49,7 +49,8 @@
                                                 <p><a href="{{ url('customer-orders') }}/{{ encrypt_decrypt($value->id, 'encrypt') }}" class="button-info"
                                                 data-bs-toggle="tooltip" data-bs-placement="top"
                                                 title="@lang('index.view_details')">#{{ $value->reference_no }}</a></p>
-                                                <p>Part Name : {{ $value->name }} ({{ $value->code }})</p>
+                                                <p>Part Name : {{ $value->name }}</p>
+                                                <p>Part No : {{ $value->code }}</p>
                                                 <p>@lang('index.total') : <strong class="text-right">{{ getAmtCustom(round($value->total_amount)) }}</strong></p>
                                                 <p>@lang('index.quote_date') : <strong class="text-right">{{ getDateFormat($value->created_at) }}</strong></p>
                                                 
@@ -64,7 +65,8 @@
                                                 <p><a href="{{ url('customer-orders') }}/{{ encrypt_decrypt($value->id, 'encrypt') }}" class="button-info"
                                                 data-bs-toggle="tooltip" data-bs-placement="top"
                                                 title="@lang('index.view_details')">#{{ $value->reference_no }}</a></p>
-                                                <p>Part Name : {{ $value->name }} ({{ $value->code }})</p>
+                                                <p>Part Name : {{ $value->name }}</p>
+                                                <p>Part No : {{ $value->code }}</p>
                                                 <p>@lang('index.total') : <strong class="text-right">{{ getAmtCustom(round($value->total_amount)) }}</strong></p>
                                                 <p>@lang('index.quote_date') : <strong class="text-right">{{ getDateFormat($value->created_at) }}</strong></p>
                                                 
@@ -80,7 +82,8 @@
                                                     <p><a href="{{ url('customer-orders') }}/{{ encrypt_decrypt($value->id, 'encrypt') }}" class="button-info"
                                                         data-bs-toggle="tooltip" data-bs-placement="top"
                                                         title="@lang('index.view_details')">#{{ $value->reference_no }}</a></p>
-                                                    <p>Part Name : {{ $value->name }} ({{ $value->code }})</p>
+                                                    <p>Part Name : {{ $value->name }}</p>
+                                                    <p>Part No : {{ $value->code }}</p>
                                                     <p>@lang('index.total') : <strong class="text-right">{{ getAmtCustom(round($value->total_amount)) }}</strong></p>
                                                     <p>@lang('index.quote_date') : <strong class="text-right">{{ getDateFormat($value->created_at) }}</strong></p>
                                                 </div>
@@ -100,7 +103,8 @@
                                                         data-bs-toggle="tooltip" data-bs-placement="top"
                                                         title="@lang('index.view_details')">#{{ $value->reference_no }}</a></p>
                                                     <p>Assign to : <strong class="text-right">{{ getAssignee($value->id,$value->mid) }}</strong></p>
-                                                    <p>Part Name : {{ $value->name }} ({{ $value->code }})</p>
+                                                    <p>Part Name : {{ $value->name }}</p>
+                                                    <p>Part No : {{ $value->code }}</p>
                                                     <p>@lang('index.total') : <strong class="text-right">{{ getAmtCustom(round($value->total_amount)) }}</strong></p>
                                                     <p>@lang('index.quote_date') : <strong class="text-right">{{ getDateFormat($value->created_at) }}</strong></p>
                                                     <p>@lang('index.start_date') : <strong class="text-right">{{ $value->start_date!=null ? getDateFormat($value->start_date) : '-' }}</strong></p>
@@ -123,7 +127,8 @@
                                                         data-bs-toggle="tooltip" data-bs-placement="top"
                                                         title="@lang('index.view_details')">#{{ $value->reference_no }}</a></p>
                                                     <p>Assign to : <strong class="text-right">{{ getAssignee($value->id,$value->mid) }}</strong></p>
-                                                    <p>Part Name : {{ $value->name }} ({{ $value->code }})</p>
+                                                    <p>Part Name : {{ $value->name }}</p>
+                                                    <p>Part No : {{ $value->code }}</p>
                                                     <p>@lang('index.total') : <strong class="text-right">{{ getAmtCustom(round($value->total_amount)) }}</strong></p>
                                                     <p>@lang('index.quote_date') : <strong class="text-right">{{ getDateFormat($value->created_at) }}</strong></p>
                                                     <p>@lang('index.start_date') : <strong class="text-right">{{ $value->start_date!=null ? getDateFormat($value->start_date) : '-' }}</strong></p>
@@ -146,7 +151,8 @@
                                                         data-bs-toggle="tooltip" data-bs-placement="top"
                                                         title="@lang('index.view_details')">#{{ $value->reference_no }}</a></p>
                                                     <p>Assign to : <strong class="text-right">{{ getAssignee($value->id,$value->mid) }}</strong></p>
-                                                    <p>Part Name : {{ $value->name }} ({{ $value->code }})</p>
+                                                    <p>Part Name : {{ $value->name }}</p>
+                                                    <p>Part No : {{ $value->code }}</p>
                                                     <p>@lang('index.total') : <strong class="text-right">{{ getAmtCustom(round($value->total_amount)) }}</strong></p>
                                                     <p>@lang('index.quote_date') : <strong class="text-right">{{ getDateFormat($value->created_at) }}</strong></p>
                                                     <p>@lang('index.start_date') : <strong class="text-right">{{ $value->start_date!=null ? getDateFormat($value->start_date) : '-' }}</strong></p>

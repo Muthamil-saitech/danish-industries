@@ -33,7 +33,8 @@
                                 <th class="width_1_p">@lang('index.sn')</th>
                                 <th class="width_10_p">@lang('index.ppcrc_no')</th>
                                 <th class="width_10_p">@lang('index.drawer_no')</th>
-                                <th class="width_10_p">@lang('index.part_name') (@lang('index.part_no'))</th>
+                                <th class="width_10_p">@lang('index.part_name') </th>
+                                <th class="width_10_p">@lang('index.part_no') </th>
                                 <th class="width_10_p">@lang('index.status')</th>
                                 <th class="width_10_p">@lang('index.start_date')</th>
                                 <th class="width_10_p">@lang('index.delivery_date')</th>
@@ -64,12 +65,14 @@
                                     'draft' => 'badge bg-secondary',
                                     'inProgress' => 'badge bg-warning text-dark',
                                 };
+                                $prodInfo = getFinishedProductInfo($value->product_id);
                             @endphp
                                 <tr>
                                     <td class="c_center">{{ $i++ }}</td>
                                     <td>{{ safe($value->reference_no) }}</td>
                                     <td>{{ safe($value->drawer_no) }}</td>
-                                    <td>{{ safe(getFinishProduct($value->product_id)) }}</td>
+                                    <td>{{ safe($prodInfo->name) }}</td>
+                                    <td>{{ safe($prodInfo->code) }}</td>
                                     <td>
                                         <span class="{{ $badgeClass }}">
                                             {{ safe(manufactureStatusShow($status)) }}
