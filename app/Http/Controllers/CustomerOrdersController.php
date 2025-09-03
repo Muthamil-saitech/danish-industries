@@ -39,7 +39,6 @@ class CustomerOrdersController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-
     }
     /**
      * Display a listing of the resource.
@@ -48,6 +47,7 @@ class CustomerOrdersController extends Controller
      */
     public function index(Request $request)
     {
+        $total_orders = CustomerOrder::where('del_status', 'Deleted')->count();
         $startDate = '';
         $endDate = '';
         $customer_id = escape_output($request->get('customer_id'));
@@ -66,9 +66,9 @@ class CustomerOrdersController extends Controller
         }
         // dd($order->get());
         $obj = $order->orderBy('id', 'DESC')->get();
-        $customers = Customer::where('del_status','Live')->orderBy('id','DESC')->get();
+        $customers = Customer::where('del_status', 'Live')->orderBy('id', 'DESC')->get();
         $title = __('index.customer_order');
-        return view('pages.customer_order.index', compact('title', 'obj','customers','startDate','endDate','customer_id'));
+        return view('pages.customer_order.index', compact('title', 'obj', 'customers', 'startDate', 'endDate', 'customer_id', 'total_orders'));
     }
 
     /**
@@ -85,23 +85,23 @@ class CustomerOrdersController extends Controller
             ->mapWithKeys(function ($customer) {
                 return [$customer->id => $customer->name . ' (' . $customer->customer_id . ')'];
             });
-        $stock_customers = Customer::where('del_status', 'Live')->orderBy('id','DESC')->get();
+        $stock_customers = Customer::where('del_status', 'Live')->orderBy('id', 'DESC')->get();
         $orderTypes = ['Quotation' => 'Labor', 'Work Order' => 'Sales'];
-        $tax_types = TaxItems::where('del_status','Live')->where('collect_tax','Yes')->get();
+        $tax_types = TaxItems::where('del_status', 'Live')->where('collect_tax', 'Yes')->get();
         $units = Unit::orderBy('name', 'ASC')->where('del_status', "Live")->get();
         $rmaterialcats = RawMaterialCategory::where('del_status', "Live")
-        ->where('id', '!=', 1)
-        ->orderBy('name', 'ASC')
-        ->get();
+            ->where('id', '!=', 1)
+            ->orderBy('name', 'ASC')
+            ->get();
         $rawMaterialIds = RawMaterial::whereIn('category', $rmaterialcats->pluck('id'))
-        ->where('del_status', 'Live')
-        ->pluck('id');
+            ->where('del_status', 'Live')
+            ->pluck('id');
         $productIds = FPrmitem::whereIn('rmaterials_id', $rawMaterialIds)
-        ->pluck('finish_product_id')
-        ->unique();
-        $productList = FinishedProduct::orderBy('name', 'ASC')->where('del_status', "Live")->whereIn('id',$productIds)->get();
+            ->pluck('finish_product_id')
+            ->unique();
+        $productList = FinishedProduct::orderBy('name', 'ASC')->where('del_status', "Live")->whereIn('id', $productIds)->get();
         $product = $productList->pluck('name', 'id');
-        return view('pages.customer_order.create', compact('title', 'customers', 'orderTypes', 'units', 'productList', 'product','tax_types','stock_customers'));
+        return view('pages.customer_order.create', compact('title', 'customers', 'orderTypes', 'units', 'productList', 'product', 'tax_types', 'stock_customers'));
     }
 
     /**
@@ -113,6 +113,8 @@ class CustomerOrdersController extends Controller
     public function store(Request $request)
     {
         // dd($request->file());
+        // dd($request->all());
+
         request()->validate([
             'reference_no' => [
                 'required',
@@ -123,6 +125,7 @@ class CustomerOrdersController extends Controller
             ],
             'customer_id' => 'required',
             'order_type' => 'required',
+            'po_date' => 'required',
         ]);
         try {
             $productList = $request->get('product');
@@ -138,6 +141,7 @@ class CustomerOrdersController extends Controller
             $customerOrder->reference_no = null_check(escape_output($request->get('reference_no')));
             $customerOrder->customer_id = null_check(escape_output($request->get('customer_id')));
             $customerOrder->order_type = escape_output($request->get('order_type'));
+            $customerOrder->po_date = date('Y-m-d', strtotime($request->get('po_date')));
             $customerOrder->delivery_address = escape_output($request->get('delivery_address'));
             $customerOrder->total_product = null_check(sizeof($productList));
             $customerOrder->total_amount = null_check(escape_output($request->get('total_subtotal')));
@@ -157,16 +161,19 @@ class CustomerOrdersController extends Controller
                     $obj->raw_qty = null_check(escape_output($_POST['raw_quantity'][$row] ?? 0));
                     $obj->quantity = null_check(escape_output($_POST['prod_quantity'][$row] ?? 0));
                     $obj->sale_price = null_check(escape_output($_POST['sale_price'][$row] ?? 0));
+                    $obj->price = null_check(escape_output($_POST['price'][$row] ?? 0));
                     $obj->tax_type = escape_output($_POST['tax_type'][$row] ?? '');
                     $obj->inter_state = escape_output($inter_state[$row] ?? '');
                     $obj->cgst = escape_output($_POST['cgst'][$row] ?? '');
                     $obj->sgst = escape_output($_POST['sgst'][$row] ?? '');
                     $obj->igst = escape_output($_POST['igst'][$row] ?? '');
                     $obj->discount_percent = 0;
+                    $obj->tax_amount = null_check(escape_output($_POST['tax_amount'][$row] ?? 0));
                     $obj->sub_total = null_check(escape_output($_POST['sub_total'][$row] ?? 0));
-                    $obj->delivery_date = $_POST['delivery_date_product'][$row]!='' ? date('Y-m-d',strtotime(escape_output($_POST['delivery_date_product'][$row] ?? ''))) : null;
+                    $obj->delivery_date = $_POST['delivery_date_product'][$row] != '' ? date('Y-m-d', strtotime(escape_output($_POST['delivery_date_product'][$row] ?? ''))) : null;
                     $obj->production_status = 0;
                     $obj->delivered_qty = 0;
+                    // dd($);
                     $obj->save();
                 }
             }
@@ -176,7 +183,7 @@ class CustomerOrdersController extends Controller
                     $inv_obj->customer_order_id = null_check($customerOrder->id);
                     $inv_obj->invoice_type = ($request->invoice_type[$key]);
                     $inv_obj->amount = null_check($request->invoice_amount[$key]);
-                    $inv_obj->invoice_date = null_check(date('Y-m-d',strtotime($request->invoice_date[$key])));
+                    $inv_obj->invoice_date = null_check(date('Y-m-d', strtotime($request->invoice_date[$key])));
                     $inv_obj->paid_amount = null_check($request->invoice_paid[$key]);
                     $inv_obj->due_amount = null_check($request->invoice_due[$key]);
                     // $inv_obj->order_due_amount = null_check($request->invoice_order_due[$key]);
@@ -221,24 +228,24 @@ class CustomerOrdersController extends Controller
         $customers = Customer::orderBy('id', 'DESC')->where('del_status', "Live")->pluck('name', 'id');
         $orderTypes = ['Quotation' => 'Labor', 'Work Order' => 'Sales'];
         $units = Unit::orderBy('name', 'ASC')->where('del_status', "Live")->get();
-        $rawMaterialList = RawMaterial::orderBy('name', 'ASC')->where('del_status', "Live")->where('category','!=',1)->get();
+        $rawMaterialList = RawMaterial::orderBy('name', 'ASC')->where('del_status', "Live")->where('category', '!=', 1)->get();
         $rmaterialcats = RawMaterialCategory::where('del_status', "Live")
-        ->where('id', '!=', 1)
-        ->orderBy('name', 'ASC')
-        ->get();
+            ->where('id', '!=', 1)
+            ->orderBy('name', 'ASC')
+            ->get();
         $rawMaterialIds = RawMaterial::whereIn('category', $rmaterialcats->pluck('id'))
-        ->where('del_status', 'Live')
-        ->pluck('id');
+            ->where('del_status', 'Live')
+            ->pluck('id');
         $productIds = FPrmitem::whereIn('rmaterials_id', $rawMaterialIds)
-        ->pluck('finish_product_id')
-        ->unique();
-        $productList = FinishedProduct::orderBy('name', 'ASC')->where('del_status', "Live")->whereIn('id',$productIds)->get();
+            ->pluck('finish_product_id')
+            ->unique();
+        $productList = FinishedProduct::orderBy('name', 'ASC')->where('del_status', "Live")->whereIn('id', $productIds)->get();
         $product = $productList->pluck('name', 'id');
         $orderDetails = CustomerOrderDetails::where('customer_order_id', $customerOrder->id)->where('del_status', "Live")->get();
         $orderInvoice = CustomerOrderInvoice::where('customer_order_id', $customerOrder->id)->where('del_status', "Live")->get();
-        $tax_types = TaxItems::where('del_status','Live')->where('collect_tax','Yes')->get();
+        $tax_types = TaxItems::where('del_status', 'Live')->where('collect_tax', 'Yes')->get();
         $orderDeliveries = CustomerOrderDelivery::where('customer_order_id', $customerOrder->id)->where('del_status', "Live")->orderBy('id', 'desc')->get();
-        return view('pages.customer_order.edit', compact('title', 'product', 'customerOrder', 'customers', 'orderTypes', 'units', 'productList', 'orderDetails', 'orderInvoice', 'orderDeliveries','tax_types','rawMaterialList'));
+        return view('pages.customer_order.edit', compact('title', 'product', 'customerOrder', 'customers', 'orderTypes', 'units', 'productList', 'orderDetails', 'orderInvoice', 'orderDeliveries', 'tax_types', 'rawMaterialList'));
     }
 
     /**
@@ -251,17 +258,19 @@ class CustomerOrdersController extends Controller
     public function update(Request $request, CustomerOrder $customerOrder)
     {
         // dd($request->all());
+
         request()->validate([
             'reference_no' => [
                 'required',
                 'max:50',
-                Rule::unique('tbl_customer_orders', 'reference_no')->ignore($customerOrder->id,'id')->where(function ($query) {
+                Rule::unique('tbl_customer_orders', 'reference_no')->ignore($customerOrder->id, 'id')->where(function ($query) {
                     return $query->where('del_status', 'Live');
                 }),
             ],
             'customer_id' => 'required',
             'order_type' => 'required',
             'delivery_address' => 'required',
+            'po_date' => 'required',
         ]);
         $productList = $request->get('product');
         $file = $request->get('file_old');
@@ -283,6 +292,7 @@ class CustomerOrdersController extends Controller
         $customerOrder->reference_no = null_check(escape_output($request->get('reference_no')));
         $customerOrder->customer_id = null_check(escape_output($request->get('customer_id')));
         $customerOrder->order_type = escape_output($request->get('order_type'));
+        $customerOrder->po_date = date('Y-m-d', strtotime($request->get('po_date')));
         $customerOrder->delivery_address = escape_output($request->get('delivery_address'));
         $customerOrder->total_product = null_check(sizeof($productList));
         $customerOrder->total_amount = null_check(escape_output($request->get('total_subtotal')));
@@ -305,14 +315,16 @@ class CustomerOrdersController extends Controller
                 $obj->raw_qty = null_check(escape_output($_POST['raw_quantity'][$row] ?? 0));
                 $obj->quantity = null_check(escape_output($_POST['prod_quantity'][$row] ?? 0));
                 $obj->sale_price = null_check(escape_output($_POST['sale_price'][$row] ?? 0));
+                $obj->price = null_check(escape_output($_POST['price'][$row] ?? 0));
                 $obj->discount_percent = 0;
+                $obj->tax_amount = null_check(escape_output($_POST['tax_amount'][$row] ?? 0));
                 $obj->sub_total = null_check(escape_output($_POST['sub_total'][$row] ?? 0));
                 $obj->tax_type = escape_output($_POST['tax_type'][$row] ?? '');
                 $obj->inter_state = escape_output($inter_state[$row] ?? '');
                 $obj->cgst = escape_output($_POST['cgst'][$row] ?? '');
                 $obj->sgst = escape_output($_POST['sgst'][$row] ?? '');
                 $obj->igst = escape_output($_POST['igst'][$row] ?? '');
-                $obj->delivery_date = $_POST['delivery_date_product'][$row]!='' ? date('Y-m-d',strtotime(escape_output($_POST['delivery_date_product'][$row] ?? ''))) : null;
+                $obj->delivery_date = $_POST['delivery_date_product'][$row] != '' ? date('Y-m-d', strtotime(escape_output($_POST['delivery_date_product'][$row] ?? ''))) : null;
                 $obj->production_status = 0;
                 $obj->delivered_qty = 0;
                 $obj->save();
@@ -324,7 +336,7 @@ class CustomerOrdersController extends Controller
                 $inv_obj->customer_order_id = null_check($last_id);
                 $inv_obj->invoice_type = escape_output($request->invoice_type[$key]);
                 $inv_obj->amount = null_check($request->invoice_amount[$key]);
-                $inv_obj->invoice_date = date('Y-m-d',strtotime(escape_output($request->invoice_date[$key])));
+                $inv_obj->invoice_date = date('Y-m-d', strtotime(escape_output($request->invoice_date[$key])));
                 $inv_obj->paid_amount = null_check($request->invoice_paid[$key]);
                 $inv_obj->due_amount = null_check($request->invoice_due[$key]);
                 // $inv_obj->order_due_amount = null_check($request->invoice_order_due[$key]);
