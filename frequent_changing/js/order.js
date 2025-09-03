@@ -347,7 +347,7 @@ $(document).ready(function () {
     // update_invoice_totals();
   });
   $(document).on(
-    "change",
+    "keyup",
     ".pquantity_c, .sale_price_c, .cgst_input, .sgst_input, .igst_input",
     function () {
       let row = $(this).closest("tr");
