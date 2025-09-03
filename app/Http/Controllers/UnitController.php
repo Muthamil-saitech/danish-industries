@@ -37,14 +37,15 @@ class UnitController extends Controller
      */
     public function index()
     {
-        $obj = Unit::orderBy('id','DESC')->where('del_status',"Live")->get()->map(function ($unit) {
-            $usedInPurchase = RMPurchase_model::where('mat_unit', $unit->id)->where('del_status','Live')->exists();
-            $usedInStock = MaterialStock::where('unit_id', $unit->id)->where('del_status','Live')->exists();
+        $obj = Unit::orderBy('id', 'DESC')->where('del_status', "Live")->get()->map(function ($unit) {
+            $usedInPurchase = RMPurchase_model::where('mat_unit', $unit->id)->where('del_status', 'Live')->exists();
+            $usedInStock = MaterialStock::where('unit_id', $unit->id)->where('del_status', 'Live')->exists();
             $unit->used_in_purchase = $usedInPurchase || $usedInStock;
             return $unit;
         });
         $title =  __('index.unit');
-        return view('pages.unit.units',compact('title','obj'));
+        $total_units = Unit::where('del_status', "Live")->count();
+        return view('pages.unit.units', compact('title', 'obj', 'total_units'));
     }
 
     /**
@@ -55,7 +56,7 @@ class UnitController extends Controller
     public function create()
     {
         $title =  __('index.add_unit');
-        return view('pages.unit.addEditUnit',compact('title'));
+        return view('pages.unit.addEditUnit', compact('title'));
     }
 
     /**
@@ -76,7 +77,7 @@ class UnitController extends Controller
                 }),
             ],
             'description' => 'max:100'
-        ],[
+        ], [
             'name.required' => "The unit name field is required"
         ]);
 
@@ -98,7 +99,7 @@ class UnitController extends Controller
         $unit = Unit::find(encrypt_decrypt($id, 'decrypt'));
         $title =  __('index.edit_unit');
         $obj = $unit;
-        return view('pages.unit.addEditUnit',compact('title','obj'));
+        return view('pages.unit.addEditUnit', compact('title', 'obj'));
     }
 
     /**
@@ -115,12 +116,12 @@ class UnitController extends Controller
                 'required',
                 'regex:/^[\pL\s]+$/u',
                 'max:10',
-                Rule::unique('tbl_rmunits', 'name')->ignore($unit->id,'id')->where(function ($query) {
+                Rule::unique('tbl_rmunits', 'name')->ignore($unit->id, 'id')->where(function ($query) {
                     return $query->where('del_status', 'Live');
                 }),
             ],
             'description' => 'max:100'
-        ],[
+        ], [
             'name.required' => "The unit name field is required"
         ]);
 

@@ -28,7 +28,6 @@ class SupplierController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        
     }
     /**
      * Display a listing of the resource.
@@ -37,13 +36,14 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        $obj = Supplier::orderBy('id','DESC')->where('del_status',"Live")->get()->map(function ($supplier) {
+        $obj = Supplier::orderBy('id', 'DESC')->where('del_status', "Live")->get()->map(function ($supplier) {
             $usedInPurchase = RawMaterialPurchase::where('supplier', $supplier->id)->exists();
             $supplier->used_in_purchase = $usedInPurchase;
             return $supplier;
         });
         $title =  __('index.suppliers');
-        return view('pages.supplier.suppliers',compact('title','obj'));
+        $total_suppliers = Supplier::where('del_status', 'Live')->count();
+        return view('pages.supplier.suppliers', compact('title', 'obj', 'total_suppliers'));
     }
 
     /**
@@ -56,7 +56,7 @@ class SupplierController extends Controller
         $title =  __('index.add_supplier');
         $obj_sup = Supplier::count();
         $supplier_id = "SUP" . str_pad($obj_sup + 1, 4, '0', STR_PAD_LEFT);
-        return view('pages.supplier.addEditSupplier',compact('title','supplier_id'));
+        return view('pages.supplier.addEditSupplier', compact('title', 'supplier_id'));
     }
 
     /**
@@ -67,49 +67,51 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate([
-            'name' => 'required|max:50|regex:/^[\pL\s]+$/u',
-            'contact_person' => 'max:50|regex:/^[\pL\s]+$/u',
-            'phone' => [
-                'required',
-                'max:50',
-                Rule::unique('tbl_suppliers', 'phone')->where(function ($query) {
-                    return $query->where('del_status', 'Live');
-                }),
+        request()->validate(
+            [
+                'name' => 'required|max:50|regex:/^[\pL\s]+$/u',
+                'contact_person' => 'max:50|regex:/^[\pL\s]+$/u',
+                'phone' => [
+                    'required',
+                    'max:50',
+                    Rule::unique('tbl_suppliers', 'phone')->where(function ($query) {
+                        return $query->where('del_status', 'Live');
+                    }),
+                ],
+                'email' => [
+                    'email:filter',
+                    Rule::unique('tbl_suppliers', 'email')->where(function ($query) {
+                        return $query->where('del_status', 'Live');
+                    }),
+                ],
+                'gst_no' => [
+                    'nullable',
+                    'regex:/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z][A-Z0-9]{3}$/',
+                    Rule::unique('tbl_suppliers', 'gst_no')->where(function ($query) {
+                        return $query->where('del_status', 'Live');
+                    }),
+                ],
+                'ecc_no' => [
+                    'nullable',
+                    'regex:/^\d{1,9}$/',
+                    Rule::unique('tbl_suppliers', 'ecc_no')->where(function ($query) {
+                        return $query->where('del_status', 'Live');
+                    }),
+                ],
+                'address' => 'max:250',
+                'area' => 'max:50',
+                'note' => 'max:250'
             ],
-            'email' => [
-                'email:filter',
-                Rule::unique('tbl_suppliers', 'email')->where(function ($query) {
-                    return $query->where('del_status', 'Live');
-                }),
-            ],
-            'gst_no' => [
-                'nullable',
-                'regex:/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z][A-Z0-9]{3}$/',
-                Rule::unique('tbl_suppliers', 'gst_no')->where(function ($query) {
-                    return $query->where('del_status', 'Live');
-                }),
-            ],
-            'ecc_no' => [
-                'nullable',
-                'regex:/^\d{1,9}$/',
-                Rule::unique('tbl_suppliers', 'ecc_no')->where(function ($query) {
-                    return $query->where('del_status', 'Live');
-                }),
-            ],
-            'address' => 'max:250',
-            'area' => 'max:50',
-            'note' => 'max:250'
-        ],
-        [
-            'name.required' => __('index.supplier_name_required'),
-            'phone.required' => __('index.phone_required'),
-            'email.email' => __('index.email_validation'),
-            // 'gst_no.required' => __('index.gst_required'),
-            'gst_no.regex' => __('index.gst_regex'),
-            'ecc_no.regex' => __('index.ecc_regex'),
-            'area.max' => __('index.landmark_max'),
-        ]);
+            [
+                'name.required' => __('index.supplier_name_required'),
+                'phone.required' => __('index.phone_required'),
+                'email.email' => __('index.email_validation'),
+                // 'gst_no.required' => __('index.gst_required'),
+                'gst_no.regex' => __('index.gst_regex'),
+                'ecc_no.regex' => __('index.ecc_regex'),
+                'area.max' => __('index.landmark_max'),
+            ]
+        );
 
         $obj = new \App\Supplier;
         $obj->supplier_id = escape_output($request->get('supplier_id'));
@@ -142,7 +144,7 @@ class SupplierController extends Controller
         $supplier = Supplier::find(encrypt_decrypt($id, 'decrypt'));
         $title =  __('index.edit_supplier');
         $obj = $supplier;
-        return view('pages.supplier.addEditSupplier',compact('title','obj'));
+        return view('pages.supplier.addEditSupplier', compact('title', 'obj'));
     }
 
     /**
@@ -160,13 +162,13 @@ class SupplierController extends Controller
             'phone' => [
                 'required',
                 'max:50',
-                Rule::unique('tbl_suppliers', 'phone')->ignore($supplier->id,'id')->where(function ($query) {
+                Rule::unique('tbl_suppliers', 'phone')->ignore($supplier->id, 'id')->where(function ($query) {
                     return $query->where('del_status', 'Live');
                 }),
             ],
             'email' => [
                 'email:filter',
-                Rule::unique('tbl_suppliers', 'email')->ignore($supplier->id,'id')->where(function ($query) {
+                Rule::unique('tbl_suppliers', 'email')->ignore($supplier->id, 'id')->where(function ($query) {
                     return $query->where('del_status', 'Live');
                 }),
             ],
@@ -174,20 +176,20 @@ class SupplierController extends Controller
             'gst_no' => [
                 'nullable',
                 'regex:/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z][A-Z0-9]{3}$/',
-                Rule::unique('tbl_suppliers', 'gst_no')->ignore($supplier->id,'id')->where(function ($query) {
+                Rule::unique('tbl_suppliers', 'gst_no')->ignore($supplier->id, 'id')->where(function ($query) {
                     return $query->where('del_status', 'Live');
                 }),
             ],
             'ecc_no' => [
                 'nullable',
                 'regex:/^\d{1,9}$/',
-                Rule::unique('tbl_suppliers', 'ecc_no')->ignore($supplier->id,'id')->where(function ($query) {
+                Rule::unique('tbl_suppliers', 'ecc_no')->ignore($supplier->id, 'id')->where(function ($query) {
                     return $query->where('del_status', 'Live');
                 }),
             ],
             'area' => 'max:50',
             'note' => 'max:250'
-        ],[
+        ], [
             'name.required' => __('index.supplier_name_required'),
             'phone.required' => __('index.phone_required'),
             'email.email' => __('index.email_validation'),
@@ -216,7 +218,8 @@ class SupplierController extends Controller
         return redirect('suppliers')->with(updateMessage());
     }
 
-     public function show($id) {
+    public function show($id)
+    {
         $supplier = Supplier::find(encrypt_decrypt($id, 'decrypt'));
         $title = __('index.view_details_supplier');
         $obj = $supplier;

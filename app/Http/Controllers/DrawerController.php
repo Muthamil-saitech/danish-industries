@@ -13,20 +13,24 @@ class DrawerController extends Controller
     {
         $this->middleware('auth');
     }
-    public function index() {
-        $obj = Drawer::orderBy('id','DESC')->where('del_status',"Live")->get()->map(function ($drawer) {
-            $usedInManufacture = Manufacture::where('drawer_no', $drawer->drawer_no)->where('del_status','Live')->exists();
+    public function index()
+    {
+        $obj = Drawer::orderBy('id', 'DESC')->where('del_status', "Live")->get()->map(function ($drawer) {
+            $usedInManufacture = Manufacture::where('drawer_no', $drawer->drawer_no)->where('del_status', 'Live')->exists();
             $drawer->used_in_manufacture = $usedInManufacture;
             return $drawer;
         });
         $title =  __('index.drawer');
-        return view('pages.drawer.drawer',compact('title','obj'));
+        $total_drawers = Drawer::where('del_status', "Live")->count();
+        return view('pages.drawer.drawer', compact('title', 'obj', 'total_drawers'));
     }
-    public function create() {
+    public function create()
+    {
         $title =  __('index.add_drawer');
-        return view('pages.drawer.addEditDrawer',compact('title'));
+        return view('pages.drawer.addEditDrawer', compact('title'));
     }
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         // dd($request->all());
         request()->validate([
             'drawer_no' => [
@@ -40,7 +44,7 @@ class DrawerController extends Controller
             'drawer_loc' => 'required|max:100',
             'program_code' => 'required',
             'drawer_img' => 'nullable|mimes:jpeg,png,jpg,svg|max:1024',
-        ],[
+        ], [
             'drawer_no.required' => "The drawing no field is required",
             'drawer_loc.required' => "The drawing location field is required",
             'drawer_loc.max' => "The drawing location may not be greater than 100 characters.",
@@ -48,7 +52,7 @@ class DrawerController extends Controller
         $obj = new \App\Drawer;
         $obj->drawer_no = strtoupper(escape_output($request->get('drawer_no')));
         $obj->revision_no = escape_output($request->get('revision_no'));
-        $obj->revision_date = date('Y-m-d',strtotime($request->get('revision_date')));
+        $obj->revision_date = date('Y-m-d', strtotime($request->get('revision_date')));
         $obj->drawer_loc = escape_output($request->get('drawer_loc'));
         $obj->program_code = escape_output($request->get('program_code'));
         $obj->notes = html_entity_decode($request->get('notes'));
@@ -66,7 +70,7 @@ class DrawerController extends Controller
         $drawer = Drawer::find(encrypt_decrypt($id, 'decrypt'));
         $title =  __('index.edit_drawer');
         $obj = $drawer;
-        return view('pages.drawer.addEditDrawer',compact('title','obj'));
+        return view('pages.drawer.addEditDrawer', compact('title', 'obj'));
     }
     public function update(Request $request, Drawer $drawer)
     {
@@ -74,7 +78,7 @@ class DrawerController extends Controller
         request()->validate([
             'drawer_no' => [
                 'required',
-                Rule::unique('tbl_drawers', 'drawer_no')->ignore($drawer->id,'id')->where(function ($query) {
+                Rule::unique('tbl_drawers', 'drawer_no')->ignore($drawer->id, 'id')->where(function ($query) {
                     return $query->where('del_status', 'Live');
                 }),
             ],
@@ -83,14 +87,14 @@ class DrawerController extends Controller
             'drawer_loc' => 'required|max:100',
             'program_code' => 'required',
             'drawer_img' => 'nullable|mimes:jpeg,png,jpg,svg|max:1024'
-        ],[
+        ], [
             'drawer_no.required' => "The drawing no field is required",
             'drawer_loc.required' => "The drawing location field is required",
             'drawer_loc.max' => "The drawing location may not be greater than 100 characters.",
         ]);
         $drawer->drawer_no = strtoupper(escape_output($request->get('drawer_no')));
         $drawer->revision_no = escape_output($request->get('revision_no'));
-        $drawer->revision_date = date('Y-m-d',strtotime($request->get('revision_date')));
+        $drawer->revision_date = date('Y-m-d', strtotime($request->get('revision_date')));
         $drawer->drawer_loc = escape_output($request->get('drawer_loc'));
         $drawer->program_code = escape_output($request->get('program_code'));
         $drawer->notes = html_entity_decode($request->get('notes'));

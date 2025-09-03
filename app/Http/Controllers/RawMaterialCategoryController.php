@@ -28,7 +28,6 @@ class RawMaterialCategoryController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        
     }
     /**
      * Display a listing of the resource.
@@ -37,13 +36,14 @@ class RawMaterialCategoryController extends Controller
      */
     public function index()
     {
-        $obj = RawMaterialCategory::orderBy('id','DESC')->where('del_status',"Live")->get()->map(function ($category) {
-            $usedInMaterial = RawMaterial::where('category', $category->id)->where('del_status','Live')->exists();
+        $obj = RawMaterialCategory::orderBy('id', 'DESC')->where('del_status', "Live")->get()->map(function ($category) {
+            $usedInMaterial = RawMaterial::where('category', $category->id)->where('del_status', 'Live')->exists();
             $category->used_in_material = $usedInMaterial;
             return $category;
         });
         $title =  __('index.raw_material_categories');
-        return view('pages.rmcategory.rmcategories',compact('title','obj'));
+        $total_mat_categories = RawMaterialCategory::where('del_status', "Live")->count();
+        return view('pages.rmcategory.rmcategories', compact('title', 'obj', 'total_mat_categories'));
     }
 
     /**
@@ -54,7 +54,7 @@ class RawMaterialCategoryController extends Controller
     public function create()
     {
         $title =  __('index.add_raw_material_category');
-        return view('pages.rmcategory.addEditRMCategory',compact('title'));
+        return view('pages.rmcategory.addEditRMCategory', compact('title'));
     }
 
     /**
@@ -75,7 +75,7 @@ class RawMaterialCategoryController extends Controller
                 }),
             ],
             'description' => 'max:250'
-        ],[
+        ], [
             'name.required' => __('index.raw_mat_c_req'),
         ]);
 
@@ -97,7 +97,7 @@ class RawMaterialCategoryController extends Controller
         $rmcategory = RawMaterialCategory::find(encrypt_decrypt($id, 'decrypt'));
         $title =  __('index.edit_raw_material_category');
         $obj = $rmcategory;
-        return view('pages.rmcategory.addEditRMCategory',compact('title','obj'));
+        return view('pages.rmcategory.addEditRMCategory', compact('title', 'obj'));
     }
 
     /**
@@ -114,12 +114,12 @@ class RawMaterialCategoryController extends Controller
                 'required',
                 'regex:/^(?=.*[a-zA-Z])[a-zA-Z0-9\/&\-\s]+$/',
                 'max:50',
-                Rule::unique('tbl_rmcategory', 'name')->ignore($rmcategory->id,'id')->where(function ($query) {
+                Rule::unique('tbl_rmcategory', 'name')->ignore($rmcategory->id, 'id')->where(function ($query) {
                     return $query->where('del_status', 'Live');
                 }),
             ],
             'description' => 'max:250'
-        ],[
+        ], [
             'name.required' => __('index.raw_mat_c_req'),
         ]);
 

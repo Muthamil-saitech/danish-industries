@@ -30,7 +30,6 @@ class CustomerController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-
     }
     /**
      * Display a listing of the resource.
@@ -46,7 +45,8 @@ class CustomerController extends Controller
             return $customer;
         });
         $title = __('index.customer');
-        return view('pages.customer.customers', compact('title', 'obj'));
+        $total_customers = Customer::where('del_status', 'Live')->count();
+        return view('pages.customer.customers', compact('title', 'obj', 'total_customers'));
     }
     /**
      * Show the form for creating a new resource.
@@ -59,7 +59,7 @@ class CustomerController extends Controller
         $obj_cust = Customer::count();
         $customer_id = "CUS" . str_pad($obj_cust + 1, 4, '0', STR_PAD_LEFT);
         // $vendor_code = rand(100000, 999999);
-        return view('pages.customer.addEditCustomer', compact('title','customer_id'));
+        return view('pages.customer.addEditCustomer', compact('title', 'customer_id'));
     }
 
     /**
@@ -70,58 +70,59 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate([
-            'name' => 'required|max:50|regex:/^[\pL\s]+$/u',
-            'customer_type' => 'required',
-            'phone' => [
-                'required',
-                'max:50',
-                Rule::unique('tbl_customers', 'phone')->where(function ($query) {
-                    return $query->where('del_status', 'Live');
-                }),
-            ],
-            'email' => [
-                'email:filter',
-                Rule::unique('tbl_customers', 'email')->where(function ($query) {
-                    return $query->where('del_status', 'Live');
-                }),
-            ],
-            'address' => 'max:250',
-            'hsn_sac_no' => [
-                'nullable',
-                'max:20'
-            ],
-            'gst_no' => [
-                'nullable',
-                'regex:/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z][A-Z0-9]{3}$/',
-                Rule::unique('tbl_customers', 'gst_no')->where(function ($query) {
-                    return $query->where('del_status', 'Live');
-                }),
-            ],
-            'pan_no' => [
-                'nullable',
-                'regex:/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/',
-                Rule::unique('tbl_customers', 'pan_no')->where(function ($query) {
-                    return $query->where('del_status', 'Live');
-                }),
-            ],
-            'ecc_no' => [
-                'nullable',
-                'regex:/^\d{1,9}$/',
-                Rule::unique('tbl_customers', 'ecc_no')->where(function ($query) {
-                    return $query->where('del_status', 'Live');
-                }),
-            ],
-            'area' => 'max:50',
-            'note' => 'max:250',
-            /* 'vendor_code' => [
+        request()->validate(
+            [
+                'name' => 'required|max:50|regex:/^[\pL\s]+$/u',
+                'customer_type' => 'required',
+                'phone' => [
+                    'required',
+                    'max:50',
+                    Rule::unique('tbl_customers', 'phone')->where(function ($query) {
+                        return $query->where('del_status', 'Live');
+                    }),
+                ],
+                'email' => [
+                    'email:filter',
+                    Rule::unique('tbl_customers', 'email')->where(function ($query) {
+                        return $query->where('del_status', 'Live');
+                    }),
+                ],
+                'address' => 'max:250',
+                'hsn_sac_no' => [
+                    'nullable',
+                    'max:20'
+                ],
+                'gst_no' => [
+                    'nullable',
+                    'regex:/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z][A-Z0-9]{3}$/',
+                    Rule::unique('tbl_customers', 'gst_no')->where(function ($query) {
+                        return $query->where('del_status', 'Live');
+                    }),
+                ],
+                'pan_no' => [
+                    'nullable',
+                    'regex:/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/',
+                    Rule::unique('tbl_customers', 'pan_no')->where(function ($query) {
+                        return $query->where('del_status', 'Live');
+                    }),
+                ],
+                'ecc_no' => [
+                    'nullable',
+                    'regex:/^\d{1,9}$/',
+                    Rule::unique('tbl_customers', 'ecc_no')->where(function ($query) {
+                        return $query->where('del_status', 'Live');
+                    }),
+                ],
+                'area' => 'max:50',
+                'note' => 'max:250',
+                /* 'vendor_code' => [
                 'required',
                 'max:20',
                 Rule::unique('tbl_customers', 'vendor_code')->where(function ($query) {
                     return $query->where('del_status', 'Live');
                 }),
             ], */
-        ],
+            ],
             [
                 'customer_type.required' => "The Customer Type field is required",
                 'name.required' => __('index.cust_name_required'),
@@ -182,58 +183,59 @@ class CustomerController extends Controller
      */
     public function update(Request $request, Customer $customer)
     {
-        request()->validate([
-            'name' => 'required|max:50|regex:/^[\pL\s]+$/u',
-            'customer_type' => 'required',
-            'phone' => [
-                'required',
-                'max:50',
-                Rule::unique('tbl_customers', 'phone')->ignore($customer->id,'id')->where(function ($query) {
-                    return $query->where('del_status', 'Live');
-                }),
-            ],
-            'email' => [
-                'email:filter',
-                Rule::unique('tbl_customers', 'email')->ignore($customer->id,'id')->where(function ($query) {
-                    return $query->where('del_status', 'Live');
-                }),
-            ],
-            'address' => 'max:250',
-            'hsn_sac_no' => [
-                'nullable',
-                'max:20'
-            ],
-            'gst_no' => [
-                'nullable',
-                'regex:/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z][A-Z0-9]{3}$/',
-                Rule::unique('tbl_customers', 'gst_no')->ignore($customer->id,'id')->where(function ($query) {
-                    return $query->where('del_status', 'Live');
-                }),
-            ],
-            'pan_no' => [
-                'nullable',
-                'regex:/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/',
-                Rule::unique('tbl_customers', 'pan_no')->ignore($customer->id,'id')->where(function ($query) {
-                    return $query->where('del_status', 'Live');
-                }),
-            ],
-            'ecc_no' => [
-                'nullable',
-                'regex:/^\d{1,9}$/',
-                Rule::unique('tbl_customers', 'ecc_no')->ignore($customer->id,'id')->where(function ($query) {
-                    return $query->where('del_status', 'Live');
-                }),
-            ],
-            'area' => 'max:50',
-            'note' => 'max:250',
-            /* 'vendor_code' => [
+        request()->validate(
+            [
+                'name' => 'required|max:50|regex:/^[\pL\s]+$/u',
+                'customer_type' => 'required',
+                'phone' => [
+                    'required',
+                    'max:50',
+                    Rule::unique('tbl_customers', 'phone')->ignore($customer->id, 'id')->where(function ($query) {
+                        return $query->where('del_status', 'Live');
+                    }),
+                ],
+                'email' => [
+                    'email:filter',
+                    Rule::unique('tbl_customers', 'email')->ignore($customer->id, 'id')->where(function ($query) {
+                        return $query->where('del_status', 'Live');
+                    }),
+                ],
+                'address' => 'max:250',
+                'hsn_sac_no' => [
+                    'nullable',
+                    'max:20'
+                ],
+                'gst_no' => [
+                    'nullable',
+                    'regex:/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z][A-Z0-9]{3}$/',
+                    Rule::unique('tbl_customers', 'gst_no')->ignore($customer->id, 'id')->where(function ($query) {
+                        return $query->where('del_status', 'Live');
+                    }),
+                ],
+                'pan_no' => [
+                    'nullable',
+                    'regex:/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/',
+                    Rule::unique('tbl_customers', 'pan_no')->ignore($customer->id, 'id')->where(function ($query) {
+                        return $query->where('del_status', 'Live');
+                    }),
+                ],
+                'ecc_no' => [
+                    'nullable',
+                    'regex:/^\d{1,9}$/',
+                    Rule::unique('tbl_customers', 'ecc_no')->ignore($customer->id, 'id')->where(function ($query) {
+                        return $query->where('del_status', 'Live');
+                    }),
+                ],
+                'area' => 'max:50',
+                'note' => 'max:250',
+                /* 'vendor_code' => [
                 'required',
                 'max:20',
                 Rule::unique('tbl_customers', 'vendor_code')->ignore($customer->id,'id')->where(function ($query) {
                     return $query->where('del_status', 'Live');
                 }),
             ], */
-        ],
+            ],
             [
                 'customer_type.required' => "The Customer Type field is required",
                 'name.required' => __('index.cust_name_required'),
@@ -269,7 +271,8 @@ class CustomerController extends Controller
         return redirect('customers')->with(updateMessage());
     }
 
-    public function show($id) {
+    public function show($id)
+    {
         $customer = Customer::find(encrypt_decrypt($id, 'decrypt'));
         $title = __('index.view_details_customer');
         $obj = $customer;

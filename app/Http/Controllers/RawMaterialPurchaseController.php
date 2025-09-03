@@ -38,7 +38,6 @@ class RawMaterialPurchaseController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-
     }
     /**
      * Display a listing of the resource.
@@ -51,22 +50,23 @@ class RawMaterialPurchaseController extends Controller
         $endDate = '';
         $supplier_id = escape_output($request->get('supplier_id'));
         unset($request->_token);
-        $purchase = RawMaterialPurchase::with('supplierPayments')->where('del_status','Live');
+        $purchase = RawMaterialPurchase::with('supplierPayments')->where('del_status', 'Live');
         if (isset($request->startDate) && $request->startDate != '') {
             $startDate = $request->startDate;
-            $purchase->where('date', '>=', date('Y-m-d',strtotime($request->startDate)));
+            $purchase->where('date', '>=', date('Y-m-d', strtotime($request->startDate)));
         }
         if (isset($request->endDate) && $request->endDate != '') {
             $endDate = $request->endDate;
-            $purchase->where('date', '<=', date('Y-m-d',strtotime($request->endDate)));
+            $purchase->where('date', '<=', date('Y-m-d', strtotime($request->endDate)));
         }
         if (isset($supplier_id) && $supplier_id != '') {
             $purchase->where('supplier', $supplier_id);
         }
         $obj = $purchase->orderBy('id', 'DESC')->get();
-        $suppliers = Supplier::where('del_status','Live')->orderBy('id','DESC')->get();
+        $suppliers = Supplier::where('del_status', 'Live')->orderBy('id', 'DESC')->get();
         $title = __('index.supplier_purchase');
-        return view('pages.purchase.purchases', compact('title', 'obj', 'startDate', 'endDate', 'supplier_id', 'suppliers'));
+        $total_supplier_purchase = RawMaterialPurchase::where('del_status', 'Live')->count();
+        return view('pages.purchase.purchases', compact('title', 'obj', 'startDate', 'endDate', 'supplier_id', 'suppliers', 'total_supplier_purchase'));
     }
 
     /**
@@ -84,7 +84,7 @@ class RawMaterialPurchaseController extends Controller
         $units = Unit::where('del_status', "Live")->get();
         $products = FinishedProduct::orderBy('name', 'ASC')->where('del_status', "Live")->get();
         $orders = CustomerOrder::orderBy('id', 'ASC')->where('del_status', "Live")->get();
-        return view('pages.purchase.addEditPurchase', compact('title', 'suppliers', 'accounts', 'manufactures', 'products', 'orders','units'));
+        return view('pages.purchase.addEditPurchase', compact('title', 'suppliers', 'accounts', 'manufactures', 'products', 'orders', 'units'));
     }
 
     /**
@@ -125,7 +125,7 @@ class RawMaterialPurchaseController extends Controller
         $obj->reference_no = $prefix . str_pad($nextNumber, 4, '0', STR_PAD_LEFT);
         // $obj->reference_no = null_check(escape_output($request->get('reference_no')));
         $obj->supplier = null_check(escape_output($request->get('supplier')));
-        $obj->date = date('Y-m-d',strtotime(escape_output($request->get('date'))));
+        $obj->date = date('Y-m-d', strtotime(escape_output($request->get('date'))));
         $file = '';
         if ($request->hasFile('file_button')) {
             if ($request->hasFile('file_button')) {
@@ -226,7 +226,7 @@ class RawMaterialPurchaseController extends Controller
         $products = FinishedProduct::orderBy('name', 'ASC')->where('del_status', "Live")->get();
         $orders = CustomerOrder::orderBy('id', 'ASC')->where('del_status', "Live")->get();
         $units = Unit::where('del_status', "Live")->get();
-        return view('pages.purchase.addEditPurchase', compact('title', 'obj', 'suppliers', 'pruchse_rmaterials', 'accounts', 'products', 'orders','units'));
+        return view('pages.purchase.addEditPurchase', compact('title', 'obj', 'suppliers', 'pruchse_rmaterials', 'accounts', 'products', 'orders', 'units'));
     }
 
     /**
@@ -272,7 +272,7 @@ class RawMaterialPurchaseController extends Controller
 
         // $rawmaterialpurchase->reference_no = null_check(escape_output($request->get('reference_no')));
         $rawmaterialpurchase->supplier = null_check(escape_output($request->get('supplier')));
-        $rawmaterialpurchase->date = date('Y-m-d',strtotime(escape_output($request->get('date'))));
+        $rawmaterialpurchase->date = date('Y-m-d', strtotime(escape_output($request->get('date'))));
         $rawmaterialpurchase->subtotal = null_check(escape_output($request->get('subtotal')));
         $rawmaterialpurchase->grand_total = null_check(escape_output($request->get('grand_total')));
         $rawmaterialpurchase->paid = null_check(escape_output($request->get('paid')));
@@ -342,9 +342,9 @@ class RawMaterialPurchaseController extends Controller
     {
         $rm_id = [];
         $shortage = [];
-        if($request->rm_id!='') {
+        if ($request->rm_id != '') {
             foreach ($request->rm_id as $key => $value) {
-                if($request->status[$key] == "need_purchase"){
+                if ($request->status[$key] == "need_purchase") {
                     $rm_id[] = $value;
                     $shortage[] = $request->shortage[$key];
                 }
@@ -366,9 +366,9 @@ class RawMaterialPurchaseController extends Controller
             $subtotal_shoratage += $value->shortage_total;
         }
 
-        if(count($pruchse_rmaterials) <= 0){
+        if (count($pruchse_rmaterials) <= 0) {
             $pruchse_rmaterials = RawMaterial::whereIn('id', $rm_id)->get();
-            
+
             foreach ($pruchse_rmaterials as $key => $value) {
                 $value->shortage = $shortage[$key];
                 $value->shortage_total = $value->rate_per_unit * $shortage[$key];
@@ -384,7 +384,7 @@ class RawMaterialPurchaseController extends Controller
         $orders = CustomerOrder::orderBy('id', 'ASC')->where('del_status', "Live")->get();
         $units = Unit::where('del_status', "Live")->get();
         // dd($pruchse_rmaterials);
-        return view('pages.purchase.addEditPurchase', compact('title', 'ref_no', 'suppliers', 'rmaterials', 'accounts', 'pruchse_rmaterials', 'subtotal_shoratage', 'manufactures', 'products', 'orders','units'));
+        return view('pages.purchase.addEditPurchase', compact('title', 'ref_no', 'suppliers', 'rmaterials', 'accounts', 'pruchse_rmaterials', 'subtotal_shoratage', 'manufactures', 'products', 'orders', 'units'));
     }
 
     public function generatePurchase($id)
@@ -402,7 +402,8 @@ class RawMaterialPurchaseController extends Controller
         $ref_no = "PO-" . str_pad($obj_rm + 1, 6, '0', STR_PAD_LEFT);
         return view('pages.purchase.generate_purchase', compact('title', 'obj', 'suppliers', 'rmaterials', 'pruchse_rmaterials', 'accounts', 'products', 'orders', 'ref_no'));
     }
-    public function updatePurchaseStatus(Request $request) {
+    public function updatePurchaseStatus(Request $request)
+    {
         // dd($request->all());
         $status = $request->status;
         $purchase_id = $request->purchase_id;

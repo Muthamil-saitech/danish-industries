@@ -18,7 +18,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                     data-id_name="datatable">
             </div>
             <div class="col-md-6 text-end">
-                <h5 class="mb-0">Total Products: <?php echo e($total_finished_products); ?> </h5>
+                <h5 class="mb-0">Total Drawings: <?php echo e($total_drawers); ?> </h5>
             </div>
         </div>
     </section>
@@ -29,48 +29,45 @@ if (isset($setting->base_color) && $setting->base_color) {
                 <table id="datatable" class="table table-striped">
                     <thead>
                         <tr>
-                            <th class="width_1_p"><?php echo app('translator')->get('index.sn'); ?></th>
-                            <th class="width_10_p"><?php echo app('translator')->get('index.part_no'); ?></th>
-                            <th class="width_10_p"><?php echo app('translator')->get('index.product_category'); ?></th>
-                            <th class="width_10_p"><?php echo app('translator')->get('index.part_name'); ?></th>
-                            <th class="width_10_p"> <?php echo app('translator')->get('index.materials'); ?></th>
-                            <th class="width_10_p"> <?php echo app('translator')->get('index.remarks'); ?></th>
-                            <th class="width_10_p"><?php echo app('translator')->get('index.added_by'); ?></th>
-                            <th class="width_10_p"><?php echo app('translator')->get('index.created_on'); ?></th>
-                            <th class="width_1_p ir_txt_center"><?php echo app('translator')->get('index.actions'); ?></th>
+                            <th class="ir_w_1"> <?php echo app('translator')->get('index.sn'); ?></th>
+                            <th class="ir_w_16"><?php echo app('translator')->get('index.drawer_no'); ?></th>
+                            <th class="ir_w_16"><?php echo app('translator')->get('index.revision_no'); ?></th>
+                            <th class="ir_w_16"><?php echo app('translator')->get('index.revision_date'); ?></th>
+                            <th class="ir_w_25"><?php echo app('translator')->get('index.drawer_loc'); ?></th>
+                            <th class="ir_w_25"><?php echo app('translator')->get('index.program_code'); ?></th>
+                            <th class="ir_w_25"><?php echo app('translator')->get('index.draw_img'); ?></th>
+                            <th class="ir_w_25">Tools/Gauges List</th>
+                            <th class="ir_w_1 ir_txt_center"><?php echo app('translator')->get('index.actions'); ?></th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php if($obj && !empty($obj)): ?>
-                        <?php
-                        $i = 1;
-                        ?>
                         <?php endif; ?>
                         <?php $__currentLoopData = $obj; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <tr>
-                            <td class="c_center"><?php echo e($i++); ?></td>
-                            <td><?php echo e($value->code); ?></td>
-                            <td><?php echo e(getFPCategory($value->category)); ?></td>
-                            <td><?php echo e($value->name); ?></td>
-                            <td><?php echo e(getTotalItem($value->id)); ?></td>
-                            <td title="<?php echo e($value->remarks); ?>"><?php echo e($value->remarks!='' ? substr_text($value->remarks,20) : 'N/A'); ?></td>
-                            <td><?php echo e(getUserName($value->added_by)); ?></td>
-                            <td><?php echo e(getDateFormat($value->created_at)); ?></td>
+                            <td class="ir_txt_center"><?php echo e($loop->iteration); ?></td>
+                            <td><?php echo e($value->drawer_no); ?></td>
+                            <td><?php echo e($value->revision_no); ?></td>
+                            <td><?php echo e(getDateFormat($value->revision_date)); ?></td>
+                            <td><?php echo e($value->drawer_loc); ?></td>
+                            <td><span title="<?php echo e($value->program_code); ?>"><?php echo e(substr_text($value->program_code,20)); ?></span></td>
+                            <td class="ir_txt_center"><?php if($value->drawer_img!=''): ?><img src="<?php echo e($baseURL); ?>uploads/drawer/<?php echo e($value->drawer_img); ?>" alt="Drawer Image" class="img-thumbnail mx-2" width="100px"></a><?php endif; ?></td>
+                            <td><span title="<?php echo e($value->notes); ?>"><?php echo e(substr_text($value->notes,20)); ?></span></td>
                             <td class="text-start">
-                                <?php if(routePermission('product.edit')): ?>
-                                <a href="<?php echo e(url('finishedproducts')); ?>/<?php echo e(encrypt_decrypt($value->id, 'encrypt')); ?>/edit"
-                                    class="button-success" data-bs-toggle="tooltip" data-bs-placement="top"
-                                    title="<?php echo app('translator')->get('index.edit'); ?>"><i class="fa fa-edit"></i></a>
+                                <?php if(routePermission('drawers.edit')): ?>
+                                <a href="<?php echo e(url('drawers')); ?>/<?php echo e(encrypt_decrypt($value->id, 'encrypt')); ?>/edit" class="button-success"
+                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                    title="<?php echo app('translator')->get('index.edit'); ?>"><i class="fa fa-edit tiny-icon"></i></a>
                                 <?php endif; ?>
-                                <?php if(routePermission('product.delete') && !$value->used_in_order): ?>
+                                <?php if(routePermission('drawers.delete') && !$value->used_in_manufacture): ?>
                                 <a href="#" class="delete button-danger"
                                     data-form_class="alertDelete<?php echo e($value->id); ?>" type="submit"
                                     data-bs-toggle="tooltip" data-bs-placement="top" title="<?php echo app('translator')->get('index.delete'); ?>">
-                                    <form action="<?php echo e(route('finishedproducts.destroy', $value->id)); ?>"
+                                    <form action="<?php echo e(route('drawers.destroy', $value->id)); ?>"
                                         class="alertDelete<?php echo e($value->id); ?>" method="post">
                                         <?php echo csrf_field(); ?>
                                         <?php echo method_field('DELETE'); ?>
-                                        <i class="c_padding_13 fa fa-trash tiny-icon"></i>
+                                        <i class="fa fa-trash tiny-icon"></i>
                                     </form>
                                 </a>
                                 <?php endif; ?>
@@ -82,7 +79,9 @@ if (isset($setting->base_color) && $setting->base_color) {
             </div>
             <!-- /.box-body -->
         </div>
+
     </div>
+
 </section>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('script'); ?>
@@ -99,4 +98,4 @@ if (isset($setting->base_color) && $setting->base_color) {
 <script src="<?php echo $baseURL . 'frequent_changing/newDesign/js/forTable.js'; ?>"></script>
 <script src="<?php echo $baseURL . 'frequent_changing/js/custom_report.js'; ?>"></script>
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\danish-industries\resources\views/pages/finished_product/finishedproducts.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\danish-industries\resources\views/pages/drawer/drawer.blade.php ENDPATH**/ ?>

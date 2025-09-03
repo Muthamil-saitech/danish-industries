@@ -49,26 +49,27 @@ class QuotationController extends Controller
         $quotation = Quotation::where('del_status', '!=', 'Deleted');
         if (isset($request->startDate) && $request->startDate != '') {
             $startDate = $request->startDate;
-            $quotation->where('challan_date', '>=', date('Y-m-d',strtotime($request->startDate)));
+            $quotation->where('challan_date', '>=', date('Y-m-d', strtotime($request->startDate)));
         }
         if (isset($request->endDate) && $request->endDate != '') {
             $endDate = $request->endDate;
-            $quotation->where('challan_date', '<=', date('Y-m-d',strtotime($request->endDate)));
+            $quotation->where('challan_date', '<=', date('Y-m-d', strtotime($request->endDate)));
         }
         if (isset($customer_id) && $customer_id != '') {
             $quotation->where('customer_id', $customer_id);
         }
         $obj = $quotation->orderBy('id', 'DESC')->get();
         $qc_employees = User::with('role')
-        ->whereHas('role', function ($query) {
-            $query->where('title', 'Quality Control');
-        })
-        ->where('del_status', 'Live')
-        ->orderBy('emp_code', 'ASC')
-        ->get();
+            ->whereHas('role', function ($query) {
+                $query->where('title', 'Quality Control');
+            })
+            ->where('del_status', 'Live')
+            ->orderBy('emp_code', 'ASC')
+            ->get();
         $title = __('index.dc_list');
-        $customers = Customer::where('del_status','Live')->orderBy('id','DESC')->get();
-        return view('pages.quotation.index', compact('obj', 'title', 'qc_employees','customers', 'startDate', 'endDate', 'customer_id'));
+        $customers = Customer::where('del_status', 'Live')->orderBy('id', 'DESC')->get();
+        $total_dc = Quotation::where('del_status', '!=', 'Deleted')->count();
+        return view('pages.quotation.index', compact('obj', 'title', 'qc_employees', 'customers', 'startDate', 'endDate', 'customer_id', 'total_dc'));
     }
 
     /**
@@ -93,12 +94,12 @@ class QuotationController extends Controller
             ->unique();
         } */
         $customerIds = \App\Manufacture::where('manufacture_status', 'done')
-                ->where('del_status', 'Live')
-                ->whereHas('inspect_approval', function ($q) {
-                    $q->where('status', 2);
-                })
-                ->pluck('customer_id')
-                ->unique();
+            ->where('del_status', 'Live')
+            ->whereHas('inspect_approval', function ($q) {
+                $q->where('status', 2);
+            })
+            ->pluck('customer_id')
+            ->unique();
         $customers = \App\Customer::whereIn('id', $customerIds)->get();
         $finishProducts = FinishedProduct::orderBy('name', 'ASC')->where('del_status', "Live")->get();
         $accounts = Account::orderBy('name', 'ASC')->where('del_status', "Live")->get();
@@ -114,27 +115,28 @@ class QuotationController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        $request->validate([
-            'challan_date' => 'required',
-            'challan_no' => [
-                'required',
-                'max:50',
-                Rule::unique('tbl_quotations', 'challan_no')->where(function ($query) {
-                    return $query->where('del_status', 'Live');
-                }),
+        $request->validate(
+            [
+                'challan_date' => 'required',
+                'challan_no' => [
+                    'required',
+                    'max:50',
+                    Rule::unique('tbl_quotations', 'challan_no')->where(function ($query) {
+                        return $query->where('del_status', 'Live');
+                    }),
+                ],
+                'material_doc_no' => [
+                    'required',
+                    'max:20',
+                    Rule::unique('tbl_quotations', 'material_doc_no')->where(function ($query) {
+                        return $query->where('del_status', 'Live');
+                    }),
+                ],
+                'customer_id' => 'required',
+                'product_id' => 'required|array',
+                'customer_address' => 'required|max:250',
+                'file_button.*' => 'nullable|file|mimes:jpg,jpeg,png,gif,pdf,doc,docx|max:5120',
             ],
-            'material_doc_no' => [
-                'required',
-                'max:20',
-                Rule::unique('tbl_quotations', 'material_doc_no')->where(function ($query) {
-                    return $query->where('del_status', 'Live');
-                }),
-            ],
-            'customer_id' => 'required',
-            'product_id' => 'required|array',
-            'customer_address' => 'required|max:250',
-            'file_button.*' => 'nullable|file|mimes:jpg,jpeg,png,gif,pdf,doc,docx|max:5120',
-        ],
             [
                 'product_id.required' => __('index.selected_product_id_required'),
                 'customer_id.required' => __('index.customer_required'),
@@ -148,7 +150,7 @@ class QuotationController extends Controller
                 'file_button.*.max'   => 'Each file must be less than 5MB in size.',
             ]
         );
-        $cust_parts = explode('|',$request->customer_id);
+        $cust_parts = explode('|', $request->customer_id);
         $customer_id = $cust_parts[0];
         $quotation = Quotation::create([
             'challan_no' => null_check($request->challan_no),
@@ -156,7 +158,7 @@ class QuotationController extends Controller
             'customer_id' => $customer_id,
             'customer_address' => null_check($request->customer_address),
             'customer_gst' => null_check($request->customer_gst),
-            'challan_date' => date('Y-m-d',strtotime($request->challan_date)),
+            'challan_date' => date('Y-m-d', strtotime($request->challan_date)),
             'subtotal' => null_check($request->subtotal),
             'other' => null_check($request->other),
             'grand_total' => null_check($request->grand_total),
@@ -191,9 +193,9 @@ class QuotationController extends Controller
                     'product_quantity' => $request->product_quantity[$key],
                     'unit_id' => $request->unit_id[$key],
                     'po_no' => $request->po_no[$key],
-                    'po_date' => date('Y-m-d',strtotime($request->po_date[$key])),
+                    'po_date' => date('Y-m-d', strtotime($request->po_date[$key])),
                     'dc_ref' => $request->dc_ref[$key],
-                    'dc_ref_date' => $request->dc_ref_date[$key]!='' ? date('Y-m-d',strtotime($request->dc_ref_date[$key])) : date('Y-m-d'),
+                    'dc_ref_date' => $request->dc_ref_date[$key] != '' ? date('Y-m-d', strtotime($request->dc_ref_date[$key])) : date('Y-m-d'),
                     'challan_ref' => $request->challan_ref[$key],
                     'price' => 0.00,
                     'quotation_id' => $quotation->id,
@@ -222,7 +224,6 @@ class QuotationController extends Controller
         }
 
         return redirect()->route('quotation.index')->with(saveMessage());
-
     }
 
     /**
@@ -275,7 +276,7 @@ class QuotationController extends Controller
             ->where('del_status', 'Live')
             ->get();
         // dd($products);
-        return view('pages.quotation.addEdit', compact('title', 'customers', 'obj', 'quotation_details','finishProducts'));
+        return view('pages.quotation.addEdit', compact('title', 'customers', 'obj', 'quotation_details', 'finishProducts'));
     }
 
     /**
@@ -288,28 +289,29 @@ class QuotationController extends Controller
     public function update(Request $request, Quotation $quotation)
     {
         // dd($request->all());
-        $request->validate([
-            'challan_date' => 'required',
-            'challan_no' => [
-                'required',
-                'max:50',
-                Rule::unique('tbl_quotations', 'challan_no')->ignore($quotation->id,'id')->where(function ($query) {
-                    return $query->where('del_status', 'Live');
-                }),
+        $request->validate(
+            [
+                'challan_date' => 'required',
+                'challan_no' => [
+                    'required',
+                    'max:50',
+                    Rule::unique('tbl_quotations', 'challan_no')->ignore($quotation->id, 'id')->where(function ($query) {
+                        return $query->where('del_status', 'Live');
+                    }),
+                ],
+                'material_doc_no' => [
+                    'required',
+                    'max:20',
+                    Rule::unique('tbl_quotations', 'material_doc_no')->ignore($quotation->id, 'id')->where(function ($query) {
+                        return $query->where('del_status', 'Live');
+                    }),
+                ],
+                'customer_id' => 'required',
+                'selected_product_id' => 'required|array',
+                // 'grand_total' => 'required',
+                'customer_address' => 'required|max:250',
+                'file_button.*' => 'nullable|file|mimes:jpg,jpeg,png,gif,pdf,doc,docx|max:5120',
             ],
-            'material_doc_no' => [
-                'required',
-                'max:20',
-                Rule::unique('tbl_quotations', 'material_doc_no')->ignore($quotation->id,'id')->where(function ($query) {
-                    return $query->where('del_status', 'Live');
-                }),
-            ],
-            'customer_id' => 'required',
-            'selected_product_id' => 'required|array',
-            // 'grand_total' => 'required',
-            'customer_address' => 'required|max:250',
-            'file_button.*' => 'nullable|file|mimes:jpg,jpeg,png,gif,pdf,doc,docx|max:5120',
-        ],
             [
                 'selected_product_id.required' => __('index.selected_product_id_required'),
                 'customer_id.required' => __('index.customer_required'),
@@ -324,7 +326,7 @@ class QuotationController extends Controller
                 'file_button.*.max'   => 'Each file must be less than 5MB in size.',
             ]
         );
-        $cust_parts = explode('|',$request->customer_id);
+        $cust_parts = explode('|', $request->customer_id);
         $customer_id = $cust_parts[0];
         $quotation->update([
             'challan_no' => null_check($request->challan_no),
@@ -332,7 +334,7 @@ class QuotationController extends Controller
             'customer_id' => $customer_id,
             'customer_address' => null_check($request->customer_address),
             'customer_gst' => null_check($request->customer_gst),
-            'challan_date' => date('Y-m-d',strtotime($request->challan_date)),
+            'challan_date' => date('Y-m-d', strtotime($request->challan_date)),
             'subtotal' => null_check($request->subtotal),
             'other' => null_check($request->other),
             'grand_total' => null_check($request->grand_total),
@@ -372,7 +374,7 @@ class QuotationController extends Controller
                         'po_no' => $quotation_detail->po_no,
                         'po_date' => $quotation_detail->po_date,
                         'dc_ref' => $request->dc_ref[$key],
-                        'dc_ref_date' => $request->dc_ref_date[$key]!='' ? date('Y-m-d',strtotime($request->dc_ref_date[$key])) : date('Y-m-d'),
+                        'dc_ref_date' => $request->dc_ref_date[$key] != '' ? date('Y-m-d', strtotime($request->dc_ref_date[$key])) : date('Y-m-d'),
                         'challan_ref' => $request->challan_ref[$key],
                         'price' => 0.00,
                         // 'sale_price' => $quotation_detail->sale_price,
@@ -394,7 +396,7 @@ class QuotationController extends Controller
                         'po_no' => $quotation_detail->po_no,
                         'po_date' => $quotation_detail->po_date,
                         'dc_ref' => $request->dc_ref[$key],
-                        'dc_ref_date' => $request->dc_ref_date[$key]!='' ? date('Y-m-d',strtotime($request->dc_ref_date[$key])) : date('Y-m-d'),
+                        'dc_ref_date' => $request->dc_ref_date[$key] != '' ? date('Y-m-d', strtotime($request->dc_ref_date[$key])) : date('Y-m-d'),
                         'challan_ref' => $request->challan_ref[$key],
                         'price' => 0.00,
                         // 'sale_price' => $quotation_detail->sale_price,
@@ -457,7 +459,6 @@ class QuotationController extends Controller
         $quotation_details = $obj->quotationDetails;
         $pdf = Pdf::loadView('pages.quotation.invoice', compact('title', 'obj', 'quotation_details', 'setting'))->setPaper('a4', 'landscape');
         return $pdf->download($obj->material_doc_no . '.pdf');
-
     }
 
     /**
@@ -500,8 +501,8 @@ class QuotationController extends Controller
     {
         // dd($request->all());
         $qc_user_id = $request->qc_user_id;
-        $start_date = date('Y-m-d',strtotime($request->start_date));
-        $complete_date = date('Y-m-d',strtotime($request->complete_date));
+        $start_date = date('Y-m-d', strtotime($request->start_date));
+        $complete_date = date('Y-m-d', strtotime($request->complete_date));
         $challan_id = $request->challan_id;
         $qc_note = $request->qc_note;
         $dc_qc_scheduling =  new QuotationQcLog();
@@ -511,22 +512,23 @@ class QuotationController extends Controller
         $dc_qc_scheduling->end_date =  $complete_date;
         $dc_qc_scheduling->note =  $qc_note;
         $dc_qc_scheduling->save();
-        return response()->json(['result'=>true, 'message' => "QC Added Successfully"]);
+        return response()->json(['result' => true, 'message' => "QC Added Successfully"]);
     }
-    public function getDCQCAssignLog(Request $request) {
+    public function getDCQCAssignLog(Request $request)
+    {
         $challan_id = $request->qc_challan_id;
         $qclog = [];
         if (!empty($challan_id)) {
             $qc_logs = QuotationQcLog::where('challan_id', $challan_id)->get();
             // dd($qc_logs);
-            $delivery_challan = Quotation::where('id',$challan_id)->where('del_status','Live')->orderBy('id','DESC')->first();
-            foreach($qc_logs as $log) {
+            $delivery_challan = Quotation::where('id', $challan_id)->where('del_status', 'Live')->orderBy('id', 'DESC')->first();
+            foreach ($qc_logs as $log) {
                 $qclog[] = [
                     'id' => $log->id,
                     'challan_no' => $delivery_challan->challan_no,
                     'emp_name' => getEmpCode($log->qc_user_id),
-                    'start_date' => date('d-m-Y',strtotime($log->start_date)),
-                    'end_date' => date('d-m-Y',strtotime($log->end_date)),
+                    'start_date' => date('d-m-Y', strtotime($log->start_date)),
+                    'end_date' => date('d-m-Y', strtotime($log->end_date)),
                     'note' => $log->note,
                     'challan_status' => $delivery_challan->challan_status,
                 ];
@@ -534,7 +536,8 @@ class QuotationController extends Controller
         }
         return response()->json($qclog);
     }
-    public function updateVerifiedStatus(Request $request) {
+    public function updateVerifiedStatus(Request $request)
+    {
         $qc_challan_id = $request->qc_challan_id;
         $challan_status = $request->challan_status;
         $quotation = Quotation::find($qc_challan_id);
@@ -546,7 +549,8 @@ class QuotationController extends Controller
             return response()->json(['status' => false, 'message' => 'Challan not found.']);
         }
     }
-    public function updateChallanStatus(Request $request) {
+    public function updateChallanStatus(Request $request)
+    {
         $challan_id = $request->challan_id;
         $status = $request->status;
         $quotation = Quotation::find($challan_id);

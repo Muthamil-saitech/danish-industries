@@ -55,11 +55,11 @@ class SalesController extends Controller
         }
         if (isset($request->startDate) && $request->startDate != '') {
             $startDate = $request->startDate;
-            $salesQuery->where('sale_date', '>=', date('Y-m-d',strtotime($request->startDate)));
+            $salesQuery->where('sale_date', '>=', date('Y-m-d', strtotime($request->startDate)));
         }
         if (isset($request->endDate) && $request->endDate != '') {
             $endDate = $request->endDate;
-            $salesQuery->where('sale_date', '<=', date('Y-m-d',strtotime($request->endDate)));
+            $salesQuery->where('sale_date', '<=', date('Y-m-d', strtotime($request->endDate)));
         }
         $obj = $salesQuery
             ->select('s.*', 'sd.order_id', 'q.challan_no')
@@ -77,7 +77,7 @@ class SalesController extends Controller
             $balanceAmount = DB::table('tbl_customer_due_receives')
                 ->where('order_id', $sale->order_id)
                 ->where('del_status', 'Live')
-                ->orderBy('id','DESC')
+                ->orderBy('id', 'DESC')
                 ->value('balance_amount');
 
             if ($payAmount == 0) {
@@ -93,7 +93,7 @@ class SalesController extends Controller
         }
         // dd($obj);
         $title = __('index.sales_list');
-        $customers = Customer::where('del_status','Live')->orderBy('id','DESC')->get();
+        $customers = Customer::where('del_status', 'Live')->orderBy('id', 'DESC')->get();
         return view('pages.sales.sales', compact('title', 'obj', 'customers', 'startDate', 'endDate', 'customer_id'));
     }
 
@@ -110,13 +110,13 @@ class SalesController extends Controller
         $fifoProducts = FinishedProduct::orderBy('name', 'ASC')->where('del_status', "Live")->where('stock_method', "fifo")->get();
         $accounts = Account::orderBy('name', 'ASC')->where('del_status', "Live")->get();
         $existing_challans = DB::table('tbl_sales')
-        ->where('del_status', 'Live')
-        ->pluck('challan_id')
-        ->toArray();
-        $delivery_challan_list = Quotation::where('challan_status','3')->whereNotIn('id', $existing_challans)->where('del_status', "Live")->orderBy('id', 'DESC')->get();
+            ->where('del_status', 'Live')
+            ->pluck('challan_id')
+            ->toArray();
+        $delivery_challan_list = Quotation::where('challan_status', '3')->whereNotIn('id', $existing_challans)->where('del_status', "Live")->orderBy('id', 'DESC')->get();
         // $obj_rm = Sales::count();
         // $ref_no = "SO-" . str_pad($obj_rm + 1, 6, '0', STR_PAD_LEFT);
-        return view('pages.sales.addEditSale', compact('title', 'customers', 'finishProducts', 'accounts', 'fifoProducts','delivery_challan_list'));
+        return view('pages.sales.addEditSale', compact('title', 'customers', 'finishProducts', 'accounts', 'fifoProducts', 'delivery_challan_list'));
     }
 
     /**
@@ -128,15 +128,16 @@ class SalesController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        request()->validate([
-            // 'reference_no' => 'required|max:50',
-            'customer_id' => 'required',
-            // 'status' => 'required|max:50',
-            'date' => 'required',
-            'selected_product_id' => 'required',
-            // 'paid' => 'required|max:50',
-            // 'account' => 'required|max:50',
-        ],
+        request()->validate(
+            [
+                // 'reference_no' => 'required|max:50',
+                'customer_id' => 'required',
+                // 'status' => 'required|max:50',
+                'date' => 'required',
+                'selected_product_id' => 'required',
+                // 'paid' => 'required|max:50',
+                // 'account' => 'required|max:50',
+            ],
             [
                 // 'reference_no.required' => __('index.reference_no_required'),
                 'customer_id.required' => __('index.customer_required'),
@@ -155,7 +156,7 @@ class SalesController extends Controller
                 $total_quantity = $total_quantity + $quantity_list[$i];
             }
             $customer_order_id = QuotationDetail::where('quotation_id', $request->get('challan_id'))
-                ->where('del_status','Live')
+                ->where('del_status', 'Live')
                 ->pluck('customer_order_id')
                 ->first();
 
@@ -187,7 +188,7 @@ class SalesController extends Controller
             $obj->reference_no = $prefix . $sequence . '/' . $yearRange;
             // $obj->reference_no = $prefix . str_pad($nextNumber, 8, '0', STR_PAD_LEFT);
             $obj->customer_id = null_check(escape_output($request->get('customer_id')));
-            $obj->sale_date = escape_output(date('Y-m-d',strtotime($request->get('date'))));
+            $obj->sale_date = escape_output(date('Y-m-d', strtotime($request->get('date'))));
             // $obj->status = escape_output($request->get('status'));
             $obj->product_quantity = null_check($total_quantity);
             $obj->subtotal = null_check(escape_output($request->get('subtotal')));
@@ -219,7 +220,7 @@ class SalesController extends Controller
                 $obj2->srn = null_check($srn[$x]);
                 $obj2->del_status = 'Live';
                 $obj2->created_at = date('Y-m-d H:i:s');
-                if(isset($request->manufacture_id[$x])){
+                if (isset($request->manufacture_id[$x])) {
                     $obj2->manufacture_id = null_check($request->manufacture_id[$x]);
                 }
                 $obj2->save();
@@ -275,7 +276,7 @@ class SalesController extends Controller
         $setting = getSettingsInfo();
         $sale_details = SaleDetail::where('sale_id', $id)->where('del_status', 'Live')->get();
         $challanInfo = Quotation::where('id', $obj->challan_id)->where('del_status', 'Live')->first();
-        return view('pages.sales.salesInvoice', compact('title', 'obj', 'customers', 'setting', 'finishProducts', 'accounts', 'fifoProducts', 'company', 'sale_details','challanInfo'));
+        return view('pages.sales.salesInvoice', compact('title', 'obj', 'customers', 'setting', 'finishProducts', 'accounts', 'fifoProducts', 'company', 'sale_details', 'challanInfo'));
     }
 
     public function downloadInvoice($id)
@@ -294,7 +295,7 @@ class SalesController extends Controller
         $setting = getSettingsInfo();
         $sale_details = SaleDetail::where('sale_id', $id)->where('del_status', 'Live')->get();
         $challanInfo = Quotation::where('id', $obj->challan_id)->where('del_status', 'Live')->first();
-        $pdf = Pdf::loadView('pages.sales.salesInvoice', compact('title', 'obj', 'sale_details', 'setting', 'customers', 'finishProducts', 'accounts', 'fifoProducts', 'company','challanInfo'))->setPaper('a4', 'landscape');
+        $pdf = Pdf::loadView('pages.sales.salesInvoice', compact('title', 'obj', 'sale_details', 'setting', 'customers', 'finishProducts', 'accounts', 'fifoProducts', 'company', 'challanInfo'))->setPaper('a4', 'landscape');
         return $pdf->download($obj->reference_no . '.pdf');
     }
 
@@ -363,8 +364,8 @@ class SalesController extends Controller
         $accounts = Account::orderBy('name', 'ASC')->where('del_status', "Live")->get();
         $obj = Sales::findOrFail($id);
         $sale_details = SaleDetail::where('sale_id', $id)->where('del_status', 'Live')->get();
-        $delivery_challan_list = Quotation::where('challan_status','3')->where('del_status', "Live")->orderBy('id', 'DESC')->get();
-        return view('pages.sales.addEditSale', compact('title', 'obj', 'customers', 'finishProducts', 'accounts', 'fifoProducts', 'sale_details','delivery_challan_list'));
+        $delivery_challan_list = Quotation::where('challan_status', '3')->where('del_status', "Live")->orderBy('id', 'DESC')->get();
+        return view('pages.sales.addEditSale', compact('title', 'obj', 'customers', 'finishProducts', 'accounts', 'fifoProducts', 'sale_details', 'delivery_challan_list'));
     }
 
     /**
@@ -377,15 +378,16 @@ class SalesController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            request()->validate([
-                // 'reference_no' => 'required|max:50',
-                'customer_id' => 'required|max:150',
-                'status' => 'required|max:50',
-                'date' => 'required|max:50',
-                'selected_product_id' => 'required|max:50',
-                'paid' => 'required|max:50',
-                'account' => 'required|max:50',
-            ],
+            request()->validate(
+                [
+                    // 'reference_no' => 'required|max:50',
+                    'customer_id' => 'required|max:150',
+                    'status' => 'required|max:50',
+                    'date' => 'required|max:50',
+                    'selected_product_id' => 'required|max:50',
+                    'paid' => 'required|max:50',
+                    'account' => 'required|max:50',
+                ],
                 [
                     'reference_no.required' => __('index.reference_no_required'),
                     'customer_id.required' => __('index.customer_required'),
@@ -419,10 +421,10 @@ class SalesController extends Controller
             $obj->due = null_check(escape_output($request->get('due')));
             $obj->note = escape_output($request->get('note'));
             $obj->updated_at = date('Y-m-d H:i:s');
-            if($request->get('change_currency')){
-            $obj->converted_currency_id = null_check(escape_output($request->get('currency_id')));
-            $obj->converted_amount = null_check(escape_output($request->get('converted_amount')));
-        }
+            if ($request->get('change_currency')) {
+                $obj->converted_currency_id = null_check(escape_output($request->get('currency_id')));
+                $obj->converted_amount = null_check(escape_output($request->get('converted_amount')));
+            }
             $obj->save();
 
             SaleDetail::where('sale_id', $id)->update(['del_status' => "Deleted"]);
@@ -439,7 +441,7 @@ class SalesController extends Controller
                 $obj2->product_quantity = $quantity_list[$x];
                 $obj2->total_amount = $total[$x];
                 $obj2->del_status = 'Live';
-                if(isset($request->manufacture_id[$x])){
+                if (isset($request->manufacture_id[$x])) {
                     $obj2->manufacture_id = null_check($request->manufacture_id[$x]);
                 }
                 $obj2->save();
@@ -452,8 +454,8 @@ class SalesController extends Controller
             return redirect('sales')->with(dangerMessage($e->getMessage()));
         }
     }
-	
-	public function destroy($id)
+
+    public function destroy($id)
     {
         Sales::where('id', $id)->update(['del_status' => "Deleted"]);
         return redirect('sales')->with(deleteMessage());

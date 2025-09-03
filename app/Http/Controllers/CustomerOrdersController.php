@@ -179,15 +179,15 @@ class CustomerOrdersController extends Controller
             }
             // if (!empty($request->invoice_type)) {
             //     foreach ($request->invoice_type as $key => $value) {
-                    $inv_obj = new \App\CustomerOrderInvoice();
-                    $inv_obj->customer_order_id = null_check($customerOrder->id);
-                    $inv_obj->invoice_type = 'Quotation';
-                    $inv_obj->amount = null_check(escape_output($request->get('total_subtotal')));
-                    $inv_obj->invoice_date = null_check(date('Y-m-d', strtotime($request->get('po_date'))));
-                    $inv_obj->paid_amount = 0.00;
-                    $inv_obj->due_amount = null_check(escape_output($request->get('total_subtotal')));
-                    // $inv_obj->order_due_amount = null_check($request->invoice_order_due[$key]);
-                    $inv_obj->save();
+            $inv_obj = new \App\CustomerOrderInvoice();
+            $inv_obj->customer_order_id = null_check($customerOrder->id);
+            $inv_obj->invoice_type = 'Quotation';
+            $inv_obj->amount = null_check(escape_output($request->get('total_subtotal')));
+            $inv_obj->invoice_date = null_check(date('Y-m-d', strtotime($request->get('po_date'))));
+            $inv_obj->paid_amount = 0.00;
+            $inv_obj->due_amount = null_check(escape_output($request->get('total_subtotal')));
+            // $inv_obj->order_due_amount = null_check($request->invoice_order_due[$key]);
+            $inv_obj->save();
             //     }
             // }
             return redirect('customer-orders')->with(saveMessage());

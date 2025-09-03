@@ -32,7 +32,6 @@ class RawMaterialController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-
     }
     /**
      * Display a listing of the resource.
@@ -42,14 +41,15 @@ class RawMaterialController extends Controller
     public function index()
     {
         $obj = RawMaterial::orderBy('id', 'DESC')->where('del_status', "Live")->get()->map(function ($rmaterial) {
-            $usedInPrmat = FPrmitem::where('rmaterials_id', $rmaterial->id)->where('del_status','Live')->exists();
-            $usedInPurchase = RMPurchase_model::where('rmaterials_id', $rmaterial->id)->where('del_status','Live')->exists();
-            $usedInStock = MaterialStock::where('mat_id', $rmaterial->id)->where('del_status','Live')->exists();
+            $usedInPrmat = FPrmitem::where('rmaterials_id', $rmaterial->id)->where('del_status', 'Live')->exists();
+            $usedInPurchase = RMPurchase_model::where('rmaterials_id', $rmaterial->id)->where('del_status', 'Live')->exists();
+            $usedInStock = MaterialStock::where('mat_id', $rmaterial->id)->where('del_status', 'Live')->exists();
             $rmaterial->used_in_product = $usedInPrmat || $usedInPurchase || $usedInStock;
             return $rmaterial;
         });
         $title = __('index.raw_materials');
-        return view('pages.rawmaterial.rawmaterials', compact('title', 'obj'));
+        $total_materials = RawMaterial::where('del_status', "Live")->count();
+        return view('pages.rawmaterial.rawmaterials', compact('title', 'obj', 'total_materials'));
     }
 
     /**
@@ -76,28 +76,29 @@ class RawMaterialController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate([
-            'name' => [
-                'required',
-                'regex:/^(?=.*[a-zA-Z])[a-zA-Z0-9\/&\-\s]+$/',
-                'max:150',
+        request()->validate(
+            [
+                'name' => [
+                    'required',
+                    'regex:/^(?=.*[a-zA-Z])[a-zA-Z0-9\/&\-\s]+$/',
+                    'max:150',
+                ],
+                'category' => 'required',
+                // 'insert_type' => 'required_if:category,1',
+                'code' => [
+                    'required',
+                    'regex:/^(?=.*[a-zA-Z])[a-zA-Z0-9\/&\-\s]+$/',
+                    'max:20',
+                    Rule::unique('tbl_rawmaterials', 'code')->where(function ($query) {
+                        return $query->where('del_status', 'Live');
+                    }),
+                ],
+                // 'type' => 'required',
+                // 'description' => 'required|max:250',
+                'remarks' => 'max:100',
+                // 'heat_no' => 'max:20',
+                'old_mat_no' => 'max:100',
             ],
-            'category' => 'required',
-            // 'insert_type' => 'required_if:category,1',
-            'code' => [
-                'required',
-                'regex:/^(?=.*[a-zA-Z])[a-zA-Z0-9\/&\-\s]+$/',
-                'max:20',
-                Rule::unique('tbl_rawmaterials', 'code')->where(function ($query) {
-                    return $query->where('del_status', 'Live');
-                }),
-            ],
-            // 'type' => 'required',
-            // 'description' => 'required|max:250',
-            'remarks' => 'max:100',
-            // 'heat_no' => 'max:20',
-            'old_mat_no' => 'max:100',
-        ],
             [
                 'name.required' => __('index.raw_mat_req'),
                 'category.required' => __('index.raw_mat_c_req'),
@@ -146,27 +147,28 @@ class RawMaterialController extends Controller
      */
     public function update(Request $request, RawMaterial $rawmaterial)
     {
-        request()->validate([
-            'name' => [
-                'required',
-                'regex:/^(?=.*[a-zA-Z])[a-zA-Z0-9\/&\-\s]+$/',
-                'max:150',
+        request()->validate(
+            [
+                'name' => [
+                    'required',
+                    'regex:/^(?=.*[a-zA-Z])[a-zA-Z0-9\/&\-\s]+$/',
+                    'max:150',
+                ],
+                'category' => 'required',
+                'code' => [
+                    'required',
+                    'regex:/^(?=.*[a-zA-Z])[a-zA-Z0-9\/&\-\s]+$/',
+                    'max:20',
+                    Rule::unique('tbl_rawmaterials', 'code')->ignore($rawmaterial->id, 'id')->where(function ($query) {
+                        return $query->where('del_status', 'Live');
+                    }),
+                ],
+                // 'type' => 'required',
+                // 'description' => 'required|max:250',
+                'remarks' => 'max:100',
+                // 'heat_no' => 'max:20',
+                'old_mat_no' => 'max:100',
             ],
-            'category' => 'required',
-            'code' => [
-                'required',
-                'regex:/^(?=.*[a-zA-Z])[a-zA-Z0-9\/&\-\s]+$/',
-                'max:20',
-                Rule::unique('tbl_rawmaterials', 'code')->ignore($rawmaterial->id,'id')->where(function ($query) {
-                    return $query->where('del_status', 'Live');
-                }),
-            ],
-            // 'type' => 'required',
-            // 'description' => 'required|max:250',
-            'remarks' => 'max:100',
-            // 'heat_no' => 'max:20',
-            'old_mat_no' => 'max:100',
-        ],
             [
                 'name.required' => __('index.raw_mat_req'),
                 'category.required' => __('index.raw_mat_c_req'),
@@ -207,14 +209,12 @@ class RawMaterialController extends Controller
     {
         $raw_material = encrypt_decrypt($request->get('raw_material'), 'decrypt');
         $rawMaterials = RawMaterial::where('del_status', "Live")->get();
-        if($raw_material)
-        {
+        if ($raw_material) {
             $obj = RawMaterial::whereHas('purchase')->orderBy('name', 'ASC')->where('del_status', "Live")->where('id', $raw_material)->get();
-        }else{
+        } else {
             $obj = null;
         }
         $title = __('index.price_history');
         return view('pages.rawmaterial.priceHistory', compact('title', 'obj', 'rawMaterials'));
-
     }
 }

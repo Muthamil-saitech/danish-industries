@@ -11,14 +11,14 @@ if (isset($setting->base_color) && $setting->base_color) {
 <section class="main-content-wrapper">
     <?php echo $__env->make('utilities.messages', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <section class="content-header">
-        <div class="row">
+        <div class="row align-items-center">
             <div class="col-md-6">
                 <h2 class="top-left-header"><?php echo e(isset($title) && $title ? $title : ''); ?></h2>
                 <input type="hidden" class="datatable_name" data-title="<?php echo e(isset($title) && $title ? $title : ''); ?>"
                     data-id_name="datatable">
             </div>
             <div class="col-md-6 text-end">
-                <h5 class="mb-0">Total Products: <?php echo e($total_finished_products); ?> </h5>
+                <h5 class="mb-0">Total Units: <?php echo e($total_units); ?> </h5>
             </div>
         </div>
     </section>
@@ -29,15 +29,10 @@ if (isset($setting->base_color) && $setting->base_color) {
                 <table id="datatable" class="table table-striped">
                     <thead>
                         <tr>
-                            <th class="width_1_p"><?php echo app('translator')->get('index.sn'); ?></th>
-                            <th class="width_10_p"><?php echo app('translator')->get('index.part_no'); ?></th>
-                            <th class="width_10_p"><?php echo app('translator')->get('index.product_category'); ?></th>
-                            <th class="width_10_p"><?php echo app('translator')->get('index.part_name'); ?></th>
-                            <th class="width_10_p"> <?php echo app('translator')->get('index.materials'); ?></th>
-                            <th class="width_10_p"> <?php echo app('translator')->get('index.remarks'); ?></th>
-                            <th class="width_10_p"><?php echo app('translator')->get('index.added_by'); ?></th>
-                            <th class="width_10_p"><?php echo app('translator')->get('index.created_on'); ?></th>
-                            <th class="width_1_p ir_txt_center"><?php echo app('translator')->get('index.actions'); ?></th>
+                            <th class="ir_w_1"> <?php echo app('translator')->get('index.sn'); ?></th>
+                            <th class="ir_w_16"><?php echo app('translator')->get('index.unit_name'); ?></th>
+                            <th class="ir_w_25"><?php echo app('translator')->get('index.description'); ?></th>
+                            <th class="ir_w_1 ir_txt_center"><?php echo app('translator')->get('index.actions'); ?></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -48,32 +43,28 @@ if (isset($setting->base_color) && $setting->base_color) {
                         <?php endif; ?>
                         <?php $__currentLoopData = $obj; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <tr>
-                            <td class="c_center"><?php echo e($i++); ?></td>
-                            <td><?php echo e($value->code); ?></td>
-                            <td><?php echo e(getFPCategory($value->category)); ?></td>
+                            <td class="ir_txt_center"><?php echo e($i++); ?></td>
                             <td><?php echo e($value->name); ?></td>
-                            <td><?php echo e(getTotalItem($value->id)); ?></td>
-                            <td title="<?php echo e($value->remarks); ?>"><?php echo e($value->remarks!='' ? substr_text($value->remarks,20) : 'N/A'); ?></td>
-                            <td><?php echo e(getUserName($value->added_by)); ?></td>
-                            <td><?php echo e(getDateFormat($value->created_at)); ?></td>
+                            <td><span title="<?php echo e($value->description); ?>"><?php echo e(substr_text($value->description,50)); ?></span></td>
                             <td class="text-start">
-                                <?php if(routePermission('product.edit')): ?>
-                                <a href="<?php echo e(url('finishedproducts')); ?>/<?php echo e(encrypt_decrypt($value->id, 'encrypt')); ?>/edit"
-                                    class="button-success" data-bs-toggle="tooltip" data-bs-placement="top"
-                                    title="<?php echo app('translator')->get('index.edit'); ?>"><i class="fa fa-edit"></i></a>
+                                <?php if(routePermission('units.edit')): ?>
+                                <a href="<?php echo e(url('units')); ?>/<?php echo e(encrypt_decrypt($value->id, 'encrypt')); ?>/edit" class="button-success"
+                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                    title="<?php echo app('translator')->get('index.edit'); ?>"><i class="fa fa-edit tiny-icon"></i></a>
                                 <?php endif; ?>
-                                <?php if(routePermission('product.delete') && !$value->used_in_order): ?>
+                                <?php if(routePermission('units.delete') && !$value->used_in_purchase): ?>
                                 <a href="#" class="delete button-danger"
                                     data-form_class="alertDelete<?php echo e($value->id); ?>" type="submit"
                                     data-bs-toggle="tooltip" data-bs-placement="top" title="<?php echo app('translator')->get('index.delete'); ?>">
-                                    <form action="<?php echo e(route('finishedproducts.destroy', $value->id)); ?>"
+                                    <form action="<?php echo e(route('units.destroy', $value->id)); ?>"
                                         class="alertDelete<?php echo e($value->id); ?>" method="post">
                                         <?php echo csrf_field(); ?>
                                         <?php echo method_field('DELETE'); ?>
-                                        <i class="c_padding_13 fa fa-trash tiny-icon"></i>
+                                        <i class="fa fa-trash tiny-icon"></i>
                                     </form>
                                 </a>
                                 <?php endif; ?>
+
                             </td>
                         </tr>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -82,7 +73,9 @@ if (isset($setting->base_color) && $setting->base_color) {
             </div>
             <!-- /.box-body -->
         </div>
+
     </div>
+
 </section>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('script'); ?>
@@ -99,4 +92,4 @@ if (isset($setting->base_color) && $setting->base_color) {
 <script src="<?php echo $baseURL . 'frequent_changing/newDesign/js/forTable.js'; ?>"></script>
 <script src="<?php echo $baseURL . 'frequent_changing/js/custom_report.js'; ?>"></script>
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\danish-industries\resources\views/pages/finished_product/finishedproducts.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\danish-industries\resources\views/pages/unit/units.blade.php ENDPATH**/ ?>

@@ -36,7 +36,8 @@ class RoleController extends Controller
     {
         $title = __('index.list_role');
         $results = Role::latest()->get();
-        return view('pages.role.index', compact('title', 'results'));
+        $total_roles = Role::count();
+        return view('pages.role.index', compact('title', 'results', 'total_roles'));
     }
 
     /**
@@ -63,7 +64,8 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,
+        $this->validate(
+            $request,
             [
                 'title' => 'required|max:191',
             ],
@@ -124,11 +126,11 @@ class RoleController extends Controller
         $title = __('index.edit_role');
         $data = $role;
         $menus = Menu::with([
-            'activities' => function($query) {
-                $query->where('is_dependant',"No");
+            'activities' => function ($query) {
+                $query->where('is_dependant', "No");
             }
         ])->get();
-        return view('pages.role.addEdit',compact('title','data','menus'));
+        return view('pages.role.addEdit', compact('title', 'data', 'menus'));
     }
 
     /**
@@ -140,19 +142,21 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        $this->validate($request,
-        [
-            'title'=>'required|max:191'
-        ],
-        [
-            'title.required'=>__('index.role_name_required'),
-            'title.max'=>__('index.role_name_max')
-        ]);
+        $this->validate(
+            $request,
+            [
+                'title' => 'required|max:191'
+            ],
+            [
+                'title.required' => __('index.role_name_required'),
+                'title.max' => __('index.role_name_max')
+            ]
+        );
         $role->title = ucwords($request->title);
         $role->save();
         $activity_ids = $request->activity_id;
-        if(isset($activity_ids)) {
-            RolePermission::whereIn('role_id',array($role->id))->delete();
+        if (isset($activity_ids)) {
+            RolePermission::whereIn('role_id', array($role->id))->delete();
             foreach ($activity_ids as $activity_id) {
                 $menu_id = MenuActivity::find($activity_id)->menu_id;
                 $request_activity = [
@@ -160,18 +164,18 @@ class RoleController extends Controller
                     'menu_id' => $menu_id,
                     'activity_id' => $activity_id
                 ];
-                RolePermission::updateOrInsert($request_activity,$request_activity);
+                RolePermission::updateOrInsert($request_activity, $request_activity);
             }
 
-           foreach (MenuActivity::where('is_dependant',"Yes")->get() as $activity) {
-               $menu_id = MenuActivity::find($activity->id)->menu_id;
-               $dependant_activity = [
-                   'role_id' => $role->id,
-                   'menu_id' => $menu_id,
-                   'activity_id' => $activity->id
-               ];
-               RolePermission::updateOrInsert($dependant_activity,$dependant_activity);
-           }
+            foreach (MenuActivity::where('is_dependant', "Yes")->get() as $activity) {
+                $menu_id = MenuActivity::find($activity->id)->menu_id;
+                $dependant_activity = [
+                    'role_id' => $role->id,
+                    'menu_id' => $menu_id,
+                    'activity_id' => $activity->id
+                ];
+                RolePermission::updateOrInsert($dependant_activity, $dependant_activity);
+            }
         }
         return redirect()->route('role.index')->with(updateMessage());
     }
@@ -184,10 +188,10 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        if(User::where('permission_role',$role->id)->where('del_status','!=','Deleted')->exists()) {
-            return redirect()->route('role.index')->with(deleteMessage($role->title." has been assigned."));
-        }else {
-            RolePermission::whereIn('role_id',array($role->id))->delete();
+        if (User::where('permission_role', $role->id)->where('del_status', '!=', 'Deleted')->exists()) {
+            return redirect()->route('role.index')->with(deleteMessage($role->title . " has been assigned."));
+        } else {
+            RolePermission::whereIn('role_id', array($role->id))->delete();
             $role->delete();
             return redirect()->route('role.index')->with(deleteMessage());
         }

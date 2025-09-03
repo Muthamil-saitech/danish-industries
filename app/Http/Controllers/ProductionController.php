@@ -73,7 +73,8 @@ class ProductionController extends Controller
         $title = __('index.manufactures');
         $finishProduct = FinishedProduct::orderBy('name', 'ASC')->where('del_status', "Live")->get();
         $customers = Customer::orderBy('id', 'DESC')->where('del_status', "Live")->get();
-        return view('pages.manufacture.manufactures', compact('title', 'obj', 'finishProduct', 'customers', 'status', 'product_id', 'batch_no', 'customer'));
+        $total_productions = Manufacture::where('del_status', "Live")->count();
+        return view('pages.manufacture.manufactures', compact('title', 'obj', 'finishProduct', 'customers', 'status', 'product_id', 'batch_no', 'customer', 'total_productions'));
     }
 
     /**
@@ -81,7 +82,7 @@ class ProductionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($coid = null,$pid = null)
+    public function create($coid = null, $pid = null)
     {
         $coid = encrypt_decrypt($coid, 'decrypt');
         $pid = encrypt_decrypt($pid, 'decrypt');
@@ -93,27 +94,27 @@ class ProductionController extends Controller
         // $p_stages = DB::select("SELECT * FROM tbl_finished_products_productionstage WHERE del_status='Live' AND finish_product_id='$pid' ORDER BY id ASC");
         $p_stages = ProductionStage::orderBy('id', 'ASC')->where('del_status', "Live")->get();
         $employees = User::with('role')
-        ->whereHas('role', function ($query) {
-            $query->where('title', 'Operators');
-        })
-        ->where('del_status', 'Live')
-        ->orderBy('emp_code', 'ASC')
-        ->get();
+            ->whereHas('role', function ($query) {
+                $query->where('title', 'Operators');
+            })
+            ->where('del_status', 'Live')
+            ->orderBy('emp_code', 'ASC')
+            ->get();
         $drawers = Drawer::where('del_status', 'Live')->get();
-        $tax_items = TaxItems::where('collect_tax','YES')->get();
-        $lab_tax_items = TaxItems::where('collect_tax','YES')->where('tax_type','Labor')->first();
-        $sale_tax_items = TaxItems::where('collect_tax','YES')->where('tax_type','Sales')->first();
+        $tax_items = TaxItems::where('collect_tax', 'YES')->get();
+        $lab_tax_items = TaxItems::where('collect_tax', 'YES')->where('tax_type', 'Labor')->first();
+        $sale_tax_items = TaxItems::where('collect_tax', 'YES')->where('tax_type', 'Sales')->first();
         $accounts = Account::orderBy('name', 'ASC')->where('del_status', "Live")->get();
         $rm = RawMaterial::all();
         $ref_no = "MP-" . str_pad($obj_rm + 1, 6, '0', STR_PAD_LEFT);
         $customers = Customer::orderBy('id', 'DESC')->where('del_status', "Live")->get();
-        if($coid&&$pid) {
-            $product = FinishedProduct::where('id',$pid)->where('del_status','Live')->first();
+        if ($coid && $pid) {
+            $product = FinishedProduct::where('id', $pid)->where('del_status', 'Live')->first();
             $selected_product_id = $product->id;
             $selected_st_method = $product->stock_method;
-            $selected_customer_id = CustomerOrder::where('id',$coid)->where('del_status','Live')->where('order_status','1')->pluck('customer_id')->first();
-            $selected_customer_order_id = CustomerOrder::where('id',$coid)->where('del_status','Live')->where('order_status','1')->pluck('id')->first();
-            $customerOrderList = CustomerOrder::where('customer_id', $selected_customer_id)->where('del_status', "Live")->where('order_status','1')->orderBy('id', 'DESC')->get();
+            $selected_customer_id = CustomerOrder::where('id', $coid)->where('del_status', 'Live')->where('order_status', '1')->pluck('customer_id')->first();
+            $selected_customer_order_id = CustomerOrder::where('id', $coid)->where('del_status', 'Live')->where('order_status', '1')->pluck('id')->first();
+            $customerOrderList = CustomerOrder::where('customer_id', $selected_customer_id)->where('del_status', "Live")->where('order_status', '1')->orderBy('id', 'DESC')->get();
             $manufactures = FinishedProduct::orderBy('name', 'ASC')->where('del_status', "Live")->get();
             // dd($selected_product_id);
         } else {
@@ -125,7 +126,7 @@ class ProductionController extends Controller
             $manufactures = [];
         }
         // dd($p_stages);
-        return view('pages.manufacture.addEditManufacture', compact('title', 'ref_no', 'rmaterials', 'p_stages', 'nonitem', 'units', 'tax_items', 'lab_tax_items', 'sale_tax_items','manufactures', 'rm', 'accounts', 'customers','selected_customer_id','selected_customer_order_id','selected_product_id','selected_st_method','customerOrderList','employees','drawers'));
+        return view('pages.manufacture.addEditManufacture', compact('title', 'ref_no', 'rmaterials', 'p_stages', 'nonitem', 'units', 'tax_items', 'lab_tax_items', 'sale_tax_items', 'manufactures', 'rm', 'accounts', 'customers', 'selected_customer_id', 'selected_customer_order_id', 'selected_product_id', 'selected_st_method', 'customerOrderList', 'employees', 'drawers'));
     }
 
     /**
@@ -171,7 +172,7 @@ class ProductionController extends Controller
             $obj->tax_value = null_check(escape_output($request->get('tax_value')));
             $obj->batch_no = null_check(escape_output($request->get('batch_no')));
             $obj->expiry_days = null_check(escape_output($request->get('expiry_days')));
-            $obj->start_date = date('Y-m-d',strtotime(escape_output($request->get('start_date_m'))));
+            $obj->start_date = date('Y-m-d', strtotime(escape_output($request->get('start_date_m'))));
             $obj->complete_date = $request->get('complete_date_m') ? date('Y-m-d', strtotime(escape_output($request->get('complete_date_m')))) : null;
             $obj->mrmcost_total = null_check(escape_output($request->get('mrmcost_total')));
             $obj->mnoninitem_total = null_check(escape_output($request->get('mnoninitem_total')));
@@ -187,7 +188,7 @@ class ProductionController extends Controller
             // $obj->dc_no = escape_output($request->get('dc_no'));
 
             // if ($request->get('manufacture_type') == 'fco') {
-            if($request->get('selected_customer_id')!='' && $request->get('selected_customer_order_id')!='') {
+            if ($request->get('selected_customer_id') != '' && $request->get('selected_customer_order_id') != '') {
                 $obj->customer_id = null_check(escape_output($request->get('selected_customer_id')));
                 $obj->customer_order_id = null_check(escape_output($request->get('selected_customer_order_id')));
             } else {
@@ -195,7 +196,7 @@ class ProductionController extends Controller
                 $obj->customer_order_id = null_check(escape_output($request->get('customer_order_id')));
             }
             // }
-            $customerOrder = CustomerOrder::where('id',$obj->customer_order_id)->where('del_status','Live')->first();
+            $customerOrder = CustomerOrder::where('id', $obj->customer_order_id)->where('del_status', 'Live')->first();
             if ($customerOrder->order_type == 'Quotation') {
                 $prefix = 'L';
             } else {
@@ -285,8 +286,8 @@ class ProductionController extends Controller
                     $productionScheduling->task_status = $request->task_status[$key] ?? "1";
                     $productionScheduling->user_id = $request->user_id_scheduling[$key];
                     $productionScheduling->task_hours = $request->task_hours[$key] ? $request->task_hours[$key] : 0;
-                    $productionScheduling->start_date = date('Y-m-d',strtotime($request->start_date[$key]));
-                    $productionScheduling->end_date = date('Y-m-d',strtotime($request->complete_date[$key]));
+                    $productionScheduling->start_date = date('Y-m-d', strtotime($request->start_date[$key]));
+                    $productionScheduling->end_date = date('Y-m-d', strtotime($request->complete_date[$key]));
                     $productionScheduling->save();
                 }
             }
@@ -339,7 +340,7 @@ class ProductionController extends Controller
         $m_nonitems = Mnonitem::orderBy('id', 'ASC')->where('manufacture_id', $manufacture->id)->where('del_status', "Live")->get();
         $m_stages = Mstages::orderBy('id', 'ASC')->where('manufacture_id', $manufacture->id)->where('del_status', "Live")->get();
         $obj = $manufacture;
-        $productionScheduling = ProductionScheduling::where('manufacture_id', $manufacture->id)->get();        
+        $productionScheduling = ProductionScheduling::where('manufacture_id', $manufacture->id)->get();
         return view('pages.manufacture.viewDetails', compact('title', 'obj', 'rmaterials', 'productionScheduling', 'p_stages', 'manufactures', 'nonitem', 'accounts', 'm_rmaterials', 'm_nonitems', 'm_stages', 'units'));
     }
 
@@ -350,7 +351,7 @@ class ProductionController extends Controller
         $manufactures = FinishedProduct::orderBy('name', 'ASC')->where('del_status', "Live")->get();
         $rmaterials = RawMaterial::orderBy('name', 'ASC')->where('del_status', "Live")->get();
         $nonitem = NonIItem::orderBy('name', 'ASC')->where('del_status', "Live")->get();
-       $p_stages = ProductionStage::orderBy('id', 'ASC')->where('del_status', "Live")->get();
+        $p_stages = ProductionStage::orderBy('id', 'ASC')->where('del_status', "Live")->get();
         $accounts = Account::orderBy('name', 'ASC')->where('del_status', "Live")->get();
         $tax_fields = Tax::orderBy('id', 'ASC')->where('del_status', "Live")->get();
         $tax_items = TaxItems::first();
@@ -369,7 +370,7 @@ class ProductionController extends Controller
         $manufactures = FinishedProduct::orderBy('name', 'ASC')->where('del_status', "Live")->get();
         $rmaterials = RawMaterial::orderBy('name', 'ASC')->where('del_status', "Live")->get();
         $nonitem = NonIItem::orderBy('name', 'ASC')->where('del_status', "Live")->get();
-       $p_stages = ProductionStage::orderBy('id', 'ASC')->where('del_status', "Live")->get();
+        $p_stages = ProductionStage::orderBy('id', 'ASC')->where('del_status', "Live")->get();
         $accounts = Account::orderBy('name', 'ASC')->where('del_status', "Live")->get();
         $tax_fields = Tax::orderBy('id', 'ASC')->where('del_status', "Live")->get();
         $tax_items = TaxItems::first();
@@ -399,19 +400,19 @@ class ProductionController extends Controller
         // $p_stages = ProductionStage::orderBy('id', 'ASC')->where('del_status', "Live")->get();
         $p_stages = DB::select("SELECT * FROM tbl_finished_products_productionstage WHERE del_status='Live' AND finish_product_id='$manufacture->product_id' ORDER BY id ASC");
         $employees = User::with('role')
-        ->whereHas('role', function ($query) {
-            $query->where('title', 'Operators');
-        })
-        ->where('del_status', 'Live')
-        ->orderBy('emp_code', 'ASC')
-        ->get();
+            ->whereHas('role', function ($query) {
+                $query->where('title', 'Operators');
+            })
+            ->where('del_status', 'Live')
+            ->orderBy('emp_code', 'ASC')
+            ->get();
         $qc_employees = User::with('role')
-        ->whereHas('role', function ($query) {
-            $query->where('title', 'Quality Control');
-        })
-        ->where('del_status', 'Live')
-        ->orderBy('emp_code', 'ASC')
-        ->get();
+            ->whereHas('role', function ($query) {
+                $query->where('title', 'Quality Control');
+            })
+            ->where('del_status', 'Live')
+            ->orderBy('emp_code', 'ASC')
+            ->get();
         $drawers = Drawer::where('del_status', 'Live')->get();
         $accounts = Account::orderBy('name', 'ASC')->where('del_status', "Live")->get();
         $tax_fields = Tax::orderBy('id', 'ASC')->where('del_status', "Live")->get();
@@ -426,10 +427,10 @@ class ProductionController extends Controller
         $productionScheduling = ProductionScheduling::where('manufacture_id', $manufacture->id)->where('del_status', "Live")->get();
         $selected_customer_id = $obj->customer_id;
         $selected_customer_order_id = $obj->customer_order_id;
-        $customerOrderList = CustomerOrder::where('customer_id', $manufacture->customer_id)->where('del_status', "Live")->where('order_status','1')->orderBy('id', 'DESC')->get();
+        $customerOrderList = CustomerOrder::where('customer_id', $manufacture->customer_id)->where('del_status', "Live")->where('order_status', '1')->orderBy('id', 'DESC')->get();
         $qc_statuses = QcStatus::orderBy('id', 'ASC')->get();
-        $move_to_next = ProductionScheduling::where('manufacture_id',$manufacture->id)->where('del_status','Live')->orderBy('id', 'DESC')->pluck('move_to_next')->first();
-        return view('pages.manufacture.addEditManufacture', compact('title', 'obj', 'rmaterials', 'productionScheduling', 'p_stages', 'manufactures', 'nonitem', 'accounts', 'tax_fields', 'm_rmaterials', 'm_nonitems', 'm_stages', 'units', 'tax_items', 'finishProductStage', 'customers','selected_customer_id','selected_customer_order_id','customerOrderList','employees','drawers','qc_employees','qc_statuses','move_to_next'));
+        $move_to_next = ProductionScheduling::where('manufacture_id', $manufacture->id)->where('del_status', 'Live')->orderBy('id', 'DESC')->pluck('move_to_next')->first();
+        return view('pages.manufacture.addEditManufacture', compact('title', 'obj', 'rmaterials', 'productionScheduling', 'p_stages', 'manufactures', 'nonitem', 'accounts', 'tax_fields', 'm_rmaterials', 'm_nonitems', 'm_stages', 'units', 'tax_items', 'finishProductStage', 'customers', 'selected_customer_id', 'selected_customer_order_id', 'customerOrderList', 'employees', 'drawers', 'qc_employees', 'qc_statuses', 'move_to_next'));
     }
 
     /**
@@ -439,7 +440,7 @@ class ProductionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         // dd($request->all());
         $manufacture = Manufacture::find($id);
@@ -466,7 +467,7 @@ class ProductionController extends Controller
         $manufacture->drawer_no = null_check(escape_output($request->get('drawer_no')));
         $manufacture->batch_no = null_check(escape_output($request->get('batch_no')));
         $manufacture->expiry_days = null_check(escape_output($request->get('expiry_days')));
-        $manufacture->start_date = date('Y-m-d',strtotime(escape_output($request->get('start_date_m'))));
+        $manufacture->start_date = date('Y-m-d', strtotime(escape_output($request->get('start_date_m'))));
         $manufacture->complete_date = $request->get('complete_date_m') ? date('Y-m-d', strtotime(escape_output($request->get('complete_date_m')))) : null;
         $manufacture->tax_type = null_check(escape_output($request->get('tax_type')));
         $manufacture->tax_value = null_check(escape_output($request->get('tax_value')));
@@ -484,8 +485,8 @@ class ProductionController extends Controller
 
         //generate json data for tax value
         // if ($request->get('manufacture_type') == 'fco') {
-            $manufacture->customer_id = null_check(escape_output($request->get('selected_customer_id')));
-            $manufacture->customer_order_id = null_check(escape_output($request->get('selected_customer_order_id')));
+        $manufacture->customer_id = null_check(escape_output($request->get('selected_customer_id')));
+        $manufacture->customer_order_id = null_check(escape_output($request->get('selected_customer_order_id')));
         // }
         $file = $manufacture->file;
         if ($request->hasFile('file_button')) {
@@ -498,9 +499,8 @@ class ProductionController extends Controller
                 $file->move(base_path('uploads/manufacture'), $fileNames[count($fileNames) - 1]);
             }
             $manufacture->file = implode(',', $fileNames);
-        }else{
+        } else {
             $manufacture->file = $file;
-
         }
         $manufacture->save();
         $last_id = $manufacture->id;
@@ -634,7 +634,7 @@ class ProductionController extends Controller
         $manufactures = FinishedProduct::orderBy('name', 'ASC')->where('del_status', "Live")->get();
         $rmaterials = RawMaterial::orderBy('name', 'ASC')->where('del_status', "Live")->get();
         $nonitem = NonIItem::orderBy('name', 'ASC')->where('del_status', "Live")->get();
-       $p_stages = ProductionStage::orderBy('id', 'ASC')->where('del_status', "Live")->get();
+        $p_stages = ProductionStage::orderBy('id', 'ASC')->where('del_status', "Live")->get();
         $accounts = Account::orderBy('name', 'ASC')->where('del_status', "Live")->get();
         $tax_fields = Tax::orderBy('id', 'ASC')->where('del_status', "Live")->get();
         $tax_items = TaxItems::first();
@@ -913,8 +913,8 @@ class ProductionController extends Controller
         // dd($request->all());
         $qc_user_id = $request->qc_user_id;
         // $qc_status = $request->qc_status;
-        $start_date = date('Y-m-d',strtotime($request->start_date));
-        $complete_date = date('Y-m-d',strtotime($request->complete_date));
+        $start_date = date('Y-m-d', strtotime($request->start_date));
+        $complete_date = date('Y-m-d', strtotime($request->complete_date));
         $manufacture_id = $request->manufacture_id;
         $scheduling_id = $request->scheduling_id;
         $qc_note = $request->qc_note;
@@ -929,35 +929,37 @@ class ProductionController extends Controller
         $production_qc_scheduling->production_stage_id =  $production_stage_id;
         $production_qc_scheduling->note =  $qc_note;
         $production_qc_scheduling->save();
-        return response()->json(['result'=>true, 'message' => "QC Added Successfully"]);
+        return response()->json(['result' => true, 'message' => "QC Added Successfully"]);
     }
-    public function getQCAssignLog(Request $request) {
+    public function getQCAssignLog(Request $request)
+    {
         $manufacture_id = $request->manufacture_id;
         $production_stage_id = $request->production_stage_id;
         $scheduling_id = $request->scheduling_id;
         $qclog = [];
         if (!empty($scheduling_id)) {
-            $qc_logs = ProductionQCScheduling::where('scheduling_id', $scheduling_id)->where('manufacture_id', $manufacture_id)->where('production_stage_id',$production_stage_id)->where('del_status', 'Live')->get();
-            $production_scheduling = ProductionScheduling::where('id',$scheduling_id)->where('del_status','Live')->orderBy('id','DESC')->first();
-            foreach($qc_logs as $log) {
-                $statuses = QcStatus::orderBy('id','ASC')->get();
+            $qc_logs = ProductionQCScheduling::where('scheduling_id', $scheduling_id)->where('manufacture_id', $manufacture_id)->where('production_stage_id', $production_stage_id)->where('del_status', 'Live')->get();
+            $production_scheduling = ProductionScheduling::where('id', $scheduling_id)->where('del_status', 'Live')->orderBy('id', 'DESC')->first();
+            foreach ($qc_logs as $log) {
+                $statuses = QcStatus::orderBy('id', 'ASC')->get();
                 $stage_name = getProductionStage($log->production_stage_id);
                 $qclog[] = [
                     'id' => $log->id,
                     'stage_name' => $stage_name,
                     'emp_name' => getEmpCode($log->qc_user_id),
-                    'start_date' => date('d-m-Y',strtotime($log->start_date)),
-                    'complete_date' => date('d-m-Y',strtotime($log->complete_date)),
+                    'start_date' => date('d-m-Y', strtotime($log->start_date)),
+                    'complete_date' => date('d-m-Y', strtotime($log->complete_date)),
                     'statuses' => $statuses,
                     'status' => $log->qc_status,
                     'note' => $log->note,
-                    'move_to_next' => $production_scheduling->move_to_next,                    
+                    'move_to_next' => $production_scheduling->move_to_next,
                 ];
             }
         }
         return response()->json($qclog);
     }
-    public function updateQCStatus(Request $request) {
+    public function updateQCStatus(Request $request)
+    {
         $status = $request->status;
         $id = $request->qc_id;
         $qc_log = ProductionQCScheduling::find($id);
@@ -969,7 +971,8 @@ class ProductionController extends Controller
             return response()->json(['status' => false, 'message' => 'QC not found.']);
         }
     }
-    public function updateMoveStatus(Request $request) {
+    public function updateMoveStatus(Request $request)
+    {
         $qa_scheduling_id = $request->qa_scheduling_id;
         $move_to_next = $request->move_to_next;
         $product_schedule = ProductionScheduling::find($qa_scheduling_id);
@@ -987,27 +990,27 @@ class ProductionController extends Controller
         $manufacture = Manufacture::find(encrypt_decrypt($id, 'decrypt'));
         $title = __('index.route_card_detail');
         $units = Unit::orderBy('name', 'ASC')->where('del_status', "Live")->get();
-        $drawer = Drawer::where('del_status', "Live")->where('drawer_no',$manufacture->drawer_no)->first();
-        $product = FinishedProduct::where('del_status', "Live")->where('id',$manufacture->product_id)->first();
-        $order = CustomerOrder::where('del_status', "Live")->where('id',$manufacture->customer_order_id)->first();
+        $drawer = Drawer::where('del_status', "Live")->where('drawer_no', $manufacture->drawer_no)->first();
+        $product = FinishedProduct::where('del_status', "Live")->where('id', $manufacture->product_id)->first();
+        $order = CustomerOrder::where('del_status', "Live")->where('id', $manufacture->customer_order_id)->first();
         $m_rmaterial = Mrmitem::with('materialStock')->where('manufacture_id', $manufacture->id)->where('del_status', "Live")->first();
-        $rmaterial = RawMaterial::where('id',$m_rmaterial->rmaterials_id)->where('del_status', "Live")->first();
+        $rmaterial = RawMaterial::where('id', $m_rmaterial->rmaterials_id)->where('del_status', "Live")->first();
         $obj = $manufacture;
-        $quotation_id = QuotationDetail::where('customer_order_id',$manufacture->customer_order_id)->where('product_id',$manufacture->product_id)->where('del_status','Live')->pluck('quotation_id')->first();
+        $quotation_id = QuotationDetail::where('customer_order_id', $manufacture->customer_order_id)->where('product_id', $manufacture->product_id)->where('del_status', 'Live')->pluck('quotation_id')->first();
         $delivery_challan = Quotation::find($quotation_id);
         $productionScheduling = ProductionScheduling::where('manufacture_id', $manufacture->id)->get();
         $obj2 = new FPproductionstage();
         $finishProductStages = $obj2->getFinishProductStages($manufacture->product_id);
-        $latest_form = RouteCardEntry::where('del_status','Live')->where('manufacture_id',$manufacture->id)->orderBy('id','DESC')->pluck('image')->first();
-        return view('pages.manufacture.route_card', compact('title', 'obj', 'rmaterial', 'productionScheduling', 'product', 'm_rmaterial', 'units','order','drawer','delivery_challan','finishProductStages','latest_form'));
+        $latest_form = RouteCardEntry::where('del_status', 'Live')->where('manufacture_id', $manufacture->id)->orderBy('id', 'DESC')->pluck('image')->first();
+        return view('pages.manufacture.route_card', compact('title', 'obj', 'rmaterial', 'productionScheduling', 'product', 'm_rmaterial', 'units', 'order', 'drawer', 'delivery_challan', 'finishProductStages', 'latest_form'));
     }
     public function job_card($id)
     {
         $title = __('index.job_card');
         $manufacture = Manufacture::find(encrypt_decrypt($id, 'decrypt'));
         $obj = $manufacture;
-        $p_stages = ProductionStage::where('del_status','Live')->get();
-        $latest_form = JobCardEntry::where('del_status','Live')->where('manufacture_id',$manufacture->id)->orderBy('id','DESC')->pluck('image')->first();
+        $p_stages = ProductionStage::where('del_status', 'Live')->get();
+        $latest_form = JobCardEntry::where('del_status', 'Live')->where('manufacture_id', $manufacture->id)->orderBy('id', 'DESC')->pluck('image')->first();
         return view('pages.manufacture.job_card', compact('title', 'obj', 'p_stages', 'latest_form'));
     }
     public function printRouteCardDetails($id)
@@ -1015,38 +1018,38 @@ class ProductionController extends Controller
         $manufacture = Manufacture::find($id);
         $title = __('index.route_card_detail');
         $units = Unit::orderBy('name', 'ASC')->where('del_status', "Live")->get();
-        $drawer = Drawer::where('del_status', "Live")->where('drawer_no',$manufacture->drawer_no)->first();
-        $product = FinishedProduct::where('del_status', "Live")->where('id',$manufacture->product_id)->first();
-        $order = CustomerOrder::where('del_status', "Live")->where('id',$manufacture->customer_order_id)->first();
+        $drawer = Drawer::where('del_status', "Live")->where('drawer_no', $manufacture->drawer_no)->first();
+        $product = FinishedProduct::where('del_status', "Live")->where('id', $manufacture->product_id)->first();
+        $order = CustomerOrder::where('del_status', "Live")->where('id', $manufacture->customer_order_id)->first();
         $m_rmaterial = Mrmitem::where('manufacture_id', $manufacture->id)->where('del_status', "Live")->first();
-        $rmaterial = RawMaterial::where('id',$m_rmaterial->rmaterials_id)->where('del_status', "Live")->first();
+        $rmaterial = RawMaterial::where('id', $m_rmaterial->rmaterials_id)->where('del_status', "Live")->first();
         $obj = $manufacture;
-        $quotation_id = QuotationDetail::where('customer_order_id',$manufacture->customer_order_id)->where('product_id',$manufacture->product_id)->where('del_status','Live')->pluck('quotation_id')->first();
+        $quotation_id = QuotationDetail::where('customer_order_id', $manufacture->customer_order_id)->where('product_id', $manufacture->product_id)->where('del_status', 'Live')->pluck('quotation_id')->first();
         $delivery_challan = Quotation::find($quotation_id);
         $productionScheduling = ProductionScheduling::where('manufacture_id', $manufacture->id)->get();
         $obj2 = new FPproductionstage();
         $finishProductStages = $obj2->getFinishProductStages($manufacture->product_id);
-        $latest_form = RouteCardEntry::where('del_status','Live')->where('manufacture_id',$manufacture->id)->orderBy('id','DESC')->pluck('image')->first();
-        return view('pages.manufacture.print_route_card', compact('title', 'obj', 'rmaterial', 'productionScheduling', 'product', 'm_rmaterial', 'units','order','drawer','delivery_challan','finishProductStages','latest_form'));
+        $latest_form = RouteCardEntry::where('del_status', 'Live')->where('manufacture_id', $manufacture->id)->orderBy('id', 'DESC')->pluck('image')->first();
+        return view('pages.manufacture.print_route_card', compact('title', 'obj', 'rmaterial', 'productionScheduling', 'product', 'm_rmaterial', 'units', 'order', 'drawer', 'delivery_challan', 'finishProductStages', 'latest_form'));
     }
     public function downloadRouteCard($id)
     {
         $manufacture = Manufacture::find(encrypt_decrypt($id, 'decrypt'));
         $title = __('index.route_card_detail');
         $units = Unit::orderBy('name', 'ASC')->where('del_status', "Live")->get();
-        $drawer = Drawer::where('del_status', "Live")->where('drawer_no',$manufacture->drawer_no)->first();
-        $product = FinishedProduct::where('del_status', "Live")->where('id',$manufacture->product_id)->first();
-        $order = CustomerOrder::where('del_status', "Live")->where('id',$manufacture->customer_order_id)->first();
+        $drawer = Drawer::where('del_status', "Live")->where('drawer_no', $manufacture->drawer_no)->first();
+        $product = FinishedProduct::where('del_status', "Live")->where('id', $manufacture->product_id)->first();
+        $order = CustomerOrder::where('del_status', "Live")->where('id', $manufacture->customer_order_id)->first();
         $m_rmaterial = Mrmitem::where('manufacture_id', $manufacture->id)->where('del_status', "Live")->first();
-        $rmaterial = RawMaterial::where('id',$m_rmaterial->rmaterials_id)->where('del_status', "Live")->first();
+        $rmaterial = RawMaterial::where('id', $m_rmaterial->rmaterials_id)->where('del_status', "Live")->first();
         $obj = $manufacture;
-        $quotation_id = QuotationDetail::where('customer_order_id',$manufacture->customer_order_id)->where('product_id',$manufacture->product_id)->where('del_status','Live')->pluck('quotation_id')->first();
+        $quotation_id = QuotationDetail::where('customer_order_id', $manufacture->customer_order_id)->where('product_id', $manufacture->product_id)->where('del_status', 'Live')->pluck('quotation_id')->first();
         $delivery_challan = Quotation::find($quotation_id);
         $productionScheduling = ProductionScheduling::where('manufacture_id', $manufacture->id)->get();
         $obj2 = new FPproductionstage();
         $finishProductStages = $obj2->getFinishProductStages($manufacture->product_id);
-        $latest_form = RouteCardEntry::where('del_status','Live')->where('manufacture_id',$manufacture->id)->orderBy('id','DESC')->pluck('image')->first();
-        $pdf = Pdf::loadView('pages.manufacture.print_route_card', compact('title', 'obj', 'rmaterial', 'productionScheduling', 'product', 'm_rmaterial', 'units','order','drawer','delivery_challan','finishProductStages','latest_form'))->setPaper('a4', 'landscape');
+        $latest_form = RouteCardEntry::where('del_status', 'Live')->where('manufacture_id', $manufacture->id)->orderBy('id', 'DESC')->pluck('image')->first();
+        $pdf = Pdf::loadView('pages.manufacture.print_route_card', compact('title', 'obj', 'rmaterial', 'productionScheduling', 'product', 'm_rmaterial', 'units', 'order', 'drawer', 'delivery_challan', 'finishProductStages', 'latest_form'))->setPaper('a4', 'landscape');
         return $pdf->download($obj->reference_no . '.pdf');
     }
     public function printJobCardDetails($id)
@@ -1054,21 +1057,22 @@ class ProductionController extends Controller
         $manufacture = Manufacture::find($id);
         $title = __('index.job_card');
         $obj = $manufacture;
-        $p_stages = ProductionStage::where('del_status','Live')->get();
-        $latest_form = JobCardEntry::where('del_status','Live')->where('manufacture_id',$manufacture->id)->orderBy('id','DESC')->pluck('image')->first();
-        return view('pages.manufacture.print_job_card', compact('title', 'obj', 'p_stages','latest_form'));
+        $p_stages = ProductionStage::where('del_status', 'Live')->get();
+        $latest_form = JobCardEntry::where('del_status', 'Live')->where('manufacture_id', $manufacture->id)->orderBy('id', 'DESC')->pluck('image')->first();
+        return view('pages.manufacture.print_job_card', compact('title', 'obj', 'p_stages', 'latest_form'));
     }
     public function downloadJobDetails($id)
     {
         $manufacture = Manufacture::find(encrypt_decrypt($id, 'decrypt'));
         $title = __('index.job_card');
         $obj = $manufacture;
-        $p_stages = ProductionStage::where('del_status','Live')->get();
-        $latest_form = JobCardEntry::where('del_status','Live')->where('manufacture_id',$manufacture->id)->orderBy('id','DESC')->pluck('image')->first();
-        $pdf = Pdf::loadView('pages.manufacture.print_job_card', compact('title', 'obj', 'p_stages','latest_form'))->setPaper('a4', 'landscape');
+        $p_stages = ProductionStage::where('del_status', 'Live')->get();
+        $latest_form = JobCardEntry::where('del_status', 'Live')->where('manufacture_id', $manufacture->id)->orderBy('id', 'DESC')->pluck('image')->first();
+        $pdf = Pdf::loadView('pages.manufacture.print_job_card', compact('title', 'obj', 'p_stages', 'latest_form'))->setPaper('a4', 'landscape');
         return $pdf->download($obj->reference_no . '.pdf');
     }
-    public function routeCardSubmit(Request $request) {
+    public function routeCardSubmit(Request $request)
+    {
         // dd($request->all());
         $obj = new RouteCardEntry();
         $proofName = '';
@@ -1085,7 +1089,8 @@ class ProductionController extends Controller
         $obj->save();
         return response()->json(['status' => 'success', 'message' => 'File uploaded']);
     }
-    public function jobCardSubmit(Request $request) {
+    public function jobCardSubmit(Request $request)
+    {
         // dd($request->all());
         $obj = new JobCardEntry();
         $proofName = '';

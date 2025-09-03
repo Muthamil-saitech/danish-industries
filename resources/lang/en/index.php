@@ -434,6 +434,7 @@ return [
     'details' => 'Details',
     'Name_Price_Qty' => 'Name Price Quantity',
     'due_receive' => 'Due Received',
+    'due_days' => 'Due Days',
     'receive_amount' => 'Received Amount',
     'items' => 'Items',
     'profit_loss' => 'Profit / Loss',

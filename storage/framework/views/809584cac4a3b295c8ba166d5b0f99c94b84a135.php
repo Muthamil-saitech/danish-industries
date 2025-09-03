@@ -1,5 +1,5 @@
-@extends('layouts.app')
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 <?php
 $baseURL = getBaseURL();
 $setting = getSettingsInfo();
@@ -9,16 +9,16 @@ if (isset($setting->base_color) && $setting->base_color) {
 }
 ?>
 <section class="main-content-wrapper">
-    @include('utilities.messages')
+    <?php echo $__env->make('utilities.messages', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <section class="content-header">
         <div class="row">
             <div class="col-md-6">
-                <h2 class="top-left-header">{{ isset($title) && $title ? $title : '' }}</h2>
-                <input type="hidden" class="datatable_name" data-filter="yes" data-title="{{ isset($title) && $title ? $title : '' }}"
+                <h2 class="top-left-header"><?php echo e(isset($title) && $title ? $title : ''); ?></h2>
+                <input type="hidden" class="datatable_name" data-filter="yes" data-title="<?php echo e(isset($title) && $title ? $title : ''); ?>"
                     data-id_name="datatable">
             </div>
             <div class="col-md-6 text-end">
-                <h5 class="mb-0">Total Delivery Challan List: {{ $total_dc }} </h5>
+                <h5 class="mb-0">Total Delivery Challan List: <?php echo e($total_dc); ?> </h5>
             </div>
         </div>
     </section>
@@ -29,73 +29,71 @@ if (isset($setting->base_color) && $setting->base_color) {
                 <table id="datatable" class="table table-striped">
                     <thead>
                         <tr>
-                            <th class="width_1_p">@lang('index.sn')</th>
-                            <th class="width_10_p">@lang('index.challan_date')</th>
-                            <th class="width_10_p">@lang('index.challan_no')</th>
-                            <th class="width_10_p">@lang('index.doc_no')</th>
-                            <th class="width_10_p">@lang('index.customer')</th>
-                            {{-- <th class="width_10_p">@lang('index.subtotal')</th> --}}
-                            {{-- <th class="width_10_p">@lang('index.other')</th> --}}
-                            {{-- <th class="width_10_p">@lang('index.discount')</th> --}}
-                            {{-- <th class="width_10_p">@lang('index.grand_total')</th> --}}
-                            <th class="width_10_p">@lang('index.status')</th>
-                            <th class="width_1_p">@lang('index.actions')</th>
+                            <th class="width_1_p"><?php echo app('translator')->get('index.sn'); ?></th>
+                            <th class="width_10_p"><?php echo app('translator')->get('index.challan_date'); ?></th>
+                            <th class="width_10_p"><?php echo app('translator')->get('index.challan_no'); ?></th>
+                            <th class="width_10_p"><?php echo app('translator')->get('index.doc_no'); ?></th>
+                            <th class="width_10_p"><?php echo app('translator')->get('index.customer'); ?></th>
+                            
+                            
+                            
+                            
+                            <th class="width_10_p"><?php echo app('translator')->get('index.status'); ?></th>
+                            <th class="width_1_p"><?php echo app('translator')->get('index.actions'); ?></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @if ($obj && !empty($obj))
+                        <?php if($obj && !empty($obj)): ?>
                         <?php
                         $i = 1;
                         ?>
-                        @endif
-                        @foreach ($obj as $value)
+                        <?php endif; ?>
+                        <?php $__currentLoopData = $obj; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <tr>
-                            <td class="c_center">{{ $i++ }}</td>
-                            <td>{{ getDateFormat($value->challan_date) }}</td>
-                            <td>{{ $value->challan_no }}</td>
-                            <td>{{ $value->material_doc_no }}</td>
-                            <td>{{ getCustomerNameById($value->customer_id) }}</td>
-                            {{-- <td>{{ getCurrency($value->subtotal) }}</td> --}}
-                            {{-- <td>{{ getCurrency($value->other) }}</td> --}}
-                            {{-- <td>-{{ $value->discount != null ? getCurrency($value->discount) : 0 }}</td> --}}
-                            {{-- <td>{{ getCurrency($value->grand_total) }}</td> --}}
+                            <td class="c_center"><?php echo e($i++); ?></td>
+                            <td><?php echo e(getDateFormat($value->challan_date)); ?></td>
+                            <td><?php echo e($value->challan_no); ?></td>
+                            <td><?php echo e($value->material_doc_no); ?></td>
+                            <td><?php echo e(getCustomerNameById($value->customer_id)); ?></td>
+                            
+                            
+                            
+                            
                             <td>
-                                <select name="challan_status" class="form-control select2 challan-status" data-id="{{ $value->id }}" {{ in_array($value->challan_status, ["3"]) ? 'disabled' : '' }} style="width: 100px;">
-                                    <option value="1" {{ $value->challan_status == "1" ? 'selected' : '' }}{{ $value->challan_status =="2" ? "disabled" : "" }}>Pending</option>
-                                    <option value="2" {{ $value->challan_status == "2" ? 'selected' : '' }}>Progress</option>
-                                    <option value="3" {{ $value->challan_status == "3" ? 'selected' : '' }}>Verified</option>
+                                <select name="challan_status" class="form-control select2 challan-status" data-id="<?php echo e($value->id); ?>" <?php echo e(in_array($value->challan_status, ["3"]) ? 'disabled' : ''); ?> style="width: 100px;">
+                                    <option value="1" <?php echo e($value->challan_status == "1" ? 'selected' : ''); ?><?php echo e($value->challan_status =="2" ? "disabled" : ""); ?>>Pending</option>
+                                    <option value="2" <?php echo e($value->challan_status == "2" ? 'selected' : ''); ?>>Progress</option>
+                                    <option value="3" <?php echo e($value->challan_status == "3" ? 'selected' : ''); ?>>Verified</option>
                                 </select>
                                 <div class="challan-status-msg"></div>
                             </td>
                             <td>
                                 <div class="d-flex items-start justify-start" id="dc_qc_msg">
-                                    @if($value->challan_status!="3")
-                                    <button id="dc_qc_add" data-bs-toggle="modal" data-challan_id="{{ $value->id }}" data-bs-target="#dcQcScheduling" class="btn bg-blue-btn w-20" title="QC Check" type="button"><i class="fa fa-list-check"></i></button>&nbsp;
-                                    @endif
-                                    <button id="dc_qc_view" data-bs-toggle="modal" data-challan_id="{{ $value->id }}" data-bs-target="#dcQcView" class="btn bg-blue-btn w-20" title="QC Assignment History" type="button"><i class="fa fa-user"></i></button>&nbsp;
-                                    <a href="{{ url('quotation') }}/{{ encrypt_decrypt($value->id, 'encrypt') }}" class="button-info" data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('index.view_details')"><i class="fa fa-eye"></i></a>
-                                    @if (routePermission('quotations.edit') && $value->challan_status!="3")
-                                    <a href="{{ url('quotation') }}/{{ encrypt_decrypt($value->id, 'encrypt') }}/edit" class="button-success" data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('index.edit')"><i class="fa fa-edit"></i></a>
-                                    @endif
-                                    {{-- <a href="{{ route('download-quotation', encrypt_decrypt($value->id, 'encrypt')) }}" class="button-info"
-                                    data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('index.download')"><i
-                                        class="fa fa-download"></i></a> --}}
-                                    @if (routePermission('quotations.delete') && $value->challan_status!="3")
+                                    <?php if($value->challan_status!="3"): ?>
+                                    <button id="dc_qc_add" data-bs-toggle="modal" data-challan_id="<?php echo e($value->id); ?>" data-bs-target="#dcQcScheduling" class="btn bg-blue-btn w-20" title="QC Check" type="button"><i class="fa fa-list-check"></i></button>&nbsp;
+                                    <?php endif; ?>
+                                    <button id="dc_qc_view" data-bs-toggle="modal" data-challan_id="<?php echo e($value->id); ?>" data-bs-target="#dcQcView" class="btn bg-blue-btn w-20" title="QC Assignment History" type="button"><i class="fa fa-user"></i></button>&nbsp;
+                                    <a href="<?php echo e(url('quotation')); ?>/<?php echo e(encrypt_decrypt($value->id, 'encrypt')); ?>" class="button-info" data-bs-toggle="tooltip" data-bs-placement="top" title="<?php echo app('translator')->get('index.view_details'); ?>"><i class="fa fa-eye"></i></a>
+                                    <?php if(routePermission('quotations.edit') && $value->challan_status!="3"): ?>
+                                    <a href="<?php echo e(url('quotation')); ?>/<?php echo e(encrypt_decrypt($value->id, 'encrypt')); ?>/edit" class="button-success" data-bs-toggle="tooltip" data-bs-placement="top" title="<?php echo app('translator')->get('index.edit'); ?>"><i class="fa fa-edit"></i></a>
+                                    <?php endif; ?>
+                                    
+                                    <?php if(routePermission('quotations.delete') && $value->challan_status!="3"): ?>
                                     <a href="#" class="delete button-danger"
-                                        data-form_class="alertDelete{{ $value->id }}" type="submit"
-                                        data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('index.delete')">
-                                        <form action="{{ route('quotation.destroy', $value->id) }}"
-                                            class="alertDelete{{ $value->id }}" method="post">
-                                            @csrf
-                                            @method('DELETE')
+                                        data-form_class="alertDelete<?php echo e($value->id); ?>" type="submit"
+                                        data-bs-toggle="tooltip" data-bs-placement="top" title="<?php echo app('translator')->get('index.delete'); ?>">
+                                        <form action="<?php echo e(route('quotation.destroy', $value->id)); ?>"
+                                            class="alertDelete<?php echo e($value->id); ?>" method="post">
+                                            <?php echo csrf_field(); ?>
+                                            <?php echo method_field('DELETE'); ?>
                                             <i class="c_padding_13 fa fa-trash tiny-icon"></i>
                                         </form>
                                     </a>
-                                    @endif
+                                    <?php endif; ?>
                                 </div>
                             </td>
                         </tr>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </tbody>
                 </table>
             </div>
@@ -107,54 +105,82 @@ if (isset($setting->base_color) && $setting->base_color) {
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">@lang('index.qc')</h4>
+                <h4 class="modal-title" id="myModalLabel"><?php echo app('translator')->get('index.qc'); ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true"><i data-feather="x"></i></span>
                 </button>
             </div>
             <form id="dc_qc_form">
-                @csrf
+                <?php echo csrf_field(); ?>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
-                                <label>@lang('index.assign_to') <span class="required_star">*</span></label>
-                                <select class="form-control @error('qc_user_id') is-invalid @enderror select2"
+                                <label><?php echo app('translator')->get('index.assign_to'); ?> <span class="required_star">*</span></label>
+                                <select class="form-control <?php $__errorArgs = ['qc_user_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?> select2"
                                     name="qc_user_id" id="qc_user_id">
-                                    <option value="">@lang('index.select')</option>
-                                    @if (isset($qc_employees) && $qc_employees)
-                                    @foreach ($qc_employees as $emp)
-                                    <option value="{{ $emp->id }}">
-                                        {{ $emp->name }}({{ $emp->emp_code }})
+                                    <option value=""><?php echo app('translator')->get('index.select'); ?></option>
+                                    <?php if(isset($qc_employees) && $qc_employees): ?>
+                                    <?php $__currentLoopData = $qc_employees; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $emp): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($emp->id); ?>">
+                                        <?php echo e($emp->name); ?>(<?php echo e($emp->emp_code); ?>)
                                     </option>
-                                    @endforeach
-                                    @endif
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    <?php endif; ?>
                                 </select>
                                 <p class="text-danger qc_user_error"></p>
                             </div>
                         </div>
                         <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
-                                <label>@lang('index.start_date') <span class="required_star">*</span></label>
+                                <label><?php echo app('translator')->get('index.start_date'); ?> <span class="required_star">*</span></label>
                                 <input type="text" name="start_date"
-                                    class="form-control @error('title') is-invalid @enderror"
+                                    class="form-control <?php $__errorArgs = ['title'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
                                     id="qc_start_date" placeholder="Start Date">
                                 <p class="text-danger start_date_error"></p>
                             </div>
                         </div>
                         <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
-                                <label>@lang('index.complete_date') <span class="required_star">*</span></label>
+                                <label><?php echo app('translator')->get('index.complete_date'); ?> <span class="required_star">*</span></label>
                                 <input type="text" name="complete_date"
-                                    class="form-control @error('title') is-invalid @enderror"
+                                    class="form-control <?php $__errorArgs = ['title'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
                                     id="qc_complete_date" placeholder="Complete Date">
                                 <p class="text-danger end_date_error"></p>
                             </div>
                         </div>
                         <div class="col-sm-12 mb-2 col-md-12">
                             <div class="form-group">
-                                <label>@lang('index.note') </label>
-                                <textarea name="qc_note" id="qc_note" class="form-control @error('note') is-invalid @enderror" placeholder="Note" maxlength="100"></textarea>
+                                <label><?php echo app('translator')->get('index.note'); ?> </label>
+                                <textarea name="qc_note" id="qc_note" class="form-control <?php $__errorArgs = ['note'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" placeholder="Note" maxlength="100"></textarea>
                                 <input type="hidden" name="challan_id" id="challan_id">
                             </div>
                         </div>
@@ -163,7 +189,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                 <div class="modal-footer">
                     <button type="button" class="btn bg-blue-btn dc_qc_scheduling_btn"><iconify-icon
                             icon="solar:check-circle-broken"></iconify-icon>
-                        @lang('index.add')</button>
+                        <?php echo app('translator')->get('index.add'); ?></button>
                 </div>
             </form>
         </div>
@@ -191,76 +217,80 @@ if (isset($setting->base_color) && $setting->base_color) {
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">@lang('index.dc_list')</h5>
+                <h5 class="modal-title" id="exampleModalLabel"><?php echo app('translator')->get('index.dc_list'); ?></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     <i data-feather="x"></i>
                 </button>
             </div>
             <div class="modal-body">
-                {!! Form::model('', [
+                <?php echo Form::model('', [
                 'id' => 'add_form',
                 'method' => 'GET',
                 'enctype' => 'multipart/form-data',
                 'route' => ['quotation.index'],
-                ]) !!}
-                @csrf
+                ]); ?>
+
+                <?php echo csrf_field(); ?>
                 <div class="row">
                     <div class="col-sm-6 mb-3">
                         <div class="form-group">
-                            {!! Form::text('startDate', (isset($startDate)&&$startDate!='') ? date('d-m-Y',strtotime($startDate)) : '', ['class' => 'form-control', 'readonly'=>"", 'placeholder'=>"Start Date", 'id' => 'quote_start_date']) !!}
+                            <?php echo Form::text('startDate', (isset($startDate)&&$startDate!='') ? date('d-m-Y',strtotime($startDate)) : '', ['class' => 'form-control', 'readonly'=>"", 'placeholder'=>"Start Date", 'id' => 'quote_start_date']); ?>
+
                         </div>
                     </div>
                     <div class="col-sm-6 mb-3">
                         <div class="form-group">
-                            {!! Form::text('endDate', (isset($endDate)&&$endDate!='') ? date('d-m-Y',strtotime($endDate)) : '', ['class' => 'form-control', 'readonly'=>"", 'placeholder'=>"End Date", 'id' => 'quote_complete_date']) !!}
+                            <?php echo Form::text('endDate', (isset($endDate)&&$endDate!='') ? date('d-m-Y',strtotime($endDate)) : '', ['class' => 'form-control', 'readonly'=>"", 'placeholder'=>"End Date", 'id' => 'quote_complete_date']); ?>
+
                         </div>
                     </div>
                     <div class="col-md-12 mb-2">
                         <div class="form-group">
-                            <label>@lang('index.customer') </label>
+                            <label><?php echo app('translator')->get('index.customer'); ?> </label>
                             <select name="customer_id" id="customer_id" class="form-control select2">
-                                <option value="">@lang('index.select')</option>
-                                @if(isset($customer_id))
-                                @foreach ($customers as $key => $value)
-                                <option value="{{ $value->id }}"
-                                    {{ isset($customer_id) && $customer_id == $value->id ? 'selected' : '' }}>
-                                    {{ $value->name }} ({{ $value->customer_id }})
+                                <option value=""><?php echo app('translator')->get('index.select'); ?></option>
+                                <?php if(isset($customer_id)): ?>
+                                <?php $__currentLoopData = $customers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <option value="<?php echo e($value->id); ?>"
+                                    <?php echo e(isset($customer_id) && $customer_id == $value->id ? 'selected' : ''); ?>>
+                                    <?php echo e($value->name); ?> (<?php echo e($value->customer_id); ?>)
                                 </option>
-                                @endforeach
-                                @endif
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                <?php endif; ?>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-4 mt-3">
                         <button type="submit" name="submit" value="submit"
-                            class="btn w-100 bg-blue-btn">@lang('index.submit')</button>
+                            class="btn w-100 bg-blue-btn"><?php echo app('translator')->get('index.submit'); ?></button>
                     </div>
                     <div class="col-md-4 mt-3">
-                        <a href="{{ route('quotation.index') }}" style="text-decoration: none;color:white;"><button type="button" value="reset" class="btn bg-second-btn w-100">Reset</button></a>
+                        <a href="<?php echo e(route('quotation.index')); ?>" style="text-decoration: none;color:white;"><button type="button" value="reset" class="btn bg-second-btn w-100">Reset</button></a>
                     </div>
                 </div>
             </div>
-            {!! Form::close() !!}
+            <?php echo Form::close(); ?>
+
         </div>
     </div>
 </div>
-@endsection
-@push('top_script')
-<script type="text/javascript" src="{!! $baseURL . 'assets/bower_components/jquery-ui/jquery-ui.min.js' !!}"></script>
-@endpush
-@section('script')
-<script src="{!! $baseURL . 'assets/datatable_custom/jquery-3.3.1.js' !!}"></script>
-<script src="{!! $baseURL . 'assets/dataTable/jquery.dataTables.min.js' !!}"></script>
-<script src="{!! $baseURL . 'assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js' !!}"></script>
-<script src="{!! $baseURL . 'assets/dataTable/dataTables.bootstrap4.min.js' !!}"></script>
-<script src="{!! $baseURL . 'assets/dataTable/dataTables.buttons.min.js' !!}"></script>
-<script src="{!! $baseURL . 'assets/dataTable/buttons.html5.min.js' !!}"></script>
-<script src="{!! $baseURL . 'assets/dataTable/buttons.print.min.js' !!}"></script>
-<script src="{!! $baseURL . 'assets/dataTable/jszip.min.js' !!}"></script>
-<script src="{!! $baseURL . 'assets/dataTable/pdfmake.min.js' !!}"></script>
-<script src="{!! $baseURL . 'assets/dataTable/vfs_fonts.js' !!}"></script>
-<script src="{!! $baseURL . 'frequent_changing/newDesign/js/forTable.js' !!}"></script>
-<script src="{!! $baseURL . 'frequent_changing/js/custom_report.js' !!}"></script>
+<?php $__env->stopSection(); ?>
+<?php $__env->startPush('top_script'); ?>
+<script type="text/javascript" src="<?php echo $baseURL . 'assets/bower_components/jquery-ui/jquery-ui.min.js'; ?>"></script>
+<?php $__env->stopPush(); ?>
+<?php $__env->startSection('script'); ?>
+<script src="<?php echo $baseURL . 'assets/datatable_custom/jquery-3.3.1.js'; ?>"></script>
+<script src="<?php echo $baseURL . 'assets/dataTable/jquery.dataTables.min.js'; ?>"></script>
+<script src="<?php echo $baseURL . 'assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js'; ?>"></script>
+<script src="<?php echo $baseURL . 'assets/dataTable/dataTables.bootstrap4.min.js'; ?>"></script>
+<script src="<?php echo $baseURL . 'assets/dataTable/dataTables.buttons.min.js'; ?>"></script>
+<script src="<?php echo $baseURL . 'assets/dataTable/buttons.html5.min.js'; ?>"></script>
+<script src="<?php echo $baseURL . 'assets/dataTable/buttons.print.min.js'; ?>"></script>
+<script src="<?php echo $baseURL . 'assets/dataTable/jszip.min.js'; ?>"></script>
+<script src="<?php echo $baseURL . 'assets/dataTable/pdfmake.min.js'; ?>"></script>
+<script src="<?php echo $baseURL . 'assets/dataTable/vfs_fonts.js'; ?>"></script>
+<script src="<?php echo $baseURL . 'frequent_changing/newDesign/js/forTable.js'; ?>"></script>
+<script src="<?php echo $baseURL . 'frequent_changing/js/custom_report.js'; ?>"></script>
 <script>
     $("#qc_user_id").select2({
         dropdownParent: $("#dcQcScheduling"),
@@ -493,4 +523,5 @@ if (isset($setting->base_color) && $setting->base_color) {
         });
     });
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\danish-industries\resources\views/pages/quotation/index.blade.php ENDPATH**/ ?>

@@ -35,8 +35,9 @@ class UserController extends Controller
         $obj = User::query()->where('del_status', 'Live')->where('role', 2);
         $obj->orderBy('id', 'DESC');
         $obj = $obj->get();
+        $total_users = User::where('del_status', 'Live')->count();
         $title = __('index.list_user');
-        return view('pages.user.index', compact('obj', 'title'));
+        return view('pages.user.index', compact('obj', 'title', 'total_users'));
     }
 
     /**
@@ -48,7 +49,7 @@ class UserController extends Controller
     {
         $roles = Role::orderBy('title')->get();
         $title = __('index.add_user');
-        $obj_user = User::where('role',2)->count();
+        $obj_user = User::where('role', 2)->count();
         $code = "EMP-" . str_pad($obj_user + 1, 3, '0', STR_PAD_LEFT);
         return view('pages.user.addEdit', compact('roles', 'title', 'code'));
     }
@@ -62,7 +63,8 @@ class UserController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        $this->validate($request,
+        $this->validate(
+            $request,
             [
                 'role' => 'required',
                 'emp_code' => 'required',
@@ -114,7 +116,6 @@ class UserController extends Controller
         $row->company_id = 1;
         $row->save();
         return redirect()->route('user.index')->with(saveMessage());
-
     }
 
     /**
@@ -139,7 +140,7 @@ class UserController extends Controller
         $obj = User::find(encrypt_decrypt($id, 'decrypt'));
         $roles = Role::orderBy('title')->get();
         $title = __('index.edit_user');
-        return view('pages.user.addEdit', compact('obj','title','roles'));
+        return view('pages.user.addEdit', compact('obj', 'title', 'roles'));
     }
 
     /**
@@ -151,17 +152,18 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,
+        $this->validate(
+            $request,
             [
                 'role' => 'required',
                 'emp_code' => 'required',
                 'name' => 'required|max:50',
                 'designation' => 'required|max:50',
-                'phone_number' => 'required|max:20|unique:tbl_users,phone_number,'.$id,
-                'alt_phone_number' => 'max:20|unique:tbl_users,alt_phone_number,'.$id,
+                'phone_number' => 'required|max:20|unique:tbl_users,phone_number,' . $id,
+                'alt_phone_number' => 'max:20|unique:tbl_users,alt_phone_number,' . $id,
                 'address' => 'required|max:250',
                 'salary' => 'required|numeric',
-                'email' => 'required|regex:/(.+)@(.+)\.(.+)/i|unique:tbl_users,email,'.$id,
+                'email' => 'required|regex:/(.+)@(.+)\.(.+)/i|unique:tbl_users,email,' . $id,
                 'status' => 'required',
                 'password' => 'min:6',
             ],
@@ -197,8 +199,8 @@ class UserController extends Controller
         $row->company_id = 1;
         $row->save();
 
-        if($request->password != null){
-            
+        if ($request->password != null) {
+
             $row->password = Hash::make($request->password);
         }
         $row->save();
@@ -216,7 +218,7 @@ class UserController extends Controller
     {
         $obj = User::find($id);
         $obj->del_status = "Deleted";
-        $obj->email = $obj->email.'-deleted'.$obj->id;
+        $obj->email = $obj->email . '-deleted' . $obj->id;
         $obj->save();
         return redirect()->route('user.index')->with(deleteMessage());
     }

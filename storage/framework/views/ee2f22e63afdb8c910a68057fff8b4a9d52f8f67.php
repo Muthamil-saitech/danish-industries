@@ -3,70 +3,65 @@
 <?php
 $baseURL = getBaseURL();
 $setting = getSettingsInfo();
-$base_color = '#6ab04c';
-if (isset($setting->base_color) && $setting->base_color) {
-    $base_color = $setting->base_color;
-}
 ?>
 <section class="main-content-wrapper">
     <?php echo $__env->make('utilities.messages', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <section class="content-header">
-        <div class="row">
+        <div class="row align-items-center">
             <div class="col-md-6">
                 <h2 class="top-left-header"><?php echo e(isset($title) && $title ? $title : ''); ?></h2>
                 <input type="hidden" class="datatable_name" data-title="<?php echo e(isset($title) && $title ? $title : ''); ?>"
                     data-id_name="datatable">
             </div>
             <div class="col-md-6 text-end">
-                <h5 class="mb-0">Total Products: <?php echo e($total_finished_products); ?> </h5>
+                <h5 class="mb-0">Total Users: <?php echo e($total_users); ?> </h5>
             </div>
         </div>
     </section>
+
+
     <div class="box-wrapper">
         <div class="table-box">
-            <!-- /.box-header -->
             <div class="table-responsive">
-                <table id="datatable" class="table table-striped">
+                <table id="datatable" class="table text-nowrap">
                     <thead>
                         <tr>
-                            <th class="width_1_p"><?php echo app('translator')->get('index.sn'); ?></th>
-                            <th class="width_10_p"><?php echo app('translator')->get('index.part_no'); ?></th>
-                            <th class="width_10_p"><?php echo app('translator')->get('index.product_category'); ?></th>
-                            <th class="width_10_p"><?php echo app('translator')->get('index.part_name'); ?></th>
-                            <th class="width_10_p"> <?php echo app('translator')->get('index.materials'); ?></th>
-                            <th class="width_10_p"> <?php echo app('translator')->get('index.remarks'); ?></th>
-                            <th class="width_10_p"><?php echo app('translator')->get('index.added_by'); ?></th>
-                            <th class="width_10_p"><?php echo app('translator')->get('index.created_on'); ?></th>
-                            <th class="width_1_p ir_txt_center"><?php echo app('translator')->get('index.actions'); ?></th>
+                            <th class="ir_w_1"><?php echo app('translator')->get('index.sn'); ?></th>
+                            <th class="ir_w_12"><?php echo app('translator')->get('index.name'); ?></th>
+                            <th class="ir_w_12"><?php echo app('translator')->get('index.designation'); ?></th>
+                            <th class="ir_w_12"><?php echo app('translator')->get('index.email'); ?></th>
+                            <th class="ir_w_12"><?php echo app('translator')->get('index.phone'); ?></th>
+                            <th class="ir_w_12"><?php echo app('translator')->get('index.roles'); ?></th>
+                            <th class="ir_w_12"><?php echo app('translator')->get('index.status'); ?></th>
+
+                            <th class="ir_w_1_txt_center"><?php echo app('translator')->get('index.actions'); ?></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php if($obj && !empty($obj)): ?>
-                        <?php
-                        $i = 1;
-                        ?>
-                        <?php endif; ?>
-                        <?php $__currentLoopData = $obj; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php $__currentLoopData = $obj; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <tr>
-                            <td class="c_center"><?php echo e($i++); ?></td>
-                            <td><?php echo e($value->code); ?></td>
-                            <td><?php echo e(getFPCategory($value->category)); ?></td>
-                            <td><?php echo e($value->name); ?></td>
-                            <td><?php echo e(getTotalItem($value->id)); ?></td>
-                            <td title="<?php echo e($value->remarks); ?>"><?php echo e($value->remarks!='' ? substr_text($value->remarks,20) : 'N/A'); ?></td>
-                            <td><?php echo e(getUserName($value->added_by)); ?></td>
-                            <td><?php echo e(getDateFormat($value->created_at)); ?></td>
-                            <td class="text-start">
-                                <?php if(routePermission('product.edit')): ?>
-                                <a href="<?php echo e(url('finishedproducts')); ?>/<?php echo e(encrypt_decrypt($value->id, 'encrypt')); ?>/edit"
-                                    class="button-success" data-bs-toggle="tooltip" data-bs-placement="top"
+                            <td class="ir_txt_center"><?php echo e(++$key); ?></td>
+                            <td><?php echo e($value->name ?? ''); ?></td>
+                            <td><?php echo e($value->designation ?? ''); ?></td>
+                            <td><?php echo e($value->email ?? ''); ?></td>
+                            <td><?php echo e($value->phone_number ?? ''); ?></td>
+                            <td><?php echo e(getRolePermissionName($value->permission_role) ?? 'N/A'); ?></td>
+                            <td>
+                                <span
+                                    class="text-<?php echo e($value->status == 'Active' ? 'success' : 'danger'); ?>"><?php echo e($value->status); ?></span>
+                            </td>
+
+                            <td class="ir_txt_center">
+                                <?php if(routePermission('user.edit')): ?>
+                                <a href="<?php echo e(route('user.edit', encrypt_decrypt($value->id, 'encrypt'))); ?>" class="button-success"
+                                    data-bs-toggle="tooltip" data-bs-placement="top"
                                     title="<?php echo app('translator')->get('index.edit'); ?>"><i class="fa fa-edit"></i></a>
                                 <?php endif; ?>
-                                <?php if(routePermission('product.delete') && !$value->used_in_order): ?>
+                                <?php if(routePermission('user.delete')): ?>
                                 <a href="#" class="delete button-danger"
                                     data-form_class="alertDelete<?php echo e($value->id); ?>" type="submit"
                                     data-bs-toggle="tooltip" data-bs-placement="top" title="<?php echo app('translator')->get('index.delete'); ?>">
-                                    <form action="<?php echo e(route('finishedproducts.destroy', $value->id)); ?>"
+                                    <form action="<?php echo e(route('user.destroy', $value)); ?>"
                                         class="alertDelete<?php echo e($value->id); ?>" method="post">
                                         <?php echo csrf_field(); ?>
                                         <?php echo method_field('DELETE'); ?>
@@ -80,9 +75,9 @@ if (isset($setting->base_color) && $setting->base_color) {
                     </tbody>
                 </table>
             </div>
-            <!-- /.box-body -->
         </div>
     </div>
+
 </section>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('script'); ?>
@@ -99,4 +94,4 @@ if (isset($setting->base_color) && $setting->base_color) {
 <script src="<?php echo $baseURL . 'frequent_changing/newDesign/js/forTable.js'; ?>"></script>
 <script src="<?php echo $baseURL . 'frequent_changing/js/custom_report.js'; ?>"></script>
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\danish-industries\resources\views/pages/finished_product/finishedproducts.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\danish-industries\resources\views/pages/user/index.blade.php ENDPATH**/ ?>

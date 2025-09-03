@@ -15,22 +15,26 @@ class InspectionController extends Controller
     {
         $this->middleware('auth');
     }
-    public function index() {
-        $obj = Inspection::where('del_status','Live')->orderBy('id','DESC')->get()->map(function ($inspect) {
+    public function index()
+    {
+        $obj = Inspection::where('del_status', 'Live')->orderBy('id', 'DESC')->get()->map(function ($inspect) {
             $usedInDimension = InspectionObservedDimension::where('inspect_id', $inspect->id)->exists();
             $inspect->used_in_dimension = $usedInDimension;
             return $inspect;
         });
         $title = __('index.inspection');
-        return view('pages.inspection.inspection',compact('title','obj'));
+        $total_inspections = Inspection::where('del_status', 'Live')->count();
+        return view('pages.inspection.inspection', compact('title', 'obj', 'total_inspections'));
     }
-    public function create() {
+    public function create()
+    {
         $title =  __('index.add_inspection');
-        $materials = RawMaterial::where('category','!=',1)->where('del_status','Live')->orderBy('id', 'DESC')->get();
-        $drawers = Drawer::where('del_status','Live')->get();
-        return view('pages.inspection.addEditInspection',compact('title','materials','drawers'));
+        $materials = RawMaterial::where('category', '!=', 1)->where('del_status', 'Live')->orderBy('id', 'DESC')->get();
+        $drawers = Drawer::where('del_status', 'Live')->get();
+        return view('pages.inspection.addEditInspection', compact('title', 'materials', 'drawers'));
     }
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         // dd($request->all());
         $inspection = new Inspection();
         $inspection->mat_type = $request->get('mat_type');
@@ -63,8 +67,9 @@ class InspectionController extends Controller
         }
         return redirect('inspections')->with(saveMessage());
     }
-    public function getMaterialCode(Request $request) {
-        $material = RawMaterial::where('del_status', "Live")->where('id',$request->id)->orderBy('id', 'DESC')->first();
+    public function getMaterialCode(Request $request)
+    {
+        $material = RawMaterial::where('del_status', "Live")->where('id', $request->id)->orderBy('id', 'DESC')->first();
         echo json_encode($material);
     }
     public function edit($id)
@@ -72,12 +77,13 @@ class InspectionController extends Controller
         $inspection = Inspection::find(encrypt_decrypt($id, 'decrypt'));
         $title =  __('index.edit_inspection');
         $obj = $inspection;
-        $inspectParams = InspectionParam::where('inspect_id',$inspection->id)->where('del_status','Live')->get();
-        $materials = RawMaterial::where('category','!=',1)->where('del_status','Live')->orderBy('id', 'DESC')->get();
-        $drawers = Drawer::where('del_status','Live')->get();
-        return view('pages.inspection.addEditInspection',compact('title','obj','materials','drawers','inspectParams'));
+        $inspectParams = InspectionParam::where('inspect_id', $inspection->id)->where('del_status', 'Live')->get();
+        $materials = RawMaterial::where('category', '!=', 1)->where('del_status', 'Live')->orderBy('id', 'DESC')->get();
+        $drawers = Drawer::where('del_status', 'Live')->get();
+        return view('pages.inspection.addEditInspection', compact('title', 'obj', 'materials', 'drawers', 'inspectParams'));
     }
-    public function update(Request $request, Inspection $inspection) {
+    public function update(Request $request, Inspection $inspection)
+    {
         // dd($request->all());
         $inspection->mat_type = $request->get('mat_type');
         $inspection->ins_type = 0;

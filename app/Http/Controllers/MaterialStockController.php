@@ -18,7 +18,6 @@ class MaterialStockController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        
     }
     public function index(Request $request)
     {
@@ -27,9 +26,9 @@ class MaterialStockController extends Controller
         $mat_id = escape_output($request->get('mat_id'));
         $mat_type = escape_output($request->get('mat_type'));
         $ins_type = escape_output($request->get('ins_type'));
-        if($mat_id!='' || $mat_type!='' || $ins_type!='') {
+        if ($mat_id != '' || $mat_type != '' || $ins_type != '') {
             $commonQuery = MaterialStock::where('del_status', 'Live');
-            $obj = (clone $commonQuery)->orderBy('id','DESC')
+            $obj = (clone $commonQuery)->orderBy('id', 'DESC')
                 ->when($mat_id, fn($query) => $query->where('mat_id', $mat_id))
                 ->when($mat_type, fn($query) => $query->where('mat_type', $mat_type))
                 ->when($ins_type, fn($query) => $query->where('ins_type', $ins_type))
@@ -67,7 +66,7 @@ class MaterialStockController extends Controller
                 ->where('mat_type', 3)->where('ins_type', 2)
                 ->count();
         } else {
-            $obj = MaterialStock::orderBy('id','DESC')->where('del_status',"Live")->when($mat_id, function ($query, $mat_id) {
+            $obj = MaterialStock::orderBy('id', 'DESC')->where('del_status', "Live")->when($mat_id, function ($query, $mat_id) {
                 return $query->where('mat_id', $mat_id);
             })->when($mat_type, function ($query, $mat_type) {
                 return $query->where('mat_type', $mat_type);
@@ -77,27 +76,28 @@ class MaterialStockController extends Controller
                 $stock->used_in_manufacture = Mrmitem::where('stock_id', $stock->id)->exists();
                 return $stock;
             });
-            $tot_mat = MaterialStock::where('mat_type',1)->where('del_status',"Live")->count();
-            $tot_raw_mat = MaterialStock::where('mat_type',2)->where('del_status',"Live")->count();
-            $tot_ins = MaterialStock::where('mat_type',3)->where('del_status',"Live")->count();
-            $tot_consumable = MaterialStock::where('mat_type',3)->where('ins_type',1)->where('del_status',"Live")->count();
-            $tot_non_cons = MaterialStock::where('mat_type',3)->where('ins_type',2)->where('del_status',"Live")->count();
+            $tot_mat = MaterialStock::where('mat_type', 1)->where('del_status', "Live")->count();
+            $tot_raw_mat = MaterialStock::where('mat_type', 2)->where('del_status', "Live")->count();
+            $tot_ins = MaterialStock::where('mat_type', 3)->where('del_status', "Live")->count();
+            $tot_consumable = MaterialStock::where('mat_type', 3)->where('ins_type', 1)->where('del_status', "Live")->count();
+            $tot_non_cons = MaterialStock::where('mat_type', 3)->where('ins_type', 2)->where('del_status', "Live")->count();
         }
         $material_ids = MaterialStock::where('del_status', "Live")
             ->where('mat_type', $mat_type)
             ->pluck('mat_id')
             ->unique();
         $materials = RawMaterial::whereIn('id', $material_ids)->get();
-        return view('pages.material_stock.materialstocks',compact('title','obj','materials','mat_id','mat_type','ins_type','tot_mat','tot_raw_mat','tot_ins','tot_consumable','tot_non_cons'));
+        $total_material_stocks = MaterialStock::where('del_status', "Live")->count();
+        return view('pages.material_stock.materialstocks', compact('title', 'obj', 'materials', 'mat_id', 'mat_type', 'ins_type', 'tot_mat', 'tot_raw_mat', 'tot_ins', 'tot_consumable', 'tot_non_cons', 'total_material_stocks'));
     }
     public function create()
     {
         $title =  __('index.add_rm_stock');
-        $units = Unit::where('del_status', 'Live')->orderBy('id','DESC')->get();
-        $mat_categories = RawMaterialCategory::where('del_status', 'Live')->orderBy('id','DESC')->get();
-        $materials = RawMaterial::where('del_status', 'Live')->orderBy('id','DESC')->get();
-        $customers = Customer::where('del_status', 'Live')->orderBy('id','DESC')->get();
-        return view('pages.material_stock.addEditMaterialStock',compact('title','mat_categories', 'materials', 'customers','units'));
+        $units = Unit::where('del_status', 'Live')->orderBy('id', 'DESC')->get();
+        $mat_categories = RawMaterialCategory::where('del_status', 'Live')->orderBy('id', 'DESC')->get();
+        $materials = RawMaterial::where('del_status', 'Live')->orderBy('id', 'DESC')->get();
+        $customers = Customer::where('del_status', 'Live')->orderBy('id', 'DESC')->get();
+        return view('pages.material_stock.addEditMaterialStock', compact('title', 'mat_categories', 'materials', 'customers', 'units'));
     }
     public function store(Request $request)
     {
@@ -125,7 +125,7 @@ class MaterialStockController extends Controller
         $obj->old_mat_no = $request->old_mat_no;
         $obj->dc_no = $request->dc_no;
         $obj->heat_no = $request->heat_no;
-        $obj->dc_date = date('Y-m-d',strtotime($request->date));
+        $obj->dc_date = date('Y-m-d', strtotime($request->date));
         $obj->mat_doc_no = $request->mat_doc_no;
         $obj->reference_no = $request->reference_no;
         $obj->ins_type = null;
@@ -144,20 +144,20 @@ class MaterialStockController extends Controller
     {
         $title =  __('index.edit_rm_stock');
         $materialStock = MaterialStock::find(encrypt_decrypt($id, 'decrypt'));
-        $units = Unit::where('del_status', 'Live')->orderBy('id','DESC')->get();
-        $mat_categories = RawMaterialCategory::where('del_status', 'Live')->orderBy('id','DESC')->get();
-        $materials = RawMaterial::where('del_status', 'Live')->orderBy('id','DESC')->get();
-        $customers = Customer::where('del_status', 'Live')->orderBy('id','DESC')->get();
+        $units = Unit::where('del_status', 'Live')->orderBy('id', 'DESC')->get();
+        $mat_categories = RawMaterialCategory::where('del_status', 'Live')->orderBy('id', 'DESC')->get();
+        $materials = RawMaterial::where('del_status', 'Live')->orderBy('id', 'DESC')->get();
+        $customers = Customer::where('del_status', 'Live')->orderBy('id', 'DESC')->get();
         $obj = $materialStock;
-        if ($materialStock->stock_type=="purchase") {
+        if ($materialStock->stock_type == "purchase") {
             $purchases = RMPurchase_model::with('purchase')->where('rmaterials_id', $materialStock->mat_id)
-            ->where('del_status', 'Live')
-            ->orderBy('id','DESC')
-            ->get();
+                ->where('del_status', 'Live')
+                ->orderBy('id', 'DESC')
+                ->get();
         } else {
             $purchases = [];
         }
-        return view('pages.material_stock.addEditMaterialStock',compact('title','obj','mat_categories', 'materials', 'customers','units','purchases'));
+        return view('pages.material_stock.addEditMaterialStock', compact('title', 'obj', 'mat_categories', 'materials', 'customers', 'units', 'purchases'));
     }
     public function update(Request $request, MaterialStock $material_stock)
     {
@@ -183,7 +183,7 @@ class MaterialStockController extends Controller
         $material_stock->old_mat_no = $request->old_mat_no;
         $material_stock->dc_no = $request->dc_no;
         $material_stock->heat_no = $request->heat_no;
-        $material_stock->dc_date = date('Y-m-d',strtotime($request->date));
+        $material_stock->dc_date = date('Y-m-d', strtotime($request->date));
         $material_stock->mat_doc_no = $request->mat_doc_no;
         $material_stock->ins_type = null;
         $material_stock->customer_id = ($request->mat_type == '1') ? $request->customer_id : ($request->customer_id ?: null);
@@ -203,7 +203,8 @@ class MaterialStockController extends Controller
         $material_stock->save();
         return redirect('material_stocks')->with(deleteMessage());
     }
-    public function materialStockAdjust(Request $request) {
+    public function materialStockAdjust(Request $request)
+    {
         $mat_id = $request->mat_id;
         $mat_stock_id = $request->mat_stock_id;
         $adj_type = $request->adj_type;
@@ -216,9 +217,9 @@ class MaterialStockController extends Controller
         $dc_inward_price = !empty($request->dc_inward_price) ? $request->dc_inward_price : 0.00;
         $material_price = !empty($request->material_price) ? $request->material_price : 0.00;
         $hsn_no = $request->hsn_no ?? '';
-        $dc_date = date('Y-m-d',strtotime($request->dc_date));
-        $old_stock = MaterialStock::where('del_status','Live')->where('id',$mat_id)->sum('current_stock');
-        if($adj_type == "subtraction" && $old_stock <= $stock_qty) {
+        $dc_date = date('Y-m-d', strtotime($request->dc_date));
+        $old_stock = MaterialStock::where('del_status', 'Live')->where('id', $mat_id)->sum('current_stock');
+        if ($adj_type == "subtraction" && $old_stock <= $stock_qty) {
             return response()->json(['status' => false, 'message' => 'Stock quantity not enough to subtract.']);
         }
         $obj = new StockAdjustLog();
@@ -237,7 +238,7 @@ class MaterialStockController extends Controller
         $obj->added_by = auth()->user()->id;
         $obj->save();
         $material_stock = MaterialStock::find($mat_stock_id);
-        if($adj_type == "addition") {
+        if ($adj_type == "addition") {
             $material_stock->current_stock = $material_stock->current_stock + $stock_qty;
         } else {
             $material_stock->current_stock = $material_stock->current_stock - $stock_qty;
@@ -249,13 +250,13 @@ class MaterialStockController extends Controller
     {
         $title =  __('index.stock_adjustment_list');
         $stock_id = encrypt_decrypt($id, 'decrypt');
-        $stock_adjustments = StockAdjustLog::where('mat_stock_id',$stock_id)->where('del_status', 'Live')->get();
-        $material_stock = MaterialStock::where('id',$stock_id)->where('del_status', 'Live')->first();
-        if($material_stock) {
-            $material = RawMaterial::where('id',$material_stock->mat_id)->where('del_status', 'Live')->first();
+        $stock_adjustments = StockAdjustLog::where('mat_stock_id', $stock_id)->where('del_status', 'Live')->get();
+        $material_stock = MaterialStock::where('id', $stock_id)->where('del_status', 'Live')->first();
+        if ($material_stock) {
+            $material = RawMaterial::where('id', $material_stock->mat_id)->where('del_status', 'Live')->first();
         } else {
             $material = null;
         }
-        return view('pages.material_stock.stockAdjustmentLog',compact('title','stock_adjustments','material_stock','material'));
+        return view('pages.material_stock.stockAdjustmentLog', compact('title', 'stock_adjustments', 'material_stock', 'material'));
     }
 }

@@ -1,261 +1,270 @@
 
 <?php $__env->startSection('content'); ?>
-    <?php
-    $baseURL = getBaseURL();
-    $setting = getSettingsInfo();
-    $base_color = '#6ab04c';
-    if (isset($setting->base_color) && $setting->base_color) {
-        $base_color = $setting->base_color;
-    }
-    ?>
-    <section class="main-content-wrapper">
-        <?php echo $__env->make('utilities.messages', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-        <section class="content-header">
-            <div class="row">
-                <div class="col-md-6">
-                    <h2 class="top-left-header"><?php echo e(isset($title) && $title ? $title : ''); ?></h2>
-                    <input type="hidden" class="datatable_name material_table" data-filter="yes"
-                        data-title="<?php echo e(isset($title) && $title ? $title : ''); ?>">
-                </div>
-                <div class="col-md-6">
-                </div>
-                
+<?php
+$baseURL = getBaseURL();
+$setting = getSettingsInfo();
+$base_color = '#6ab04c';
+if (isset($setting->base_color) && $setting->base_color) {
+    $base_color = $setting->base_color;
+}
+?>
+<section class="main-content-wrapper">
+    <?php echo $__env->make('utilities.messages', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <section class="content-header">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h2 class="top-left-header"><?php echo e(isset($title) && $title ? $title : ''); ?></h2>
+                <input type="hidden" class="datatable_name material_table" data-filter="yes"
+                    data-title="<?php echo e(isset($title) && $title ? $title : ''); ?>">
+            </div>
+            <div class="col-md-6 text-end">
+                <h5 class="mb-0">Total Material Stocks: <?php echo e($total_material_stocks); ?> </h5>
             </div>
             
-        </section>
-        <div class="box-wrapper">
-            <ul class="nav nav-tabs" id="materialTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="danish-tab" data-bs-toggle="tab" data-bs-target="#danish" type="button" role="tab">Danish</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="customers-tab" data-bs-toggle="tab" data-bs-target="#customers" type="button" role="tab">Customers</button>
-                </li>
-            </ul>
-            <div class="tab-content mt-3" id="materialTabContent">
-                <div class="tab-pane fade show active" id="danish" role="tabpanel" aria-labelledby="danish-tab">
-                    <div class="table-responsive">
-                        <table class="table table-striped material_table">
-                            <thead>
-                                <tr>
-                                    <th class="width_1_p"><?php echo app('translator')->get('index.sn'); ?></th>
-                                    
-                                    <th class="width_10_p"><?php echo app('translator')->get('index.material_name'); ?>(<?php echo app('translator')->get('index.code'); ?>)</th>
-                                    <th class="width_10_p"><?php echo app('translator')->get('index.mat_type'); ?></th>
-                                    
-                                    <th class="width_10_p"><?php echo app('translator')->get('index.customer'); ?><br>(<?php echo app('translator')->get('index.code'); ?>)</th>
-                                    <th class="width_10_p"><?php echo app('translator')->get('index.stock'); ?></th>
-                                    <th class="width_10_p"><?php echo app('translator')->get('index.alter_level'); ?></th>
-                                    <th class="width_10_p"><?php echo app('translator')->get('index.floating_stock'); ?></th>
-                                    <th class="width_10_p"><?php echo app('translator')->get('index.entered_by'); ?></th>
-                                    <th class="width_1_p"><?php echo app('translator')->get('index.actions'); ?></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php $i=1; ?>
-                                <?php $__currentLoopData = $obj; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <?php if(getStockCustomerNameById($value->customer_id) == 'Danish'): ?>
-                                        <tr>
-                                            <td><?php echo e($i++); ?></td>
-                                            <td title="<?php echo e(getRMName($value->mat_id)); ?>"><?php echo e(substr_text(getRMName($value->mat_id),30)); ?></td>
-                                            <td>
-                                                <?php if($value->mat_type == 1): ?>
-                                                    Material
-                                                <?php elseif($value->mat_type == 2): ?>
-                                                    Raw Material
-                                                <?php else: ?>
-                                                    N/A
-                                                <?php endif; ?>
-                                            </td>
-                                            
-                                            <?php if(!$value->customer_id): ?>
-                                            <td title="<?php echo e(getStockCustomerNameById($value->customer_id)); ?>"><?php echo e(substr_text(getStockCustomerNameById($value->customer_id),30)); ?></td>
-                                            <?php else: ?>
-                                            <td title="<?php echo e(getStockCustomerNameById($value->customer_id)); ?>"><?php echo e(substr_text(getStockCustomerNameById($value->customer_id),30)); ?><br><small>(<?php echo e(getCustomerCodeById($value->customer_id)); ?>)</small></td>
-                                            <?php endif; ?>
-                                            <td><?php echo e($value->current_stock); ?> <?php echo e(getRMUnitById($value->unit_id)); ?><div id="qty_msg"></div></td>
-                                            <td><?php echo e($value->close_qty); ?> <?php echo e(getRMUnitById($value->unit_id)); ?></td>
-                                            <td><?php echo e($value->float_stock); ?> <?php echo e(getRMUnitById($value->unit_id)); ?></td>
-                                            <td><?php echo e(getUserName($value->added_by)); ?></td>
-                                            <td>
-                                                <a class="button-info" id="stockAdjBtn" data-bs-toggle="modal" data-id="<?php echo e($value->id); ?>" data-mat_id="<?php echo e($value->mat_id); ?>" data-customer_id="<?php echo e($value->customer_id); ?>" data-material="<?php echo e(getRMName($value->mat_id)); ?>" data-bs-target="#stockAdjModal" title="Stock Adjustment"><i class="fa fa-pencil"></i></a>
-                                                <a href="<?php echo e(url('material_stocks')); ?>/<?php echo e(encrypt_decrypt($value->id, 'encrypt')); ?>/stock_adjustments" class="button-info" data-bs-toggle="tooltip" data-bs-placement="top" title="View Stock Adjustments"><i class="fa fa-list"></i></a>
-                                                <?php if(routePermission('material_stocks.edit') && !$value->used_in_manufacture): ?>
-                                                    <a href="<?php echo e(url('material_stocks')); ?>/<?php echo e(encrypt_decrypt($value->id, 'encrypt')); ?>/edit"
-                                                        class="button-success" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                        title="<?php echo app('translator')->get('index.edit'); ?>"><i class="fa fa-edit"></i></a>
-                                                <?php endif; ?>
-                                                <?php if(routePermission('material_stocks.delete') && !$value->used_in_manufacture): ?>
-                                                    <a href="#" class="delete button-danger"
-                                                        data-form_class="alertDelete<?php echo e($value->id); ?>" type="submit"
-                                                        data-bs-toggle="tooltip" data-bs-placement="top"
-                                                        title="<?php echo app('translator')->get('index.delete'); ?>">
-                                                        <form action="<?php echo e(route('material_stocks.destroy', $value->id)); ?>"
-                                                            class="alertDelete<?php echo e($value->id); ?>" method="post">
-                                                            <?php echo csrf_field(); ?>
-                                                            <?php echo method_field('DELETE'); ?>
-                                                            <i class="c_padding_13 fa fa-trash tiny-icon"></i>
-                                                        </form>
-                                                    </a>
-                                                <?php endif; ?>
-                                            </td>
-                                        </tr>
+        </div>
+        
+    </section>
+    <div class="box-wrapper">
+        <ul class="nav nav-tabs" id="materialTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="danish-tab" data-bs-toggle="tab" data-bs-target="#danish" type="button" role="tab">Danish</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="customers-tab" data-bs-toggle="tab" data-bs-target="#customers" type="button" role="tab">Customers</button>
+            </li>
+        </ul>
+        <div class="tab-content mt-3" id="materialTabContent">
+            <div class="tab-pane fade show active" id="danish" role="tabpanel" aria-labelledby="danish-tab">
+                <div class="table-responsive">
+                    <table class="table table-striped material_table">
+                        <thead>
+                            <tr>
+                                <th class="width_1_p"><?php echo app('translator')->get('index.sn'); ?></th>
+                                
+                                <th class="width_10_p"><?php echo app('translator')->get('index.material_name'); ?>(<?php echo app('translator')->get('index.code'); ?>)</th>
+                                <th class="width_10_p"><?php echo app('translator')->get('index.mat_type'); ?></th>
+                                
+                                <th class="width_10_p"><?php echo app('translator')->get('index.customer'); ?><br>(<?php echo app('translator')->get('index.code'); ?>)</th>
+                                <th class="width_10_p"><?php echo app('translator')->get('index.stock'); ?></th>
+                                <th class="width_10_p"><?php echo app('translator')->get('index.alter_level'); ?></th>
+                                <th class="width_10_p"><?php echo app('translator')->get('index.floating_stock'); ?></th>
+                                <th class="width_10_p"><?php echo app('translator')->get('index.entered_by'); ?></th>
+                                <th class="width_1_p"><?php echo app('translator')->get('index.actions'); ?></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $i=1; ?>
+                            <?php $__currentLoopData = $obj; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php if(getStockCustomerNameById($value->customer_id) == 'Danish'): ?>
+                            <tr>
+                                <td><?php echo e($i++); ?></td>
+                                <td title="<?php echo e(getRMName($value->mat_id)); ?>"><?php echo e(substr_text(getRMName($value->mat_id),30)); ?></td>
+                                <td>
+                                    <?php if($value->mat_type == 1): ?>
+                                    Material
+                                    <?php elseif($value->mat_type == 2): ?>
+                                    Raw Material
+                                    <?php else: ?>
+                                    N/A
                                     <?php endif; ?>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            </tbody>
-                        </table>
-                    </div>
+                                </td>
+                                
+                                <?php if(!$value->customer_id): ?>
+                                <td title="<?php echo e(getStockCustomerNameById($value->customer_id)); ?>"><?php echo e(substr_text(getStockCustomerNameById($value->customer_id),30)); ?></td>
+                                <?php else: ?>
+                                <td title="<?php echo e(getStockCustomerNameById($value->customer_id)); ?>"><?php echo e(substr_text(getStockCustomerNameById($value->customer_id),30)); ?><br><small>(<?php echo e(getCustomerCodeById($value->customer_id)); ?>)</small></td>
+                                <?php endif; ?>
+                                <td><?php echo e($value->current_stock); ?> <?php echo e(getRMUnitById($value->unit_id)); ?>
+
+                                    <div id="qty_msg"></div>
+                                </td>
+                                <td><?php echo e($value->close_qty); ?> <?php echo e(getRMUnitById($value->unit_id)); ?></td>
+                                <td><?php echo e($value->float_stock); ?> <?php echo e(getRMUnitById($value->unit_id)); ?></td>
+                                <td><?php echo e(getUserName($value->added_by)); ?></td>
+                                <td>
+                                    <a class="button-info" id="stockAdjBtn" data-bs-toggle="modal" data-id="<?php echo e($value->id); ?>" data-mat_id="<?php echo e($value->mat_id); ?>" data-customer_id="<?php echo e($value->customer_id); ?>" data-material="<?php echo e(getRMName($value->mat_id)); ?>" data-bs-target="#stockAdjModal" title="Stock Adjustment"><i class="fa fa-pencil"></i></a>
+                                    <a href="<?php echo e(url('material_stocks')); ?>/<?php echo e(encrypt_decrypt($value->id, 'encrypt')); ?>/stock_adjustments" class="button-info" data-bs-toggle="tooltip" data-bs-placement="top" title="View Stock Adjustments"><i class="fa fa-list"></i></a>
+                                    <?php if(routePermission('material_stocks.edit') && !$value->used_in_manufacture): ?>
+                                    <a href="<?php echo e(url('material_stocks')); ?>/<?php echo e(encrypt_decrypt($value->id, 'encrypt')); ?>/edit"
+                                        class="button-success" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="<?php echo app('translator')->get('index.edit'); ?>"><i class="fa fa-edit"></i></a>
+                                    <?php endif; ?>
+                                    <?php if(routePermission('material_stocks.delete') && !$value->used_in_manufacture): ?>
+                                    <a href="#" class="delete button-danger"
+                                        data-form_class="alertDelete<?php echo e($value->id); ?>" type="submit"
+                                        data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="<?php echo app('translator')->get('index.delete'); ?>">
+                                        <form action="<?php echo e(route('material_stocks.destroy', $value->id)); ?>"
+                                            class="alertDelete<?php echo e($value->id); ?>" method="post">
+                                            <?php echo csrf_field(); ?>
+                                            <?php echo method_field('DELETE'); ?>
+                                            <i class="c_padding_13 fa fa-trash tiny-icon"></i>
+                                        </form>
+                                    </a>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                            <?php endif; ?>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="tab-pane fade" id="customers" role="tabpanel" aria-labelledby="customers-tab">
-                    <div class="table-responsive">
-                        <table class="table table-striped material_table">
-                            <thead>
-                                <tr>
-                                    <th class="width_1_p"><?php echo app('translator')->get('index.sn'); ?></th>
-                                    <th class="width_10_p"><?php echo app('translator')->get('index.material_name'); ?>(<?php echo app('translator')->get('index.code'); ?>)</th>
-                                    <th class="width_10_p"><?php echo app('translator')->get('index.mat_type'); ?></th>
-                                    
-                                    <th class="width_10_p"><?php echo app('translator')->get('index.customer'); ?><br>(<?php echo app('translator')->get('index.code'); ?>)</th>
-                                    <th class="width_10_p"><?php echo app('translator')->get('index.stock'); ?></th>
-                                    <th class="width_10_p"><?php echo app('translator')->get('index.alter_level'); ?></th>
-                                    <th class="width_10_p"><?php echo app('translator')->get('index.floating_stock'); ?></th>
-                                    <th class="width_10_p"><?php echo app('translator')->get('index.entered_by'); ?></th>
-                                    <th class="width_1_p"><?php echo app('translator')->get('index.actions'); ?></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php $i=1; ?>
-                                <?php $__currentLoopData = $obj; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <?php if(getStockCustomerNameById($value->customer_id) != 'Danish'): ?>
-                                        <tr>
-                                            <td class="c_center"><?php echo e($i++); ?></td>
-                                            <td title="<?php echo e(getRMName($value->mat_id)); ?>"><?php echo e(substr_text(getRMName($value->mat_id),30)); ?></td>
-                                            <td>
-                                                <?php if($value->mat_type == 1): ?>
-                                                    Material
-                                                <?php elseif($value->mat_type == 2): ?>
-                                                    Raw Material
-                                                <?php else: ?>
-                                                    N/A
-                                                <?php endif; ?>
-                                            </td>
-                                            
-                                            <?php if(!$value->customer_id): ?>
-                                            <td title="<?php echo e(getStockCustomerNameById($value->customer_id)); ?>"><?php echo e(substr_text(getStockCustomerNameById($value->customer_id),30)); ?></td>
-                                            <?php else: ?>
-                                            <td title="<?php echo e(getStockCustomerNameById($value->customer_id)); ?>"><?php echo e(substr_text(getStockCustomerNameById($value->customer_id),30)); ?><br><small>(<?php echo e(getCustomerCodeById($value->customer_id)); ?>)</small></td>
-                                            <?php endif; ?>
-                                            <td><?php echo e($value->current_stock); ?> <?php echo e(getRMUnitById($value->unit_id)); ?><div id="qty_msg"></div></td>
-                                            <td><?php echo e($value->close_qty); ?> <?php echo e(getRMUnitById($value->unit_id)); ?></td>
-                                            <td><?php echo e($value->float_stock); ?> <?php echo e(getRMUnitById($value->unit_id)); ?></td>
-                                            <td><?php echo e(getUserName($value->added_by)); ?></td>
-                                            <td>
-                                                <a class="button-info" id="stockAdjBtn" data-bs-toggle="modal" data-id="<?php echo e($value->id); ?>" data-mat_id="<?php echo e($value->mat_id); ?>" data-customer_id="<?php echo e($value->customer_id); ?>" data-material="<?php echo e(getRMName($value->mat_id)); ?>" data-bs-target="#stockAdjModal" title="Stock Adjustment"><i class="fa fa-pencil"></i></a>
-                                                <a href="<?php echo e(url('material_stocks')); ?>/<?php echo e(encrypt_decrypt($value->id, 'encrypt')); ?>/stock_adjustments" class="button-info" data-bs-toggle="tooltip" data-bs-placement="top" title="View Stock Adjustments"><i class="fa fa-list"></i></a>
-                                                <?php if(routePermission('material_stocks.edit') && !$value->used_in_manufacture): ?>
-                                                    <a href="<?php echo e(url('material_stocks')); ?>/<?php echo e(encrypt_decrypt($value->id, 'encrypt')); ?>/edit"
-                                                        class="button-success" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                        title="<?php echo app('translator')->get('index.edit'); ?>"><i class="fa fa-edit"></i></a>
-                                                <?php endif; ?>
-                                                <?php if(routePermission('material_stocks.delete') && !$value->used_in_manufacture): ?>
-                                                    <a href="#" class="delete button-danger"
-                                                        data-form_class="alertDelete<?php echo e($value->id); ?>" type="submit"
-                                                        data-bs-toggle="tooltip" data-bs-placement="top"
-                                                        title="<?php echo app('translator')->get('index.delete'); ?>">
-                                                        <form action="<?php echo e(route('material_stocks.destroy', $value->id)); ?>"
-                                                            class="alertDelete<?php echo e($value->id); ?>" method="post">
-                                                            <?php echo csrf_field(); ?>
-                                                            <?php echo method_field('DELETE'); ?>
-                                                            <i class="c_padding_13 fa fa-trash tiny-icon"></i>
-                                                        </form>
-                                                    </a>
-                                                <?php endif; ?>
-                                            </td>
-                                        </tr>
+            </div>
+            <div class="tab-pane fade" id="customers" role="tabpanel" aria-labelledby="customers-tab">
+                <div class="table-responsive">
+                    <table class="table table-striped material_table">
+                        <thead>
+                            <tr>
+                                <th class="width_1_p"><?php echo app('translator')->get('index.sn'); ?></th>
+                                <th class="width_10_p"><?php echo app('translator')->get('index.material_name'); ?>(<?php echo app('translator')->get('index.code'); ?>)</th>
+                                <th class="width_10_p"><?php echo app('translator')->get('index.mat_type'); ?></th>
+                                
+                                <th class="width_10_p"><?php echo app('translator')->get('index.customer'); ?><br>(<?php echo app('translator')->get('index.code'); ?>)</th>
+                                <th class="width_10_p"><?php echo app('translator')->get('index.stock'); ?></th>
+                                <th class="width_10_p"><?php echo app('translator')->get('index.alter_level'); ?></th>
+                                <th class="width_10_p"><?php echo app('translator')->get('index.floating_stock'); ?></th>
+                                <th class="width_10_p"><?php echo app('translator')->get('index.entered_by'); ?></th>
+                                <th class="width_1_p"><?php echo app('translator')->get('index.actions'); ?></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $i=1; ?>
+                            <?php $__currentLoopData = $obj; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php if(getStockCustomerNameById($value->customer_id) != 'Danish'): ?>
+                            <tr>
+                                <td class="c_center"><?php echo e($i++); ?></td>
+                                <td title="<?php echo e(getRMName($value->mat_id)); ?>"><?php echo e(substr_text(getRMName($value->mat_id),30)); ?></td>
+                                <td>
+                                    <?php if($value->mat_type == 1): ?>
+                                    Material
+                                    <?php elseif($value->mat_type == 2): ?>
+                                    Raw Material
+                                    <?php else: ?>
+                                    N/A
                                     <?php endif; ?>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            </tbody>
-                        </table>
-                    </div>
+                                </td>
+                                
+                                <?php if(!$value->customer_id): ?>
+                                <td title="<?php echo e(getStockCustomerNameById($value->customer_id)); ?>"><?php echo e(substr_text(getStockCustomerNameById($value->customer_id),30)); ?></td>
+                                <?php else: ?>
+                                <td title="<?php echo e(getStockCustomerNameById($value->customer_id)); ?>"><?php echo e(substr_text(getStockCustomerNameById($value->customer_id),30)); ?><br><small>(<?php echo e(getCustomerCodeById($value->customer_id)); ?>)</small></td>
+                                <?php endif; ?>
+                                <td><?php echo e($value->current_stock); ?> <?php echo e(getRMUnitById($value->unit_id)); ?>
+
+                                    <div id="qty_msg"></div>
+                                </td>
+                                <td><?php echo e($value->close_qty); ?> <?php echo e(getRMUnitById($value->unit_id)); ?></td>
+                                <td><?php echo e($value->float_stock); ?> <?php echo e(getRMUnitById($value->unit_id)); ?></td>
+                                <td><?php echo e(getUserName($value->added_by)); ?></td>
+                                <td>
+                                    <a class="button-info" id="stockAdjBtn" data-bs-toggle="modal" data-id="<?php echo e($value->id); ?>" data-mat_id="<?php echo e($value->mat_id); ?>" data-customer_id="<?php echo e($value->customer_id); ?>" data-material="<?php echo e(getRMName($value->mat_id)); ?>" data-bs-target="#stockAdjModal" title="Stock Adjustment"><i class="fa fa-pencil"></i></a>
+                                    <a href="<?php echo e(url('material_stocks')); ?>/<?php echo e(encrypt_decrypt($value->id, 'encrypt')); ?>/stock_adjustments" class="button-info" data-bs-toggle="tooltip" data-bs-placement="top" title="View Stock Adjustments"><i class="fa fa-list"></i></a>
+                                    <?php if(routePermission('material_stocks.edit') && !$value->used_in_manufacture): ?>
+                                    <a href="<?php echo e(url('material_stocks')); ?>/<?php echo e(encrypt_decrypt($value->id, 'encrypt')); ?>/edit"
+                                        class="button-success" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="<?php echo app('translator')->get('index.edit'); ?>"><i class="fa fa-edit"></i></a>
+                                    <?php endif; ?>
+                                    <?php if(routePermission('material_stocks.delete') && !$value->used_in_manufacture): ?>
+                                    <a href="#" class="delete button-danger"
+                                        data-form_class="alertDelete<?php echo e($value->id); ?>" type="submit"
+                                        data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="<?php echo app('translator')->get('index.delete'); ?>">
+                                        <form action="<?php echo e(route('material_stocks.destroy', $value->id)); ?>"
+                                            class="alertDelete<?php echo e($value->id); ?>" method="post">
+                                            <?php echo csrf_field(); ?>
+                                            <?php echo method_field('DELETE'); ?>
+                                            <i class="c_padding_13 fa fa-trash tiny-icon"></i>
+                                        </form>
+                                    </a>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                            <?php endif; ?>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="filterModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel"><?php echo app('translator')->get('index.rm_stocks'); ?></h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                            <i data-feather="x"></i>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <?php echo Form::model(isset($mat_type) && $mat_type ? $mat_type : '', [
-                            'id' => 'add_form',
-                            'method' => 'GET',
-                            'enctype' => 'multipart/form-data',
-                            'route' => ['material_stocks.index'],
-                        ]); ?>
+    </div>
+    <div class="modal fade" id="filterModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><?php echo app('translator')->get('index.rm_stocks'); ?></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <i data-feather="x"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <?php echo Form::model(isset($mat_type) && $mat_type ? $mat_type : '', [
+                    'id' => 'add_form',
+                    'method' => 'GET',
+                    'enctype' => 'multipart/form-data',
+                    'route' => ['material_stocks.index'],
+                    ]); ?>
 
-                        <?php echo csrf_field(); ?>
-                        <div class="row">                            
-                            <div class="col-md-12 mb-2">
-                                <div class="form-group">
-                                    <label><?php echo app('translator')->get('index.mat_type'); ?> </label>
-                                    <select name="mat_type" id="mat_type" class="form-control select2">
-                                        <option value=""><?php echo app('translator')->get('index.select'); ?></option>
-                                        <option value="1" <?php echo e(isset($mat_type) && $mat_type == "1" ? 'selected' : ''); ?>>Material</option>
-                                        <option value="2" <?php echo e(isset($mat_type) && $mat_type == "2" ? 'selected' : ''); ?>>Raw Material</option>
-                                        
-                                    </select>
-                                </div>
-                            </div>
-                            
-                            <div class="col-md-12 mb-2">
-                                <div class="form-group">
-                                    <label><?php echo app('translator')->get('index.material'); ?> </label>
-                                    <select name="mat_id" id="mat_id" class="form-control select2">
-                                        <option value=""><?php echo app('translator')->get('index.select'); ?></option>
-                                        <?php if(isset($mat_id)): ?>
-                                            <?php $__currentLoopData = $materials; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                <option value="<?php echo e($value->id); ?>"
-                                                    <?php echo e(isset($mat_id) && $mat_id == $value->id ? 'selected' : ''); ?>>
-                                                    <?php echo e($value->name); ?> - <?php echo e($value->code); ?></option>
-                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                        <?php endif; ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-12 mt-3">
-                                <button type="submit" name="submit" value="submit"
-                                    class="btn w-100 bg-blue-btn"><?php echo app('translator')->get('index.submit'); ?></button>
+                    <?php echo csrf_field(); ?>
+                    <div class="row">
+                        <div class="col-md-12 mb-2">
+                            <div class="form-group">
+                                <label><?php echo app('translator')->get('index.mat_type'); ?> </label>
+                                <select name="mat_type" id="mat_type" class="form-control select2">
+                                    <option value=""><?php echo app('translator')->get('index.select'); ?></option>
+                                    <option value="1" <?php echo e(isset($mat_type) && $mat_type == "1" ? 'selected' : ''); ?>>Material</option>
+                                    <option value="2" <?php echo e(isset($mat_type) && $mat_type == "2" ? 'selected' : ''); ?>>Raw Material</option>
+                                    
+                                </select>
                             </div>
                         </div>
-                    </div>
-                    <?php echo Form::close(); ?>
+                        
+                <div class="col-md-12 mb-2">
+                    <div class="form-group">
+                        <label><?php echo app('translator')->get('index.material'); ?> </label>
+                        <select name="mat_id" id="mat_id" class="form-control select2">
+                            <option value=""><?php echo app('translator')->get('index.select'); ?></option>
+                            <?php if(isset($mat_id)): ?>
+                            <?php $__currentLoopData = $materials; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($value->id); ?>"
+                                <?php echo e(isset($mat_id) && $mat_id == $value->id ? 'selected' : ''); ?>>
+                                <?php echo e($value->name); ?> - <?php echo e($value->code); ?>
 
+                            </option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <?php endif; ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-12 mt-3">
+                    <button type="submit" name="submit" value="submit"
+                        class="btn w-100 bg-blue-btn"><?php echo app('translator')->get('index.submit'); ?></button>
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="stockAdjModal" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel"><?php echo app('translator')->get('index.stock_adjustment'); ?></h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true"><i data-feather="x"></i></span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form class="form-horizontal">
-                            <div class="row">
-                                <div class="col-sm-12 col-md-12 mb-2" id="selected_material">
-                                    
-                                </div>
-                                <div class="col-sm-12 col-md-6 mb-2">
-                                    <div class="form-group">
-                                        <label class="control-label"><?php echo app('translator')->get('index.stock_type'); ?><span class="ir_color_red">*</span></label>
-                                        <select class="form-control <?php $__errorArgs = ['title'];
+        <?php echo Form::close(); ?>
+
+    </div>
+    </div>
+    </div>
+    <div class="modal fade" id="stockAdjModal" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel"><?php echo app('translator')->get('index.stock_adjustment'); ?></h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i data-feather="x"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 mb-2" id="selected_material">
+
+                            </div>
+                            <div class="col-sm-12 col-md-6 mb-2">
+                                <div class="form-group">
+                                    <label class="control-label"><?php echo app('translator')->get('index.stock_type'); ?><span class="ir_color_red">*</span></label>
+                                    <select class="form-control <?php $__errorArgs = ['title'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -264,17 +273,17 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?> select2"
                                         name="stock_type" id="stock_type">
-                                            <option value=""><?php echo app('translator')->get('index.select'); ?></option>
-                                            <option value="purchase"><?php echo app('translator')->get('index.purchase_order'); ?></option>
-                                            <option value="customer"><?php echo app('translator')->get('index.customer_order_no'); ?></option>
-                                        </select>
-                                        <p class="text-danger stock_type_err"></p>
-                                    </div>
+                                        <option value=""><?php echo app('translator')->get('index.select'); ?></option>
+                                        <option value="purchase"><?php echo app('translator')->get('index.purchase_order'); ?></option>
+                                        <option value="customer"><?php echo app('translator')->get('index.customer_order_no'); ?></option>
+                                    </select>
+                                    <p class="text-danger stock_type_err"></p>
                                 </div>
-                                <div class="col-sm-12 col-md-6 mb-2 d-none" id="select_ref_no">
-                                    <div class="form-group">
-                                        <label class="control-label"><?php echo app('translator')->get('index.po_no'); ?><span class="ir_color_red">*</span></label>
-                                        <select class="form-control <?php $__errorArgs = ['reference_no_purchase'];
+                            </div>
+                            <div class="col-sm-12 col-md-6 mb-2 d-none" id="select_ref_no">
+                                <div class="form-group">
+                                    <label class="control-label"><?php echo app('translator')->get('index.po_no'); ?><span class="ir_color_red">*</span></label>
+                                    <select class="form-control <?php $__errorArgs = ['reference_no_purchase'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -283,15 +292,15 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?> select2"
                                         name="reference_no_purchase" id="reference_no">
-                                            <option value=""><?php echo app('translator')->get('index.select'); ?></option>
-                                        </select>
-                                        <p class="text-danger reference_no_err"></p>
-                                    </div>
+                                        <option value=""><?php echo app('translator')->get('index.select'); ?></option>
+                                    </select>
+                                    <p class="text-danger reference_no_err"></p>
                                 </div>
-                                <div class="col-sm-12 mb-2 col-md-6 d-none" id="inp_ref_no_div">
-                                    <div class="form-group">
-                                        <label><?php echo app('translator')->get('index.reference_no'); ?> <span class="required_star">*</span></label>
-                                        <input type="text" class="form-control <?php $__errorArgs = ['reference_no_customer'];
+                            </div>
+                            <div class="col-sm-12 mb-2 col-md-6 d-none" id="inp_ref_no_div">
+                                <div class="form-group">
+                                    <label><?php echo app('translator')->get('index.reference_no'); ?> <span class="required_star">*</span></label>
+                                    <input type="text" class="form-control <?php $__errorArgs = ['reference_no_customer'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -299,17 +308,17 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" name="reference_no_customer" id="inp_ref_no" placeholder="<?php echo app('translator')->get('index.po_no'); ?>" readonly>
-                                        <p class="text-danger reference_no_err"></p>
-                                    </div>
+                                    <p class="text-danger reference_no_err"></p>
                                 </div>
-                                <div class="col-sm-12 col-md-6 mb-2">
-                                    <div class="form-group">
-                                        <label class="control-label"><?php echo app('translator')->get('index.adj_type'); ?><span class="ir_color_red">*</span></label>
-                                        <input type="hidden" name="mat_stock_id" id="mat_stock_id">
-                                        <input type="hidden" name="mat_id" id="stk_mat_id">
-                                        <input type="hidden" name="customer_id" id="customer_id">
-                                        <input type="hidden" name="reference_no" id="reference_no_hidden">
-                                        <select class="form-control <?php $__errorArgs = ['title'];
+                            </div>
+                            <div class="col-sm-12 col-md-6 mb-2">
+                                <div class="form-group">
+                                    <label class="control-label"><?php echo app('translator')->get('index.adj_type'); ?><span class="ir_color_red">*</span></label>
+                                    <input type="hidden" name="mat_stock_id" id="mat_stock_id">
+                                    <input type="hidden" name="mat_id" id="stk_mat_id">
+                                    <input type="hidden" name="customer_id" id="customer_id">
+                                    <input type="hidden" name="reference_no" id="reference_no_hidden">
+                                    <select class="form-control <?php $__errorArgs = ['title'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -318,52 +327,52 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?> select2"
                                         name="adj_type" id="adj_type">
-                                            <option value=""><?php echo app('translator')->get('index.select'); ?></option>
-                                            <option value="addition"><?php echo app('translator')->get('index.addition'); ?></option>
-                                            <option value="subtraction"><?php echo app('translator')->get('index.subtraction'); ?></option>
-                                        </select>
-                                        <p class="text-danger material_id_err"></p>
-                                    </div>
+                                        <option value=""><?php echo app('translator')->get('index.select'); ?></option>
+                                        <option value="addition"><?php echo app('translator')->get('index.addition'); ?></option>
+                                        <option value="subtraction"><?php echo app('translator')->get('index.subtraction'); ?></option>
+                                    </select>
+                                    <p class="text-danger material_id_err"></p>
                                 </div>
-                                <div class="col-sm-12 col-md-6 mb-2">
-                                    <div class="form-group">
-                                        <label class="control-label"><?php echo app('translator')->get('index.quantity'); ?><span class="ir_color_red"> *</span></label>
-                                        <div>
-                                            <input type="number" class="form-control" name="quantity" id="stock_qty" placeholder="Quantity" value="" min="1">
-                                        </div>
-                                        <p class="text-danger quantity_error"></p>
+                            </div>
+                            <div class="col-sm-12 col-md-6 mb-2">
+                                <div class="form-group">
+                                    <label class="control-label"><?php echo app('translator')->get('index.quantity'); ?><span class="ir_color_red"> *</span></label>
+                                    <div>
+                                        <input type="number" class="form-control" name="quantity" id="stock_qty" placeholder="Quantity" value="" min="1">
                                     </div>
+                                    <p class="text-danger quantity_error"></p>
                                 </div>
-                                <div class="col-sm-12 mb-2 col-md-6">
-                                    <div class="form-group">
-                                        <label><?php echo app('translator')->get('index.challan_no'); ?> <span class="required_star">*</span></label>
-                                        <input type="text" name="dc_no" class="form-control" id="dc_no" placeholder="<?php echo app('translator')->get('index.challan_no'); ?>" >
-                                        <p class="text-danger dc_no_err"></p>
-                                    </div>
+                            </div>
+                            <div class="col-sm-12 mb-2 col-md-6">
+                                <div class="form-group">
+                                    <label><?php echo app('translator')->get('index.challan_no'); ?> <span class="required_star">*</span></label>
+                                    <input type="text" name="dc_no" class="form-control" id="dc_no" placeholder="<?php echo app('translator')->get('index.challan_no'); ?>">
+                                    <p class="text-danger dc_no_err"></p>
                                 </div>
-                                <div class="col-sm-12 mb-2 col-md-6">
-                                    <div class="form-group">
-                                        <label>Heat No <span class="required_star">*</span></label>
-                                        <input type="text" name="heat_no" class="form-control" id="heat_no" placeholder="Heat No">
-                                        <p class="text-danger heat_no_err"></p>
-                                    </div>
+                            </div>
+                            <div class="col-sm-12 mb-2 col-md-6">
+                                <div class="form-group">
+                                    <label>Heat No <span class="required_star">*</span></label>
+                                    <input type="text" name="heat_no" class="form-control" id="heat_no" placeholder="Heat No">
+                                    <p class="text-danger heat_no_err"></p>
                                 </div>
-                                <div class="col-sm-12 mb-2 col-md-6">
-                                    <div class="form-group">
-                                        <label>DC Date <span class="required_star">*</span></label>
-                                        <?php echo Form::text('date', date('d-m-Y'), [
-                                            'class' => 'form-control',
-                                            'placeholder' => 'DC Date',
-                                            'id' => 'dc_date',
-                                        ]); ?>
+                            </div>
+                            <div class="col-sm-12 mb-2 col-md-6">
+                                <div class="form-group">
+                                    <label>DC Date <span class="required_star">*</span></label>
+                                    <?php echo Form::text('date', date('d-m-Y'), [
+                                    'class' => 'form-control',
+                                    'placeholder' => 'DC Date',
+                                    'id' => 'dc_date',
+                                    ]); ?>
 
-                                        <p class="text-danger dc_date_err"></p>
-                                    </div>
+                                    <p class="text-danger dc_date_err"></p>
                                 </div>
-                                <div class="col-sm-12 mb-2 col-md-6">
-                                    <div class="form-group">
-                                        <label><?php echo app('translator')->get('index.doc_no'); ?></label>
-                                        <input type="text" class="form-control <?php $__errorArgs = ['mat_doc_no'];
+                            </div>
+                            <div class="col-sm-12 mb-2 col-md-6">
+                                <div class="form-group">
+                                    <label><?php echo app('translator')->get('index.doc_no'); ?></label>
+                                    <input type="text" class="form-control <?php $__errorArgs = ['mat_doc_no'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -371,13 +380,13 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" name="mat_doc_no" id="mat_doc_no" placeholder="<?php echo app('translator')->get('index.doc_no'); ?>">
-                                        <p class="text-danger mat_doc_no_err"></p>
-                                    </div>
+                                    <p class="text-danger mat_doc_no_err"></p>
                                 </div>
-                                <div class="col-sm-12 mb-2 col-md-6">
-                                    <div class="form-group">
-                                        <label><?php echo app('translator')->get('index.dc_inw_price'); ?> </label>
-                                        <input type="text" class="form-control <?php $__errorArgs = ['dc_inward_price'];
+                            </div>
+                            <div class="col-sm-12 mb-2 col-md-6">
+                                <div class="form-group">
+                                    <label><?php echo app('translator')->get('index.dc_inw_price'); ?> </label>
+                                    <input type="text" class="form-control <?php $__errorArgs = ['dc_inward_price'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -385,12 +394,12 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" name="dc_inward_price" id="dc_inward_price" value="<?php echo e(isset($obj->dc_inward_price) && $obj->dc_inward_price ? $obj->dc_inward_price : old('dc_inward_price')); ?>" placeholder="<?php echo app('translator')->get('index.dc_inw_price'); ?>">
-                                    </div>
                                 </div>
-                                <div class="col-sm-12 mb-2 col-md-6">
-                                    <div class="form-group">
-                                        <label><?php echo app('translator')->get('index.mat_price'); ?> </label>
-                                        <input type="text" class="form-control <?php $__errorArgs = ['material_price'];
+                            </div>
+                            <div class="col-sm-12 mb-2 col-md-6">
+                                <div class="form-group">
+                                    <label><?php echo app('translator')->get('index.mat_price'); ?> </label>
+                                    <input type="text" class="form-control <?php $__errorArgs = ['material_price'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -398,32 +407,32 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" name="material_price" id="material_price" value="<?php echo e(isset($obj->material_price) && $obj->material_price ? $obj->material_price : old('material_price')); ?>" placeholder="<?php echo app('translator')->get('index.mat_price'); ?>">
-                                    </div>
                                 </div>
-                                <div class="col-sm-12 mb-2 col-md-6">
-                                    <div class="form-group">
-                                        <label><?php echo app('translator')->get('index.hsn_no'); ?> </label>
-                                        <input type="text" class="form-control <?php $__errorArgs = ['hsn_no'];
+                            </div>
+                            <div class="col-sm-12 mb-2 col-md-6">
+                                <div class="form-group">
+                                    <label><?php echo app('translator')->get('index.hsn_no'); ?> </label>
+                                    <input type="text" class="form-control <?php $__errorArgs = ['hsn_no'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" name="hsn_no" id="hsn_no" value="<?php echo e(isset($obj->hsn_no) && $obj->hsn_no ? $obj->hsn_no : old('hsn_no')); ?>" placeholder="<?php echo app('translator')->get('index.hsn_no'); ?>" >
-                                    </div>
+unset($__errorArgs, $__bag); ?>" name="hsn_no" id="hsn_no" value="<?php echo e(isset($obj->hsn_no) && $obj->hsn_no ? $obj->hsn_no : old('hsn_no')); ?>" placeholder="<?php echo app('translator')->get('index.hsn_no'); ?>">
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn bg-blue-btn stock_adjust_btn"><iconify-icon icon="solar:check-circle-broken"></iconify-icon>
-                            <?php echo app('translator')->get('index.submit'); ?></button>
-                    </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn bg-blue-btn stock_adjust_btn"><iconify-icon icon="solar:check-circle-broken"></iconify-icon>
+                        <?php echo app('translator')->get('index.submit'); ?></button>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('script'); ?>
 <script src="<?php echo $baseURL . 'assets/datatable_custom/jquery-3.3.1.js'; ?>"></script>
@@ -458,7 +467,7 @@ unset($__errorArgs, $__bag); ?>" name="hsn_no" id="hsn_no" value="<?php echo e(i
         dropdownParent: $('#filterModal')
     });
     /* Filter */
-    $(document).on("change", "#mat_type", function () {
+    $(document).on("change", "#mat_type", function() {
         let mat_type = $(this).find(":selected").val();
         let hidden_base_url = $("#hidden_base_url").val();
         // if(mat_type=="3") {
@@ -471,14 +480,16 @@ unset($__errorArgs, $__bag); ?>" name="hsn_no" id="hsn_no" value="<?php echo e(i
         $.ajax({
             type: "POST",
             url: hidden_base_url + "getMaterialByMatType",
-            data: { mat_type: mat_type },
+            data: {
+                mat_type: mat_type
+            },
             dataType: "json",
-            success: function (data) {
+            success: function(data) {
                 let materials = data;
                 let select = $("#mat_id");
                 select.empty();
                 select.append('<option value="">Please Select</option>');
-                materials.forEach(function (item) {
+                materials.forEach(function(item) {
                     if (item) {
                         let id = item.id;
                         let name = item.name;
@@ -488,7 +499,7 @@ unset($__errorArgs, $__bag); ?>" name="hsn_no" id="hsn_no" value="<?php echo e(i
                 });
                 // $(".select2").select2();
             },
-            error: function () {
+            error: function() {
                 console.error("Failed to fetch product details.");
             },
         });
@@ -522,7 +533,7 @@ unset($__errorArgs, $__bag); ?>" name="hsn_no" id="hsn_no" value="<?php echo e(i
             },
         });
     }); */
-    $(document).on("click", "#stockAdjBtn", function (e) {
+    $(document).on("click", "#stockAdjBtn", function(e) {
         e.preventDefault();
         var mat_stock_id = $(this).data('id');
         $('#mat_stock_id').val(mat_stock_id);
@@ -531,7 +542,7 @@ unset($__errorArgs, $__bag); ?>" name="hsn_no" id="hsn_no" value="<?php echo e(i
         var customer_id = $(this).data('customer_id');
         $('#customer_id').val(customer_id);
         var material = $(this).data('material');
-        $('#selected_material').html('<p>'+material+'</p>');
+        $('#selected_material').html('<p>' + material + '</p>');
         $('#stock_type').val("").trigger('change.select2');
         $('#reference_no').val("").trigger('change.select2');
         $("#select_ref_no").addClass("d-none");
@@ -544,7 +555,7 @@ unset($__errorArgs, $__bag); ?>" name="hsn_no" id="hsn_no" value="<?php echo e(i
         $(".reference_no_err").html("");
         $(".material_id_err").html("");
     });
-    $(document).on("change", "#stock_type", function (e) {
+    $(document).on("change", "#stock_type", function(e) {
         let hidden_base_url = $("#hidden_base_url").val();
         let stock_type = $("#stock_type").val();
         var mat_id = $("#stk_mat_id").val();
@@ -552,13 +563,17 @@ unset($__errorArgs, $__bag); ?>" name="hsn_no" id="hsn_no" value="<?php echo e(i
         $.ajax({
             type: "POST",
             url: hidden_base_url + "getStockReference",
-            data: { stock_type: stock_type, mat_id: mat_id, customer_id: customer_id },
+            data: {
+                stock_type: stock_type,
+                mat_id: mat_id,
+                customer_id: customer_id
+            },
             dataType: "html",
-            success: function (data) {
+            success: function(data) {
                 if (typeof data === "string") {
                     data = JSON.parse(data);
                 }
-                if(data.type==="purchase") {
+                if (data.type === "purchase") {
                     $("#reference_no").html(data.html);
                     $("#select_ref_no").removeClass("d-none");
                     $("#inp_ref_no_div").addClass("d-none");
@@ -572,18 +587,18 @@ unset($__errorArgs, $__bag); ?>" name="hsn_no" id="hsn_no" value="<?php echo e(i
                     $("#stock_qty").attr("max", data.qty);
                 }
             },
-            error: function () {
+            error: function() {
                 console.log("error");
             },
         });
     });
-    $(document).on("change", "#reference_no", function (e) {
+    $(document).on("change", "#reference_no", function(e) {
         let selected = $(this).val();
         let split = selected.split('|');
         $("#stock_qty").val(split[1]);
         $("#stock_qty").attr("max", split[1]);
     });
-    $("#stock_qty").on("input", function () {
+    $("#stock_qty").on("input", function() {
         let enteredQty = parseFloat($(this).val());
         let maxQty = parseFloat($(this).attr("max"));
         if (enteredQty > maxQty) {
@@ -593,7 +608,7 @@ unset($__errorArgs, $__bag); ?>" name="hsn_no" id="hsn_no" value="<?php echo e(i
             $(".quantity_error").text("");
         }
     });
-    $(document).on("click", ".stock_adjust_btn", function (e) {
+    $(document).on("click", ".stock_adjust_btn", function(e) {
         e.preventDefault();
         let status = true;
         let hidden_base_url = $("#hidden_base_url").val();
@@ -616,37 +631,37 @@ unset($__errorArgs, $__bag); ?>" name="hsn_no" id="hsn_no" value="<?php echo e(i
         }
         $("#reference_no_hidden").val(reference_no);
         let stock_qty = $("#stock_qty").val();
-        if(adj_type == "") {
+        if (adj_type == "") {
             $(".material_id_err").text("The Adjustment Type field is required.");
             status = false;
         } else {
             $(".material_id_err").text("");
         }
-        if(stock_qty == "") {
+        if (stock_qty == "") {
             $(".quantity_error").text("The Quantity field is required.");
             status = false;
         } else {
             $(".quantity_error").text("");
         }
-        if(stock_type == "") {
+        if (stock_type == "") {
             $(".stock_type_err").text("The Stock Type field is required.");
             status = false;
         } else {
             $(".stock_type_err").text("");
         }
-        if(dc_no == "") {
+        if (dc_no == "") {
             $(".dc_no_err").text("The Customer DC No field is required.");
             status = false;
         } else {
             $(".dc_no_err").text("");
         }
-        if(heat_no == "") {
+        if (heat_no == "") {
             $(".heat_no_err").text("The Heat No field is required.");
             status = false;
         } else {
             $(".heat_no_err").text("");
         }
-        if(dc_date == "") {
+        if (dc_date == "") {
             $(".dc_date_err").text("The DC Date field is required.");
             status = false;
         } else {
@@ -668,15 +683,29 @@ unset($__errorArgs, $__bag); ?>" name="hsn_no" id="hsn_no" value="<?php echo e(i
         } else {
             $(".reference_no_err").text("");
         }
-        if(status==false){
+        if (status == false) {
             return false;
         }
         $.ajax({
             type: "POST",
             url: hidden_base_url + "materialStockAdjust",
-            data: { mat_stock_id: mat_stock_id, adj_type: adj_type, stock_qty: stock_qty, mat_id:mat_id, stock_type: stock_type, reference_no: reference_no, dc_no: dc_no, heat_no: heat_no, dc_date: dc_date, mat_doc_no: mat_doc_no, dc_inward_price: dc_inward_price, material_price: material_price, hsn_no: hsn_no },
+            data: {
+                mat_stock_id: mat_stock_id,
+                adj_type: adj_type,
+                stock_qty: stock_qty,
+                mat_id: mat_id,
+                stock_type: stock_type,
+                reference_no: reference_no,
+                dc_no: dc_no,
+                heat_no: heat_no,
+                dc_date: dc_date,
+                mat_doc_no: mat_doc_no,
+                dc_inward_price: dc_inward_price,
+                material_price: material_price,
+                hsn_no: hsn_no
+            },
             dataType: "json",
-            success: function (data) {
+            success: function(data) {
                 const modalEl = document.getElementById('stockAdjModal');
                 const modalInstance = bootstrap.Modal.getInstance(modalEl);
                 if (modalInstance) {
@@ -691,14 +720,13 @@ unset($__errorArgs, $__bag); ?>" name="hsn_no" id="hsn_no" value="<?php echo e(i
                     cancelButtonText: hidden_cancel,
                     confirmButtonText: hidden_ok,
                     confirmButtonColor: "#3c8dbc",
-                }, function () {
+                }, function() {
                     location.reload();
                 });
             },
-            error: function () {},
+            error: function() {},
         });
     });
 </script>
 <?php $__env->stopSection(); ?>
-
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\danish-industries\resources\views/pages/material_stock/materialstocks.blade.php ENDPATH**/ ?>

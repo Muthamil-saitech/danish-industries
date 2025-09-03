@@ -1,5 +1,5 @@
-@extends('layouts.app')
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 <?php
 $baseURL = getBaseURL();
 $setting = getSettingsInfo();
@@ -9,16 +9,16 @@ if (isset($setting->base_color) && $setting->base_color) {
 }
 ?>
 <section class="main-content-wrapper">
-    @include('utilities.messages')
+    <?php echo $__env->make('utilities.messages', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <section class="content-header">
         <div class="row">
             <div class="col-md-6">
-                <h2 class="top-left-header">{{ isset($title) && $title ? $title : '' }}</h2>
-                <input type="hidden" class="datatable_name" data-filter="yes" data-title="{{ isset($title) && $title ? $title : '' }}"
+                <h2 class="top-left-header"><?php echo e(isset($title) && $title ? $title : ''); ?></h2>
+                <input type="hidden" class="datatable_name" data-filter="yes" data-title="<?php echo e(isset($title) && $title ? $title : ''); ?>"
                     data-id_name="datatable">
             </div>
             <div class="col-md-6 text-end">
-                <h5 class="mb-0">Total Inspection Report: {{ $total_ins_reports }} </h5>
+                <h5 class="mb-0">Total Inspection Report: <?php echo e($total_ins_reports); ?> </h5>
             </div>
         </div>
     </section>
@@ -29,57 +29,57 @@ if (isset($setting->base_color) && $setting->base_color) {
                 <table id="datatable" class="table table-striped">
                     <thead>
                         <tr>
-                            <th class="ir_w_1"> @lang('index.sn')</th>
-                            <th class="ir_w_16">@lang('index.ppcrc_no')</th>
-                            <th class="ir_w_16">@lang('index.drg_no')</th>
-                            <th class="ir_w_16">@lang('index.part_name')</th>
-                            <th class="ir_w_16">@lang('index.part_no')</th>
-                            <th class="ir_w_16">@lang('index.po_no')</th>
-                            <th class="ir_w_16">@lang('index.customer_name')<br>(@lang('index.code'))</th>
-                            <th class="ir_w_16">@lang('index.start_date')</th>
-                            <th class="ir_w_16">@lang('index.delivery_date')</th>
-                            <th class="ir_w_16">@lang('index.status')</th>
-                            <th class="ir_w_1 ir_txt_center">@lang('index.actions')</th>
+                            <th class="ir_w_1"> <?php echo app('translator')->get('index.sn'); ?></th>
+                            <th class="ir_w_16"><?php echo app('translator')->get('index.ppcrc_no'); ?></th>
+                            <th class="ir_w_16"><?php echo app('translator')->get('index.drg_no'); ?></th>
+                            <th class="ir_w_16"><?php echo app('translator')->get('index.part_name'); ?></th>
+                            <th class="ir_w_16"><?php echo app('translator')->get('index.part_no'); ?></th>
+                            <th class="ir_w_16"><?php echo app('translator')->get('index.po_no'); ?></th>
+                            <th class="ir_w_16"><?php echo app('translator')->get('index.customer_name'); ?><br>(<?php echo app('translator')->get('index.code'); ?>)</th>
+                            <th class="ir_w_16"><?php echo app('translator')->get('index.start_date'); ?></th>
+                            <th class="ir_w_16"><?php echo app('translator')->get('index.delivery_date'); ?></th>
+                            <th class="ir_w_16"><?php echo app('translator')->get('index.status'); ?></th>
+                            <th class="ir_w_1 ir_txt_center"><?php echo app('translator')->get('index.actions'); ?></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @if ($manufactures && !empty($manufactures))
-                        @foreach ($manufactures as $value)
-                        @php $prodInfo = getFinishedProductInfo($value->product_id); @endphp
+                        <?php if($manufactures && !empty($manufactures)): ?>
+                        <?php $__currentLoopData = $manufactures; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php $prodInfo = getFinishedProductInfo($value->product_id); ?>
                         <tr>
-                            <td class="ir_txt_center">{{ $loop->iteration }}</td>
-                            <td>{{ $value->reference_no }}</td>
-                            <td>{{ $value->drawer_no }}</td>
-                            <td>{{ $prodInfo->name }}</td>
-                            <td>{{ $prodInfo->code }}</td>
-                            <td>{{ getPoNo($value->customer_order_id) }}</td>
-                            <td>{{ getCustomerNameById($value->customer_id).' ('.getCustomerCodeById($value->customer_id).')' }}</td>
-                            <td>{{ getDateFormat($value->start_date) }}</td>
-                            <td>{{ $value->complete_date!='' ? getDateFormat($value->complete_date) : ' - ' }}</td>
+                            <td class="ir_txt_center"><?php echo e($loop->iteration); ?></td>
+                            <td><?php echo e($value->reference_no); ?></td>
+                            <td><?php echo e($value->drawer_no); ?></td>
+                            <td><?php echo e($prodInfo->name); ?></td>
+                            <td><?php echo e($prodInfo->code); ?></td>
+                            <td><?php echo e(getPoNo($value->customer_order_id)); ?></td>
+                            <td><?php echo e(getCustomerNameById($value->customer_id).' ('.getCustomerCodeById($value->customer_id).')'); ?></td>
+                            <td><?php echo e(getDateFormat($value->start_date)); ?></td>
+                            <td><?php echo e($value->complete_date!='' ? getDateFormat($value->complete_date) : ' - '); ?></td>
                             <td>
-                                @if(is_object($value->inspect_approval) && $value->inspect_approval!=null && $value->inspect_approval->status == 2)
+                                <?php if(is_object($value->inspect_approval) && $value->inspect_approval!=null && $value->inspect_approval->status == 2): ?>
                                 <span class="text-success">Final</span>
-                                @elseif(is_object($value->inspect_approval) && $value->inspect_approval!=null && $value->inspect_approval->status == 1)
+                                <?php elseif(is_object($value->inspect_approval) && $value->inspect_approval!=null && $value->inspect_approval->status == 1): ?>
                                 <span class="text-info">In Process</span>
-                                @else
+                                <?php else: ?>
                                 <span class="text-danger">Pending</span>
-                                @endif
+                                <?php endif; ?>
                             </td>
                             <td>
-                                <a href="{{ url('inspection-generate') }}/{{ encrypt_decrypt($value->id, 'encrypt') }}"
+                                <a href="<?php echo e(url('inspection-generate')); ?>/<?php echo e(encrypt_decrypt($value->id, 'encrypt')); ?>"
                                     class="button-info" data-bs-toggle="tooltip" data-bs-placement="top"
-                                    title="@lang('index.view_details')">
+                                    title="<?php echo app('translator')->get('index.view_details'); ?>">
                                     <i class="fa fa-eye"></i>
                                 </a>
-                                @if((!$value->inspect_approval) || (is_object($value->inspect_approval) && $value->inspect_approval->status < 2))
+                                <?php if((!$value->inspect_approval) || (is_object($value->inspect_approval) && $value->inspect_approval->status < 2)): ?>
                                     <a href="javascript:void(0)" class="button-success inspection_dimension"
                                     data-bs-toggle="modal" data-bs-target="#inspectionDimensionModal"
-                                    data-id="{{ $value->id }}"><i class="fa-regular fa-circle-check" data-bs-toggle="tooltip" data-bs-placement="top" title="Inspection Dimension"></i></a>
-                                    @endif
+                                    data-id="<?php echo e($value->id); ?>"><i class="fa-regular fa-circle-check" data-bs-toggle="tooltip" data-bs-placement="top" title="Inspection Dimension"></i></a>
+                                    <?php endif; ?>
                             </td>
                         </tr>
-                        @endforeach
-                        @endif
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <?php endif; ?>
                     </tbody>
                 </table>
             </div>
@@ -93,8 +93,8 @@ if (isset($setting->base_color) && $setting->base_color) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i
                             data-feather="x"></i></button>
                 </div>
-                <form action="{{ route('inspect.updateInspectionDimension') }}" id="inspect_dimension" method="post">
-                    @csrf
+                <form action="<?php echo e(route('inspect.updateInspectionDimension')); ?>" id="inspect_dimension" method="post">
+                    <?php echo csrf_field(); ?>
                     <div class="modal-body">
                         <p class="text-danger" id="dimension_msg"></p>
                         <input type="hidden" name="manufacture_id" class="manufacture_id">
@@ -103,7 +103,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                         <div id="appearance_inspection_table"></div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn bg-blue-btn di_modal_submit" disabled>@lang('index.update')</button>
+                        <button type="submit" class="btn bg-blue-btn di_modal_submit" disabled><?php echo app('translator')->get('index.update'); ?></button>
                     </div>
                 </form>
             </div>
@@ -113,74 +113,78 @@ if (isset($setting->base_color) && $setting->base_color) {
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">@lang('index.inspect_list')</h5>
+                    <h5 class="modal-title" id="exampleModalLabel"><?php echo app('translator')->get('index.inspect_list'); ?></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                         <i data-feather="x"></i>
                     </button>
                 </div>
                 <div class="modal-body">
-                    {!! Form::model('', [
+                    <?php echo Form::model('', [
                     'id' => 'add_form',
                     'method' => 'GET',
                     'enctype' => 'multipart/form-data',
                     'route' => ['inspection-generate.index'],
-                    ]) !!}
-                    @csrf
+                    ]); ?>
+
+                    <?php echo csrf_field(); ?>
                     <div class="row">
                         <div class="col-sm-6 mb-3">
                             <div class="form-group">
-                                {!! Form::text('startDate', (isset($startDate)&&$startDate!='') ? date('d-m-Y',strtotime($startDate)) : '', ['class' => 'form-control', 'readonly'=>"", 'placeholder'=>"Start Date", 'id' => 'ir_start_date']) !!}
+                                <?php echo Form::text('startDate', (isset($startDate)&&$startDate!='') ? date('d-m-Y',strtotime($startDate)) : '', ['class' => 'form-control', 'readonly'=>"", 'placeholder'=>"Start Date", 'id' => 'ir_start_date']); ?>
+
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3">
                             <div class="form-group">
-                                {!! Form::text('endDate', (isset($endDate)&&$endDate!='') ? date('d-m-Y',strtotime($endDate)) : '', ['class' => 'form-control', 'readonly'=>"", 'placeholder'=>"End Date", 'id' => 'ir_complete_date']) !!}
+                                <?php echo Form::text('endDate', (isset($endDate)&&$endDate!='') ? date('d-m-Y',strtotime($endDate)) : '', ['class' => 'form-control', 'readonly'=>"", 'placeholder'=>"End Date", 'id' => 'ir_complete_date']); ?>
+
                             </div>
                         </div>
                         <div class="col-md-12 mb-2">
                             <div class="form-group">
-                                <label>@lang('index.customer') </label>
+                                <label><?php echo app('translator')->get('index.customer'); ?> </label>
                                 <select name="customer_id" id="customer_id" class="form-control select2">
-                                    <option value="">@lang('index.select')</option>
-                                    @if(isset($customer_id))
-                                    @foreach ($customers as $key => $value)
-                                    <option value="{{ $value->id }}"
-                                        {{ isset($customer_id) && $customer_id == $value->id ? 'selected' : '' }}>
-                                        {{ $value->name }} ({{ $value->customer_id }})
+                                    <option value=""><?php echo app('translator')->get('index.select'); ?></option>
+                                    <?php if(isset($customer_id)): ?>
+                                    <?php $__currentLoopData = $customers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($value->id); ?>"
+                                        <?php echo e(isset($customer_id) && $customer_id == $value->id ? 'selected' : ''); ?>>
+                                        <?php echo e($value->name); ?> (<?php echo e($value->customer_id); ?>)
                                     </option>
-                                    @endforeach
-                                    @endif
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    <?php endif; ?>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-4 mt-3">
                             <button type="submit" name="submit" value="submit"
-                                class="btn w-100 bg-blue-btn">@lang('index.submit')</button>
+                                class="btn w-100 bg-blue-btn"><?php echo app('translator')->get('index.submit'); ?></button>
                         </div>
                         <div class="col-md-4 mt-3">
-                            <a href="{{ route('inspection-generate.index') }}" style="text-decoration: none;color:white;"><button type="button" value="reset" class="btn bg-second-btn w-100">Reset</button></a>
+                            <a href="<?php echo e(route('inspection-generate.index')); ?>" style="text-decoration: none;color:white;"><button type="button" value="reset" class="btn bg-second-btn w-100">Reset</button></a>
                         </div>
                     </div>
                 </div>
-                {!! Form::close() !!}
+                <?php echo Form::close(); ?>
+
             </div>
         </div>
     </div>
 </section>
-@endsection
-@section('script')
-<script src="{!! $baseURL . 'assets/datatable_custom/jquery-3.3.1.js' !!}"></script>
-<script src="{!! $baseURL . 'assets/dataTable/jquery.dataTables.min.js' !!}"></script>
-<script src="{!! $baseURL . 'assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js' !!}"></script>
-<script src="{!! $baseURL . 'assets/dataTable/dataTables.bootstrap4.min.js' !!}"></script>
-<script src="{!! $baseURL . 'assets/dataTable/dataTables.buttons.min.js' !!}"></script>
-<script src="{!! $baseURL . 'assets/dataTable/buttons.html5.min.js' !!}"></script>
-<script src="{!! $baseURL . 'assets/dataTable/buttons.print.min.js' !!}"></script>
-<script src="{!! $baseURL . 'assets/dataTable/jszip.min.js' !!}"></script>
-<script src="{!! $baseURL . 'assets/dataTable/pdfmake.min.js' !!}"></script>
-<script src="{!! $baseURL . 'assets/dataTable/vfs_fonts.js' !!}"></script>
-<script src="{!! $baseURL . 'frequent_changing/newDesign/js/forTable.js' !!}"></script>
-<script src="{!! $baseURL . 'frequent_changing/js/custom_report.js' !!}"></script>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('script'); ?>
+<script src="<?php echo $baseURL . 'assets/datatable_custom/jquery-3.3.1.js'; ?>"></script>
+<script src="<?php echo $baseURL . 'assets/dataTable/jquery.dataTables.min.js'; ?>"></script>
+<script src="<?php echo $baseURL . 'assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js'; ?>"></script>
+<script src="<?php echo $baseURL . 'assets/dataTable/dataTables.bootstrap4.min.js'; ?>"></script>
+<script src="<?php echo $baseURL . 'assets/dataTable/dataTables.buttons.min.js'; ?>"></script>
+<script src="<?php echo $baseURL . 'assets/dataTable/buttons.html5.min.js'; ?>"></script>
+<script src="<?php echo $baseURL . 'assets/dataTable/buttons.print.min.js'; ?>"></script>
+<script src="<?php echo $baseURL . 'assets/dataTable/jszip.min.js'; ?>"></script>
+<script src="<?php echo $baseURL . 'assets/dataTable/pdfmake.min.js'; ?>"></script>
+<script src="<?php echo $baseURL . 'assets/dataTable/vfs_fonts.js'; ?>"></script>
+<script src="<?php echo $baseURL . 'frequent_changing/newDesign/js/forTable.js'; ?>"></script>
+<script src="<?php echo $baseURL . 'frequent_changing/js/custom_report.js'; ?>"></script>
 <script>
     function parseDMYtoDate(dmy) {
         const [day, month, year] = dmy.split('-');
@@ -320,4 +324,5 @@ if (isset($setting->base_color) && $setting->base_color) {
         }
     });
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\danish-industries\resources\views/pages/inspection/inspectionGenerate.blade.php ENDPATH**/ ?>

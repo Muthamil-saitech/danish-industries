@@ -42,51 +42,51 @@ class FinishedProductController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        
     }
     /**
-    * Display a listing of the resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $obj = FinishedProduct::leftJoin('tbl_rmunits', 'tbl_rmunits.id', '=', 'tbl_finish_products.unit')
             ->leftJoin('tbl_customers', 'tbl_customers.customer_id', '=', 'tbl_finish_products.customer_code')
             ->orderBy('tbl_finish_products.id', 'DESC')
-            ->select('tbl_finish_products.*','tbl_rmunits.name as unit_name','tbl_customers.name as cust_name')
+            ->select('tbl_finish_products.*', 'tbl_rmunits.name as unit_name', 'tbl_customers.name as cust_name')
             ->where('tbl_finish_products.del_status', 'Live')
             ->get()->map(function ($fp) {
-                $usedInOrder = CustomerOrderDetails::where('product_id', $fp->id)->where('del_status','Live')->exists();
+                $usedInOrder = CustomerOrderDetails::where('product_id', $fp->id)->where('del_status', 'Live')->exists();
                 $fp->used_in_order = $usedInOrder;
                 return $fp;
             });
         $title =  __('index.products');
-        return view('pages.finished_product.finishedproducts',compact('title','obj'));
+        $total_finished_products = FinishedProduct::where('del_status', 'Live')->count();
+        return view('pages.finished_product.finishedproducts', compact('title', 'obj', 'total_finished_products'));
     }
 
     /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         $title =  __('index.add_product');
         // $rmaterials = RawMaterial::orderBy('name','ASC')->where('del_status',"Live")->get();
         $drawers = Drawer::where('del_status', 'Live')->get();
-        $rmaterialcats = RawMaterialCategory::orderBy('name','ASC')->where('del_status',"Live")->where('id','!=',1)->get();
-        $productionstage = ProductionStage::orderBy('id','ASC')->where('del_status',"Live")->get();
-        $categories = FPCategory::orderBy('name','ASC')->where('del_status',"Live")->get();
-        return view('pages.finished_product.addEditFinishedProduct',compact('title','rmaterialcats','productionstage','categories','drawers'));
+        $rmaterialcats = RawMaterialCategory::orderBy('name', 'ASC')->where('del_status', "Live")->where('id', '!=', 1)->get();
+        $productionstage = ProductionStage::orderBy('id', 'ASC')->where('del_status', "Live")->get();
+        $categories = FPCategory::orderBy('name', 'ASC')->where('del_status', "Live")->get();
+        return view('pages.finished_product.addEditFinishedProduct', compact('title', 'rmaterialcats', 'productionstage', 'categories', 'drawers'));
     }
 
     /**
-    * Store a newly created resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @return \Illuminate\Http\Response
-    */
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         // dd($request->all());
@@ -144,7 +144,7 @@ class FinishedProductController extends Controller
         $last_id = $obj->id;
 
         $rm_id = $request->get('rm_id');
-        foreach ($rm_id as $row=>$value){
+        foreach ($rm_id as $row => $value) {
             $obj = new \App\FPrmitem;
             $obj->mat_cat_id = null_check($request->get('mat_cat_id'));
             $obj->rmaterials_id = null_check($value);
@@ -153,7 +153,7 @@ class FinishedProductController extends Controller
             $obj->save();
         }
         $producstage_id = $request->get('producstage_id');
-        if(isset($producstage_id) && $producstage_id) {
+        if (isset($producstage_id) && $producstage_id) {
             foreach ($producstage_id as $row => $value) {
                 $obj = new \App\FPproductionstage();
                 $obj->productionstage_id = null_check($value);
@@ -169,73 +169,73 @@ class FinishedProductController extends Controller
         return redirect('finishedproducts')->with(saveMessage());
     }
     /**
-    * Display the specified resource.
-    *
-    * @param  \App\FinishedProduct  $finishedproduct
-    * @return \Illuminate\Http\Response
-    */
+     * Display the specified resource.
+     *
+     * @param  \App\FinishedProduct  $finishedproduct
+     * @return \Illuminate\Http\Response
+     */
     public function show($id)
     {
         $finishedproduct = FinishedProduct::find(encrypt_decrypt($id, 'decrypt'));
         $title =  __('index.view_details');
-        $categories = FPCategory::orderBy('name','ASC')->where('del_status',"Live")->get();
-        $units = Unit::orderBy('name','ASC')->where('del_status',"Live")->get();
-        $rmaterials = RawMaterial::orderBy('name','ASC')->where('del_status',"Live")->get();
-        $tax_fields = Tax::orderBy('id','ASC')->where('del_status',"Live")->get();
-        $nonitem = NonIItem::orderBy('name','ASC')->where('del_status',"Live")->get();
-          $productionstage = ProductionStage::orderBy('id','ASC')->where('del_status',"Live")->get();
-        $fp_rmaterials = FPrmitem::orderBy('id','ASC')->where('finish_product_id',$finishedproduct->id)->where('del_status',"Live")->get();
-        $fp_nonitems = FPnonitem::orderBy('id','ASC')->where('finish_product_id',$finishedproduct->id)->where('del_status',"Live")->get();
-        $fp_productionstages = FPproductionstage::orderBy('id','ASC')->where('finish_product_id',$finishedproduct->id)->where('del_status',"Live")->get();
+        $categories = FPCategory::orderBy('name', 'ASC')->where('del_status', "Live")->get();
+        $units = Unit::orderBy('name', 'ASC')->where('del_status', "Live")->get();
+        $rmaterials = RawMaterial::orderBy('name', 'ASC')->where('del_status', "Live")->get();
+        $tax_fields = Tax::orderBy('id', 'ASC')->where('del_status', "Live")->get();
+        $nonitem = NonIItem::orderBy('name', 'ASC')->where('del_status', "Live")->get();
+        $productionstage = ProductionStage::orderBy('id', 'ASC')->where('del_status', "Live")->get();
+        $fp_rmaterials = FPrmitem::orderBy('id', 'ASC')->where('finish_product_id', $finishedproduct->id)->where('del_status', "Live")->get();
+        $fp_nonitems = FPnonitem::orderBy('id', 'ASC')->where('finish_product_id', $finishedproduct->id)->where('del_status', "Live")->get();
+        $fp_productionstages = FPproductionstage::orderBy('id', 'ASC')->where('finish_product_id', $finishedproduct->id)->where('del_status', "Live")->get();
         $obj = $finishedproduct;
-        return view('pages.finished_product.duplicateProduct',compact('title','obj','rmaterials','categories','nonitem','productionstage','tax_fields','fp_rmaterials','fp_nonitems','fp_productionstages','units'));
+        return view('pages.finished_product.duplicateProduct', compact('title', 'obj', 'rmaterials', 'categories', 'nonitem', 'productionstage', 'tax_fields', 'fp_rmaterials', 'fp_nonitems', 'fp_productionstages', 'units'));
     }
 
     /**
-    * Show the form for editing the specified resource.
-    *
-    * @param  \App\FinishedProduct  $finishedproduct
-    * @return \Illuminate\Http\Response
-    */
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\FinishedProduct  $finishedproduct
+     * @return \Illuminate\Http\Response
+     */
     public function edit($id)
     {
         $finishedproduct = FinishedProduct::find(encrypt_decrypt($id, 'decrypt'));
         $title =  __('index.edit_product');
         $drawers = Drawer::where('del_status', 'Live')->get();
-        $rmaterialcats = RawMaterialCategory::orderBy('name','ASC')->where('del_status',"Live")->where('id','!=',1)->get();
-        $categories = FPCategory::orderBy('name','ASC')->where('del_status',"Live")->get();
-        $productionstage = ProductionStage::orderBy('id','ASC')->where('del_status',"Live")->get();
-        $fp_rmaterials = FPrmitem::orderBy('id','ASC')->where('finish_product_id',$finishedproduct->id)->where('del_status',"Live")->get();
-        $rmaterials = RawMaterial::orderBy('name','ASC')->where('del_status',"Live")->where('category',$fp_rmaterials[0]['mat_cat_id'])->get();
-        $fp_productionstages = FPproductionstage::orderBy('id','ASC')->where('finish_product_id',$finishedproduct->id)->where('del_status',"Live")->get();
+        $rmaterialcats = RawMaterialCategory::orderBy('name', 'ASC')->where('del_status', "Live")->where('id', '!=', 1)->get();
+        $categories = FPCategory::orderBy('name', 'ASC')->where('del_status', "Live")->get();
+        $productionstage = ProductionStage::orderBy('id', 'ASC')->where('del_status', "Live")->get();
+        $fp_rmaterials = FPrmitem::orderBy('id', 'ASC')->where('finish_product_id', $finishedproduct->id)->where('del_status', "Live")->get();
+        $rmaterials = RawMaterial::orderBy('name', 'ASC')->where('del_status', "Live")->where('category', $fp_rmaterials[0]['mat_cat_id'])->get();
+        $fp_productionstages = FPproductionstage::orderBy('id', 'ASC')->where('finish_product_id', $finishedproduct->id)->where('del_status', "Live")->get();
         $obj = $finishedproduct;
-        return view('pages.finished_product.addEditFinishedProduct',compact('title','obj','rmaterials','rmaterialcats','productionstage','fp_rmaterials','fp_productionstages','categories','drawers'));
+        return view('pages.finished_product.addEditFinishedProduct', compact('title', 'obj', 'rmaterials', 'rmaterialcats', 'productionstage', 'fp_rmaterials', 'fp_productionstages', 'categories', 'drawers'));
     }
 
     /**
-    * Show the form for editing the specified resource.
-    *
-    * @param  \App\FinishedProduct  $finishedproduct
-    * @return \Illuminate\Http\Response
-    */
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\FinishedProduct  $finishedproduct
+     * @return \Illuminate\Http\Response
+     */
     public function duplicate($id)
     {
         $id = encrypt_decrypt($id, 'decrypt');
         $title =  __('index.duplicate_product');
-        $categories = FPCategory::orderBy('name','ASC')->where('del_status',"Live")->get();
-        $units = Unit::orderBy('name','ASC')->where('del_status',"Live")->get();
-        $rmaterials = RawMaterial::orderBy('name','ASC')->where('del_status',"Live")->get();
-        $tax_fields = Tax::orderBy('id','ASC')->where('del_status',"Live")->get();
+        $categories = FPCategory::orderBy('name', 'ASC')->where('del_status', "Live")->get();
+        $units = Unit::orderBy('name', 'ASC')->where('del_status', "Live")->get();
+        $rmaterials = RawMaterial::orderBy('name', 'ASC')->where('del_status', "Live")->get();
+        $tax_fields = Tax::orderBy('id', 'ASC')->where('del_status', "Live")->get();
         $tax_items = TaxItems::first();
-        $nonitem = NonIItem::orderBy('name','ASC')->where('del_status',"Live")->get();
-          $productionstage = ProductionStage::orderBy('id','ASC')->where('del_status',"Live")->get();
-        $fp_rmaterials = FPrmitem::orderBy('id','ASC')->where('finish_product_id',$id)->where('del_status',"Live")->get();
-        $fp_nonitems = FPnonitem::orderBy('id','ASC')->where('finish_product_id',$id)->where('del_status',"Live")->get();
-        $fp_productionstages = FPproductionstage::orderBy('id','ASC')->where('finish_product_id',$id)->where('del_status',"Live")->get();
+        $nonitem = NonIItem::orderBy('name', 'ASC')->where('del_status', "Live")->get();
+        $productionstage = ProductionStage::orderBy('id', 'ASC')->where('del_status', "Live")->get();
+        $fp_rmaterials = FPrmitem::orderBy('id', 'ASC')->where('finish_product_id', $id)->where('del_status', "Live")->get();
+        $fp_nonitems = FPnonitem::orderBy('id', 'ASC')->where('finish_product_id', $id)->where('del_status', "Live")->get();
+        $fp_productionstages = FPproductionstage::orderBy('id', 'ASC')->where('finish_product_id', $id)->where('del_status', "Live")->get();
         $obj = FinishedProduct::find($id);
         $obj_rm = FinishedProduct::count();
-        $ref_no = "FP-".str_pad($obj_rm + 1, 6, '0', STR_PAD_LEFT);
-        return view('pages.finished_product.duplicateProduct',compact('title','obj','rmaterials','categories','nonitem','productionstage','tax_fields','fp_rmaterials','fp_nonitems','fp_productionstages','units','tax_items','ref_no'));
+        $ref_no = "FP-" . str_pad($obj_rm + 1, 6, '0', STR_PAD_LEFT);
+        return view('pages.finished_product.duplicateProduct', compact('title', 'obj', 'rmaterials', 'categories', 'nonitem', 'productionstage', 'tax_fields', 'fp_rmaterials', 'fp_nonitems', 'fp_productionstages', 'units', 'tax_items', 'ref_no'));
     }
 
     public function duplicate_store(Request $request)
@@ -263,14 +263,14 @@ class FinishedProductController extends Controller
 
         //generate json data for tax value
         $tax_information = array();
-        if(!empty($_POST['tax_field_percentage'])){
-            foreach($_POST['tax_field_percentage'] as $key=>$value){
+        if (!empty($_POST['tax_field_percentage'])) {
+            foreach ($_POST['tax_field_percentage'] as $key => $value) {
                 $single_info = array(
                     'tax_field_id' => escape_output($_POST['tax_field_id'][$key]),
                     'tax_field_name' => escape_output($_POST['tax_field_name'][$key]),
                     'tax_field_percentage' => ($_POST['tax_field_percentage'][$key] == "") ? 0 : escape_output($_POST['tax_field_percentage'][$key])
                 );
-                array_push($tax_information,$single_info);
+                array_push($tax_information, $single_info);
             }
         }
         $tax_information = json_encode($tax_information);
@@ -281,7 +281,7 @@ class FinishedProductController extends Controller
         $last_id = $obj->id;
 
         $rm_id = $request->get('rm_id');
-        foreach ($rm_id as $row=>$value){
+        foreach ($rm_id as $row => $value) {
             $obj = new \App\FPrmitem;
             $obj->rmaterials_id = null_check($value);
             $obj->unit_price = null_check(escape_output($_POST['unit_price'][$row]));
@@ -293,8 +293,8 @@ class FinishedProductController extends Controller
         }
 
         $noniitem_id = $request->get('noniitem_id');
-        if(isset($noniitem_id) && $noniitem_id){
-            foreach ($noniitem_id as $row=>$value){
+        if (isset($noniitem_id) && $noniitem_id) {
+            foreach ($noniitem_id as $row => $value) {
                 $obj = new \App\FPnonitem;
                 $obj->noninvemtory_id = null_check($value);
                 $obj->nin_cost = null_check(escape_output($_POST['total_1'][$row]));
@@ -304,7 +304,7 @@ class FinishedProductController extends Controller
             }
         }
         $producstage_id = $request->get('producstage_id');
-        if(isset($producstage_id) && $producstage_id) {
+        if (isset($producstage_id) && $producstage_id) {
             foreach ($producstage_id as $row => $value) {
                 $obj = new \App\FPproductionstage();
                 $obj->productionstage_id = null_check($value);
@@ -321,12 +321,12 @@ class FinishedProductController extends Controller
     }
 
     /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  \App\FinishedProduct  $finishedproduct
-    * @return \Illuminate\Http\Response
-    */
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\FinishedProduct  $finishedproduct
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, FinishedProduct $finishedproduct)
     {
         request()->validate([
@@ -399,8 +399,8 @@ class FinishedProductController extends Controller
         FPproductionstage::where('finish_product_id', $finishedproduct->id)->update(['del_status' => "Deleted"]);
 
         $rm_id = $request->get('rm_id');
-        if($rm_id){
-            foreach ($rm_id as $row=>$value){
+        if ($rm_id) {
+            foreach ($rm_id as $row => $value) {
                 $obj = new \App\FPrmitem;
                 $obj->rmaterials_id = null_check($value);
                 $obj->mat_cat_id = null_check($request->get('mat_cat_id'));
@@ -410,7 +410,7 @@ class FinishedProductController extends Controller
             }
         }
         $producstage_id = $request->get('producstage_id');
-        if(isset($producstage_id) && $producstage_id) {
+        if (isset($producstage_id) && $producstage_id) {
             foreach ($producstage_id as $row => $value) {
                 $obj = new \App\FPproductionstage();
                 $obj->productionstage_id = null_check($value);
@@ -427,11 +427,11 @@ class FinishedProductController extends Controller
     }
 
     /**
-    * Remove the specified resource from storage.
-    *
-    * @param  \App\FinishedProduct  $finishedproduct
-    * @return \Illuminate\Http\Response
-    */
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\FinishedProduct  $finishedproduct
+     * @return \Illuminate\Http\Response
+     */
     public function destroy(FinishedProduct $finishedproduct)
     {
         //delete previous data before add
@@ -444,19 +444,19 @@ class FinishedProductController extends Controller
     }
 
     /**
-    * Price History
-    */
+     * Price History
+     */
 
     public function priceHistory(Request $request)
     {
         $product_id = encrypt_decrypt($request->get('product'), 'decrypt');
         $title =  __('index.price_history');
-        $products = FinishedProduct::orderBy('name','ASC')->where('del_status',"Live")->get();
-        if($product_id){
-            $obj = FinishedProduct::whereHas('sales')->orderBy('id','DESC')->where('del_status',"Live")->where('id',$product_id)->get();
-        }else{
+        $products = FinishedProduct::orderBy('name', 'ASC')->where('del_status', "Live")->get();
+        if ($product_id) {
+            $obj = FinishedProduct::whereHas('sales')->orderBy('id', 'DESC')->where('del_status', "Live")->where('id', $product_id)->get();
+        } else {
             $obj = null;
         }
-        return view('pages.finished_product.priceHistory',compact('title','obj','products'));
+        return view('pages.finished_product.priceHistory', compact('title', 'obj', 'products'));
     }
 }
