@@ -1,1 +1,8 @@
-ALTER TABLE `tbl_sale_details` ADD `srn` VARCHAR(50) NOT NULL DEFAULT 'NIL' AFTER `total_amount`;
+ALTER TABLE `tbl_material_stocks` ADD `added_by` INT NOT NULL DEFAULT '1' AFTER `del_status`;
+ALTER TABLE `tbl_stock_adjust_logs` ADD `added_by` INT NOT NULL DEFAULT '1' AFTER `del_status`;
+ALTER TABLE `tbl_material_stocks` ADD `dc_inward_price` FLOAT NULL DEFAULT NULL AFTER `float_stock`;
+ALTER TABLE `tbl_material_stocks` ADD `material_price` FLOAT NULL DEFAULT NULL AFTER `dc_inward_price`;
+ALTER TABLE `tbl_material_stocks` ADD `hsn_no` VARCHAR(50) NULL DEFAULT NULL AFTER `material_price`;
+ALTER TABLE `tbl_stock_adjust_logs` ADD `dc_inward_price` FLOAT NULL DEFAULT NULL AFTER `mat_doc_no`;
+ALTER TABLE `tbl_stock_adjust_logs` ADD `material_price` FLOAT NULL DEFAULT NULL AFTER `dc_inward_price`;
+ALTER TABLE `tbl_stock_adjust_logs` ADD `hsn_no` VARCHAR(50) NULL DEFAULT NULL AFTER `material_price`;

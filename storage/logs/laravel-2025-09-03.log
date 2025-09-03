@@ -298,3 +298,779 @@
 #55 C:\\xampp\\htdocs\\danish\\index.php(64): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #56 {main}
 "} 
+[2025-09-03 12:00:32] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:00:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:01:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:02:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:03:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:04:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:05:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:06:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:07:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:09:11] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:09:52] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:10:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:11:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:12:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:13:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:14:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:15:58] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:16:48] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:17:48] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:18:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:19:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:20:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:21:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:22:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:23:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:24:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:25:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:26:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:27:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:28:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:29:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:30:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:31:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:32:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:33:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:34:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:35:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:36:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:37:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:38:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:39:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:40:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:41:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:42:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:43:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:44:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:45:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:46:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:47:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:48:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:49:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:50:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:51:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:52:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:53:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:54:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:55:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:56:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:57:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:58:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 12:59:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:00:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:01:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:02:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:03:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:04:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:05:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:06:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:07:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:08:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:09:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:10:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:11:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:12:52] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:13:49] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:14:51] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:15:52] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:16:49] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:17:49] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:18:49] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:20:20] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:20:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:21:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:22:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:23:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:24:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:25:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:26:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:27:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:28:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:29:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:30:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:31:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:32:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:33:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:34:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:35:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:36:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:37:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:38:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:39:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:40:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:41:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:42:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:43:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:44:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:45:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:46:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:47:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:48:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:49:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:50:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:51:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:52:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:53:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:54:48] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:55:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:56:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:57:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:58:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 13:59:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:00:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:01:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:02:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:03:48] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:04:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:05:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:06:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:07:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:08:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:09:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:10:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:11:46] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:12:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:13:49] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:14:49] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:16:01] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:16:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:17:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:18:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:19:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:20:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:21:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:22:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:23:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:24:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:25:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:26:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:27:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:28:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:29:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:30:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:31:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:32:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:33:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:34:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:35:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:36:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:37:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:38:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:39:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:40:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:41:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:42:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:43:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:44:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:45:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:46:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:47:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:48:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:49:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:50:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:51:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:52:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:53:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:54:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:55:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:56:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:57:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:58:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 14:59:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 15:00:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 15:01:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 15:02:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 15:03:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 15:04:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 15:05:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 15:06:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 15:07:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 15:08:48] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 15:09:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 15:10:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 15:11:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-09-03 15:12:47] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 

@@ -142,6 +142,7 @@ Route::group(['middleware' => ['XSS']], function () {
         Route::post('getStockMaterialsByCustomer', [App\Http\Controllers\AjaxController::class, 'getStockMaterialsByCustomer'])->name('getStockMaterialsByCustomer.post');
         Route::post('getMaterialById', [App\Http\Controllers\AjaxController::class, 'getMaterialById'])->name('getMaterialById.post');
         Route::post('getInsertType', [App\Http\Controllers\AjaxController::class, 'getInsertType'])->name('getInsertType.post');
+        Route::post('getMaterialCatById', [App\Http\Controllers\AjaxController::class, 'getMaterialCatById'])->name('getMaterialCatById.post');
         Route::post('getMaterialByMatType', [App\Http\Controllers\AjaxController::class, 'getMaterialByMatType'])->name('getMaterialByMatType.post');
         Route::post('getTaskPerson', [App\Http\Controllers\AjaxController::class, 'getTaskPerson'])->name('getTaskPerson.post');
         Route::post('getMaterialByMatInsType', [App\Http\Controllers\AjaxController::class, 'getMaterialByMatInsType'])->name('getMaterialByMatInsType.post');

@@ -844,6 +844,13 @@ class AjaxController extends Controller
         $raw_materials = RawMaterial::where('del_status', "Live")->where('category',$cat_id)->orderBy('id', 'DESC')->get();
         echo json_encode($raw_materials);
     }
+    public function getMaterialCatById(Request $request)
+    {
+        $mat_id = escape_output($request->post('mat_id'));
+        $raw_materials = RawMaterial::where('del_status', "Live")->where('id',$mat_id)->first();
+        $material_category = RawMaterialCategory::where('id',$raw_materials->category)->where('del_status','Live')->first();
+        echo json_encode($material_category);
+    }
     public function getInsertType(Request $request)
     {
         $mat_cat_id = escape_output($request->post('mat_cat_id'));

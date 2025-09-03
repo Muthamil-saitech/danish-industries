@@ -39,9 +39,9 @@
                                         <thead class="b-r-3 bg-color-000000">
                                             <tr>
                                                 <th class="w-30 text-start">@lang('index.raw_material_name')<br>(@lang('index.code'))</th>
-                                                <th class="w-15 text-start">DC No<br>(DC Date)</th>
+                                                <th class="w-15 text-start">@lang('index.challan_no')<br>(DC Date)</th>
                                                 <th class="w-15 text-start">Heat No</th>
-                                                <th class="w-15 text-start">Material Doc No</th>
+                                                <th class="w-15 text-start">@lang('index.doc_no')</th>
                                                 <th class="w-15 text-start">@lang('index.stock_type')</th>
                                                 <th class="w-15 text-start">@lang('index.po_no')</th>
                                                 <th class="w-15 text-start">@lang('index.stock')</th>
@@ -83,9 +83,9 @@
                                     <tr>
                                         <th class="w-5 text-start">@lang('index.sn')</th>
                                         <th class="w-15 text-start">@lang('index.adj_type')</th>
-                                        <th class="w-15 text-start">DC No<br>(DC Date)</th>
+                                        <th class="w-15 text-start">@lang('index.challan_no')<br>(DC Date)</th>
                                         <th class="w-15 text-start">Heat No</th>
-                                        <th class="w-15 text-start">Material Doc No</th>
+                                        <th class="w-15 text-start">@lang('index.doc_no')</th>
                                         <th class="w-15 text-start">@lang('index.stock_type')</th>
                                         <th class="w-15 text-start">@lang('index.po_no')</th>
                                         <th class="w-15 text-start">@lang('index.quantity')</th>

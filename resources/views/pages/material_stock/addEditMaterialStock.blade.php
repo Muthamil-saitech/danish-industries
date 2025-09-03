@@ -26,24 +26,7 @@
                     <div class="row">
                         <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
-                                <label>@lang('index.material_category') <span class="required_star">*</span></label>
-                                <select class="form-control @error('mat_cat_id') is-invalid @enderror select2" name="mat_cat_id" id="mat_cat_id">
-                                    <option value="">@lang('index.select')</option>
-                                    @foreach ($mat_categories as $value)
-                                        <option
-                                            {{ (isset($obj->mat_cat_id) && $obj->mat_cat_id == $value->id) || old('mat_cat_id') == $value->id ? 'selected' : '' }}
-                                            value="{{ $value->id }}">{{ $value->name }}</option>
-                                    @endforeach
-                                </select>
-                                <div class="text-danger d-none"></div>
-                                @error('mat_cat_id')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>  
-                        <div class="col-sm-12 mb-2 col-md-4">
-                            <div class="form-group">
-                                <label>@lang('index.raw_material_name') <span class="required_star">*</span></label>
+                                <label>@lang('index.raw_material_name') (Code) <span class="required_star">*</span></label>
                                 @if(isset($materials) && $materials)
                                     <select tabindex="4" class="form-control @error('mat_id') is-invalid @enderror select2 select2-hidden-accessible" name="mat_id" id="mat_id">
                                         <option value="">@lang('index.select')</option>
@@ -62,6 +45,25 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="col-sm-12 mb-2 col-md-4">
+                            <div class="form-group">
+                                <label>@lang('index.material_category') <span class="required_star">*</span></label>
+                                <input type="hidden" name="mat_cat_id" class="form-control" id="mat_cat_id" placeholder="@lang('index.material_category') " value="{{ isset($obj) && $obj->mat_cat_id!='' ? $obj->mat_cat_id : old('mat_cat_id') }}" readonly>
+                                <input type="text" name="mat_cat" class="form-control" id="mat_cat" placeholder="@lang('index.material_category')" value="{{ isset($obj) ? getCategoryById($obj->mat_cat_id) : old('mat_cat') }}" readonly>
+                                {{-- <select class="form-control @error('mat_cat_id') is-invalid @enderror select2" name="mat_cat_id" id="mat_cat_id">
+                                    <option value="">@lang('index.select')</option>
+                                    @foreach ($mat_categories as $value)
+                                        <option
+                                            {{ (isset($obj->mat_cat_id) && $obj->mat_cat_id == $value->id) || old('mat_cat_id') == $value->id ? 'selected' : '' }}
+                                            value="{{ $value->id }}">{{ $value->name }}</option>
+                                    @endforeach
+                                </select> --}}
+                                <div class="text-danger d-none"></div>
+                                @error('mat_cat_id')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
                         <div class="col-sm-12 mb-2 col-md-4 {{ isset($obj) && $obj->old_mat_no!='' ? "" : "d-none" }}" id="old_mat_no_div">
                             <div class="form-group">
                                 <label>Old Material No </label>
@@ -70,8 +72,8 @@
                         </div>
                         <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
-                                <label>DC No <span class="required_star">*</span></label>
-                                <input type="text" name="dc_no" class="form-control" id="dc_no" placeholder="DC No" value="{{ isset($obj) && $obj->dc_no!='' ? $obj->dc_no : old('dc_no') }}">
+                                <label>@lang('index.challan_no') <span class="required_star">*</span></label>
+                                <input type="text" name="dc_no" class="form-control" id="dc_no" placeholder="@lang('index.challan_no')" value="{{ isset($obj) && $obj->dc_no!='' ? $obj->dc_no : old('dc_no') }}">
                                 <div class="text-danger d-none"></div>
                                 @error('dc_no')
                                     <div class="text-danger">{{ $message }}</div>
@@ -106,8 +108,8 @@
                         </div>
                         <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
-                                <label>Material Doc No</label>
-                                <input type="text" class="form-control @error('mat_doc_no') is-invalid @enderror" name="mat_doc_no" id="mat_doc_no" value="{{ isset($obj->mat_doc_no) && $obj->mat_doc_no ? $obj->mat_doc_no : old('mat_doc_no') }}" placeholder="Material Doc No">
+                                <label>@lang('index.doc_no')</label>
+                                <input type="text" class="form-control @error('mat_doc_no') is-invalid @enderror" name="mat_doc_no" id="mat_doc_no" value="{{ isset($obj->mat_doc_no) && $obj->mat_doc_no ? $obj->mat_doc_no : old('mat_doc_no') }}" placeholder="@lang('index.doc_no')">
                                 <div class="text-danger d-none"></div>
                                 @error('mat_doc_no')
                                     <div class="text-danger">{{ $message }}</div>
@@ -240,6 +242,36 @@
                                 <input type="number" class="form-control @error('close_qty') is-invalid @enderror" name="close_qty" id="close_qty" value="{{ isset($obj->close_qty) && $obj->close_qty ? $obj->close_qty : old('close_qty') }}" placeholder="@lang('index.alter_level')" min="0">
                                 <div class="text-danger d-none"></div>
                                 @error('close_qty')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-sm-12 mb-2 col-md-4">
+                            <div class="form-group">
+                                <label>@lang('index.dc_inw_price') </label>
+                                <input type="text" class="form-control @error('dc_inward_price') is-invalid @enderror" name="dc_inward_price" id="dc_inward_price" value="{{ isset($obj->dc_inward_price) && $obj->dc_inward_price ? $obj->dc_inward_price : old('dc_inward_price') }}" placeholder="@lang('index.dc_inw_price')">
+                                <div class="text-danger d-none"></div>
+                                @error('dc_inward_price')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-sm-12 mb-2 col-md-4">
+                            <div class="form-group">
+                                <label>@lang('index.mat_price') </label>
+                                <input type="text" class="form-control @error('material_price') is-invalid @enderror" name="material_price" id="material_price" value="{{ isset($obj->material_price) && $obj->material_price ? $obj->material_price : old('material_price') }}" placeholder="@lang('index.mat_price')">
+                                <div class="text-danger d-none"></div>
+                                @error('material_price')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-sm-12 mb-2 col-md-4">
+                            <div class="form-group">
+                                <label>@lang('index.hsn_no') </label>
+                                <input type="text" class="form-control @error('hsn_no') is-invalid @enderror" name="hsn_no" id="hsn_no" value="{{ isset($obj->hsn_no) && $obj->hsn_no ? $obj->hsn_no : old('hsn_no') }}" placeholder="@lang('index.hsn_no')" >
+                                <div class="text-danger d-none"></div>
+                                @error('hsn_no')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>

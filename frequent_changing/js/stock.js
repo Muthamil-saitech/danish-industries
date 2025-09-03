@@ -66,9 +66,9 @@
         }
     });
 
-    $(document).on("change", "#mat_cat_id", function () {
+    /* $(document).on("change", "#mat_cat_id", function () {
         let mat_cat_id = $(this).find(":selected").val();
-        let hidden_base_url = $("#hidden_base_url").val();
+        let hidden_base_url = $("#hidden_base_url").val(); */
         /* if(mat_cat_id=="1") {
             $("#insert_mat_type_div").removeClass('d-none');
             $("#normal_mat_type_div").addClass('d-none');
@@ -90,7 +90,7 @@
             $("#mat_type").attr("name", "mat_type");
             $("#inp_mat_type").removeAttr("name");
         } */
-        $.ajax({
+        /* $.ajax({
             type: "POST",
             url: hidden_base_url + "getMaterialById",
             data: { id: mat_cat_id },
@@ -116,12 +116,27 @@
                 console.error("Failed to fetch product details.");
             },
         });
-    });
+    }); */
     $(document).on("change", "#mat_id", function () {
         let mat_id = $(this).find(":selected").val();
         let parts = mat_id.split('|');
-        let mat_cat_id = $("#mat_cat_id").val();
         let hidden_base_url = $("#hidden_base_url").val();
+        $.ajax({
+            type: "POST",
+            url: hidden_base_url + "getMaterialCatById",
+            data: { mat_id: parts[0] },
+            dataType: "json",
+            success: function (data) {
+                if(data) {
+                    $("#mat_cat_id").val(data.id);
+                    $("#mat_cat").val(data.name);
+                }                
+            },
+            error: function () {
+                console.error("Failed to fetch product details.");
+            },
+        });
+        let mat_cat_id = $("#mat_cat_id").val();
         $.ajax({
             type: "POST",
             url: hidden_base_url + "getInsertType",
@@ -130,12 +145,12 @@
             success: function (data) {
                 if(data) {
                     $("#old_mat_no").val(data.old_mat_no);
-                    $("#inp_ins_type").val(data.insert_type);
-                    $('#ins_type').val(data.insert_type).trigger('change');
-                    $('#ins_type').prop('disabled', true);
-                    if (data.insert_type == 1 || data.insert_type == 2) {
-                        $('#ins_type_div').show();
-                    }
+                    // $("#inp_ins_type").val(data.insert_type);
+                    // $('#ins_type').val(data.insert_type).trigger('change');
+                    // $('#ins_type').prop('disabled', true);
+                    // if (data.insert_type == 1 || data.insert_type == 2) {
+                    //     $('#ins_type_div').show();
+                    // }
                     $("#old_mat_no_div").removeClass('d-none');
                 }                
             },
@@ -240,7 +255,7 @@
 
         if(dc_no == "") {
             status = false;
-            showErrorMessage("dc_no", "The DC No field is required");
+            showErrorMessage("dc_no", "The Customer DC No field is required");
         }else{
             $("#dc_no").removeClass("is-invalid");
             $("#dc_no").closest("div").find(".text-danger").addClass("d-none");

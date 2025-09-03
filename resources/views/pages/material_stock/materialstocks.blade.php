@@ -58,6 +58,7 @@
                                     <th class="width_10_p">@lang('index.stock')</th>
                                     <th class="width_10_p">@lang('index.alter_level')</th>
                                     <th class="width_10_p">@lang('index.floating_stock')</th>
+                                    <th class="width_10_p">@lang('index.entered_by')</th>
                                     <th class="width_1_p">@lang('index.actions')</th>
                                 </tr>
                             </thead>
@@ -94,6 +95,7 @@
                                             <td>{{ $value->current_stock }} {{ getRMUnitById($value->unit_id) }}<div id="qty_msg"></div></td>
                                             <td>{{ $value->close_qty }} {{ getRMUnitById($value->unit_id) }}</td>
                                             <td>{{ $value->float_stock }} {{ getRMUnitById($value->unit_id) }}</td>
+                                            <td>{{ getUserName($value->added_by) }}</td>
                                             <td>
                                                 <a class="button-info" id="stockAdjBtn" data-bs-toggle="modal" data-id="{{ $value->id }}" data-mat_id="{{ $value->mat_id }}" data-customer_id="{{ $value->customer_id }}" data-material="{{ getRMName($value->mat_id) }}" data-bs-target="#stockAdjModal" title="Stock Adjustment"><i class="fa fa-pencil"></i></a>
                                                 <a href="{{ url('material_stocks') }}/{{ encrypt_decrypt($value->id, 'encrypt') }}/stock_adjustments" class="button-info" data-bs-toggle="tooltip" data-bs-placement="top" title="View Stock Adjustments"><i class="fa fa-list"></i></a>
@@ -136,6 +138,7 @@
                                     <th class="width_10_p">@lang('index.stock')</th>
                                     <th class="width_10_p">@lang('index.alter_level')</th>
                                     <th class="width_10_p">@lang('index.floating_stock')</th>
+                                    <th class="width_10_p">@lang('index.entered_by')</th>
                                     <th class="width_1_p">@lang('index.actions')</th>
                                 </tr>
                             </thead>
@@ -172,6 +175,7 @@
                                             <td>{{ $value->current_stock }} {{ getRMUnitById($value->unit_id) }}<div id="qty_msg"></div></td>
                                             <td>{{ $value->close_qty }} {{ getRMUnitById($value->unit_id) }}</td>
                                             <td>{{ $value->float_stock }} {{ getRMUnitById($value->unit_id) }}</td>
+                                            <td>{{ getUserName($value->added_by) }}</td>
                                             <td>
                                                 <a class="button-info" id="stockAdjBtn" data-bs-toggle="modal" data-id="{{ $value->id }}" data-mat_id="{{ $value->mat_id }}" data-customer_id="{{ $value->customer_id }}" data-material="{{ getRMName($value->mat_id) }}" data-bs-target="#stockAdjModal" title="Stock Adjustment"><i class="fa fa-pencil"></i></a>
                                                 <a href="{{ url('material_stocks') }}/{{ encrypt_decrypt($value->id, 'encrypt') }}/stock_adjustments" class="button-info" data-bs-toggle="tooltip" data-bs-placement="top" title="View Stock Adjustments"><i class="fa fa-list"></i></a>
@@ -338,8 +342,8 @@
                                 </div>
                                 <div class="col-sm-12 mb-2 col-md-6">
                                     <div class="form-group">
-                                        <label>DC No <span class="required_star">*</span></label>
-                                        <input type="text" name="dc_no" class="form-control" id="dc_no" placeholder="DC No" >
+                                        <label>@lang('index.challan_no') <span class="required_star">*</span></label>
+                                        <input type="text" name="dc_no" class="form-control" id="dc_no" placeholder="@lang('index.challan_no')" >
                                         <p class="text-danger dc_no_err"></p>
                                     </div>
                                 </div>
@@ -363,9 +367,27 @@
                                 </div>
                                 <div class="col-sm-12 mb-2 col-md-6">
                                     <div class="form-group">
-                                        <label>Material Doc No</label>
-                                        <input type="text" class="form-control @error('mat_doc_no') is-invalid @enderror" name="mat_doc_no" id="mat_doc_no" placeholder="Material Doc No">
+                                        <label>@lang('index.doc_no')</label>
+                                        <input type="text" class="form-control @error('mat_doc_no') is-invalid @enderror" name="mat_doc_no" id="mat_doc_no" placeholder="@lang('index.doc_no')">
                                         <p class="text-danger mat_doc_no_err"></p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 mb-2 col-md-6">
+                                    <div class="form-group">
+                                        <label>@lang('index.dc_inw_price') </label>
+                                        <input type="text" class="form-control @error('dc_inward_price') is-invalid @enderror" name="dc_inward_price" id="dc_inward_price" value="{{ isset($obj->dc_inward_price) && $obj->dc_inward_price ? $obj->dc_inward_price : old('dc_inward_price') }}" placeholder="@lang('index.dc_inw_price')">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 mb-2 col-md-6">
+                                    <div class="form-group">
+                                        <label>@lang('index.mat_price') </label>
+                                        <input type="text" class="form-control @error('material_price') is-invalid @enderror" name="material_price" id="material_price" value="{{ isset($obj->material_price) && $obj->material_price ? $obj->material_price : old('material_price') }}" placeholder="@lang('index.mat_price')">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 mb-2 col-md-6">
+                                    <div class="form-group">
+                                        <label>@lang('index.hsn_no') </label>
+                                        <input type="text" class="form-control @error('hsn_no') is-invalid @enderror" name="hsn_no" id="hsn_no" value="{{ isset($obj->hsn_no) && $obj->hsn_no ? $obj->hsn_no : old('hsn_no') }}" placeholder="@lang('index.hsn_no')" >
                                     </div>
                                 </div>
                             </div>
@@ -560,6 +582,9 @@
         let heat_no = $("#heat_no").val();
         let dc_date = $("#dc_date").val();
         let mat_doc_no = $("#mat_doc_no").val();
+        let dc_inward_price = $("#dc_inward_price").val();
+        let material_price = $("#material_price").val();
+        let hsn_no = $("#hsn_no").val();
         let reference_no = "";
         if (stock_type === "purchase") {
             reference_no = $("#reference_no").val().split('|')[0];
@@ -587,7 +612,7 @@
             $(".stock_type_err").text("");
         }
         if(dc_no == "") {
-            $(".dc_no_err").text("The DC No field is required.");
+            $(".dc_no_err").text("The Customer DC No field is required.");
             status = false;
         } else {
             $(".dc_no_err").text("");
@@ -626,7 +651,7 @@
         $.ajax({
             type: "POST",
             url: hidden_base_url + "materialStockAdjust",
-            data: { mat_stock_id: mat_stock_id, adj_type: adj_type, stock_qty: stock_qty, mat_id:mat_id, stock_type: stock_type, reference_no: reference_no, dc_no: dc_no, heat_no: heat_no, dc_date: dc_date, mat_doc_no: mat_doc_no },
+            data: { mat_stock_id: mat_stock_id, adj_type: adj_type, stock_qty: stock_qty, mat_id:mat_id, stock_type: stock_type, reference_no: reference_no, dc_no: dc_no, heat_no: heat_no, dc_date: dc_date, mat_doc_no: mat_doc_no, dc_inward_price: dc_inward_price, material_price: material_price, hsn_no: hsn_no },
             dataType: "json",
             success: function (data) {
                 const modalEl = document.getElementById('stockAdjModal');

@@ -133,6 +133,10 @@ class MaterialStockController extends Controller
         $obj->current_stock = $request->current_stock ? $request->current_stock : 0; //stock
         $obj->close_qty = $request->close_qty ? $request->close_qty : 0;
         $obj->float_stock = 0;
+        $obj->dc_inward_price = $request->dc_inward_price;
+        $obj->material_price = $request->material_price;
+        $obj->hsn_no = $request->hsn_no;
+        $obj->added_by = auth()->user()->id;
         $obj->save();
         return redirect('material_stocks')->with(saveMessage());
     }
@@ -184,8 +188,12 @@ class MaterialStockController extends Controller
         $material_stock->ins_type = null;
         $material_stock->customer_id = ($request->mat_type == '1') ? $request->customer_id : ($request->customer_id ?: null);
         $material_stock->unit_id = $request->unit_id;
-        $material_stock->current_stock = $request->current_stock ? $request->current_stock : 0; //stock
+        $material_stock->current_stock = $request->current_stock ? $request->current_stock : 0;
         $material_stock->close_qty = $request->close_qty ? $request->close_qty : 0;
+        $material_stock->dc_inward_price = $request->dc_inward_price;
+        $material_stock->material_price = $request->material_price;
+        $material_stock->hsn_no = $request->hsn_no;
+        $material_stock->added_by = auth()->user()->id;
         $material_stock->save();
         return redirect('material_stocks')->with(updateMessage());
     }
@@ -205,6 +213,9 @@ class MaterialStockController extends Controller
         $dc_no = $request->dc_no;
         $mat_doc_no = $request->mat_doc_no;
         $heat_no = $request->heat_no;
+        $dc_inward_price = $request->dc_inward_price;
+        $material_price = $request->material_price;
+        $hsn_no = $request->hsn_no;
         $dc_date = date('Y-m-d',strtotime($request->dc_date));
         $old_stock = MaterialStock::where('del_status','Live')->where('id',$mat_id)->sum('current_stock');
         if($adj_type == "subtraction" && $old_stock <= $stock_qty) {
@@ -220,6 +231,10 @@ class MaterialStockController extends Controller
         $obj->mat_doc_no = $mat_doc_no;
         $obj->heat_no = $heat_no;
         $obj->dc_date = $dc_date;
+        $obj->dc_inward_price = $dc_inward_price;
+        $obj->material_price = $material_price;
+        $obj->hsn_no = $hsn_no;
+        $obj->added_by = auth()->user()->id;
         $obj->save();
         $material_stock = MaterialStock::find($mat_stock_id);
         if($adj_type == "addition") {
@@ -241,7 +256,6 @@ class MaterialStockController extends Controller
         } else {
             $material = null;
         }
-        // dd($stock_adjustments);
         return view('pages.material_stock.stockAdjustmentLog',compact('title','stock_adjustments','material_stock','material'));
     }
 }
