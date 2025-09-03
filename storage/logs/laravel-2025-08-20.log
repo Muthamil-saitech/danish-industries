@@ -1,0 +1,806 @@
+[2025-08-20 09:17:29] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:18:14] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:19:14] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:20:14] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:21:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:22:14] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:23:14] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:24:14] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:25:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:26:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:27:14] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:28:14] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:29:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:30:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:30:21] local.ERROR: Symfony\Component\HttpFoundation\Response::setContent(): Argument #1 ($content) must be of type ?string, Barryvdh\DomPDF\PDF given, called in C:\xampp\htdocs\danish\vendor\laravel\framework\src\Illuminate\Http\Response.php on line 72 {"userId":1,"exception":"[object] (TypeError(code: 0): Symfony\\Component\\HttpFoundation\\Response::setContent(): Argument #1 ($content) must be of type ?string, Barryvdh\\DomPDF\\PDF given, called in C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php on line 72 at C:\\xampp\\htdocs\\danish\\vendor\\symfony\\http-foundation\\Response.php:396)
+[stacktrace]
+#0 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(72): Symfony\\Component\\HttpFoundation\\Response->setContent(Object(Barryvdh\\DomPDF\\PDF))
+#1 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(35): Illuminate\\Http\\Response->setContent(Object(Barryvdh\\DomPDF\\PDF))
+#2 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(906): Illuminate\\Http\\Response->__construct(Object(Barryvdh\\DomPDF\\PDF), 200, Array)
+#3 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(875): Illuminate\\Routing\\Router::toResponse(Object(Illuminate\\Http\\Request), Object(Barryvdh\\DomPDF\\PDF))
+#4 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Routing\\Router->prepareResponse(Object(Illuminate\\Http\\Request), Object(Barryvdh\\DomPDF\\PDF))
+#5 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#6 C:\\xampp\\htdocs\\danish\\app\\Http\\Middleware\\CheckIsFirstLogin.php(26): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#7 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\CheckIsFirstLogin->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#8 C:\\xampp\\htdocs\\danish\\app\\Http\\Middleware\\HasPermission.php(57): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#9 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\HasPermission->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#10 C:\\xampp\\htdocs\\danish\\app\\Http\\Middleware\\SetLocale.php(36): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#11 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\SetLocale->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#12 C:\\xampp\\htdocs\\danish\\app\\Http\\Middleware\\XSS.php(44): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#13 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\XSS->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#14 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#15 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#16 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Auth\\Middleware\\Authenticate.php(44): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#17 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Auth\\Middleware\\Authenticate->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#18 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#19 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#20 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#21 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#22 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#23 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#24 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#29 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#30 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#31 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(776): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#32 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(740): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#33 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(729): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#34 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(190): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#35 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#36 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#37 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#38 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#39 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#40 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#42 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#43 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 C:\\xampp\\htdocs\\danish\\vendor\\fruitcake\\laravel-cors\\src\\HandleCors.php(38): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#47 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Fruitcake\\Cors\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#48 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#49 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#50 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#51 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(165): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#52 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(134): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#53 C:\\xampp\\htdocs\\danish\\index.php(64): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#54 {main}
+"} 
+[2025-08-20 09:31:14] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:32:14] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:33:14] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:34:14] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:35:14] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:36:14] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:37:14] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:38:14] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:39:14] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:40:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:41:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:42:14] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:43:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:44:14] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:45:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:45:59] local.ERROR: Attempt to read property "quantity" on null {"userId":1,"exception":"[object] (ErrorException(code: 0): Attempt to read property \"quantity\" on null at C:\\xampp\\htdocs\\danish\\app\\Http\\Controllers\\AjaxController.php:599)
+[stacktrace]
+#0 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(266): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'Attempt to read...', 'C:\\\\xampp\\\\htdocs...', 599)
+#1 C:\\xampp\\htdocs\\danish\\app\\Http\\Controllers\\AjaxController.php(599): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'Attempt to read...', 'C:\\\\xampp\\\\htdocs...', 599)
+#2 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php(54): App\\Http\\Controllers\\AjaxController->getProductQty(Object(Illuminate\\Http\\Request))
+#3 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php(43): Illuminate\\Routing\\Controller->callAction('getProductQty', Array)
+#4 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(259): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\AjaxController), 'getProductQty')
+#5 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(205): Illuminate\\Routing\\Route->runController()
+#6 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(798): Illuminate\\Routing\\Route->run()
+#7 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#8 C:\\xampp\\htdocs\\danish\\app\\Http\\Middleware\\CheckIsFirstLogin.php(26): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#9 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\CheckIsFirstLogin->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#10 C:\\xampp\\htdocs\\danish\\app\\Http\\Middleware\\HasPermission.php(57): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#11 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\HasPermission->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#12 C:\\xampp\\htdocs\\danish\\app\\Http\\Middleware\\SetLocale.php(36): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#13 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\SetLocale->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#14 C:\\xampp\\htdocs\\danish\\app\\Http\\Middleware\\XSS.php(44): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#15 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\XSS->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#16 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#17 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#18 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Auth\\Middleware\\Authenticate.php(44): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#19 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Auth\\Middleware\\Authenticate->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#20 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#21 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#22 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#23 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#24 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#25 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#26 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#29 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#30 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#31 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#32 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#33 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(776): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#34 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(740): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#35 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(729): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#36 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(190): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#37 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#38 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#39 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#40 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#47 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#48 C:\\xampp\\htdocs\\danish\\vendor\\fruitcake\\laravel-cors\\src\\HandleCors.php(38): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#49 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Fruitcake\\Cors\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#50 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#51 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#52 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#53 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(165): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#54 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(134): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#55 C:\\xampp\\htdocs\\danish\\index.php(64): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#56 {main}
+"} 
+[2025-08-20 09:46:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:47:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:47:24] local.ERROR: Attempt to read property "quantity" on null {"userId":1,"exception":"[object] (ErrorException(code: 0): Attempt to read property \"quantity\" on null at C:\\xampp\\htdocs\\danish\\app\\Http\\Controllers\\AjaxController.php:599)
+[stacktrace]
+#0 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(266): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'Attempt to read...', 'C:\\\\xampp\\\\htdocs...', 599)
+#1 C:\\xampp\\htdocs\\danish\\app\\Http\\Controllers\\AjaxController.php(599): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'Attempt to read...', 'C:\\\\xampp\\\\htdocs...', 599)
+#2 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php(54): App\\Http\\Controllers\\AjaxController->getProductQty(Object(Illuminate\\Http\\Request))
+#3 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php(43): Illuminate\\Routing\\Controller->callAction('getProductQty', Array)
+#4 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(259): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\AjaxController), 'getProductQty')
+#5 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(205): Illuminate\\Routing\\Route->runController()
+#6 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(798): Illuminate\\Routing\\Route->run()
+#7 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#8 C:\\xampp\\htdocs\\danish\\app\\Http\\Middleware\\CheckIsFirstLogin.php(26): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#9 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\CheckIsFirstLogin->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#10 C:\\xampp\\htdocs\\danish\\app\\Http\\Middleware\\HasPermission.php(57): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#11 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\HasPermission->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#12 C:\\xampp\\htdocs\\danish\\app\\Http\\Middleware\\SetLocale.php(36): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#13 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\SetLocale->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#14 C:\\xampp\\htdocs\\danish\\app\\Http\\Middleware\\XSS.php(44): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#15 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\XSS->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#16 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#17 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#18 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Auth\\Middleware\\Authenticate.php(44): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#19 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Auth\\Middleware\\Authenticate->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#20 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#21 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#22 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#23 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#24 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#25 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#26 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#29 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#30 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#31 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#32 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#33 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(776): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#34 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(740): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#35 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(729): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#36 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(190): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#37 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#38 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#39 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#40 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#47 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#48 C:\\xampp\\htdocs\\danish\\vendor\\fruitcake\\laravel-cors\\src\\HandleCors.php(38): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#49 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Fruitcake\\Cors\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#50 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#51 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#52 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#53 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(165): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#54 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(134): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#55 C:\\xampp\\htdocs\\danish\\index.php(64): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#56 {main}
+"} 
+[2025-08-20 09:47:48] local.ERROR: Attempt to read property "quantity" on null {"userId":1,"exception":"[object] (ErrorException(code: 0): Attempt to read property \"quantity\" on null at C:\\xampp\\htdocs\\danish\\app\\Http\\Controllers\\AjaxController.php:599)
+[stacktrace]
+#0 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(266): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'Attempt to read...', 'C:\\\\xampp\\\\htdocs...', 599)
+#1 C:\\xampp\\htdocs\\danish\\app\\Http\\Controllers\\AjaxController.php(599): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'Attempt to read...', 'C:\\\\xampp\\\\htdocs...', 599)
+#2 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php(54): App\\Http\\Controllers\\AjaxController->getProductQty(Object(Illuminate\\Http\\Request))
+#3 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php(43): Illuminate\\Routing\\Controller->callAction('getProductQty', Array)
+#4 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(259): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\AjaxController), 'getProductQty')
+#5 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(205): Illuminate\\Routing\\Route->runController()
+#6 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(798): Illuminate\\Routing\\Route->run()
+#7 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#8 C:\\xampp\\htdocs\\danish\\app\\Http\\Middleware\\CheckIsFirstLogin.php(26): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#9 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\CheckIsFirstLogin->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#10 C:\\xampp\\htdocs\\danish\\app\\Http\\Middleware\\HasPermission.php(57): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#11 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\HasPermission->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#12 C:\\xampp\\htdocs\\danish\\app\\Http\\Middleware\\SetLocale.php(36): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#13 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\SetLocale->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#14 C:\\xampp\\htdocs\\danish\\app\\Http\\Middleware\\XSS.php(44): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#15 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\XSS->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#16 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#17 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#18 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Auth\\Middleware\\Authenticate.php(44): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#19 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Auth\\Middleware\\Authenticate->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#20 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#21 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#22 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#23 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#24 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#25 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#26 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#29 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#30 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#31 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#32 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#33 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(776): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#34 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(740): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#35 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(729): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#36 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(190): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#37 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#38 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#39 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#40 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#47 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#48 C:\\xampp\\htdocs\\danish\\vendor\\fruitcake\\laravel-cors\\src\\HandleCors.php(38): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#49 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Fruitcake\\Cors\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#50 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#51 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#52 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#53 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(165): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#54 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(134): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#55 C:\\xampp\\htdocs\\danish\\index.php(64): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#56 {main}
+"} 
+[2025-08-20 09:47:54] local.ERROR: Attempt to read property "quantity" on null {"userId":1,"exception":"[object] (ErrorException(code: 0): Attempt to read property \"quantity\" on null at C:\\xampp\\htdocs\\danish\\app\\Http\\Controllers\\AjaxController.php:599)
+[stacktrace]
+#0 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(266): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'Attempt to read...', 'C:\\\\xampp\\\\htdocs...', 599)
+#1 C:\\xampp\\htdocs\\danish\\app\\Http\\Controllers\\AjaxController.php(599): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'Attempt to read...', 'C:\\\\xampp\\\\htdocs...', 599)
+#2 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php(54): App\\Http\\Controllers\\AjaxController->getProductQty(Object(Illuminate\\Http\\Request))
+#3 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php(43): Illuminate\\Routing\\Controller->callAction('getProductQty', Array)
+#4 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(259): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\AjaxController), 'getProductQty')
+#5 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(205): Illuminate\\Routing\\Route->runController()
+#6 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(798): Illuminate\\Routing\\Route->run()
+#7 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#8 C:\\xampp\\htdocs\\danish\\app\\Http\\Middleware\\CheckIsFirstLogin.php(26): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#9 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\CheckIsFirstLogin->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#10 C:\\xampp\\htdocs\\danish\\app\\Http\\Middleware\\HasPermission.php(57): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#11 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\HasPermission->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#12 C:\\xampp\\htdocs\\danish\\app\\Http\\Middleware\\SetLocale.php(36): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#13 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\SetLocale->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#14 C:\\xampp\\htdocs\\danish\\app\\Http\\Middleware\\XSS.php(44): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#15 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\XSS->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#16 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#17 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#18 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Auth\\Middleware\\Authenticate.php(44): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#19 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Auth\\Middleware\\Authenticate->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#20 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#21 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#22 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#23 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#24 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#25 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#26 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#29 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#30 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#31 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#32 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#33 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(776): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#34 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(740): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#35 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(729): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#36 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(190): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#37 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#38 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#39 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#40 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#47 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#48 C:\\xampp\\htdocs\\danish\\vendor\\fruitcake\\laravel-cors\\src\\HandleCors.php(38): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#49 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Fruitcake\\Cors\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#50 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#51 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#52 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#53 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(165): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#54 C:\\xampp\\htdocs\\danish\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(134): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#55 C:\\xampp\\htdocs\\danish\\index.php(64): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#56 {main}
+"} 
+[2025-08-20 09:48:14] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:49:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:50:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:51:14] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:52:14] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:53:14] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:54:14] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:55:14] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:56:14] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:57:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:58:14] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 09:59:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:00:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:01:14] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:02:14] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:03:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:04:14] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:05:14] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:06:14] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:07:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:08:14] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:09:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:10:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:11:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:12:14] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:13:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:14:14] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:15:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:16:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:17:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:18:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:19:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:20:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:21:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:22:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:23:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:24:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:25:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:26:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:27:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:28:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:29:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:30:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:31:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:32:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:33:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:34:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:35:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:36:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:37:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:38:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:39:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:40:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:41:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:42:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:43:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:44:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:45:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:46:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:47:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:48:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:49:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:50:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:51:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:52:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:53:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:54:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:55:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:56:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:57:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:58:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 10:59:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 11:00:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 11:01:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 11:02:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 11:03:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 11:04:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 11:05:39] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 11:06:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 11:07:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 11:08:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 11:09:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 11:10:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 11:11:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 11:12:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 11:13:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 11:14:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 11:15:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 11:16:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 11:17:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 11:18:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 11:19:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 11:20:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 11:21:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 11:22:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-20 11:23:15] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 

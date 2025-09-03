@@ -1,0 +1,1 @@
+ALTER TABLE `tbl_sale_details` ADD `srn` VARCHAR(50) NOT NULL DEFAULT 'NIL' AFTER `total_amount`;

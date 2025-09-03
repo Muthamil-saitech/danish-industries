@@ -1,0 +1,136 @@
+[2025-08-29 15:07:31] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-29 15:08:03] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-29 15:09:03] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-29 15:10:03] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-29 15:11:03] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-29 15:12:03] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-29 15:13:03] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-29 15:14:03] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-29 15:15:03] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-29 15:16:03] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-29 15:17:03] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-29 15:18:03] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-29 15:19:03] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-29 15:20:03] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-29 15:21:03] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-29 15:22:03] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-29 15:23:03] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-29 15:24:03] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-29 15:25:03] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-29 15:26:03] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-29 15:27:03] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-29 15:28:03] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-29 15:29:03] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-29 15:30:03] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-29 15:31:03] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-29 15:32:03] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-29 15:33:03] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-29 15:34:11] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-29 15:35:03] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-29 15:36:03] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-29 15:37:03] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-29 15:38:03] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-29 15:39:03] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
+[2025-08-29 15:40:03] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 

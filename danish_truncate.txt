@@ -1,0 +1,28 @@
+SET FOREIGN_KEY_CHECKS = 0;
+TRUNCATE TABLE tbl_customer_orders;
+TRUNCATE TABLE tbl_customer_order_details;
+TRUNCATE TABLE tbl_customer_order_invoices;
+TRUNCATE TABLE tbl_customer_due_receives;
+TRUNCATE TABLE tbl_inspection_approves;
+TRUNCATE TABLE tbl_inspection_observed_dimensions;
+TRUNCATE TABLE tbl_manufactures;
+TRUNCATE TABLE tbl_manufactures_rmaterials;
+TRUNCATE TABLE tbl_manufactures_stages;
+TRUNCATE TABLE tbl_material_stocks;
+TRUNCATE TABLE tbl_production_rmaterials;
+TRUNCATE TABLE tbl_production_qc_scheduling;
+TRUNCATE TABLE tbl_production_scheduling;
+TRUNCATE TABLE tbl_purchase;
+TRUNCATE TABLE tbl_purchase_rmaterials;
+TRUNCATE TABLE tbl_quotations;
+TRUNCATE TABLE tbl_quotation_details;
+TRUNCATE TABLE tbl_quotation_qc_logs;
+TRUNCATE TABLE tbl_sales;
+TRUNCATE TABLE tbl_sale_details;
+TRUNCATE TABLE tbl_stock_adjust_logs;
+TRUNCATE TABLE tbl_supplier_payments;
+
+TRUNCATE TABLE tbl_finished_products_productionstage;
+TRUNCATE TABLE tbl_finished_products_rmaterials;
+TRUNCATE TABLE tbl_finish_products;
+SET FOREIGN_KEY_CHECKS = 1;
