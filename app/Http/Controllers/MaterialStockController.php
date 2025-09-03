@@ -133,9 +133,9 @@ class MaterialStockController extends Controller
         $obj->current_stock = $request->current_stock ? $request->current_stock : 0; //stock
         $obj->close_qty = $request->close_qty ? $request->close_qty : 0;
         $obj->float_stock = 0;
-        $obj->dc_inward_price = $request->dc_inward_price;
-        $obj->material_price = $request->material_price;
-        $obj->hsn_no = $request->hsn_no;
+        $obj->dc_inward_price = !empty($request->dc_inward_price) ? $request->dc_inward_price : 0.00;
+        $obj->material_price = !empty($request->material_price) ? $request->material_price : 0.00;
+        $obj->hsn_no = $request->hsn_no ?? '';
         $obj->added_by = auth()->user()->id;
         $obj->save();
         return redirect('material_stocks')->with(saveMessage());
@@ -190,9 +190,9 @@ class MaterialStockController extends Controller
         $material_stock->unit_id = $request->unit_id;
         $material_stock->current_stock = $request->current_stock ? $request->current_stock : 0;
         $material_stock->close_qty = $request->close_qty ? $request->close_qty : 0;
-        $material_stock->dc_inward_price = $request->dc_inward_price;
-        $material_stock->material_price = $request->material_price;
-        $material_stock->hsn_no = $request->hsn_no;
+        $material_stock->dc_inward_price = !empty($request->dc_inward_price) ? $request->dc_inward_price : 0.00;
+        $material_stock->material_price = !empty($request->material_price) ? $request->material_price : 0.00;
+        $material_stock->hsn_no = $request->hsn_no ?? '';
         $material_stock->added_by = auth()->user()->id;
         $material_stock->save();
         return redirect('material_stocks')->with(updateMessage());
@@ -213,9 +213,9 @@ class MaterialStockController extends Controller
         $dc_no = $request->dc_no;
         $mat_doc_no = $request->mat_doc_no;
         $heat_no = $request->heat_no;
-        $dc_inward_price = $request->dc_inward_price;
-        $material_price = $request->material_price;
-        $hsn_no = $request->hsn_no;
+        $dc_inward_price = !empty($request->dc_inward_price) ? $request->dc_inward_price : 0.00;
+        $material_price = !empty($request->material_price) ? $request->material_price : 0.00;
+        $hsn_no = $request->hsn_no ?? '';
         $dc_date = date('Y-m-d',strtotime($request->dc_date));
         $old_stock = MaterialStock::where('del_status','Live')->where('id',$mat_id)->sum('current_stock');
         if($adj_type == "subtraction" && $old_stock <= $stock_qty) {
