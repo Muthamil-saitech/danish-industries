@@ -6,6 +6,22 @@ $orderType = isset($customerOrder->order_type) && $customerOrder->order_type ? $
     <div class="row">
         <div class="col-sm-12 mb-2 col-md-4">
             <div class="form-group">
+                <label>@lang('index.po_date') <span class="required_star">*</span></label>
+                {!! Form::text('po_date', isset($obj->po_date) && $obj->po_date ? date('Y-m-d',strtotime($obj->po_date)) : (old('po_date') ?: date('d-m-Y')), [
+                'class' => 'form-control',
+                'id' => 'po_date',
+                'placeholder' => 'PO Date',
+                ]) !!}
+                @if ($errors->has('po_date'))
+                <div class="error_alert text-danger">
+                    {{ $errors->first('po_date') }}
+                </div>
+                @endif
+                <div class="text-danger d-none"></div>
+            </div>
+        </div>
+        <div class="col-sm-12 mb-2 col-md-4">
+            <div class="form-group">
                 <label>@lang('index.po_no') <span class="required_star">*</span></label>
                 <input type="text" name="reference_no" id="code"
                     class="check_required form-control @error('reference_no') is-invalid @enderror"
@@ -76,22 +92,6 @@ $orderType = isset($customerOrder->order_type) && $customerOrder->order_type ? $
                 @error('order_type')
                 <div class="text-danger">{{ $message }}</div>
                 @enderror
-            </div>
-        </div>
-        <div class="col-sm-12 mb-2 col-md-4">
-            <div class="form-group">
-                <label>@lang('index.po_date') <span class="required_star">*</span></label>
-                {!! Form::text('po_date', isset($obj->po_date) && $obj->po_date ? $obj->po_date : (old('po_date') ?: date('d-m-Y')), [
-                'class' => 'form-control',
-                'id' => 'po_date',
-                'placeholder' => 'PO Date',
-                ]) !!}
-                @if ($errors->has('po_date'))
-                <div class="error_alert text-danger">
-                    {{ $errors->first('po_date') }}
-                </div>
-                @endif
-                <div class="text-danger d-none"></div>
             </div>
         </div>
         <div class="col-sm-12 col-md-6 mb-2 col-lg-8">
@@ -201,7 +201,7 @@ $orderType = isset($customerOrder->order_type) && $customerOrder->order_type ? $
                             </td>
                             <td>
                                 <input type="number" name="price[]" onfocus="this.select();"
-                                    class="check_required form-control @error('price') is-invalid @enderror integerchk price_c"
+                                    class="check_required form-control @error('price') is-invalid @enderror integerchk price_c readonly"
                                     placeholder="Price" value="{{ $value->price }}"
                                     id="price_{{ $i }}">
                             </td>
@@ -329,6 +329,7 @@ $orderType = isset($customerOrder->order_type) && $customerOrder->order_type ? $
     {{-- <button class="btn bg-blue-btn w-20 estimateCost" data-bs-toggle="modal" data-bs-target="#estimateCost"
             type="button">@lang('index.estimate_cost_date')</button> --}}
 </div>
+@php /*
 <div class="row mt-3 {{ isset($orderInvoice) && count($orderInvoice) > 0 ? '' : 'd-none' }}"
     id="invoice_quotations_sections">
     <div class="col-md-12">
@@ -401,27 +402,27 @@ $orderType = isset($customerOrder->order_type) && $customerOrder->order_type ? $
                         class="form-control @error('title') is-invalid @enderror order_due_amount_c"
                         value="{{ round($value->order_due_amount) }}" placeholder="Order Due" {{ isset($orderDetails) ? 'readonly' : ''  }}>
                         <span class="input-group-text"> {{ $setting->currency }}</span>
-        </div>
-        </td> --}}
-        {{-- <td class="ir_txt_center">
+                        </div>
+                        </td> --}}
+                            {{-- <td class="ir_txt_center">
                                         @if ($value->invoice_type !== 'Quotation' && $loop->index !== 0)
                                             <a class="btn btn-xs del_inv_row dlt_button"><iconify-icon
                                                     icon="solar:trash-bin-minimalistic-broken"></iconify-icon>
                                             </a>
                                         @endif
 
-                                    </td> --}}
-        </tr>
-        @endforeach
-        @endif
-        </tbody>
+                            </td> --}}
+                    </tr>
+                    @endforeach
+                @endif
+            </tbody>
         </table>
         {{-- <button id="orderInvoices" class="btn bg-blue-btn w-10 mt-2" data-bs-toggle="modal"
                     data-bs-target="#invoiceModal" type="button"
                     {{ $orderType == 'Quotation' ? 'disabled' : '' }}>@lang('index.add_more')</button> --}}
+        </div>
     </div>
-</div>
-</div>
+</div> */ @endphp
 <div class="row mt-3">
     <div class="col-sm-6 col-md-6 mb-2">
         <div class="form-group">

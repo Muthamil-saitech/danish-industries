@@ -53,7 +53,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                             <td>{{ $value->order_type == "Quotation" ? "Labor" : "Sales" }}</td>
                             <td>{{ $value->customer->name }}<br> ({{ $value->customer->customer_id }})</td>
                             <td>{{ $value->total_product }}</td>
-                            <td>{{ getAmtCustom(round($value->total_amount)) }}</td>
+                            <td>{{ getAmtCustom($value->total_amount) }}</td>
                             {{-- <td>{{ getDateFormat($value->delivery_date) }}</td> --}}
                             <td>
                                 <select name="order_status" class="form-control select2 order-quote-status" data-order_id="{{ $value->id }}" {{ in_array($value->order_status, [1,2]) ? 'disabled' : '' }}>

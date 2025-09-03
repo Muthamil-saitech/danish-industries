@@ -129,7 +129,7 @@ $baseURL = getBaseURL();
                 @endif
             </tbody>
         </table>
-        <h4 class="mt-20">@lang('index.invoice_quotations')</h4>
+        {{-- <h4 class="mt-20">@lang('index.invoice_quotations')</h4>
         <table class="w-100 mt-10">
             <thead class="b-r-3 bg-color-000000">
                 <tr>
@@ -139,7 +139,6 @@ $baseURL = getBaseURL();
                     <th class="w-15">@lang('index.amount')</th>
                     <th class="w-15">@lang('index.paid')</th>
                     <th class="w-15">@lang('index.due')</th>
-                    {{-- <th class="w-15 text-right">@lang('index.order_due')</th> --}}
                 </tr>
             </thead>
             <tbody>
@@ -160,13 +159,11 @@ $baseURL = getBaseURL();
                             </td>
                             <td class="text-center" style="font-family: DejaVu Sans, sans-serif;">₹{{ number_format($value->due_amount, 2) }}
                             </td>
-                            {{-- <td class="text-right pr-10">{{ number_format($value->order_due_amount, 2) }}
-                            </td> --}}
                         </tr>
                     @endforeach
                 @endif
             </tbody>
-        </table>
+        </table> --}}
         {{-- @if (isset($orderDeliveries) && count($orderDeliveries) > 0)
             <h4 class="w-100 mt-20">@lang('index.deliveries')</h5>
                 <table class="w-100 mt-10">

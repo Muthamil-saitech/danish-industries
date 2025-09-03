@@ -157,7 +157,7 @@
                                     @endif
                                 </tbody>
                             </table>
-                            <h4 class="mt-20">@lang('index.invoice_quotations')</h4>
+                            {{-- <h4 class="mt-20">@lang('index.invoice_quotations')</h4>
                             <table class="w-100 mt-10">
                                 <thead class="b-r-3 bg-color-000000">
                                     <tr>
@@ -167,7 +167,6 @@
                                         <th class="w-15 text-center">@lang('index.amount')</th>
                                         <th class="w-15 text-center">@lang('index.paid')</th>
                                         <th class="w-15 text-center">@lang('index.due')</th>
-                                        {{-- <th class="w-15 text-right">@lang('index.order_due')</th> --}}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -175,7 +174,6 @@
                                         <?php
                                         $i = 1;
                                         ?>
-                                        {{-- @foreach ($orderInvoice as $key => $value) --}}
                                             <tr class="rowCount">
                                                 <td class="width_1_p">
                                                     <p class="set_sn">1</p>
@@ -188,13 +186,10 @@
                                                 </td>
                                                 <td class="text-center">{{ getAmtCustom($orderInvoice->due_amount) }}
                                                 </td>
-                                                {{-- <td class="text-right pr-10">{{ getAmtCustom($value->order_due_amount) }}
-                                                </td> --}}
                                             </tr>
-                                        {{-- @endforeach --}}
-                                    @endif
-                                </tbody>
-                            </table>
+                                        @endif
+                                    </tbody>
+                                </table> --}}
                             <table>
                                 <tr>
                                     <td class="w-30 ">

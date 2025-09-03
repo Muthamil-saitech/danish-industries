@@ -162,46 +162,7 @@
                                     <?php endif; ?>
                                 </tbody>
                             </table>
-                            <h4 class="mt-20"><?php echo app('translator')->get('index.invoice_quotations'); ?></h4>
-                            <table class="w-100 mt-10">
-                                <thead class="b-r-3 bg-color-000000">
-                                    <tr>
-                                        <th class="w-5 text-start"><?php echo app('translator')->get('index.sn'); ?></th>
-                                        <th class="w-15 text-start"><?php echo app('translator')->get('index.type'); ?></th>
-                                        <th class="w-15 text-center"><?php echo app('translator')->get('index.date'); ?></th>
-                                        <th class="w-15 text-center"><?php echo app('translator')->get('index.amount'); ?></th>
-                                        <th class="w-15 text-center"><?php echo app('translator')->get('index.paid'); ?></th>
-                                        <th class="w-15 text-center"><?php echo app('translator')->get('index.due'); ?></th>
-                                        
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php if(isset($orderInvoice) && $orderInvoice): ?>
-                                        <?php
-                                        $i = 1;
-                                        ?>
-                                        
-                                            <tr class="rowCount">
-                                                <td class="width_1_p">
-                                                    <p class="set_sn">1</p>
-                                                </td>
-                                                <td class="text-start"><?php echo e($orderInvoice->invoice_type); ?></td>
-                                                <td class="text-center"><?php echo e(getDateFormat($orderInvoice->invoice_date)); ?></td>
-                                                <td class="text-center"><?php echo e(getAmtCustom($orderInvoice->amount)); ?>
-
-                                                </td>
-                                                <td class="text-center"><?php echo e(getAmtCustom($orderInvoice->paid_amount)); ?>
-
-                                                </td>
-                                                <td class="text-center"><?php echo e(getAmtCustom($orderInvoice->due_amount)); ?>
-
-                                                </td>
-                                                
-                                            </tr>
-                                        
-                                    <?php endif; ?>
-                                </tbody>
-                            </table>
+                            
                             <table>
                                 <tr>
                                     <td class="w-30 ">

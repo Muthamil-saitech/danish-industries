@@ -477,7 +477,7 @@ $(document).ready(function () {
         '</span></div><span class="text-success" id="up_' +
         i +
         '"></span></td>' +
-        '<td><div class="input-group"><input type="text" name="price[]" onfocus="this.select();" class="check_required form-control integerchk price_c readonly" placeholder="Price" id="price_' +
+        '<td><div class="input-group"><input type="text" name="price[]" onfocus="this.select();" class="check_required form-control integerchk price_c" readonly="" placeholder="Price" id="price_' +
         i +
         '" ><span class="input-group-text rmcurrency">' +
         default_currency +
