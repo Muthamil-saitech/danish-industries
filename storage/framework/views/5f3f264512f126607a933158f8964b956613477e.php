@@ -150,7 +150,7 @@
                                                 ?>
                                                 <td class="text-center"><?php echo e(getAmtCustom($gst_value)); ?>
 
-                                                </td>                                                
+                                                </td>
                                                 <td class="text-center"><?php echo e(getAmtCustom($total)); ?>
 
                                                 </td>
@@ -162,7 +162,53 @@
                             
                             <table>
                                 <tr>
-                                    <td class="w-30 ">
+                                    <td valign="top" class="w-50">
+                                        <div class="pt-20">
+                                            <h4 class="d-block pb-10">File</h4>
+                                            <div class="">
+                                                <?php if(isset($obj->file) && $obj->file): ?>
+                                                    <?php ($file = $obj->file); ?>
+                                                    <?php ($fileExtension = pathinfo($file, PATHINFO_EXTENSION)); ?>
+                                                    <?php if($fileExtension == 'pdf'): ?>
+                                                    <a class="text-decoration-none"
+                                                        href="<?php echo e($baseURL); ?>uploads/order/<?php echo e($file); ?>"
+                                                        target="_blank">
+                                                        <img src="<?php echo e($baseURL); ?>assets/images/pdf.png"
+                                                            alt="PDF Preview" class="img-thumbnail mx-2"
+                                                            width="100px">
+                                                    </a>
+                                                    <?php elseif($fileExtension == 'doc' || $fileExtension == 'docx'): ?>
+                                                    <a class="text-decoration-none"
+                                                        href="<?php echo e($baseURL); ?>uploads/order/<?php echo e($file); ?>"
+                                                        target="_blank">
+                                                        <img src="<?php echo e($baseURL); ?>assets/images/word.png"
+                                                            alt="Word Preview" class="img-thumbnail mx-2"
+                                                            width="100px">
+                                                    </a>
+                                                    <?php else: ?>
+                                                    <a class="text-decoration-none"
+                                                        href="<?php echo e($baseURL); ?>uploads/order/<?php echo e($file); ?>"
+                                                        target="_blank">
+                                                        <img src="<?php echo e($baseURL); ?>uploads/order/<?php echo e($file); ?>"
+                                                            alt="File Preview" class="img-thumbnail mx-2"
+                                                            width="100px">
+                                                    </a>
+                                                    <?php endif; ?>
+                                                <?php endif; ?>
+                                            </div>
+                                        </div>
+                                        <div class="pt-20">
+                                            <p class="pb-7 rgb-71">
+                                                <span class=""><?php echo app('translator')->get('index.quotation_note'); ?>:</span>
+                                                <?php echo e($obj->quotation_note!='' ? $obj->quotation_note : ''); ?>
+
+                                            </p>
+                                            <p class="pb-7 rgb-71">
+                                                <span class=""><?php echo app('translator')->get('index.internal_note'); ?>:</span>
+                                                <?php echo e($obj->internal_note!='' ? $obj->internal_note : ''); ?>
+
+                                            </p>
+                                        </div>
                                     </td>
                                     <td class="w-50">
                                         <table class="mt-10 mb-10">
@@ -178,7 +224,6 @@
                                     </td>
                                 </tr>
                             </table>
-
                             <table class="mt-50">
                                 <tr>
                                     <td class="w-50">

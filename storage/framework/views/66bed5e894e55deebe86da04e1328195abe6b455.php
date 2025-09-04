@@ -68,8 +68,8 @@ $baseURL = getBaseURL();
                 <tr>
                     <th class="w-5 text-start"><?php echo app('translator')->get('index.sn'); ?></th>
                     <th class="w-5 text-start"><?php echo app('translator')->get('index.po_date'); ?></th>
-                    <th class="w-20 text-start"><?php echo app('translator')->get('index.part_name'); ?></th>
                     <th class="w-15 text-start"><?php echo app('translator')->get('index.part_no'); ?></th>
+                    <th class="w-20 text-start"><?php echo app('translator')->get('index.part_name'); ?></th>
                     <th class="w-30 text-start"><?php echo app('translator')->get('index.raw_material_name'); ?><br>(<?php echo app('translator')->get('index.code'); ?>)</th>
                     
                     <th class="w-5 text-center"><?php echo app('translator')->get('index.raw_quantity'); ?></th>
@@ -96,8 +96,8 @@ $baseURL = getBaseURL();
                             <td class="text-start"><?php echo e($value->po_date != null ? getDateFormat($value->po_date): getDateFormat($obj->created_at)); ?>
 
                             </td>
-                            <td class="text-start"><?php echo e($productInfo->name); ?></td>
                             <td class="text-start"><?php echo e($productInfo->code); ?></td>
+                            <td class="text-start"><?php echo e($productInfo->name); ?></td>
                             <td class="text-start"><?php echo e(getRMName($value->raw_material_id)); ?></td>
                             
                             <td class="text-start"><?php echo e($value->raw_qty); ?></td>
@@ -134,7 +134,53 @@ $baseURL = getBaseURL();
         
         <table>
             <tr>
-                <td class="w-30">
+                <td valign="top" class="w-50">
+                    <div class="pt-20">
+                        <h4 class="d-block pb-20">File</h4>
+                        <div class="">
+                            <?php if(isset($obj->file) && $obj->file): ?>
+                                <?php ($file = $obj->file); ?>
+                                <?php ($fileExtension = pathinfo($file, PATHINFO_EXTENSION)); ?>
+                                <?php if($fileExtension == 'pdf'): ?>
+                                <a class="text-decoration-none"
+                                    href="<?php echo e($baseURL); ?>uploads/order/<?php echo e($file); ?>"
+                                    target="_blank">
+                                    <img src="<?php echo e($baseURL); ?>assets/images/pdf.png"
+                                        alt="PDF Preview" class="img-thumbnail mx-2"
+                                        width="100px">
+                                </a>
+                                <?php elseif($fileExtension == 'doc' || $fileExtension == 'docx'): ?>
+                                <a class="text-decoration-none"
+                                    href="<?php echo e($baseURL); ?>uploads/order/<?php echo e($file); ?>"
+                                    target="_blank">
+                                    <img src="<?php echo e($baseURL); ?>assets/images/word.png"
+                                        alt="Word Preview" class="img-thumbnail mx-2"
+                                        width="100px">
+                                </a>
+                                <?php else: ?>
+                                <a class="text-decoration-none"
+                                    href="<?php echo e($baseURL); ?>uploads/order/<?php echo e($file); ?>"
+                                    target="_blank">
+                                    <img src="<?php echo e($baseURL); ?>uploads/order/<?php echo e($file); ?>"
+                                        alt="File Preview" class="img-thumbnail mx-2"
+                                        width="100px">
+                                </a>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <div class="pt-20">
+                        <p class="pb-7 rgb-71">
+                            <span class=""><?php echo app('translator')->get('index.quotation_note'); ?>:</span>
+                            <?php echo e($obj->quotation_note!='' ? $obj->quotation_note : ''); ?>
+
+                        </p>
+                        <p class="pb-7 rgb-71">
+                            <span class=""><?php echo app('translator')->get('index.internal_note'); ?>:</span>
+                            <?php echo e($obj->internal_note!='' ? $obj->internal_note : ''); ?>
+
+                        </p>
+                    </div>
                 </td>
                 <td class="w-50">
                     <table>

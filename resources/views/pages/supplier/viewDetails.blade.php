@@ -84,16 +84,16 @@
                                             {{ $obj->area }}
                                         </p>
                                         <p class="pb-7 rgb-71">
-                                            <span class=""><strong>@lang('index.note'):</strong></span>
-                                            {{ $obj->note }}
-                                        </p>
-                                        <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.created_on'):</strong></span>
                                             {{ getDateFormat($obj->created_at) }}
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.created_by'):</strong></span>
                                             {{ getUserName($obj->added_by) }}
+                                        </p>
+                                        <p class="pb-7 rgb-71">
+                                            <span class=""><strong>@lang('index.note'):</strong></span>
+                                            {{ $obj->note }}
                                         </p>
                                     </td>
                                 </tr>

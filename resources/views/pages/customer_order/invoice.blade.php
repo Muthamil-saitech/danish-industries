@@ -200,7 +200,51 @@ $baseURL = getBaseURL();
         @endif --}}
         <table>
             <tr>
-                <td class="w-30">
+                <td valign="top" class="w-50">
+                    <div class="pt-20">
+                        <h4 class="d-block pb-20">File</h4>
+                        <div class="">
+                            @if (isset($obj->file) && $obj->file)
+                                @php($file = $obj->file)
+                                @php($fileExtension = pathinfo($file, PATHINFO_EXTENSION))
+                                @if ($fileExtension == 'pdf')
+                                <a class="text-decoration-none"
+                                    href="{{ $baseURL }}uploads/order/{{ $file }}"
+                                    target="_blank">
+                                    <img src="{{ $baseURL }}assets/images/pdf.png"
+                                        alt="PDF Preview" class="img-thumbnail mx-2"
+                                        width="100px">
+                                </a>
+                                @elseif($fileExtension == 'doc' || $fileExtension == 'docx')
+                                <a class="text-decoration-none"
+                                    href="{{ $baseURL }}uploads/order/{{ $file }}"
+                                    target="_blank">
+                                    <img src="{{ $baseURL }}assets/images/word.png"
+                                        alt="Word Preview" class="img-thumbnail mx-2"
+                                        width="100px">
+                                </a>
+                                @else
+                                <a class="text-decoration-none"
+                                    href="{{ $baseURL }}uploads/order/{{ $file }}"
+                                    target="_blank">
+                                    <img src="{{ $baseURL }}uploads/order/{{ $file }}"
+                                        alt="File Preview" class="img-thumbnail mx-2"
+                                        width="100px">
+                                </a>
+                                @endif
+                            @endif
+                        </div>
+                    </div>
+                    <div class="pt-20">
+                        <p class="pb-7 rgb-71">
+                            <span class="">@lang('index.quotation_note'):</span>
+                            {{ $obj->quotation_note!='' ? $obj->quotation_note : '' }}
+                        </p>
+                        <p class="pb-7 rgb-71">
+                            <span class="">@lang('index.internal_note'):</span>
+                            {{ $obj->internal_note!='' ? $obj->internal_note : '' }}
+                        </p>
+                    </div>
                 </td>
                 <td class="w-50">
                     <table>

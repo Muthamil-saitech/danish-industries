@@ -93,11 +93,6 @@
 
                                         </p>
                                         <p class="pb-7 rgb-71">
-                                            <span class=""><strong><?php echo app('translator')->get('index.note'); ?>:</strong></span>
-                                            <?php echo e($obj->note); ?>
-
-                                        </p>
-                                        <p class="pb-7 rgb-71">
                                             <span class=""><strong><?php echo app('translator')->get('index.created_on'); ?>:</strong></span>
                                             <?php echo e(getDateFormat($obj->created_at)); ?>
 
@@ -105,6 +100,11 @@
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong><?php echo app('translator')->get('index.created_by'); ?>:</strong></span>
                                             <?php echo e(getUserName($obj->added_by)); ?>
+
+                                        </p>
+                                        <p class="pb-7 rgb-71">
+                                            <span class=""><strong><?php echo app('translator')->get('index.note'); ?>:</strong></span>
+                                            <?php echo e($obj->note); ?>
 
                                         </p>
                                     </td>

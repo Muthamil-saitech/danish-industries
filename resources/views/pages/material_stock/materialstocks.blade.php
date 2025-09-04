@@ -59,7 +59,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                                 <th class="width_10_p">@lang('index.stock')</th>
                                 <th class="width_10_p">@lang('index.alter_level')</th>
                                 <th class="width_10_p">@lang('index.floating_stock')</th>
-                                <th class="width_10_p">@lang('index.created_by')</th>
+                                <th class="width_10_p">@lang('index.added_by')</th>
                                 <th class="width_1_p">@lang('index.actions')</th>
                             </tr>
                         </thead>
@@ -141,7 +141,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                                 <th class="width_10_p">@lang('index.stock')</th>
                                 <th class="width_10_p">@lang('index.alter_level')</th>
                                 <th class="width_10_p">@lang('index.floating_stock')</th>
-                                <th class="width_10_p">@lang('index.created_by')</th>
+                                <th class="width_10_p">@lang('index.added_by')</th>
                                 <th class="width_1_p">@lang('index.actions')</th>
                             </tr>
                         </thead>

@@ -7,7 +7,7 @@ $orderType = isset($customerOrder->order_type) && $customerOrder->order_type ? $
         <div class="col-sm-12 mb-2 col-md-4">
             <div class="form-group">
                 <label>@lang('index.po_date') <span class="required_star">*</span></label>
-                {!! Form::text('po_date', isset($obj->po_date) && $obj->po_date ? date('Y-m-d',strtotime($obj->po_date)) : (old('po_date') ?: date('d-m-Y')), [
+                {!! Form::text('po_date', isset($customerOrder->po_date) && $customerOrder->po_date ? date('Y-m-d',strtotime($customerOrder->po_date)) : (old('po_date') ?: date('d-m-Y')), [
                 'class' => 'form-control',
                 'id' => 'po_date',
                 'placeholder' => 'PO Date',
@@ -333,14 +333,14 @@ $orderType = isset($customerOrder->order_type) && $customerOrder->order_type ? $
     <div class="col-sm-6 col-md-6 mb-2">
         <div class="form-group">
             <label>Upload Document</label>
-            <input type="hidden" name="file_old" value="{{ isset($obj->file) && $obj->file ? $obj->file : '' }}">
+            <input type="hidden" name="file_old" value="{{ isset($customerOrder->file) && $customerOrder->file ? $customerOrder->file : '' }}">
             <input type="file" name="file_button" id="file_button"
                 class="form-control @error('title') is-invalid @enderror file_checker_global image_preview"
                 accept="image/png,image/jpeg,image/jpg,application/pdf,.doc,.docx">
             <p class="text-danger errorFile"></p>
             <div class="image-preview-container">
-                @if (isset($obj->file) && $obj->file)
-                @php($file = $obj->file)
+                @if (isset($customerOrder->file) && $customerOrder->file)
+                @php($file = $customerOrder->file)
                 {{-- @foreach ($files as $file) --}}
                 @php($fileExtension = pathinfo($file, PATHINFO_EXTENSION))
                 @if ($fileExtension == 'pdf')

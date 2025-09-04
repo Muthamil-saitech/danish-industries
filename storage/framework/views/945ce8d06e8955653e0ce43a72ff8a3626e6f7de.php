@@ -48,7 +48,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                                 <th class="width_10_p"><?php echo app('translator')->get('index.stock'); ?></th>
                                 <th class="width_10_p"><?php echo app('translator')->get('index.alter_level'); ?></th>
                                 <th class="width_10_p"><?php echo app('translator')->get('index.floating_stock'); ?></th>
-                                <th class="width_10_p"><?php echo app('translator')->get('index.created_by'); ?></th>
+                                <th class="width_10_p"><?php echo app('translator')->get('index.added_by'); ?></th>
                                 <th class="width_1_p"><?php echo app('translator')->get('index.actions'); ?></th>
                             </tr>
                         </thead>
@@ -123,7 +123,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                                 <th class="width_10_p"><?php echo app('translator')->get('index.stock'); ?></th>
                                 <th class="width_10_p"><?php echo app('translator')->get('index.alter_level'); ?></th>
                                 <th class="width_10_p"><?php echo app('translator')->get('index.floating_stock'); ?></th>
-                                <th class="width_10_p"><?php echo app('translator')->get('index.created_by'); ?></th>
+                                <th class="width_10_p"><?php echo app('translator')->get('index.added_by'); ?></th>
                                 <th class="width_1_p"><?php echo app('translator')->get('index.actions'); ?></th>
                             </tr>
                         </thead>
