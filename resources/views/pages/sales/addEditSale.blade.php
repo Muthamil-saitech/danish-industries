@@ -125,7 +125,7 @@
                                     <thead>
                                         <tr>
                                             <th class="w-5 text-start">@lang('index.sn')</th>
-                                            <th class="w-30">@lang('index.part_name')(@lang('index.code'))</th>
+                                            <th class="w-30">@lang('index.part_name')(@lang('index.part_no'))</th>
                                             <th class="w-30">SRN</th>
                                             <th class="w-20">@lang('index.sale_price')<span class="required_star">*</span></th>
                                             <th class="w-20">@lang('index.quantity')<span class="required_star">*</span></th>

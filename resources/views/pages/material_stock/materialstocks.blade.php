@@ -59,7 +59,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                                 <th class="width_10_p">@lang('index.stock')</th>
                                 <th class="width_10_p">@lang('index.alter_level')</th>
                                 <th class="width_10_p">@lang('index.floating_stock')</th>
-                                <th class="width_10_p">@lang('index.entered_by')</th>
+                                <th class="width_10_p">@lang('index.created_by')</th>
                                 <th class="width_1_p">@lang('index.actions')</th>
                             </tr>
                         </thead>
@@ -141,7 +141,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                                 <th class="width_10_p">@lang('index.stock')</th>
                                 <th class="width_10_p">@lang('index.alter_level')</th>
                                 <th class="width_10_p">@lang('index.floating_stock')</th>
-                                <th class="width_10_p">@lang('index.entered_by')</th>
+                                <th class="width_10_p">@lang('index.created_by')</th>
                                 <th class="width_1_p">@lang('index.actions')</th>
                             </tr>
                         </thead>
@@ -378,12 +378,12 @@ if (isset($setting->base_color) && $setting->base_color) {
                                     <p class="text-danger mat_doc_no_err"></p>
                                 </div>
                             </div>
-                            <div class="col-sm-12 mb-2 col-md-6">
+                            {{-- <div class="col-sm-12 mb-2 col-md-6">
                                 <div class="form-group">
                                     <label>@lang('index.dc_inw_price') </label>
                                     <input type="text" class="form-control @error('dc_inward_price') is-invalid @enderror" name="dc_inward_price" id="dc_inward_price" value="{{ isset($obj->dc_inward_price) && $obj->dc_inward_price ? $obj->dc_inward_price : old('dc_inward_price') }}" placeholder="@lang('index.dc_inw_price')">
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="col-sm-12 mb-2 col-md-6">
                                 <div class="form-group">
                                     <label>@lang('index.mat_price') </label>
@@ -594,7 +594,7 @@ if (isset($setting->base_color) && $setting->base_color) {
         let heat_no = $("#heat_no").val();
         let dc_date = $("#dc_date").val();
         let mat_doc_no = $("#mat_doc_no").val();
-        let dc_inward_price = $("#dc_inward_price").val();
+        // let dc_inward_price = $("#dc_inward_price").val();
         let material_price = $("#material_price").val();
         let hsn_no = $("#hsn_no").val();
         let reference_no = "";
@@ -674,7 +674,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                 heat_no: heat_no,
                 dc_date: dc_date,
                 mat_doc_no: mat_doc_no,
-                dc_inward_price: dc_inward_price,
+                // dc_inward_price: dc_inward_price,
                 material_price: material_price,
                 hsn_no: hsn_no
             },

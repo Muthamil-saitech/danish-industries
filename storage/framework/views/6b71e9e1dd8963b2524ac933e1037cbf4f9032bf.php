@@ -6,6 +6,24 @@ $orderType = isset($customerOrder->order_type) && $customerOrder->order_type ? $
     <div class="row">
         <div class="col-sm-12 mb-2 col-md-4">
             <div class="form-group">
+                <label><?php echo app('translator')->get('index.po_date'); ?> <span class="required_star">*</span></label>
+                <?php echo Form::text('po_date', isset($obj->po_date) && $obj->po_date ? date('Y-m-d',strtotime($obj->po_date)) : (old('po_date') ?: date('d-m-Y')), [
+                'class' => 'form-control',
+                'id' => 'po_date',
+                'placeholder' => 'PO Date',
+                ]); ?>
+
+                <?php if($errors->has('po_date')): ?>
+                <div class="error_alert text-danger">
+                    <?php echo e($errors->first('po_date')); ?>
+
+                </div>
+                <?php endif; ?>
+                <div class="text-danger d-none"></div>
+            </div>
+        </div>
+        <div class="col-sm-12 mb-2 col-md-4">
+            <div class="form-group">
                 <label><?php echo app('translator')->get('index.po_no'); ?> <span class="required_star">*</span></label>
                 <input type="text" name="reference_no" id="code"
                     class="check_required form-control <?php $__errorArgs = ['reference_no'];
@@ -124,24 +142,6 @@ endif;
 unset($__errorArgs, $__bag); ?>
             </div>
         </div>
-        <div class="col-sm-12 mb-2 col-md-4">
-            <div class="form-group">
-                <label><?php echo app('translator')->get('index.po_date'); ?> <span class="required_star">*</span></label>
-                <?php echo Form::text('po_date', isset($obj->po_date) && $obj->po_date ? $obj->po_date : (old('po_date') ?: date('d-m-Y')), [
-                'class' => 'form-control',
-                'id' => 'po_date',
-                'placeholder' => 'PO Date',
-                ]); ?>
-
-                <?php if($errors->has('po_date')): ?>
-                <div class="error_alert text-danger">
-                    <?php echo e($errors->first('po_date')); ?>
-
-                </div>
-                <?php endif; ?>
-                <div class="text-danger d-none"></div>
-            </div>
-        </div>
         <div class="col-sm-12 col-md-6 mb-2 col-lg-8">
             <div class="form-group">
                 <label><?php echo app('translator')->get('index.delivery_address'); ?> <span class="required_star">*</span></label>
@@ -200,9 +200,9 @@ unset($__errorArgs, $__bag); ?>
                             <th class="w-75-p" id="cgst_th" style="<?php echo e($showCSColumns ? '' : 'display: none;'); ?>">CGST (%)</th>
                             <th class="w-75-p" id="sgst_th" style="<?php echo e($showCSColumns ? '' : 'display: none;'); ?>">SGST (%)</th>
                             <th class="w-150-p" id="igst_th" style="<?php echo e($showIColumns ? '' : 'display: none;'); ?>">IGST (%)</th>
-                            <th class="w-220-p"><?php echo app('translator')->get('index.delivery_date'); ?></th>
                             <th class="w-220-p"><?php echo app('translator')->get('index.tax_amount'); ?></th>
                             <th class="w-220-p"><?php echo app('translator')->get('index.subtotal'); ?></th>
+                            <th class="w-220-p"><?php echo app('translator')->get('index.delivery_date'); ?></th>
                             <th class="w-220-p"><?php echo app('translator')->get('index.production_status'); ?></th>
                             <th class="w-220-p"><?php echo app('translator')->get('index.delivered'); ?> Quantity</th>
                             <?php if(!isset($orderDetails)): ?><th class="ir_txt_center"><?php echo app('translator')->get('index.actions'); ?></th><?php endif; ?>
@@ -308,7 +308,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?> integerchk price_c"
                                     placeholder="Price" value="<?php echo e($value->price); ?>"
-                                    id="price_<?php echo e($i); ?>">
+                                    id="price_<?php echo e($i); ?>" readonly>
                             </td>
                             
             <td>
@@ -361,6 +361,31 @@ unset($__errorArgs, $__bag); ?> tax_type_id select2" <?php echo e(isset($orderDe
                 <input type="text" class="form-control igst_input" value="<?php echo e($value->igst); ?>">
             </td>
             <td>
+                <input type="text" name="tax_amount[]" onfocus="this.select();"
+                    class="check_required form-control <?php $__errorArgs = ['tax_amount'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?> integerchk tax_amount_c"
+                    placeholder="Tax Amount" value="<?php echo e(number_format($value->tax_amount,2)); ?>"
+                    id="tax_amount_<?php echo e($i); ?>" readonly>
+            </td>
+            <td>
+                <div class="input-group">
+                    <input type="text" id="sub_total_<?php echo e($i); ?>"
+                        name="sub_total[]"
+                        class="form-control sub_total_c"
+                        value="<?php echo e(number_format($value->sub_total,2)); ?>"
+                        placeholder="Subtotal"
+                        readonly>
+
+                    <span class="input-group-text"> <?php echo e($setting->currency); ?></span>
+                </div>
+            </td>
+            <td>
                 <?php if(isset($orderDetails)): ?>
                 <?php echo Form::text('disabled_delivery_date_product[]', $value->delivery_date != '' ? date('d-m-Y', strtotime($value->delivery_date)) : '', [
                 'class' => 'form-control order_delivery_date',
@@ -377,31 +402,6 @@ unset($__errorArgs, $__bag); ?> tax_type_id select2" <?php echo e(isset($orderDe
                 ]); ?>
 
                 <?php endif; ?>
-            </td>
-            <td>
-                <input type="text" name="tax_amount[]" onfocus="this.select();"
-                    class="check_required form-control <?php $__errorArgs = ['tax_amount'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?> integerchk tax_amount_c readonly"
-                    placeholder="Tax Amount" value="<?php echo e(number_format($value->tax_amount,2)); ?>"
-                    id="tax_amount_<?php echo e($i); ?>">
-            </td>
-            <td>
-                <div class="input-group">
-                    <input type="text" id="sub_total_<?php echo e($i); ?>"
-                        name="sub_total[]"
-                        class="form-control sub_total_c"
-                        value="<?php echo e(number_format($value->sub_total,2)); ?>"
-                        placeholder="Subtotal"
-                        readonly>
-
-                    <span class="input-group-text"> <?php echo e($setting->currency); ?></span>
-                </div>
             </td>
             <td>
                 <input type="hidden" name="status[]" value="<?php echo e($value->status); ?>">
@@ -456,111 +456,6 @@ unset($__errorArgs, $__bag); ?> integerchk" placeholder="<?php echo app('transla
     <button class="btn bg-blue-btn w-20 stockCheck" data-bs-toggle="modal" data-bs-target="#stockCheck"
         type="button"><?php echo app('translator')->get('index.check_stock'); ?></button>
     
-</div>
-<div class="row mt-3 <?php echo e(isset($orderInvoice) && count($orderInvoice) > 0 ? '' : 'd-none'); ?>"
-    id="invoice_quotations_sections">
-    <div class="col-md-12">
-        <h4 class="header_right"><?php echo app('translator')->get('index.invoice_quotations'); ?></h4>
-
-        <div class="table-responsive" id="fprm">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th class="width_1_p"><?php echo app('translator')->get('index.sn'); ?></th>
-                        <th class="width_10_p"><?php echo app('translator')->get('index.type'); ?></th>
-                        <th class="width_20_p"><?php echo app('translator')->get('index.date'); ?></th>
-                        <th class="width_20_p"><?php echo app('translator')->get('index.amount'); ?></th>
-                        <th class="width_20_p"><?php echo app('translator')->get('index.paid'); ?></th>
-                        <th class="width_20_p"><?php echo app('translator')->get('index.due'); ?></th>
-                        
-                        
-                    </tr>
-                </thead>
-                <tbody class="add_order_inv">
-                    <?php $i = 0; ?>
-                    <?php if(isset($orderInvoice) && $orderInvoice): ?>
-                    <?php $__currentLoopData = $orderInvoice; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <?php $i++; ?>
-                    <tr class="rowCount" data-id="<?php echo e($value->id); ?>">
-                        <td class="width_1_p ir_txt_center"><?php echo e($i); ?></td>
-                        <td>
-                            <input type="text" name="invoice_type[]" value="<?php echo e($value->invoice_type); ?>" id="invoice_type_<?php echo e($i); ?>"
-                                class="form-control <?php $__errorArgs = ['title'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>" <?php echo e(isset($orderDetails) ? 'readonly' : ''); ?>>
-                        </td>
-                        <td>
-                            <input type="hidden" name="invoice_date[]" value="<?php echo e(date('d-m-Y',strtotime($value->invoice_date))); ?>">
-                            <?php echo Form::text('invoice_date[]', date('d-m-Y',strtotime($value->invoice_date)), [
-                            'class' => 'form-control order_delivery_date',
-                            'placeholder' => 'Invoice Date',
-                            'disabled'
-                            ]); ?>
-
-                        </td>
-                        <td>
-                            <div class="input-group">
-                                <input type="number" id="invoice_amount_<?php echo e($i); ?>"
-                                    name="invoice_amount[]"
-                                    class="form-control <?php $__errorArgs = ['title'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?> invoice_amount_c"
-                                    value="<?php echo e(round($value->amount)); ?>" placeholder="Amount" <?php echo e(isset($orderDetails) ? 'readonly' : ''); ?>>
-                                <span class="input-group-text"> <?php echo e($setting->currency); ?></span>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="input-group">
-                                <input type="number" id="paid_amount_<?php echo e($i); ?>"
-                                    name="invoice_paid[]"
-                                    class="form-control <?php $__errorArgs = ['title'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?> paid_amount_c"
-                                    value="<?php echo e(round($value->paid_amount)); ?>" placeholder="Paid" <?php echo e(isset($orderDetails) ? 'readonly' : ''); ?>>
-                                <span class="input-group-text"> <?php echo e($setting->currency); ?></span>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="input-group">
-                                <input type="number" id="due_amount_<?php echo e($i); ?>"
-                                    name="invoice_due[]"
-                                    class="form-control <?php $__errorArgs = ['title'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?> due_amount_c"
-                                    value="<?php echo e(round($value->due_amount)); ?>" placeholder="Due" <?php echo e(isset($orderDetails) ? 'readonly' : ''); ?>>
-                                <span class="input-group-text"> <?php echo e($setting->currency); ?></span>
-                            </div>
-                        </td>
-                        
-        
-        </tr>
-        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-        <?php endif; ?>
-        </tbody>
-        </table>
-        
-    </div>
-</div>
 </div>
 <div class="row mt-3">
     <div class="col-sm-6 col-md-6 mb-2">

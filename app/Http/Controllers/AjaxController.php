@@ -853,9 +853,9 @@ class AjaxController extends Controller
     }
     public function getInsertType(Request $request)
     {
-        $mat_cat_id = escape_output($request->post('mat_cat_id'));
+        // $mat_cat_id = escape_output($request->post('mat_cat_id'));
         $mat_id = escape_output($request->post('mat_id'));
-        $raw_material = RawMaterial::where('del_status', "Live")->where('category',$mat_cat_id)->where('id',$mat_id)->orderBy('id', 'DESC')->first();
+        $raw_material = RawMaterial::where('del_status', "Live")->where('id',$mat_id)->orderBy('id', 'DESC')->first();
         echo json_encode($raw_material);
     }
 

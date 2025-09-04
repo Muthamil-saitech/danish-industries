@@ -17,7 +17,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                 <input type="hidden" class="datatable_name" data-filter="yes" data-title="{{ isset($title) && $title ? $title : '' }}" data-id_name="datatable">
             </div>
             <div class="col-md-6 text-end">
-                <h5 class="mb-0">Total Customer Receive List: {{ isset($obj) ? count($obj) : '0' }} </h5>
+                <h5 class="mb-0">Total Customer Receives: {{ isset($obj) ? count($obj) : '0' }} </h5>
             </div>
         </div>
     </section>
@@ -31,7 +31,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                         <tr>
                             <th class="width_1_p">@lang('index.sn')</th>
                             <th class="width_10_p">@lang('index.po_no')</th>
-                            <th class="width_10_p">@lang('index.order_date')</th>
+                            <th class="width_10_p">@lang('index.po_date')</th>
                             <th class="width_10_p">@lang('index.customer')<br>(Code)</th>
                             <th class="width_10_p">@lang('index.total_amount')</th>
                             <th class="width_10_p">@lang('index.paid_amount')</th>

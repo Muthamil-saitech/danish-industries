@@ -362,7 +362,7 @@
                                 <thead>
                                     <tr>
                                         <th class="width_1_p">@lang('index.po_no')</th>
-                                        <th class="width_13_p">@lang('index.order_date')</th>
+                                        <th class="width_13_p">@lang('index.po_date')</th>
                                         <th class="width_13_p">@lang('index.customer')</th>
                                         <th class="width_20_p">@lang('index.total_amount')</th>
                                         <th class="width_20_p">@lang('index.paid')</th>

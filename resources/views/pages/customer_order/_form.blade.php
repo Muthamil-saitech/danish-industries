@@ -138,9 +138,9 @@ $orderType = isset($customerOrder->order_type) && $customerOrder->order_type ? $
                             <th class="w-75-p" id="cgst_th" style="{{ $showCSColumns ? '' : 'display: none;' }}">CGST (%)</th>
                             <th class="w-75-p" id="sgst_th" style="{{ $showCSColumns ? '' : 'display: none;' }}">SGST (%)</th>
                             <th class="w-150-p" id="igst_th" style="{{ $showIColumns ? '' : 'display: none;' }}">IGST (%)</th>
-                            <th class="w-220-p">@lang('index.delivery_date')</th>
                             <th class="w-220-p">@lang('index.tax_amount')</th>
                             <th class="w-220-p">@lang('index.subtotal')</th>
+                            <th class="w-220-p">@lang('index.delivery_date')</th>
                             <th class="w-220-p">@lang('index.production_status')</th>
                             <th class="w-220-p">@lang('index.delivered') Quantity</th>
                             @if(!isset($orderDetails))<th class="ir_txt_center">@lang('index.actions')</th>@endif
@@ -201,9 +201,9 @@ $orderType = isset($customerOrder->order_type) && $customerOrder->order_type ? $
                             </td>
                             <td>
                                 <input type="number" name="price[]" onfocus="this.select();"
-                                    class="check_required form-control @error('price') is-invalid @enderror integerchk price_c readonly"
+                                    class="check_required form-control @error('price') is-invalid @enderror integerchk price_c"
                                     placeholder="Price" value="{{ $value->price }}"
-                                    id="price_{{ $i }}">
+                                    id="price_{{ $i }}" readonly>
                             </td>
                             {{-- <td>
                                         <div class="input-group">
@@ -256,6 +256,24 @@ $orderType = isset($customerOrder->order_type) && $customerOrder->order_type ? $
                 <input type="text" class="form-control igst_input" value="{{ $value->igst }}">
             </td>
             <td>
+                <input type="text" name="tax_amount[]" onfocus="this.select();"
+                    class="check_required form-control @error('tax_amount') is-invalid @enderror integerchk tax_amount_c"
+                    placeholder="Tax Amount" value="{{ number_format($value->tax_amount,2) }}"
+                    id="tax_amount_{{ $i }}" readonly>
+            </td>
+            <td>
+                <div class="input-group">
+                    <input type="text" id="sub_total_{{ $i }}"
+                        name="sub_total[]"
+                        class="form-control sub_total_c"
+                        value="{{ number_format($value->sub_total,2) }}"
+                        placeholder="Subtotal"
+                        readonly>
+
+                    <span class="input-group-text"> {{ $setting->currency }}</span>
+                </div>
+            </td>
+            <td>
                 @if(isset($orderDetails))
                 {!! Form::text('disabled_delivery_date_product[]', $value->delivery_date != '' ? date('d-m-Y', strtotime($value->delivery_date)) : '', [
                 'class' => 'form-control order_delivery_date',
@@ -269,24 +287,6 @@ $orderType = isset($customerOrder->order_type) && $customerOrder->order_type ? $
                 'placeholder' => 'Delivery Date'
                 ]) !!}
                 @endif
-            </td>
-            <td>
-                <input type="text" name="tax_amount[]" onfocus="this.select();"
-                    class="check_required form-control @error('tax_amount') is-invalid @enderror integerchk tax_amount_c readonly"
-                    placeholder="Tax Amount" value="{{ number_format($value->tax_amount,2) }}"
-                    id="tax_amount_{{ $i }}">
-            </td>
-            <td>
-                <div class="input-group">
-                    <input type="text" id="sub_total_{{ $i }}"
-                        name="sub_total[]"
-                        class="form-control sub_total_c"
-                        value="{{ number_format($value->sub_total,2) }}"
-                        placeholder="Subtotal"
-                        readonly>
-
-                    <span class="input-group-text"> {{ $setting->currency }}</span>
-                </div>
             </td>
             <td>
                 <input type="hidden" name="status[]" value="{{ $value->status }}">
@@ -329,100 +329,6 @@ $orderType = isset($customerOrder->order_type) && $customerOrder->order_type ? $
     {{-- <button class="btn bg-blue-btn w-20 estimateCost" data-bs-toggle="modal" data-bs-target="#estimateCost"
             type="button">@lang('index.estimate_cost_date')</button> --}}
 </div>
-@php /*
-<div class="row mt-3 {{ isset($orderInvoice) && count($orderInvoice) > 0 ? '' : 'd-none' }}"
-    id="invoice_quotations_sections">
-    <div class="col-md-12">
-        <h4 class="header_right">@lang('index.invoice_quotations')</h4>
-
-        <div class="table-responsive" id="fprm">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th class="width_1_p">@lang('index.sn')</th>
-                        <th class="width_10_p">@lang('index.type')</th>
-                        <th class="width_20_p">@lang('index.date')</th>
-                        <th class="width_20_p">@lang('index.amount')</th>
-                        <th class="width_20_p">@lang('index.paid')</th>
-                        <th class="width_20_p">@lang('index.due')</th>
-                        {{-- <th class="width_20_p">@lang('index.order_due')</th> --}}
-                        {{-- <th class="width_3_p ir_txt_center">@lang('index.actions')</th> --}}
-                    </tr>
-                </thead>
-                <tbody class="add_order_inv">
-                    <?php $i = 0; ?>
-                    @if (isset($orderInvoice) && $orderInvoice)
-                    @foreach ($orderInvoice as $key => $value)
-                    <?php $i++; ?>
-                    <tr class="rowCount" data-id="{{ $value->id }}">
-                        <td class="width_1_p ir_txt_center">{{ $i }}</td>
-                        <td>
-                            <input type="text" name="invoice_type[]" value="{{ $value->invoice_type }}" id="invoice_type_{{ $i }}"
-                                class="form-control @error('title') is-invalid @enderror" {{ isset($orderDetails) ? 'readonly' : ''  }}>
-                        </td>
-                        <td>
-                            <input type="hidden" name="invoice_date[]" value="{{ date('d-m-Y',strtotime($value->invoice_date)) }}">
-                            {!! Form::text('invoice_date[]', date('d-m-Y',strtotime($value->invoice_date)), [
-                            'class' => 'form-control order_delivery_date',
-                            'placeholder' => 'Invoice Date',
-                            'disabled'
-                            ]) !!}
-                        </td>
-                        <td>
-                            <div class="input-group">
-                                <input type="number" id="invoice_amount_{{ $i }}"
-                                    name="invoice_amount[]"
-                                    class="form-control @error('title') is-invalid @enderror invoice_amount_c"
-                                    value="{{ round($value->amount) }}" placeholder="Amount" {{ isset($orderDetails) ? 'readonly' : ''  }}>
-                                <span class="input-group-text"> {{ $setting->currency }}</span>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="input-group">
-                                <input type="number" id="paid_amount_{{ $i }}"
-                                    name="invoice_paid[]"
-                                    class="form-control @error('title') is-invalid @enderror paid_amount_c"
-                                    value="{{ round($value->paid_amount) }}" placeholder="Paid" {{ isset($orderDetails) ? 'readonly' : ''  }}>
-                                <span class="input-group-text"> {{ $setting->currency }}</span>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="input-group">
-                                <input type="number" id="due_amount_{{ $i }}"
-                                    name="invoice_due[]"
-                                    class="form-control @error('title') is-invalid @enderror due_amount_c"
-                                    value="{{ round($value->due_amount) }}" placeholder="Due" {{ isset($orderDetails) ? 'readonly' : ''  }}>
-                                <span class="input-group-text"> {{ $setting->currency }}</span>
-                            </div>
-                        </td>
-                        {{-- <td>
-                                        <div class="input-group">
-                                            <input type="number" id="order_due_amount_{{ $i }}"
-                        name="invoice_order_due[]"
-                        class="form-control @error('title') is-invalid @enderror order_due_amount_c"
-                        value="{{ round($value->order_due_amount) }}" placeholder="Order Due" {{ isset($orderDetails) ? 'readonly' : ''  }}>
-                        <span class="input-group-text"> {{ $setting->currency }}</span>
-                        </div>
-                        </td> --}}
-                            {{-- <td class="ir_txt_center">
-                                        @if ($value->invoice_type !== 'Quotation' && $loop->index !== 0)
-                                            <a class="btn btn-xs del_inv_row dlt_button"><iconify-icon
-                                                    icon="solar:trash-bin-minimalistic-broken"></iconify-icon>
-                                            </a>
-                                        @endif
-
-                            </td> --}}
-                    </tr>
-                    @endforeach
-                @endif
-            </tbody>
-        </table>
-        {{-- <button id="orderInvoices" class="btn bg-blue-btn w-10 mt-2" data-bs-toggle="modal"
-                    data-bs-target="#invoiceModal" type="button"
-                    {{ $orderType == 'Quotation' ? 'disabled' : '' }}>@lang('index.add_more')</button> --}}
-        </div>
-    </div>
-</div> */ @endphp
 <div class="row mt-3">
     <div class="col-sm-6 col-md-6 mb-2">
         <div class="form-group">

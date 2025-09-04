@@ -17,7 +17,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                 <input type="hidden" class="datatable_name" data-filter="yes" data-title="<?php echo e(isset($title) && $title ? $title : ''); ?>" data-id_name="datatable">
             </div>
             <div class="col-md-6 text-end">
-                <h5 class="mb-0">Total Customer Receive List: <?php echo e(isset($obj) ? count($obj) : '0'); ?> </h5>
+                <h5 class="mb-0">Total Customer Receives: <?php echo e(isset($obj) ? count($obj) : '0'); ?> </h5>
             </div>
         </div>
     </section>
@@ -31,7 +31,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                         <tr>
                             <th class="width_1_p"><?php echo app('translator')->get('index.sn'); ?></th>
                             <th class="width_10_p"><?php echo app('translator')->get('index.po_no'); ?></th>
-                            <th class="width_10_p"><?php echo app('translator')->get('index.order_date'); ?></th>
+                            <th class="width_10_p"><?php echo app('translator')->get('index.po_date'); ?></th>
                             <th class="width_10_p"><?php echo app('translator')->get('index.customer'); ?><br>(Code)</th>
                             <th class="width_10_p"><?php echo app('translator')->get('index.total_amount'); ?></th>
                             <th class="width_10_p"><?php echo app('translator')->get('index.paid_amount'); ?></th>

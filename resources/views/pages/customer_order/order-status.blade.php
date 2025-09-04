@@ -49,10 +49,10 @@
                                                 <p><a href="{{ url('customer-orders') }}/{{ encrypt_decrypt($value->id, 'encrypt') }}" class="button-info"
                                                 data-bs-toggle="tooltip" data-bs-placement="top"
                                                 title="@lang('index.view_details')">#{{ $value->reference_no }}</a></p>
-                                                <p>Part Name : {{ $value->name }}</p>
                                                 <p>Part No : {{ $value->code }}</p>
+                                                <p>Part Name : {{ $value->name }}</p>
                                                 <p>@lang('index.total') : <strong class="text-right">{{ getAmtCustom($value->total_amount) }}</strong></p>
-                                                <p>@lang('index.quote_date') : <strong class="text-right">{{ getDateFormat($value->created_at) }}</strong></p>
+                                                <p>@lang('index.po_date') : <strong class="text-right">{{ getDateFormat($value->po_date) }}</strong></p>
                                                 
                                             </div>
                                         </div>
@@ -65,10 +65,10 @@
                                                 <p><a href="{{ url('customer-orders') }}/{{ encrypt_decrypt($value->id, 'encrypt') }}" class="button-info"
                                                 data-bs-toggle="tooltip" data-bs-placement="top"
                                                 title="@lang('index.view_details')">#{{ $value->reference_no }}</a></p>
-                                                <p>Part Name : {{ $value->name }}</p>
                                                 <p>Part No : {{ $value->code }}</p>
+                                                <p>Part Name : {{ $value->name }}</p>
                                                 <p>@lang('index.total') : <strong class="text-right">{{ getAmtCustom($value->total_amount) }}</strong></p>
-                                                <p>@lang('index.quote_date') : <strong class="text-right">{{ getDateFormat($value->created_at) }}</strong></p>
+                                                <p>@lang('index.po_date') : <strong class="text-right">{{ getDateFormat($value->po_date) }}</strong></p>
                                                 
                                             </div>
                                         </div>
@@ -82,10 +82,10 @@
                                                     <p><a href="{{ url('customer-orders') }}/{{ encrypt_decrypt($value->id, 'encrypt') }}" class="button-info"
                                                         data-bs-toggle="tooltip" data-bs-placement="top"
                                                         title="@lang('index.view_details')">#{{ $value->reference_no }}</a></p>
-                                                    <p>Part Name : {{ $value->name }}</p>
                                                     <p>Part No : {{ $value->code }}</p>
+                                                    <p>Part Name : {{ $value->name }}</p>
                                                     <p>@lang('index.total') : <strong class="text-right">{{ getAmtCustom($value->total_amount) }}</strong></p>
-                                                    <p>@lang('index.quote_date') : <strong class="text-right">{{ getDateFormat($value->created_at) }}</strong></p>
+                                                    <p>@lang('index.po_date') : <strong class="text-right">{{ getDateFormat($value->po_date) }}</strong></p>
                                                 </div>
                                                 <div>
                                                     <a href="{{ url('productions') }}/{{ encrypt_decrypt($value->id, 'encrypt') }}/{{ encrypt_decrypt($value->product_id, 'encrypt') }}/create" class="btn bg-second-btn">Add Production</a>
@@ -103,10 +103,10 @@
                                                         data-bs-toggle="tooltip" data-bs-placement="top"
                                                         title="@lang('index.view_details')">#{{ $value->reference_no }}</a></p>
                                                     <p>Assign to : <strong class="text-right">{{ getAssignee($value->id,$value->mid) }}</strong></p>
-                                                    <p>Part Name : {{ $value->name }}</p>
                                                     <p>Part No : {{ $value->code }}</p>
+                                                    <p>Part Name : {{ $value->name }}</p>
                                                     <p>@lang('index.total') : <strong class="text-right">{{ getAmtCustom($value->total_amount) }}</strong></p>
-                                                    <p>@lang('index.quote_date') : <strong class="text-right">{{ getDateFormat($value->created_at) }}</strong></p>
+                                                    <p>@lang('index.po_date') : <strong class="text-right">{{ getDateFormat($value->po_date) }}</strong></p>
                                                     <p>@lang('index.start_date') : <strong class="text-right">{{ $value->start_date!=null ? getDateFormat($value->start_date) : '-' }}</strong></p>
                                                     <p>@lang('index.end_date') : <strong class="text-right">{{ $value->complete_date!=null ? getDateFormat($value->complete_date) : '-' }}</strong></p>
                                                 </div>
@@ -127,10 +127,10 @@
                                                         data-bs-toggle="tooltip" data-bs-placement="top"
                                                         title="@lang('index.view_details')">#{{ $value->reference_no }}</a></p>
                                                     <p>Assign to : <strong class="text-right">{{ getAssignee($value->id,$value->mid) }}</strong></p>
-                                                    <p>Part Name : {{ $value->name }}</p>
                                                     <p>Part No : {{ $value->code }}</p>
+                                                    <p>Part Name : {{ $value->name }}</p>
                                                     <p>@lang('index.total') : <strong class="text-right">{{ getAmtCustom($value->total_amount) }}</strong></p>
-                                                    <p>@lang('index.quote_date') : <strong class="text-right">{{ getDateFormat($value->created_at) }}</strong></p>
+                                                    <p>@lang('index.po_date') : <strong class="text-right">{{ getDateFormat($value->po_date) }}</strong></p>
                                                     <p>@lang('index.start_date') : <strong class="text-right">{{ $value->start_date!=null ? getDateFormat($value->start_date) : '-' }}</strong></p>
                                                     <p>@lang('index.end_date') : <strong class="text-right">{{ $value->complete_date!=null ? getDateFormat($value->complete_date) : '-' }}</strong></p>
                                                 </div>
@@ -151,10 +151,10 @@
                                                         data-bs-toggle="tooltip" data-bs-placement="top"
                                                         title="@lang('index.view_details')">#{{ $value->reference_no }}</a></p>
                                                     <p>Assign to : <strong class="text-right">{{ getAssignee($value->id,$value->mid) }}</strong></p>
-                                                    <p>Part Name : {{ $value->name }}</p>
                                                     <p>Part No : {{ $value->code }}</p>
+                                                    <p>Part Name : {{ $value->name }}</p>
                                                     <p>@lang('index.total') : <strong class="text-right">{{ getAmtCustom($value->total_amount) }}</strong></p>
-                                                    <p>@lang('index.quote_date') : <strong class="text-right">{{ getDateFormat($value->created_at) }}</strong></p>
+                                                    <p>@lang('index.po_date') : <strong class="text-right">{{ getDateFormat($value->po_date) }}</strong></p>
                                                     <p>@lang('index.start_date') : <strong class="text-right">{{ $value->start_date!=null ? getDateFormat($value->start_date) : '-' }}</strong></p>
                                                     <p>@lang('index.end_date') : <strong class="text-right">{{ $value->complete_date!=null ? getDateFormat($value->complete_date) : '-' }}</strong></p>
                                                 </div>

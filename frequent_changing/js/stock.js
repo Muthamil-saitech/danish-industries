@@ -136,11 +136,11 @@
                 console.error("Failed to fetch product details.");
             },
         });
-        let mat_cat_id = $("#mat_cat_id").val();
+        // let mat_cat_id = $("#mat_cat_id").val();
         $.ajax({
             type: "POST",
             url: hidden_base_url + "getInsertType",
-            data: { mat_cat_id: mat_cat_id,mat_id: parts[0] },
+            data: { mat_id: parts[0] },
             dataType: "json",
             success: function (data) {
                 if(data) {

@@ -298,13 +298,11 @@ class CustomerOrdersController extends Controller
         $customerOrder->total_amount = null_check(escape_output($request->get('total_subtotal')));
         $customerOrder->quotation_note = html_entity_decode($request->get('quotation_note'));
         $customerOrder->internal_note = html_entity_decode($request->get('internal_note'));
-        $customerOrder->created_at = date('Y-m-d h:i:s');
         // dd($customerOrder);
         $customerOrder->save();
         $last_id = $customerOrder->id;
         CustomerOrderDetails::where('customer_order_id', $last_id)->update(['del_status' => "Deleted"]);
         CustomerOrderInvoice::where('customer_order_id', $last_id)->update(['del_status' => "Deleted"]);
-        CustomerOrderDelivery::where('customer_order_id', $last_id)->update(['del_status' => "Deleted"]);
         $inter_state = array_values($_POST['inter_state']);
         if (isset($_POST['product']) && is_array($_POST['product'])) {
             foreach ($_POST['product'] as $row => $productId) {
@@ -330,19 +328,13 @@ class CustomerOrdersController extends Controller
                 $obj->save();
             }
         }
-        if (!empty($request->invoice_type)) {
-            foreach ($request->invoice_type as $key => $value) {
-                $inv_obj = new \App\CustomerOrderInvoice();
-                $inv_obj->customer_order_id = null_check($last_id);
-                $inv_obj->invoice_type = escape_output($request->invoice_type[$key]);
-                $inv_obj->amount = null_check($request->invoice_amount[$key]);
-                $inv_obj->invoice_date = date('Y-m-d', strtotime(escape_output($request->invoice_date[$key])));
-                $inv_obj->paid_amount = null_check($request->invoice_paid[$key]);
-                $inv_obj->due_amount = null_check($request->invoice_due[$key]);
-                // $inv_obj->order_due_amount = null_check($request->invoice_order_due[$key]);
-                $inv_obj->save();
-            }
-        }
+        $inv_obj = new \App\CustomerOrderInvoice();
+        $inv_obj->customer_order_id = null_check($customerOrder->id);
+        $inv_obj->invoice_type = 'Quotation';
+        $inv_obj->amount = null_check(escape_output($request->get('total_subtotal')));
+        $inv_obj->invoice_date = null_check(date('Y-m-d', strtotime($request->get('po_date'))));
+        $inv_obj->paid_amount = 0.00;
+        $inv_obj->due_amount = null_check(escape_output($request->get('total_subtotal')));
         return redirect('customer-orders')->with(updateMessage());
     }
 

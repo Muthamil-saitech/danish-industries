@@ -184,7 +184,7 @@ Route::group(['middleware' => ['XSS']], function () {
         Route::post('/fduplicate_store', [App\Http\Controllers\FinishedProductController::class, 'duplicate_store'])->name('finiduplicate_store');
         Route::resource('product-wastes', App\Http\Controllers\ProductWasteController::class);
 
-        Route::resource('productions', App\Http\Controllers\ProductionController::class)->only(['index', 'create', 'store', 'destroy', 'update', 'duplicate', 'duplicate_store', 'edit', 'show']);
+        Route::resource('productions', App\Http\Controllers\ProductionController::class)->only(['index', 'create', 'store', 'destroy', 'update', 'show', 'edit']);
 
         Route::get('/productions/{mid}/task-track', [App\Http\Controllers\ProductionController::class, 'task_track']);
         Route::get('/productions/{mid}/drawer-image', [App\Http\Controllers\ProductionController::class, 'drawer_image']);

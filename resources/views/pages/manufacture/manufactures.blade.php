@@ -33,8 +33,8 @@ if (isset($setting->base_color) && $setting->base_color) {
                             <th class="width_1_p">@lang('index.sn')</th>
                             <th class="width_10_p">@lang('index.ppcrc_no')</th>
                             <th class="width_10_p">@lang('index.drawer_no')</th>
-                            <th class="width_10_p">@lang('index.part_name') </th>
                             <th class="width_10_p">@lang('index.part_no') </th>
+                            <th class="width_10_p">@lang('index.part_name') </th>
                             <th class="width_10_p">@lang('index.status')</th>
                             <th class="width_10_p">@lang('index.start_date')</th>
                             <th class="width_10_p">@lang('index.delivery_date')</th>
@@ -71,8 +71,8 @@ if (isset($setting->base_color) && $setting->base_color) {
                             <td class="c_center">{{ $i++ }}</td>
                             <td>{{ safe($value->reference_no) }}</td>
                             <td>{{ safe($value->drawer_no) }}</td>
-                            <td>{{ safe($prodInfo->name) }}</td>
                             <td>{{ safe($prodInfo->code) }}</td>
+                            <td>{{ safe($prodInfo->name) }}</td>
                             <td>
                                 <span class="{{ $badgeClass }}">
                                     {{ safe(manufactureStatusShow($status)) }}
@@ -151,13 +151,12 @@ if (isset($setting->base_color) && $setting->base_color) {
                                 @if (routePermission('manufacture.delete'))
                                 <a href="#" class="delete button-danger"
                                     data-form_class="alertDelete{{ $value->id }}" type="submit"
-                                    data-bs-toggle="tooltip" data-bs-placement="top"
-                                    title="@lang('index.delete')">
+                                    data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('index.delete')">
                                     <form action="{{ route('productions.destroy', $value->id) }}"
                                         class="alertDelete{{ $value->id }}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <i class="c_padding_13 fa fa-trash tiny-icon"></i>
+                                        <i class="fa fa-trash tiny-icon"></i>
                                     </form>
                                 </a>
                                 @endif

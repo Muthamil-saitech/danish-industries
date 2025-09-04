@@ -626,6 +626,18 @@ class ProductionController extends Controller
 
         return redirect('productions')->with(updateMessage());
     }
+
+    public function destroy(Manufacture $manufacture)
+    {
+        Mrmitem::where('manufacture_id', $manufacture->id)->update(['del_status' => "Deleted"]);
+        Mnonitem::where('manufacture_id', $manufacture->id)->update(['del_status' => "Deleted"]);
+        Mstages::where('manufacture_id', $manufacture->id)->update(['del_status' => "Deleted"]);
+
+        $manufacture->del_status = "Deleted";
+        $manufacture->save();
+        
+        return redirect('productions')->with(deleteMessage());
+    }
     public function duplicate($id)
     {
         $id = encrypt_decrypt($id, 'decrypt');
@@ -777,18 +789,6 @@ class ProductionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
-    public function destroy(Manufacture $manufacture)
-    {
-        //delete previous data before add
-        Mrmitem::where('manufacture_id', $manufacture->id)->update(['del_status' => "Deleted"]);
-        Mnonitem::where('manufacture_id', $manufacture->id)->update(['del_status' => "Deleted"]);
-        Mstages::where('manufacture_id', $manufacture->id)->update(['del_status' => "Deleted"]);
-
-        $manufacture->del_status = "Deleted";
-        $manufacture->save();
-        return redirect('productions')->with(deleteMessage());
-    }
 
     /**
      * Partillay Done the specified resource from storage.

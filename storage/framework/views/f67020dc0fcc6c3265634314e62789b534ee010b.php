@@ -31,8 +31,8 @@ if (isset($setting->base_color) && $setting->base_color) {
                         <tr>
                             <th class="ir_w_1"> <?php echo app('translator')->get('index.sn'); ?></th>
                             <th class="ir_w_16"><?php echo app('translator')->get('index.ppcrc_no'); ?></th>
-                            <th class="ir_w_16"><?php echo app('translator')->get('index.part_name'); ?> </th>
                             <th class="ir_w_16"><?php echo app('translator')->get('index.part_no'); ?></th>
+                            <th class="ir_w_16"><?php echo app('translator')->get('index.part_name'); ?> </th>
                             <th class="ir_w_16"><?php echo app('translator')->get('index.po_no'); ?></th>
                             <th class="ir_w_16"><?php echo app('translator')->get('index.customer_name'); ?><br>(<?php echo app('translator')->get('index.code'); ?>)</th>
                             <th class="ir_w_16"><?php echo app('translator')->get('index.start_date'); ?></th>
@@ -47,8 +47,8 @@ if (isset($setting->base_color) && $setting->base_color) {
                         <tr>
                             <td class="ir_txt_center"><?php echo e($loop->iteration); ?></td>
                             <td><?php echo e($value->reference_no); ?></td>
-                            <td><?php echo e($prodInfo->name); ?></td>
                             <td><?php echo e($prodInfo->code); ?></td>
+                            <td><?php echo e($prodInfo->name); ?></td>
                             <td><?php echo e(getPoNo($value->customer_order_id)); ?></td>
                             <td><?php echo e(getCustomerNameById($value->customer_id).' ('.getCustomerCodeById($value->customer_id).')'); ?></td>
                             <td><?php echo e(getDateFormat($value->start_date)); ?></td>

@@ -531,9 +531,6 @@ $(document).ready(function () {
         '<td class="igst_cell" style="display:none;"><input type="text" name="igst[]" class="form-control igst_input" id="igst_' +
         i +
         '" readonly></td>' +
-        '<td><input type="text" id="delivery_date_' +
-        i +
-        '" name="delivery_date_product[]" class="form-control order_delivery_date" placeholder="Delivery Date"></td>' +
         '<td><div class="input-group"><input type="number" id="tax_amount_' +
         i +
         '" name="tax_amount[]" class="form-control tax_amount_c" placeholder="Tax Amount" readonly=""><span class="input-group-text rmcurrency">' +
@@ -544,6 +541,9 @@ $(document).ready(function () {
         '" name="sub_total[]" class="form-control sub_total_c" placeholder="Subtotal" readonly=""><span class="input-group-text rmcurrency">' +
         default_currency +
         "</span></div></td>" +
+        '<td><input type="text" id="delivery_date_' +
+        i +
+        '" name="delivery_date_product[]" class="form-control order_delivery_date" placeholder="Delivery Date"></td>' +
         '<td><span id="production_status_' +
         i +
         '">NIL</span></td>' +

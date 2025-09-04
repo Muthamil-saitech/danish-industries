@@ -228,7 +228,7 @@ class CustomerPaymentController extends Controller
         $company = AdminSettings::orderBy('name_company_name', 'ASC')->where('del_status', "Live")->get();
         return view('pages.customer_payment.print_invoice', compact('title', 'obj', 'customer_inv', 'customer_due_entries', 'company'));
     }
-    public function updatePayType(Request $request) {
+    /* public function updatePayType(Request $request) {
         $payment_type = $request->payment_type;
         $order_id = $request->order_id;
         $order_details = CustomerOrder::with('orderInvoice')->where('id',$order_id)->where('del_status',"Live")->orderBy('id','DESC')->first();
@@ -240,7 +240,7 @@ class CustomerPaymentController extends Controller
         } else {
             return response()->json(['status' => false, 'message' => 'QC not found.']);
         }
-    }
+    } */
     public function customerDueEntry(Request $request) {
         // dd($request->all());
         $order_id = $request->order_id;
@@ -271,10 +271,11 @@ class CustomerPaymentController extends Controller
             $customer_due->payment_proof = $proofName;
         }
         $customer_due->user_id = auth()->user()->id;
-        $customer_due->save();
-        $order_invoice = CustomerOrderInvoice::where('customer_order_id',$order_id)->first();
+        // $customer_due->save();
+        $order_invoice = CustomerOrderInvoice::where('customer_order_id',$order_id)->where('del_status','Live')->first();
+        // dd($order_invoice);
         $order_invoice->paid_amount = $order_invoice->paid_amount + $pay_amount;
-        $order_invoice->due_amount = $balance_amount - $pay_amount;
+        $order_invoice->due_amount = $order_invoice->amount - $order_invoice->paid_amount;
         $order_invoice->save();
         return redirect('customer-payment')->with(saveMessage());
     }

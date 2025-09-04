@@ -33,8 +33,8 @@ if (isset($setting->base_color) && $setting->base_color) {
                             <th class="width_1_p"><?php echo app('translator')->get('index.sn'); ?></th>
                             <th class="width_10_p"><?php echo app('translator')->get('index.ppcrc_no'); ?></th>
                             <th class="width_10_p"><?php echo app('translator')->get('index.drawer_no'); ?></th>
-                            <th class="width_10_p"><?php echo app('translator')->get('index.part_name'); ?> </th>
                             <th class="width_10_p"><?php echo app('translator')->get('index.part_no'); ?> </th>
+                            <th class="width_10_p"><?php echo app('translator')->get('index.part_name'); ?> </th>
                             <th class="width_10_p"><?php echo app('translator')->get('index.status'); ?></th>
                             <th class="width_10_p"><?php echo app('translator')->get('index.start_date'); ?></th>
                             <th class="width_10_p"><?php echo app('translator')->get('index.delivery_date'); ?></th>
@@ -70,8 +70,8 @@ if (isset($setting->base_color) && $setting->base_color) {
                             <td class="c_center"><?php echo e($i++); ?></td>
                             <td><?php echo e(safe($value->reference_no)); ?></td>
                             <td><?php echo e(safe($value->drawer_no)); ?></td>
-                            <td><?php echo e(safe($prodInfo->name)); ?></td>
                             <td><?php echo e(safe($prodInfo->code)); ?></td>
+                            <td><?php echo e(safe($prodInfo->name)); ?></td>
                             <td>
                                 <span class="<?php echo e($badgeClass); ?>">
                                     <?php echo e(safe(manufactureStatusShow($status))); ?>
@@ -132,13 +132,12 @@ if (isset($setting->base_color) && $setting->base_color) {
                                 <?php if(routePermission('manufacture.delete')): ?>
                                 <a href="#" class="delete button-danger"
                                     data-form_class="alertDelete<?php echo e($value->id); ?>" type="submit"
-                                    data-bs-toggle="tooltip" data-bs-placement="top"
-                                    title="<?php echo app('translator')->get('index.delete'); ?>">
+                                    data-bs-toggle="tooltip" data-bs-placement="top" title="<?php echo app('translator')->get('index.delete'); ?>">
                                     <form action="<?php echo e(route('productions.destroy', $value->id)); ?>"
                                         class="alertDelete<?php echo e($value->id); ?>" method="post">
                                         <?php echo csrf_field(); ?>
                                         <?php echo method_field('DELETE'); ?>
-                                        <i class="c_padding_13 fa fa-trash tiny-icon"></i>
+                                        <i class="fa fa-trash tiny-icon"></i>
                                     </form>
                                 </a>
                                 <?php endif; ?>

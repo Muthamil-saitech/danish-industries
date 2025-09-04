@@ -17,8 +17,8 @@
                     <input type="hidden" class="datatable_name" data-title="{{ isset($title) && $title ? $title : '' }}"
                         data-id_name="datatable">
                 </div>
-                <div class="col-md-offset-4 col-md-2">
-
+                <div class="col-md-6 text-end">
+                    <h5 class="mb-0">Total Deposits: {{ isset($obj) ? count($obj) : '0' }} </h5>
                 </div>
             </div>
         </section>

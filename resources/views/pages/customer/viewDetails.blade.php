@@ -88,8 +88,12 @@
                                             {{ $obj->ecc_no }}
                                         </p>
                                         <p class="pb-7 rgb-71">
-                                            <span class=""><strong>@lang('index.area'):</strong></span>
+                                            <span class=""><strong>@lang('index.landmark'):</strong></span>
                                             {{ $obj->area }}
+                                        </p>
+                                        <p class="pb-7 rgb-71">
+                                            <span class=""><strong>@lang('index.note'):</strong></span>
+                                            {{ $obj->note }}
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.created_on'):</strong></span>

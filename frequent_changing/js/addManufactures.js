@@ -1039,6 +1039,8 @@ $(document).ready(function () {
       $("html, body").animate({ scrollTop: 0 }, "slow");
       return false;
     }
+    $(".submit_btn").prop("disabled", true).text("Submitting...");
+    this.submit();
   });
 
   function showErrorMessage(id, message) {

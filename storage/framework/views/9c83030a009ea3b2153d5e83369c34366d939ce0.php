@@ -49,27 +49,27 @@ if (isset($setting->base_color) && $setting->base_color) {
                             <td class="ir_txt_center"><?php echo e($i++); ?></td>
                             <td><?php echo e($value->name); ?></td>
                             <td><span title="<?php echo e($value->description); ?>"><?php echo e(substr_text($value->description,50)); ?></span></td>
-                            <?php if($value->id!=1): ?>
                             <td class="text-start">
-                                <?php if(routePermission('rmcategory.edit')): ?>
-                                <a href="<?php echo e(url('rmcategories')); ?>/<?php echo e(encrypt_decrypt($value->id, 'encrypt')); ?>/edit"
-                                    class="button-success" data-bs-toggle="tooltip" data-bs-placement="top"
-                                    title="<?php echo app('translator')->get('index.edit'); ?>"><i class="fa fa-edit tiny-icon"></i></a>
-                                <?php endif; ?>
-                                <?php if(routePermission('rmcategory.delete') && !$value->used_in_material): ?>
-                                <a href="#" class="delete button-danger" data-bs-toggle="tooltip" data-bs-placement="top"
-                                    title="<?php echo app('translator')->get('index.delete'); ?>"
-                                    data-form_class="alertDelete<?php echo e($value->id); ?>" type="submit">
-                                    <form action="<?php echo e(route('rmcategories.destroy', $value->id)); ?>"
-                                        class="alertDelete<?php echo e($value->id); ?>" method="post">
-                                        <?php echo csrf_field(); ?>
-                                        <?php echo method_field('DELETE'); ?>
-                                        <i class="fa fa-trash tiny-icon"></i>
-                                    </form>
-                                </a>
+                                <?php if($value->id!=1): ?>
+                                    <?php if(routePermission('rmcategory.edit')): ?>
+                                    <a href="<?php echo e(url('rmcategories')); ?>/<?php echo e(encrypt_decrypt($value->id, 'encrypt')); ?>/edit"
+                                        class="button-success" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="<?php echo app('translator')->get('index.edit'); ?>"><i class="fa fa-edit tiny-icon"></i></a>
+                                    <?php endif; ?>
+                                    <?php if(routePermission('rmcategory.delete') && !$value->used_in_material): ?>
+                                    <a href="#" class="delete button-danger" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="<?php echo app('translator')->get('index.delete'); ?>"
+                                        data-form_class="alertDelete<?php echo e($value->id); ?>" type="submit">
+                                        <form action="<?php echo e(route('rmcategories.destroy', $value->id)); ?>"
+                                            class="alertDelete<?php echo e($value->id); ?>" method="post">
+                                            <?php echo csrf_field(); ?>
+                                            <?php echo method_field('DELETE'); ?>
+                                            <i class="fa fa-trash tiny-icon"></i>
+                                        </form>
+                                    </a>
+                                    <?php endif; ?>
                                 <?php endif; ?>
                             </td>
-                            <?php endif; ?>
                         </tr>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </tbody>

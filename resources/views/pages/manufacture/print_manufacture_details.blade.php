@@ -65,13 +65,13 @@ $whiteLabelInfo = App\WhiteLabelSettings::first();
                 <td class="w-50 text-right">
                     @php $prodInfo = getFinishedProductInfo($obj->product_id); @endphp
                     <p class="pb-7">
-                        <span class="">@lang('index.part_name'):</span>
-                        {{ $prodInfo->name }}
-                    </p>
-                    <p class="pb-7">
                         <span class="">@lang('index.part_no'):</span>
                         {{ $prodInfo->code }}
                     </p>
+                    <p class="pb-7">
+                        <span class="">@lang('index.part_name'):</span>
+                        {{ $prodInfo->name }}
+                    </p>                    
                     <p class="pb-7 rgb-71">
                         <span class="">@lang('index.prod_quantity'):</span>
                         {{ $obj->product_quantity }}

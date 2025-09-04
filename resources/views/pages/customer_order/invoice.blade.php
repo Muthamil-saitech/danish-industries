@@ -65,21 +65,18 @@ $baseURL = getBaseURL();
             <thead class="b-r-3 bg-color-000000">
                 <tr>
                     <th class="w-5 text-start">@lang('index.sn')</th>
-                    @if($obj->order_type=='Work Order')
-                    <th class="w-20 text-start">@lang('index.delivery_date')</th>
-                    @else
-                    <th class="w-20 text-start">@lang('index.quote_date')</th>
-                    @endif
-                    <th class="w-25 text-start">Part Name<br>(Part No)</th>
-                    <th class="w-25 text-start">@lang('index.raw_material')<br>(@lang('index.code'))</th>
-                    {{-- <th class="w-15 text-start">Heat No</th> --}}
-                    <th class="w-15 text-start">@lang('index.raw_quantity')</th>
-                    <th class="w-15 text-start">@lang('index.prod_quantity')</th>
-                    <th class="w-15 text-start">@lang('index.unit_price')</th>
-                    {{-- <th class="w-15 text-start">@lang('index.discount')</th> --}}
-                    {{-- <th class="w-15 text-start">@lang('index.subtotal')</th> --}}
-                    <th class="w-15 text-start">@lang('index.tax')</th>
-                    <th class="w-15 text-start">@lang('index.total')</th>
+                    <th class="w-5 text-start">@lang('index.po_date')</th>
+                    <th class="w-15 text-start">@lang('index.part_no')</th>
+                    <th class="w-20 text-start">@lang('index.part_name')</th>
+                    <th class="w-30 text-start">@lang('index.raw_material_name')<br>(@lang('index.code'))</th>
+                    {{-- <th class="w-25 text-start">Heat No</th> --}}
+                    <th class="w-5 text-center">@lang('index.raw_quantity')</th>
+                    <th class="w-5 text-center">@lang('index.prod_quantity')</th>
+                    <th class="w-15 text-center">@lang('index.unit_price')</th>
+                    {{-- <th class="w-15 text-center">@lang('index.discount')</th> --}}
+                    {{-- <th class="w-15 text-center">@lang('index.subtotal')</th> --}}
+                    <th class="w-15 text-center">@lang('index.tax')</th>
+                    <th class="w-15 text-center">@lang('index.total')</th>
                 </tr>
             </thead>
             <tbody>
@@ -94,10 +91,10 @@ $baseURL = getBaseURL();
                             <td class="width_1_p">
                                 <p class="set_sn">{{ $i++ }}</p>
                             </td>
-                            <td class="text-start">{{ $value->delivery_date != null ? getDateFormat($value->delivery_date): getDateFormat($obj->created_at) }}
+                            <td class="text-start">{{ $value->po_date != null ? getDateFormat($value->po_date): getDateFormat($obj->created_at) }}
                             </td>
-                            <td class="text-start">{{ $productInfo->name }}<br>({{ $productInfo->code }})
-                            </td>
+                            <td class="text-start">{{ $productInfo->code }}</td>
+                            <td class="text-start">{{ $productInfo->name }}</td>
                             <td class="text-start">{{ getRMName($value->raw_material_id) }}</td>
                             {{-- <td class="text-start">{{ getheatNo($value->raw_material_id) }}</td> --}}
                             <td class="text-start">{{ $value->raw_qty }}</td>

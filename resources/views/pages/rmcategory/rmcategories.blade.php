@@ -49,27 +49,27 @@ if (isset($setting->base_color) && $setting->base_color) {
                             <td class="ir_txt_center">{{ $i++ }}</td>
                             <td>{{ $value->name }}</td>
                             <td><span title="{{ $value->description }}">{{ substr_text($value->description,50) }}</span></td>
-                            @if($value->id!=1)
                             <td class="text-start">
-                                @if (routePermission('rmcategory.edit'))
-                                <a href="{{ url('rmcategories') }}/{{ encrypt_decrypt($value->id, 'encrypt') }}/edit"
-                                    class="button-success" data-bs-toggle="tooltip" data-bs-placement="top"
-                                    title="@lang('index.edit')"><i class="fa fa-edit tiny-icon"></i></a>
-                                @endif
-                                @if (routePermission('rmcategory.delete') && !$value->used_in_material)
-                                <a href="#" class="delete button-danger" data-bs-toggle="tooltip" data-bs-placement="top"
-                                    title="@lang('index.delete')"
-                                    data-form_class="alertDelete{{ $value->id }}" type="submit">
-                                    <form action="{{ route('rmcategories.destroy', $value->id) }}"
-                                        class="alertDelete{{ $value->id }}" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <i class="fa fa-trash tiny-icon"></i>
-                                    </form>
-                                </a>
+                                @if($value->id!=1)
+                                    @if (routePermission('rmcategory.edit'))
+                                    <a href="{{ url('rmcategories') }}/{{ encrypt_decrypt($value->id, 'encrypt') }}/edit"
+                                        class="button-success" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="@lang('index.edit')"><i class="fa fa-edit tiny-icon"></i></a>
+                                    @endif
+                                    @if (routePermission('rmcategory.delete') && !$value->used_in_material)
+                                    <a href="#" class="delete button-danger" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="@lang('index.delete')"
+                                        data-form_class="alertDelete{{ $value->id }}" type="submit">
+                                        <form action="{{ route('rmcategories.destroy', $value->id) }}"
+                                            class="alertDelete{{ $value->id }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <i class="fa fa-trash tiny-icon"></i>
+                                        </form>
+                                    </a>
+                                    @endif
                                 @endif
                             </td>
-                            @endif
                         </tr>
                         @endforeach
                     </tbody>

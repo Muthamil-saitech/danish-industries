@@ -16,7 +16,8 @@ if (isset($setting->base_color) && $setting->base_color) {
                 <h2 class="top-left-header">{{ isset($title) && $title ? $title : '' }}</h2>
                 <input type="hidden" class="datatable_name" data-filter="yes" data-title="{{ isset($title) && $title ? $title : '' }}" data-id_name="datatable">
             </div>
-            <div class="col-md-offset-4 col-md-2">
+            <div class="col-md-6 text-end">
+                <h5 class="mb-0">Total Supplier Payments: {{ isset($obj) ? count($obj) : '0' }} </h5>
             </div>
         </div>
     </section>
@@ -30,12 +31,12 @@ if (isset($setting->base_color) && $setting->base_color) {
                             <th class="width_1_p">@lang('index.sn')</th>
                             <th class="width_1_p">@lang('index.purchase_no')</th>
                             <th class="width_10_p">@lang('index.purchase_date')</th>
-                            <th class="width_10_p">@lang('index.due_days')</th>
                             <th class="width_10_p">@lang('index.supplier_name')<br>(Code)</th>
                             <th class="width_10_p">@lang('index.total_amount')</th>
                             <th class="width_10_p">@lang('index.paid_amount')</th>
                             <th class="width_10_p">@lang('index.due_amount')</th>
                             {{-- <th class="width_10_p">@lang('index.status')</th> --}}
+                            <th class="width_10_p">@lang('index.due_days')</th>
                             <th class="width_10_p">@lang('index.payment_status')</th>
                             <th class="width_3_p ir_txt_center">@lang('index.actions')</th>
                         </tr>
@@ -51,16 +52,16 @@ if (isset($setting->base_color) && $setting->base_color) {
                             <td>{{ $i++ }}</td>
                             <td>{{ $value->reference_no }}</td>
                             <td>{{ getDateFormat($value->date) }}</td>
+                            <td>{{ getSupplierName($value->supplier) }}</td>
+                            <td>{{ getAmtCustom($value->subtotal) }}</td>
+                            <td>{{ getAmtCustom($value->paid) }}</td>
+                            <td>{{ getAmtCustom($value->due) }}</td>
                             @php
                             $currentDate = \Carbon\Carbon::now();
                             $purchaseDate = \Carbon\Carbon::parse($value->date);
                             $due_days = $purchaseDate->diffInDays($currentDate);
                             @endphp
                             <td>{{ $due_days }} {{ $due_days <= 1 ? 'day' : 'days' }}</td>
-                            <td>{{ getSupplierName($value->supplier) }}</td>
-                            <td>{{ getAmtCustom($value->subtotal) }}</td>
-                            <td>{{ getAmtCustom($value->paid) }}</td>
-                            <td>{{ getAmtCustom($value->due) }}</td>
                             @php
                             $payments = $value->supplierPayments;
                             $totalPaid = $payments->sum('pay_amount');

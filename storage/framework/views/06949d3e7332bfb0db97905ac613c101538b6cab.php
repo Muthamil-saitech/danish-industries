@@ -16,7 +16,8 @@ if (isset($setting->base_color) && $setting->base_color) {
                 <h2 class="top-left-header"><?php echo e(isset($title) && $title ? $title : ''); ?></h2>
                 <input type="hidden" class="datatable_name" data-filter="yes" data-title="<?php echo e(isset($title) && $title ? $title : ''); ?>" data-id_name="datatable">
             </div>
-            <div class="col-md-offset-4 col-md-2">
+            <div class="col-md-6 text-end">
+                <h5 class="mb-0">Total Supplier Payments: <?php echo e(isset($obj) ? count($obj) : '0'); ?> </h5>
             </div>
         </div>
     </section>
@@ -30,12 +31,12 @@ if (isset($setting->base_color) && $setting->base_color) {
                             <th class="width_1_p"><?php echo app('translator')->get('index.sn'); ?></th>
                             <th class="width_1_p"><?php echo app('translator')->get('index.purchase_no'); ?></th>
                             <th class="width_10_p"><?php echo app('translator')->get('index.purchase_date'); ?></th>
-                            <th class="width_10_p"><?php echo app('translator')->get('index.due_days'); ?></th>
                             <th class="width_10_p"><?php echo app('translator')->get('index.supplier_name'); ?><br>(Code)</th>
                             <th class="width_10_p"><?php echo app('translator')->get('index.total_amount'); ?></th>
                             <th class="width_10_p"><?php echo app('translator')->get('index.paid_amount'); ?></th>
                             <th class="width_10_p"><?php echo app('translator')->get('index.due_amount'); ?></th>
                             
+                            <th class="width_10_p"><?php echo app('translator')->get('index.due_days'); ?></th>
                             <th class="width_10_p"><?php echo app('translator')->get('index.payment_status'); ?></th>
                             <th class="width_3_p ir_txt_center"><?php echo app('translator')->get('index.actions'); ?></th>
                         </tr>
@@ -51,16 +52,16 @@ if (isset($setting->base_color) && $setting->base_color) {
                             <td><?php echo e($i++); ?></td>
                             <td><?php echo e($value->reference_no); ?></td>
                             <td><?php echo e(getDateFormat($value->date)); ?></td>
+                            <td><?php echo e(getSupplierName($value->supplier)); ?></td>
+                            <td><?php echo e(getAmtCustom($value->subtotal)); ?></td>
+                            <td><?php echo e(getAmtCustom($value->paid)); ?></td>
+                            <td><?php echo e(getAmtCustom($value->due)); ?></td>
                             <?php
                             $currentDate = \Carbon\Carbon::now();
                             $purchaseDate = \Carbon\Carbon::parse($value->date);
                             $due_days = $purchaseDate->diffInDays($currentDate);
                             ?>
                             <td><?php echo e($due_days); ?> <?php echo e($due_days <= 1 ? 'day' : 'days'); ?></td>
-                            <td><?php echo e(getSupplierName($value->supplier)); ?></td>
-                            <td><?php echo e(getAmtCustom($value->subtotal)); ?></td>
-                            <td><?php echo e(getAmtCustom($value->paid)); ?></td>
-                            <td><?php echo e(getAmtCustom($value->due)); ?></td>
                             <?php
                             $payments = $value->supplierPayments;
                             $totalPaid = $payments->sum('pay_amount');

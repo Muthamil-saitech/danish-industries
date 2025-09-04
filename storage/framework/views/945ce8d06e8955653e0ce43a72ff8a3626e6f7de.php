@@ -48,7 +48,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                                 <th class="width_10_p"><?php echo app('translator')->get('index.stock'); ?></th>
                                 <th class="width_10_p"><?php echo app('translator')->get('index.alter_level'); ?></th>
                                 <th class="width_10_p"><?php echo app('translator')->get('index.floating_stock'); ?></th>
-                                <th class="width_10_p"><?php echo app('translator')->get('index.entered_by'); ?></th>
+                                <th class="width_10_p"><?php echo app('translator')->get('index.created_by'); ?></th>
                                 <th class="width_1_p"><?php echo app('translator')->get('index.actions'); ?></th>
                             </tr>
                         </thead>
@@ -123,7 +123,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                                 <th class="width_10_p"><?php echo app('translator')->get('index.stock'); ?></th>
                                 <th class="width_10_p"><?php echo app('translator')->get('index.alter_level'); ?></th>
                                 <th class="width_10_p"><?php echo app('translator')->get('index.floating_stock'); ?></th>
-                                <th class="width_10_p"><?php echo app('translator')->get('index.entered_by'); ?></th>
+                                <th class="width_10_p"><?php echo app('translator')->get('index.created_by'); ?></th>
                                 <th class="width_1_p"><?php echo app('translator')->get('index.actions'); ?></th>
                             </tr>
                         </thead>
@@ -383,19 +383,7 @@ unset($__errorArgs, $__bag); ?>" name="mat_doc_no" id="mat_doc_no" placeholder="
                                     <p class="text-danger mat_doc_no_err"></p>
                                 </div>
                             </div>
-                            <div class="col-sm-12 mb-2 col-md-6">
-                                <div class="form-group">
-                                    <label><?php echo app('translator')->get('index.dc_inw_price'); ?> </label>
-                                    <input type="text" class="form-control <?php $__errorArgs = ['dc_inward_price'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>" name="dc_inward_price" id="dc_inward_price" value="<?php echo e(isset($obj->dc_inward_price) && $obj->dc_inward_price ? $obj->dc_inward_price : old('dc_inward_price')); ?>" placeholder="<?php echo app('translator')->get('index.dc_inw_price'); ?>">
-                                </div>
-                            </div>
+                            
                             <div class="col-sm-12 mb-2 col-md-6">
                                 <div class="form-group">
                                     <label><?php echo app('translator')->get('index.mat_price'); ?> </label>
@@ -620,7 +608,7 @@ unset($__errorArgs, $__bag); ?>" name="hsn_no" id="hsn_no" value="<?php echo e(i
         let heat_no = $("#heat_no").val();
         let dc_date = $("#dc_date").val();
         let mat_doc_no = $("#mat_doc_no").val();
-        let dc_inward_price = $("#dc_inward_price").val();
+        // let dc_inward_price = $("#dc_inward_price").val();
         let material_price = $("#material_price").val();
         let hsn_no = $("#hsn_no").val();
         let reference_no = "";
@@ -700,7 +688,7 @@ unset($__errorArgs, $__bag); ?>" name="hsn_no" id="hsn_no" value="<?php echo e(i
                 heat_no: heat_no,
                 dc_date: dc_date,
                 mat_doc_no: mat_doc_no,
-                dc_inward_price: dc_inward_price,
+                // dc_inward_price: dc_inward_price,
                 material_price: material_price,
                 hsn_no: hsn_no
             },

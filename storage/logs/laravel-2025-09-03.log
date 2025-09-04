@@ -3416,3 +3416,7 @@
 #59 C:\\xampp\\htdocs\\danish-industries\\index.php(64): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #60 {main}
 "} 
+[2025-09-03 18:23:48] local.ERROR: Cannot redeclare getBaseURL() (previously declared in C:\xampp\htdocs\danish-industries\app\helpers.php:59) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getBaseURL() (previously declared in C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59) at C:\\xampp\\htdocs\\danish-industries\\app\\helpers.php:59)
+[stacktrace]
+#0 {main}
+"} 
