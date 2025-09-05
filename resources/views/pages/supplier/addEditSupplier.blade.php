@@ -1,7 +1,11 @@
 @extends('layouts.app')
 @section('script_top')
+    <?php
+    $setting = getSettingsInfo();
+    $tax_setting = getTaxInfo();
+    $baseURL = getBaseURL();
+    ?>
 @endsection
-
 @section('content')
     <section class="main-content-wrapper">
         <section class="content-header">
@@ -159,6 +163,106 @@
                             </div>
                         </div>                        
                     </div>
+                    <hr>
+                    <div class="add_scp">
+                        @if(isset($supplier_contact_info) && $supplier_contact_info->count() > 0)
+                            {{-- Edit case: loop through existing contacts --}}
+                            @foreach($supplier_contact_info as $key => $contact_info)
+                                <div class="row">
+                                    <div class="col-md-4 mb-3">
+                                        <div class="form-group">
+                                            <label>Contact Person Name </label>
+                                            <input type="hidden" name="scp_id[]" value="{{ $contact_info->id ?? '' }}">
+                                            <input type="text" name="scp_name[]" class="form-control" placeholder="Contact Person Name" value="{{ $contact_info->scp_name ?? old('scp_name') }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="form-group">
+                                            <label>Department </label>
+                                            <input type="text" name="scp_department[]" class="form-control" placeholder="Department" value="{{ $contact_info->scp_department ?? old('scp_department') }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="form-group">
+                                            <label>Designation </label>
+                                            <input type="text" name="scp_designation[]" class="form-control" placeholder="Designation" value="{{ $contact_info->scp_designation ?? old('scp_designation') }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="form-group">
+                                            <label>Phone Number </label>
+                                            <input type="text" name="scp_phone[]" class="form-control" placeholder="Phone Number" value="{{ $contact_info->scp_phone ?? old('scp_phone') }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="form-group">
+                                            <label>Email </label>
+                                            <input type="text" name="scp_email[]" class="form-control" placeholder="Email" value="{{ $contact_info->scp_email ?? old('scp_email') }}">
+                                        </div>
+                                    </div>
+                                    @if($key==0)
+                                        <div class="col-md-4 mb-3 mt-1">
+                                            <button id="supContactPerson" class="btn bg-blue-btn mt-4" type="button">@lang('index.add_more')</button>
+                                        </div>
+                                    @else
+                                        @if(isset($supplier_contact_info) && $supplier_contact_info->count() > 0)
+                                        <div class="col-md-4 mt-4">
+                                            <a href="#" class="sup_c_del button-danger"
+                                                data-contact_id="{{ $contact_info->id }}" type="submit"
+                                                data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('index.delete')">
+                                                <i class="fa fa-trash tiny-icon"></i>
+                                            </a>
+                                        </div>
+                                        @else
+                                            <div class="col-md-4 mt-4">
+                                                <button type="button" class="btn btn-xs del_row dlt_button">
+                                                    <iconify-icon icon="solar:trash-bin-minimalistic-broken"></iconify-icon>
+                                                </button>
+                                            </div>
+                                        @endif
+                                    @endif
+                                </div>
+                            @endforeach
+                        @else
+                            {{-- Add case: show one empty row by default --}}
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Contact Person Name </label>
+                                        <input type="hidden" name="scp_id[]" value="">
+                                        <input type="text" name="scp_name[]" class="form-control" placeholder="Contact Person Name" value="{{ old('scp_name.0') }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Department </label>
+                                        <input type="text" name="scp_department[]" class="form-control" placeholder="Department" value="{{ old('scp_department.0') }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Designation </label>
+                                        <input type="text" name="scp_designation[]" class="form-control" placeholder="Designation" value="{{ old('scp_designation.0') }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Phone Number </label>
+                                        <input type="text" name="scp_phone[]" class="form-control" placeholder="Phone Number" value="{{ old('scp_phone.0') }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Email </label>
+                                        <input type="text" name="scp_email[]" class="form-control" placeholder="Email" value="{{ old('scp_email.0') }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3 mt-1">
+                                    <button id="supContactPerson" class="btn bg-blue-btn mt-4" type="button">@lang('index.add_more')</button>
+                                </div>
+                            </div>
+                        @endif
+                    </div>
                     <div class="row mt-2">
                         <div class="col-sm-12 col-md-6 mb-2 d-flex gap-3">
                             <button type="submit" name="submit" value="submit" class="btn bg-blue-btn"><iconify-icon
@@ -173,6 +277,102 @@
         </div>
     </section>
 @endsection
-
 @section('script_bottom')
+@endsection
+@section('script')
+    <script type="text/javascript" src="{!!  $baseURL . 'assets/bower_components/jquery-ui/jquery-ui.min.js'  !!}"></script>
+    <script>
+        let base_url = $('#base_url').val();
+        let hidden_base_url = $("#hidden_base_url").val();
+        let hidden_alert = $(".hidden_alert").val();
+        let hidden_ok = $(".hidden_ok").val();
+        let hidden_cancel = $(".hidden_cancel").val();
+        let thischaracterisnotallowed = $(".thischaracterisnotallowed").val();
+        let are_you_sure = $(".are_you_sure").val();
+        let i = 0;
+        $(document).on("click", "#supContactPerson", function (e) {
+            ++i;
+            let newRow = `
+                <div class="row mt-3" id="cp_row_${i}">
+                    <div class="col-md-4 mb-3">
+                        <div class="form-group">
+                            <label>Contact Person Name</label>
+                            <input type="text" name="scp_name[]" class="form-control" placeholder="Contact Person Name">
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="form-group">
+                            <label>Department</label>
+                            <input type="text" name="scp_department[]" class="form-control" placeholder="Department">
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="form-group">
+                            <label>Designation</label>
+                            <input type="text" name="scp_designation[]" class="form-control" placeholder="Designation">
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="text" name="scp_phone[]" class="form-control" placeholder="Phone Number">
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="text" name="scp_email[]" class="form-control" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3 mt-4">
+                        <button type="button" class="btn btn-xs del_row dlt_button"><iconify-icon icon="solar:trash-bin-minimalistic-broken"></iconify-icon></button>
+                    </div>
+                </div>
+            `;
+
+            $(".add_scp").append(newRow);
+        });
+        $(document).on("click", ".del_row", function () {
+            $(this).closest(".row").remove();
+        });
+        $('body').on('click', '.sup_c_del', function (e) {
+            e.preventDefault();
+            let contact_id = $(this).attr('data-contact_id');
+            // console.log("contact_id",contact_id);
+            swal({
+                title: hidden_alert+"!",
+                text: are_you_sure,
+                cancelButtonText:hidden_cancel,
+                confirmButtonText:hidden_ok,
+                confirmButtonColor: '#3c8dbc',
+                showCancelButton: true
+            }, function(isConfirm) {
+                if (isConfirm) {
+                    $.ajax({
+                        type: "POST",
+                        url: hidden_base_url + "contactDelete",
+                        data: {
+                            contact_id: contact_id
+                        },
+                        dataType: "json",
+                        success: function(data) {
+                            let hidden_alert = data.status ? "Success" : "Error";
+                            swal({
+                                title: hidden_alert + "!",
+                                text: data.message,
+                                cancelButtonText: hidden_cancel,
+                                confirmButtonText: hidden_ok,
+                                confirmButtonColor: "#3c8dbc",
+                            }, function() {
+                                location.reload();
+                            });
+                        },
+                        error: function() {
+                            console.error("Failed to fetch product details.");
+                        },
+                    });
+                }
+            });
+        });
+    </script>
 @endsection

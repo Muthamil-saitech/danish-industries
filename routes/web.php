@@ -156,7 +156,9 @@ Route::group(['middleware' => ['XSS']], function () {
 
         /*resource routing*/
         Route::resource('accounts', App\Http\Controllers\AccountController::class);
-        Route::resource('suppliers', App\Http\Controllers\SupplierController::class)->only(['index', 'create', 'store', 'destroy', 'update', 'show', 'edit']);
+        Route::resource('suppliers', App\Http\Controllers\SupplierController::class)->only(['index', 'create', 'store', 'destroy', 'update', 'show', 'edit',]);
+        Route::post('/contactDelete', [App\Http\Controllers\SupplierController::class, 'contactDelete'])->name('contactDelete');
+        Route::post('/customerContactDelete', [App\Http\Controllers\CustomerController::class, 'customerContactDelete'])->name('customerContactDelete');
         Route::resource('customers', App\Http\Controllers\CustomerController::class)->only(['index', 'create', 'store', 'destroy', 'update', 'show', 'edit']);
         Route::resource('material_stocks', App\Http\Controllers\MaterialStockController::class);
         Route::get('material_stocks/{id}/stock_adjustments', [App\Http\Controllers\MaterialStockController::class, 'stock_adjustments']);

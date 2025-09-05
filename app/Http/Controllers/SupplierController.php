@@ -19,6 +19,7 @@ namespace App\Http\Controllers;
 
 use App\RawMaterialPurchase;
 use App\Supplier;
+use App\SupplierContactInfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -130,6 +131,19 @@ class SupplierController extends Controller
         $obj->company_id = null_check(auth()->user()->company_id);
         $obj->credit_limit = null_check(escape_output($request->get('credit_limit')));
         $obj->save();
+
+        if (isset($_POST['scp_name']) && is_array($_POST['scp_name']) && !empty($_POST['scp_name'])) {
+            foreach ($_POST['scp_name'] as $row => $value) {
+                $scp_info = new \App\SupplierContactInfo();
+                $scp_info->supplier_id = $obj->id;
+                $scp_info->scp_name = escape_output($_POST['scp_name'][$row] ?? null);
+                $scp_info->scp_department = escape_output($_POST['scp_department'][$row] ?? null);
+                $scp_info->scp_designation = escape_output($_POST['scp_designation'][$row] ?? null);
+                $scp_info->scp_phone = escape_output($_POST['scp_phone'][$row] ?? null);
+                $scp_info->scp_email = escape_output($_POST['scp_email'][$row] ?? null);
+                $scp_info->save();
+            }
+        }
         return redirect('suppliers')->with(saveMessage());
     }
 
@@ -142,9 +156,10 @@ class SupplierController extends Controller
     public function edit($id)
     {
         $supplier = Supplier::find(encrypt_decrypt($id, 'decrypt'));
+        $supplier_contact_info = SupplierContactInfo::where('supplier_id',$supplier->id)->where('del_status','Live')->get();
         $title =  __('index.edit_supplier');
         $obj = $supplier;
-        return view('pages.supplier.addEditSupplier', compact('title', 'obj'));
+        return view('pages.supplier.addEditSupplier', compact('title', 'obj', 'supplier_contact_info'));
     }
 
     /**
@@ -213,8 +228,20 @@ class SupplierController extends Controller
         $supplier->note = html_entity_decode($request->get('note'));
         $supplier->added_by = auth()->user()->id;
         $supplier->credit_limit = null_check(escape_output($request->get('credit_limit')));
-
         $supplier->save();
+        SupplierContactInfo::where('supplier_id', $supplier->id)->update(['del_status' => "Deleted"]);
+        if ($request->has('scp_name') && is_array($request->scp_name)) {
+            foreach ($request->scp_name as $row => $value) {
+                $scp_info = new \App\SupplierContactInfo();
+                $scp_info->supplier_id = $supplier->id;
+                $scp_info->scp_name = escape_output($request->scp_name[$row] ?? null);
+                $scp_info->scp_department = escape_output($request->scp_department[$row] ?? null);
+                $scp_info->scp_designation = escape_output($request->scp_designation[$row] ?? null);
+                $scp_info->scp_phone = escape_output($request->scp_phone[$row] ?? null);
+                $scp_info->scp_email = escape_output($request->scp_email[$row] ?? null);
+                $scp_info->save();
+            }
+        }
         return redirect('suppliers')->with(updateMessage());
     }
 
@@ -234,8 +261,14 @@ class SupplierController extends Controller
      */
     public function destroy(Supplier $supplier)
     {
+        SupplierContactInfo::where('supplier_id',$supplier->id)->update(['del_status'=>'Deleted']);
         $supplier->del_status = "Deleted";
         $supplier->save();
         return redirect('suppliers')->with(deleteMessage());
+    }
+    public function contactDelete(Request $request)
+    {
+        SupplierContactInfo::where('id',$request->contact_id)->update(['del_status'=>'Deleted']);
+        return response()->json(['status' => true, 'message' => 'Deleted Successfully.']);
     }
 }

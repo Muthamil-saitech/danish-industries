@@ -13,11 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_inspection_report_files', function (Blueprint $table) {
+        Schema::create('tbl_supplier_contact_info', function (Blueprint $table) {
             $table->id();
-            $table->integer('manufacture_id');
-            $table->integer('inspection_id');
-            $table->string('image',150);
+            $table->integer('supplier_id');
+            $table->string('scp_name',50);
+            $table->string('scp_department',30);
+            $table->string('scp_designation',30);
+            $table->text('scp_phone');
+            $table->string('scp_email',128);
             $table->enum('del_status', ['Live', 'Deleted'])->default('Live');
             $table->timestamps();
         });
@@ -30,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inspection_report_files');
+        Schema::dropIfExists('tbl_supplier_contact_info');
     }
 };

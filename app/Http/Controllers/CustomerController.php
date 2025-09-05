@@ -18,6 +18,7 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
+use App\CustomerContactInfo;
 use App\CustomerOrder;
 use App\MaterialStock;
 use DateTime;
@@ -143,7 +144,6 @@ class CustomerController extends Controller
 
         $obj = new \App\Customer;
         $obj->customer_id = escape_output($request->get('customer_id'));
-        // $obj->vendor_code = escape_output($request->get('vendor_code'));
         $obj->name = ucwords(escape_output($request->get('name')));
         $obj->phone = escape_output($request->get('phone'));
         $obj->email = escape_output($request->get('email'));
@@ -157,6 +157,19 @@ class CustomerController extends Controller
         $obj->note = html_entity_decode($request->get('note'));
         $obj->added_by = auth()->user()->id;
         $obj->save();
+
+        if (isset($_POST['cp_name']) && is_array($_POST['cp_name']) && !empty($_POST['cp_name'])) {
+            foreach ($_POST['cp_name'] as $row => $value) {
+                $cp_info = new \App\CustomerContactInfo();
+                $cp_info->customer_id = $obj->id;
+                $cp_info->cp_name = escape_output($_POST['cp_name'][$row] ?? null);
+                $cp_info->cp_department = escape_output($_POST['cp_department'][$row] ?? null);
+                $cp_info->cp_designation = escape_output($_POST['cp_designation'][$row] ?? null);
+                $cp_info->cp_phone = escape_output($_POST['cp_phone'][$row] ?? null);
+                $cp_info->cp_email = escape_output($_POST['cp_email'][$row] ?? null);
+                $cp_info->save();
+            }
+        }
         return redirect('customers')->with(saveMessage());
     }
 
@@ -169,9 +182,10 @@ class CustomerController extends Controller
     public function edit($id)
     {
         $customer = Customer::find(encrypt_decrypt($id, 'decrypt'));
+        $customer_contact_info = CustomerContactInfo::where('customer_id',$customer->id)->where('del_status','Live')->get();
         $title = __('index.edit_customer');
         $obj = $customer;
-        return view('pages.customer.addEditCustomer', compact('title', 'obj'));
+        return view('pages.customer.addEditCustomer', compact('title', 'obj', 'customer_contact_info'));
     }
 
     /**
@@ -183,6 +197,7 @@ class CustomerController extends Controller
      */
     public function update(Request $request, Customer $customer)
     {
+        // dd($request->all());
         request()->validate(
             [
                 'name' => 'required|max:50|regex:/^[\pL\s]+$/u',
@@ -252,7 +267,6 @@ class CustomerController extends Controller
                 // 'vendor_code.unique' => "Customer Code already taken",
             ]
         );
-
         $customer->customer_id = escape_output($request->get('customer_id'));
         // $customer->vendor_code = escape_output($request->get('vendor_code'));
         $customer->name = ucwords(escape_output($request->get('name')));
@@ -268,6 +282,19 @@ class CustomerController extends Controller
         $customer->note = html_entity_decode($request->get('note'));
         $customer->added_by = auth()->user()->id;
         $customer->save();
+        CustomerContactInfo::where('customer_id', $customer->id)->update(['del_status' => "Deleted"]);
+        if ($request->has('cp_name') && is_array($request->cp_name)) {
+            foreach ($request->cp_name as $row => $value) {
+                $cp_info = new \App\CustomerContactInfo();
+                $cp_info->customer_id = $customer->id;
+                $cp_info->cp_name = escape_output($request->cp_name[$row] ?? null);
+                $cp_info->cp_department = escape_output($request->cp_department[$row] ?? null);
+                $cp_info->cp_designation = escape_output($request->cp_designation[$row] ?? null);
+                $cp_info->cp_phone = escape_output($request->cp_phone[$row] ?? null);
+                $cp_info->cp_email = escape_output($request->cp_email[$row] ?? null);
+                $cp_info->save();
+            }
+        }
         return redirect('customers')->with(updateMessage());
     }
 
@@ -287,8 +314,15 @@ class CustomerController extends Controller
      */
     public function destroy(Customer $customer)
     {
+        CustomerContactInfo::where('customer_id',$customer->id)->update(['del_status'=>'Deleted']);
         $customer->del_status = "Deleted";
         $customer->save();
         return redirect('customers')->with(deleteMessage());
+    }
+
+    public function customerContactDelete(Request $request)
+    {
+        CustomerContactInfo::where('id',$request->contact_id)->update(['del_status'=>'Deleted']);
+        return response()->json(['status' => true, 'message' => 'Deleted Successfully.']);
     }
 }
