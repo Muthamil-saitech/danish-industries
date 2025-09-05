@@ -110,6 +110,35 @@
                                     </td>
                                 </tr>
                             </table>
+                            <div class="text-center pt-10 pb-10">
+                                <h3 class="color-000000 pt-20 pb-20">Supplier Contact Info</h3>
+                            </div>
+                            <table>
+                                <?php if(isset($supplier_contact_details) && count($supplier_contact_details) > 0): ?>
+                                    <thead>
+                                        <tr>
+                                            <th><?php echo app('translator')->get('index.sn'); ?></th>
+                                            <th>Contact Person Name</th>
+                                            <th>Department</th>
+                                            <th>Designation</th>
+                                            <th>Phone Number</th>
+                                            <th>Email</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $__currentLoopData = $supplier_contact_details; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $contact): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <tr>
+                                                <td><?php echo e($loop->iteration); ?></td>
+                                                <td><?php echo e($contact->scp_name!='' ? $contact->scp_name : 'N/A'); ?></td>
+                                                <td><?php echo e($contact->scp_department!='' ? $contact->scp_department : 'N/A'); ?></td>
+                                                <td><?php echo e($contact->scp_designation!='' ? $contact->scp_designation : 'N/A'); ?></td>
+                                                <td><?php echo e($contact->scp_phone!='' ? $contact->scp_phone : 'N/A'); ?></td>
+                                                <td><?php echo e($contact->scp_email!='' ? $contact->scp_email : 'N/A'); ?></td>
+                                            </tr>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    </tbody>
+                                <?php endif; ?>
+                            </table>
                         </div>
                     </div>
                 </div>

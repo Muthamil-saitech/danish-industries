@@ -40,7 +40,7 @@
                     <div class="card-body p30">
                         <div class="m-auto b-r-5">
                             <div class="text-center pt-10 pb-10">
-                                <h2 class="color-000000 pt-20 pb-20">@lang('index.customer_details')</h2>
+                                <h3 class="color-000000 pt-20 pb-20">@lang('index.customer_details')</h3>
                             </div>
                             <table>
                                 <tr>
@@ -109,6 +109,36 @@
                                         </p>
                                     </td>
                                 </tr>
+                            </table>
+                            {{-- <hr> --}}
+                            <div class="text-center pt-10 pb-10">
+                                <h3 class="color-000000 pt-20 pb-20">Customer Contact Info</h3>
+                            </div>
+                            <table>
+                                @if(isset($customer_contact_details) && count($customer_contact_details) > 0)
+                                    <thead>
+                                        <tr>
+                                            <th>@lang('index.sn')</th>
+                                            <th>Contact Person Name</th>
+                                            <th>Department</th>
+                                            <th>Designation</th>
+                                            <th>Phone Number</th>
+                                            <th>Email</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($customer_contact_details as $contact)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $contact->cp_name!='' ? $contact->cp_name : 'N/A' }}</td>
+                                                <td>{{ $contact->cp_department!='' ? $contact->cp_department : 'N/A' }}</td>
+                                                <td>{{ $contact->cp_designation!='' ? $contact->cp_designation : 'N/A' }}</td>
+                                                <td>{{ $contact->cp_phone!='' ? $contact->cp_phone : 'N/A' }}</td>
+                                                <td>{{ $contact->cp_email!='' ? $contact->cp_email : 'N/A' }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                @endif
                             </table>
                         </div>
                     </div>

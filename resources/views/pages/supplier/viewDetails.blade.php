@@ -98,6 +98,35 @@
                                     </td>
                                 </tr>
                             </table>
+                            <div class="text-center pt-10 pb-10">
+                                <h3 class="color-000000 pt-20 pb-20">Supplier Contact Info</h3>
+                            </div>
+                            <table>
+                                @if(isset($supplier_contact_details) && count($supplier_contact_details) > 0)
+                                    <thead>
+                                        <tr>
+                                            <th>@lang('index.sn')</th>
+                                            <th>Contact Person Name</th>
+                                            <th>Department</th>
+                                            <th>Designation</th>
+                                            <th>Phone Number</th>
+                                            <th>Email</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($supplier_contact_details as $contact)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $contact->scp_name!='' ? $contact->scp_name : 'N/A' }}</td>
+                                                <td>{{ $contact->scp_department!='' ? $contact->scp_department : 'N/A' }}</td>
+                                                <td>{{ $contact->scp_designation!='' ? $contact->scp_designation : 'N/A' }}</td>
+                                                <td>{{ $contact->scp_phone!='' ? $contact->scp_phone : 'N/A' }}</td>
+                                                <td>{{ $contact->scp_email!='' ? $contact->scp_email : 'N/A' }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                @endif
+                            </table>
                         </div>
                     </div>
                 </div>

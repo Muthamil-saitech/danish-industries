@@ -248,9 +248,10 @@ class SupplierController extends Controller
     public function show($id)
     {
         $supplier = Supplier::find(encrypt_decrypt($id, 'decrypt'));
+        $supplier_contact_details = SupplierContactInfo::where('supplier_id',$supplier->id)->where('del_status','Live')->get();
         $title = __('index.view_details_supplier');
         $obj = $supplier;
-        return view('pages.supplier.viewDetails', compact('title', 'obj'));
+        return view('pages.supplier.viewDetails', compact('title', 'obj', 'supplier_contact_details'));
     }
 
     /**

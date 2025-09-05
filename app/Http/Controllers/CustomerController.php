@@ -301,9 +301,10 @@ class CustomerController extends Controller
     public function show($id)
     {
         $customer = Customer::find(encrypt_decrypt($id, 'decrypt'));
+        $customer_contact_details = CustomerContactInfo::where('customer_id',$customer->id)->where('del_status','Live')->orderBy('id','DESC')->get();
         $title = __('index.view_details_customer');
         $obj = $customer;
-        return view('pages.customer.viewDetails', compact('title', 'obj'));
+        return view('pages.customer.viewDetails', compact('title', 'obj', 'customer_contact_details'));
     }
 
     /**

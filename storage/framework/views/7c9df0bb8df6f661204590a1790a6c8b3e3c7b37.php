@@ -40,7 +40,7 @@
                     <div class="card-body p30">
                         <div class="m-auto b-r-5">
                             <div class="text-center pt-10 pb-10">
-                                <h2 class="color-000000 pt-20 pb-20"><?php echo app('translator')->get('index.customer_details'); ?></h2>
+                                <h3 class="color-000000 pt-20 pb-20"><?php echo app('translator')->get('index.customer_details'); ?></h3>
                             </div>
                             <table>
                                 <tr>
@@ -120,6 +120,36 @@
                                         </p>
                                     </td>
                                 </tr>
+                            </table>
+                            
+                            <div class="text-center pt-10 pb-10">
+                                <h3 class="color-000000 pt-20 pb-20">Customer Contact Info</h3>
+                            </div>
+                            <table>
+                                <?php if(isset($customer_contact_details) && count($customer_contact_details) > 0): ?>
+                                    <thead>
+                                        <tr>
+                                            <th><?php echo app('translator')->get('index.sn'); ?></th>
+                                            <th>Contact Person Name</th>
+                                            <th>Department</th>
+                                            <th>Designation</th>
+                                            <th>Phone Number</th>
+                                            <th>Email</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $__currentLoopData = $customer_contact_details; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $contact): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <tr>
+                                                <td><?php echo e($loop->iteration); ?></td>
+                                                <td><?php echo e($contact->cp_name!='' ? $contact->cp_name : 'N/A'); ?></td>
+                                                <td><?php echo e($contact->cp_department!='' ? $contact->cp_department : 'N/A'); ?></td>
+                                                <td><?php echo e($contact->cp_designation!='' ? $contact->cp_designation : 'N/A'); ?></td>
+                                                <td><?php echo e($contact->cp_phone!='' ? $contact->cp_phone : 'N/A'); ?></td>
+                                                <td><?php echo e($contact->cp_email!='' ? $contact->cp_email : 'N/A'); ?></td>
+                                            </tr>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    </tbody>
+                                <?php endif; ?>
                             </table>
                         </div>
                     </div>
