@@ -79,7 +79,7 @@ $whiteLabelInfo = App\WhiteLabelSettings::first();
         </table>
         <h4>@lang('index.raw_material_consumption_cost') (RoM)</h4>
         <table class="w-100 mt-10 manufacture_table">
-            <thead class="b-r-3 bg-color-000000">
+            <thead class="b-r-3">
                 <tr>
                     <th class="w-5 text-left">@lang('index.sn')</th>
                     <th class="w-30 text-left">@lang('index.raw_material_name')(@lang('index.code'))</th>
@@ -108,7 +108,7 @@ $whiteLabelInfo = App\WhiteLabelSettings::first();
 
         <h4 class="mt-20">@lang('index.manufacture_stages')</h4>
         <table class="w-100 mt-10 production_table">
-            <thead class="b-r-3 bg-color-000000">
+            <thead class="b-r-3">
                 <tr>
                     <th class="w-5 text-left">@lang('index.sn')</th>
                     <th class="w-30 text-left">@lang('index.stage')</th>
@@ -177,7 +177,45 @@ $whiteLabelInfo = App\WhiteLabelSettings::first();
 
         <table>
             <tr>
-                <td valign="top" class="w-50" style="text-align:right;">
+                <td valign="top" class="w-50">
+                    <div class="pt-20">
+                        <h4 class="d-block pb-10">@lang('index.files')</h4>
+                        <div class="">
+                            @if (isset($obj->file) && $obj->file)
+                                @php($files = explode(',', $obj->file))
+                                @foreach ($files as $file)
+                                    @php($fileExtension = pathinfo($file, PATHINFO_EXTENSION))
+                                    @if ($fileExtension == 'pdf')
+                                        <a class="text-decoration-none"
+                                            href="{{ $baseURL }}uploads/manufacture/{{ $file }}"
+                                            target="_blank">
+                                            <img src="{{ $baseURL }}assets/images/pdf.png"
+                                                alt="PDF Preview" class="img-thumbnail mx-2"
+                                                width="100px">
+                                        </a>
+                                    @elseif($fileExtension == 'doc' || $fileExtension == 'docx')
+                                        <a class="text-decoration-none"
+                                            href="{{ $baseURL }}uploads/manufacture/{{ $file }}"
+                                            target="_blank">
+                                            <img src="{{ $baseURL }}assets/images/word.png"
+                                                alt="Word Preview" class="img-thumbnail mx-2"
+                                                width="100px">
+                                        </a>
+                                    @else
+                                        <a class="text-decoration-none"
+                                            href="{{ $baseURL }}uploads/manufacture/{{ $file }}"
+                                            target="_blank">
+                                            <img src="{{ $baseURL }}uploads/manufacture/{{ $file }}"
+                                                alt="File Preview" class="img-thumbnail mx-2"
+                                                width="100px">
+                                        </a>
+                                    @endif
+                                @endforeach
+                            @endif
+                        </div>
+                    </div>
+                </td>
+                <td style="text-align:right;">
                     <div class="pt-20">
                         <h4 class="d-block pb-10">@lang('index.note')</h4>
                         <div class="">
@@ -189,8 +227,7 @@ $whiteLabelInfo = App\WhiteLabelSettings::first();
                 </td>
             </tr>
         </table>
-
-        <table class="mt-50">
+        <table class="mt-20">
             <tr>
                 <td class="w-50">
                 </td>
@@ -203,5 +240,4 @@ $whiteLabelInfo = App\WhiteLabelSettings::first();
     <script src="{{ asset('assets/bower_components/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('frequent_changing/js/onload_print.js') }}"></script>
 </body>
-
 </html>
