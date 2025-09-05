@@ -191,35 +191,35 @@ $whiteLabelInfo = App\WhiteLabelSettings::first();
                         <h4 class="d-block pb-10"><?php echo app('translator')->get('index.files'); ?></h4>
                         <div class="">
                             <?php if(isset($obj->file) && $obj->file): ?>
-                                <?php ($files = explode(',', $obj->file)); ?>
-                                <?php $__currentLoopData = $files; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $file): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <?php ($fileExtension = pathinfo($file, PATHINFO_EXTENSION)); ?>
-                                    <?php if($fileExtension == 'pdf'): ?>
-                                        <a class="text-decoration-none"
-                                            href="<?php echo e($baseURL); ?>uploads/manufacture/<?php echo e($file); ?>"
-                                            target="_blank">
-                                            <img src="<?php echo e($baseURL); ?>assets/images/pdf.png"
-                                                alt="PDF Preview" class="img-thumbnail mx-2"
-                                                width="100px">
-                                        </a>
-                                    <?php elseif($fileExtension == 'doc' || $fileExtension == 'docx'): ?>
-                                        <a class="text-decoration-none"
-                                            href="<?php echo e($baseURL); ?>uploads/manufacture/<?php echo e($file); ?>"
-                                            target="_blank">
-                                            <img src="<?php echo e($baseURL); ?>assets/images/word.png"
-                                                alt="Word Preview" class="img-thumbnail mx-2"
-                                                width="100px">
-                                        </a>
-                                    <?php else: ?>
-                                        <a class="text-decoration-none"
-                                            href="<?php echo e($baseURL); ?>uploads/manufacture/<?php echo e($file); ?>"
-                                            target="_blank">
-                                            <img src="<?php echo e($baseURL); ?>uploads/manufacture/<?php echo e($file); ?>"
-                                                alt="File Preview" class="img-thumbnail mx-2"
-                                                width="100px">
-                                        </a>
-                                    <?php endif; ?>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <?php ($files = explode(',', $obj->file)); ?>
+                            <?php $__currentLoopData = $files; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $file): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php ($fileExtension = pathinfo($file, PATHINFO_EXTENSION)); ?>
+                            <?php if($fileExtension == 'pdf'): ?>
+                            <a class="text-decoration-none"
+                                href="<?php echo e($baseURL); ?>uploads/manufacture/<?php echo e($file); ?>"
+                                target="_blank">
+                                <img src="<?php echo e($baseURL); ?>assets/images/pdf.png"
+                                    alt="PDF Preview" class="img-thumbnail mx-2"
+                                    width="100px">
+                            </a>
+                            <?php elseif($fileExtension == 'doc' || $fileExtension == 'docx'): ?>
+                            <a class="text-decoration-none"
+                                href="<?php echo e($baseURL); ?>uploads/manufacture/<?php echo e($file); ?>"
+                                target="_blank">
+                                <img src="<?php echo e($baseURL); ?>assets/images/word.png"
+                                    alt="Word Preview" class="img-thumbnail mx-2"
+                                    width="100px">
+                            </a>
+                            <?php else: ?>
+                            <a class="text-decoration-none"
+                                href="<?php echo e($baseURL); ?>uploads/manufacture/<?php echo e($file); ?>"
+                                target="_blank">
+                                <img src="<?php echo e($baseURL); ?>uploads/manufacture/<?php echo e($file); ?>"
+                                    alt="File Preview" class="img-thumbnail mx-2"
+                                    width="100px">
+                            </a>
+                            <?php endif; ?>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -250,4 +250,5 @@ $whiteLabelInfo = App\WhiteLabelSettings::first();
     <script src="<?php echo e(asset('assets/bower_components/jquery/dist/jquery.min.js')); ?>"></script>
     <script src="<?php echo e(asset('frequent_changing/js/onload_print.js')); ?>"></script>
 </body>
+
 </html><?php /**PATH C:\xampp\htdocs\danish-industries\resources\views/pages/manufacture/print_manufacture_details.blade.php ENDPATH**/ ?>
