@@ -37,6 +37,25 @@ table thead tr th {
   border: 0;
   background: #dfdede !important;
 }
+.manufacture_table th,
+.manufacture_table td {
+  border: 1px solid #000;
+  padding: 5px;
+  background: none !important;
+}
+.production_table th,
+.production_table td {
+  border: 1px solid #000;
+  padding: 5px;
+  background: none !important;
+}
+
+.order_details th {
+  padding: 7px 5px;
+  border-right: none;
+  border: 0;
+  background: none !important;
+}
 
 table tbody tr td {
   padding: 7px 5px;
@@ -93,7 +112,6 @@ table tbody tr:nth-child(even) {
 .pb-7 {
   padding-bottom: 7px;
 }
-
 
 .w-1 {
   width: 1% !important;
@@ -575,7 +593,6 @@ table tbody tr:nth-child(even) {
   padding: 10px;
 }
 
-
 .text-center {
   text-align: center !important;
 }
@@ -661,7 +678,7 @@ table tbody tr:nth-child(even) {
 }
 
 .bg-F5F2F2 {
-  background-color: #F5F2F2;
+  background-color: #f5f2f2;
 }
 
 .h-120 {
@@ -681,7 +698,7 @@ table tbody tr:nth-child(even) {
 }
 
 .bg-F0F0F0 {
-  background-color: #F0F0F0;
+  background-color: #f0f0f0;
 }
 
 .color-black {
@@ -728,7 +745,6 @@ table tbody tr:nth-child(even) {
   margin-bottom: 20px;
 }
 
-
 #salary-table td {
   border: 1px solid #a2a2a2;
   font-size: 14px;
@@ -744,7 +760,6 @@ table tbody tr:nth-child(even) {
   font-size: 16px;
   cursor: pointer;
 }
-
 
 .padding-0 {
   padding: 0px !important;
@@ -786,14 +801,18 @@ table tbody tr:nth-child(even) {
   vertical-align: middle;
 }
 
-#stockInnerTable ul li div:last-child{
+#stockInnerTable ul li div:last-child {
   text-align: right;
 }
 
-.fw-bold{
+.fw-bold {
   font-weight: bold;
 }
 
 .page-break {
   page-break-after: always;
+}
+
+.file_extension a {
+  text-decoration: none !important;
 }

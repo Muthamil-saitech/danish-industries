@@ -380,7 +380,7 @@ class ProductionController extends Controller
         $obj = Manufacture::find($id);
 
         $pdf = Pdf::loadView('pages.manufacture.print_manufacture_details', compact('title', 'obj', 'rmaterials', 'p_stages', 'manufactures', 'nonitem', 'accounts', 'tax_fields', 'm_rmaterials', 'm_nonitems', 'm_stages', 'units', 'tax_items'))->setPaper('a4', 'landscape');
-        return $pdf->download($obj->reference_no . '.pdf');
+        return $pdf->stream($obj->reference_no . '.pdf');
     }
 
     /**
@@ -635,7 +635,7 @@ class ProductionController extends Controller
 
         $manufacture->del_status = "Deleted";
         $manufacture->save();
-        
+
         return redirect('productions')->with(deleteMessage());
     }
     public function duplicate($id)
