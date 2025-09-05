@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>{{ $obj->reference_no }}</title>
     <link rel="stylesheet" href="{{ getBaseURL() }}frequent_changing/css/pdf_common.css">
 </head>
@@ -29,7 +29,7 @@
         </table>
         <div class="text-center pt-10 pb-10">
             <h2 class="color-000000 pt-20 pb-20">@lang('index.sales_invoice')</h2>
-			
+
         </div>
         <table>
             <tr>
@@ -53,8 +53,8 @@
             </tr>
         </table>
 
-        <table class="w-100 mt-20">
-            <thead class="b-r-3 bg-color-000000">
+        <table class="w-100 mt-20 sales_table">
+            <thead class="b-r-3">
                 <tr>
                     <th class="w-5 text-start">@lang('index.sn')</th>
                     <th class="w-20 text-start">@lang('index.part_no')</th>
@@ -81,7 +81,7 @@
                 $quote_price = optional($obj->quotation->quotationDetails
                     ->where('product_id', $value->product_id)
                     ->first())->price;
-                $orderInfo = getOrderDetail($value->order_id,$value->product_id);
+                $orderInfo = getOrderDetail($value->order_id, $value->product_id);
                 ?>
                 <tr class="rowCount" data-id="{{ $value->product_id }}">
                     <td class="width_1_p">
@@ -120,7 +120,8 @@
                     <td class="text-right pr-10" style="font-family: DejaVu Sans, sans-serif;">
                         ₹ {{ getSalePrice($sale_rate,$value->product_quantity) }}
                     </td>
-                    <?php $sale_r = getSalePrice($sale_rate,$value->product_quantity); $sum = $sum + $sale_r ?>
+                    <?php $sale_r = getSalePrice($sale_rate, $value->product_quantity);
+                    $sum = $sum + $sale_r ?>
                 </tr>
                 @endforeach
                 @endif
@@ -147,84 +148,84 @@
                             </td>
                             <td class="w-50 pr-0 text-right">
                                 <p>{{ number_format($obj->subtotal) }} </p>
-                            </td>
-                        </tr>
-                    </table> --}}
-                    {{-- <table>
+                </td>
+            </tr>
+        </table> --}}
+        {{-- <table>
                         <tr>
                             <td class="w-50 pr-0">
                                 <p class="">@lang('index.other')</p>
                             </td>
                             <td class="w-50 pr-0 text-right">
                                 <p>{{ number_format($obj->other) }} </p>
-                            </td>
-                        </tr>
-                    </table> --}}
-                    {{-- <table>
+        </td>
+        </tr>
+        </table> --}}
+        {{-- <table>
                         <tr>
                             <td class="w-50">
                                 <p class="">@lang('index.discount')</p>
                             </td>
                             <td class="w-50 pr-0 text-right">
                                 <p>{{ number_format($obj->discount) }} </p>
-                            </td>
-                        </tr>
-                    </table> --}}
-                    <table class="mt-10 mb-10">
-                        <tr>
-                            <td class="w-50 pr-0 border-bottom-dotted-gray">
-                                <p class="">@lang('index.grand_total') :</p>
-                            </td>
-                            <td class="w-50 pr-0 text-right" >
-                                <p style="font-family: DejaVu Sans, sans-serif;">₹ {{ number_format($sum,2) }} </p>
-                            </td>
-                        </tr>
-                    </table>
-                    @php
-                        $otherState = ($order->inter_state == 'N');
-                        $tax_row = getTaxItems($order->tax_type == 1 ? 'Labor' : 'Sales');
-                        if ($otherState) {
-                            // CGST + SGST
-                            $taxAmount = ($sum * ($tax_row->tax_value / 2) / 100) * 2;
-                        } else {
-                            // IGST
-                            $taxAmount = ($sum * $tax_row->tax_value) / 100;
-                        }
-
-                        $grandTotal = $sum + $taxAmount;
-                    @endphp
-                    <table class="mt-10 mb-10">
-                        <tr>
-                            <td class="w-50 pr-0 border-bottom-dotted-gray">
-                                @if($otherState)
-                                    <p>CGST : {{ $tax_row->tax_value / 2 . '%' }}</p>
-                                    <p>SGST : {{ $tax_row->tax_value / 2 . '%' }}</p>
-                                @else
-                                    <p>IGST : {{ $tax_row->tax_value . '%' }}</p>
-                                @endif
-                            </td>
-                            <td class="w-50 pr-0 text-right">
-                                @if($otherState)
-                                    <p style="font-family: DejaVu Sans, sans-serif;">₹ {{ number_format(($sum * ($tax_row->tax_value / 2)) / 100,2) }}</p>
-                                    <p style="font-family: DejaVu Sans, sans-serif;">₹ {{ number_format(($sum * ($tax_row->tax_value / 2)) / 100,2) }}</p>
-                                @else
-                                    <p style="font-family: DejaVu Sans, sans-serif;">₹ {{ number_format(($sum * $tax_row->tax_value) / 100,2) }}</p>
-                                @endif
-                            </td>
-                        </tr>
-                    </table>
-                    <table class="mt-10 mb-10">
-                        <tr>
-                            <td class="w-50 pr-0 border-bottom-dotted-gray">
-                                <p class="" style="font-family: DejaVu Sans, sans-serif;">@lang('index.grand_total') :</p>
-                            </td>
-                            <td class="w-50 pr-0 text-right">
-                                <p style="font-family: DejaVu Sans, sans-serif;">₹ {{ number_format($grandTotal,2) }} </p>
-                            </td>
-                        </tr>
-                    </table>
+        </td>
+        </tr>
+        </table> --}}
+        <table class="mt-10 mb-10">
+            <tr>
+                <td class="w-50 pr-0 border-bottom-dotted-gray">
+                    <p class="">@lang('index.grand_total') :</p>
+                </td>
+                <td class="w-50 pr-0 text-right">
+                    <p style="font-family: DejaVu Sans, sans-serif;">₹ {{ number_format($sum,2) }} </p>
                 </td>
             </tr>
+        </table>
+        @php
+        $otherState = ($order->inter_state == 'N');
+        $tax_row = getTaxItems($order->tax_type == 1 ? 'Labor' : 'Sales');
+        if ($otherState) {
+        // CGST + SGST
+        $taxAmount = ($sum * ($tax_row->tax_value / 2) / 100) * 2;
+        } else {
+        // IGST
+        $taxAmount = ($sum * $tax_row->tax_value) / 100;
+        }
+
+        $grandTotal = $sum + $taxAmount;
+        @endphp
+        <table class="mt-10 mb-10">
+            <tr>
+                <td class="w-50 pr-0 border-bottom-dotted-gray">
+                    @if($otherState)
+                    <p>CGST : {{ $tax_row->tax_value / 2 . '%' }}</p>
+                    <p>SGST : {{ $tax_row->tax_value / 2 . '%' }}</p>
+                    @else
+                    <p>IGST : {{ $tax_row->tax_value . '%' }}</p>
+                    @endif
+                </td>
+                <td class="w-50 pr-0 text-right">
+                    @if($otherState)
+                    <p style="font-family: DejaVu Sans, sans-serif;">₹ {{ number_format(($sum * ($tax_row->tax_value / 2)) / 100,2) }}</p>
+                    <p style="font-family: DejaVu Sans, sans-serif;">₹ {{ number_format(($sum * ($tax_row->tax_value / 2)) / 100,2) }}</p>
+                    @else
+                    <p style="font-family: DejaVu Sans, sans-serif;">₹ {{ number_format(($sum * $tax_row->tax_value) / 100,2) }}</p>
+                    @endif
+                </td>
+            </tr>
+        </table>
+        <table class="mt-10 mb-10">
+            <tr>
+                <td class="w-50 pr-0 border-bottom-dotted-gray">
+                    <p class="" style="font-family: DejaVu Sans, sans-serif;">@lang('index.grand_total') :</p>
+                </td>
+                <td class="w-50 pr-0 text-right">
+                    <p style="font-family: DejaVu Sans, sans-serif;">₹ {{ number_format($grandTotal,2) }} </p>
+                </td>
+            </tr>
+        </table>
+        </td>
+        </tr>
         </table>
         <table class="mt-50">
             <tr>
@@ -238,16 +239,16 @@
 
     </div>
     <?php
-        $baseURL = getBaseURL();
-        $setting = getSettingsInfo();
-        $base_color = '#6ab04c';
-        if (isset($setting->base_color) && $setting->base_color) {
-            $base_color = $setting->base_color;
-        }
+    $baseURL = getBaseURL();
+    $setting = getSettingsInfo();
+    $base_color = '#6ab04c';
+    if (isset($setting->base_color) && $setting->base_color) {
+        $base_color = $setting->base_color;
+    }
     ?>
     <script src="{{ $baseURL .('assets/bower_components/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ $baseURL . ('frequent_changing/js/onload_print.js') }}"></script>
-	
+
 </body>
 
 </html>

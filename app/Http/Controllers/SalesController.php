@@ -296,7 +296,7 @@ class SalesController extends Controller
         $sale_details = SaleDetail::where('sale_id', $id)->where('del_status', 'Live')->get();
         $challanInfo = Quotation::where('id', $obj->challan_id)->where('del_status', 'Live')->first();
         $pdf = Pdf::loadView('pages.sales.salesInvoice', compact('title', 'obj', 'sale_details', 'setting', 'customers', 'finishProducts', 'accounts', 'fifoProducts', 'company', 'challanInfo'))->setPaper('a4', 'landscape');
-        return $pdf->download($obj->reference_no . '.pdf');
+        return $pdf->stream($obj->reference_no . '.pdf');
     }
 
     public function downloadChallan($id)

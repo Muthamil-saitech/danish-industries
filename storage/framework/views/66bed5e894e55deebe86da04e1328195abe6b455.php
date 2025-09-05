@@ -8,11 +8,12 @@ $baseURL = getBaseURL();
 
 <head>
     
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo e($obj->reference_no); ?></title>
     <link rel="stylesheet" href="<?php echo e(getBaseURL()); ?>frequent_changing/css/pdf_common.css">
 </head>
+
 <body>
     <div class="m-auto b-r-5 p-30">
         <table>
@@ -63,112 +64,117 @@ $baseURL = getBaseURL();
             </tr>
         </table>
 
-        <table class="w-100 mt-20">
-            <thead class="b-r-3 bg-color-000000">
+        <table class="w-100 mt-20 order_details" style="border: 1px solid #000;">
+            <thead class="b-r-3">
                 <tr>
-                    <th class="w-5 text-start"><?php echo app('translator')->get('index.sn'); ?></th>
-                    <th class="w-5 text-start"><?php echo app('translator')->get('index.po_date'); ?></th>
-                    <th class="w-15 text-start"><?php echo app('translator')->get('index.part_no'); ?></th>
-                    <th class="w-20 text-start"><?php echo app('translator')->get('index.part_name'); ?></th>
-                    <th class="w-30 text-start"><?php echo app('translator')->get('index.raw_material_name'); ?><br>(<?php echo app('translator')->get('index.code'); ?>)</th>
+                    <th class="w-5 text-start" style="border:1px solid #000;"><?php echo app('translator')->get('index.sn'); ?></th>
+                    <th class="w-5 text-start" style="border:1px solid #000;"><?php echo app('translator')->get('index.po_date'); ?></th>
+                    <th class="w-15 text-start" style="border:1px solid #000;"><?php echo app('translator')->get('index.part_no'); ?></th>
+                    <th class="w-20 text-start" style="border:1px solid #000;"><?php echo app('translator')->get('index.part_name'); ?></th>
+                    <th class="w-30 text-start" style="border:1px solid #000;"><?php echo app('translator')->get('index.raw_material_name'); ?><br>(<?php echo app('translator')->get('index.code'); ?>)</th>
                     
-                    <th class="w-5 text-center"><?php echo app('translator')->get('index.raw_quantity'); ?></th>
-                    <th class="w-5 text-center"><?php echo app('translator')->get('index.prod_quantity'); ?></th>
-                    <th class="w-15 text-center"><?php echo app('translator')->get('index.unit_price'); ?></th>
+                    <th class="w-5 text-center" style="border:1px solid #000;"><?php echo app('translator')->get('index.raw_quantity'); ?></th>
+                    <th class="w-5 text-center" style="border:1px solid #000;"><?php echo app('translator')->get('index.prod_quantity'); ?></th>
+                    <th class="w-15 text-center" style="border:1px solid #000;"><?php echo app('translator')->get('index.unit_price'); ?></th>
                     
                     
-                    <th class="w-15 text-center"><?php echo app('translator')->get('index.tax'); ?></th>
-                    <th class="w-15 text-center"><?php echo app('translator')->get('index.total'); ?></th>
+                    <th class="w-15 text-center" style="border:1px solid #000;"><?php echo app('translator')->get('index.tax'); ?></th>
+                    <th class="w-15 text-center" style="border:1px solid #000;"><?php echo app('translator')->get('index.total'); ?></th>
                 </tr>
             </thead>
             <tbody>
                 <?php if(isset($orderDetails) && $orderDetails): ?>
-                    <?php ($i = 1); ?>
-                    <?php $__currentLoopData = $orderDetails; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <?php
-                        $productRawInfo = getProductRawMaterialByProductId($value->product_id);
-                        $productInfo = getFinishedProductInfo($value->product_id);
-                        ?>
-                        <tr class="rowCount" data-id="<?php echo e($value->product_id); ?>">
-                            <td class="width_1_p">
-                                <p class="set_sn"><?php echo e($i++); ?></p>
-                            </td>
-                            <td class="text-start"><?php echo e($value->po_date != null ? getDateFormat($value->po_date): getDateFormat($obj->created_at)); ?>
+                <?php ($i = 1); ?>
+                <?php $__currentLoopData = $orderDetails; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <?php
+                $productRawInfo = getProductRawMaterialByProductId($value->product_id);
+                $productInfo = getFinishedProductInfo($value->product_id);
+                ?>
+                <tr class="rowCount" data-id="<?php echo e($value->product_id); ?>">
+                    <td class="width_1_p" style="border:1px solid #000;">
+                        <p class="set_sn"><?php echo e($i++); ?></p>
+                    </td>
+                    <td class="text-start" style="border:1px solid #000;"><?php echo e($value->po_date != null ? getDateFormat($value->po_date): getDateFormat($obj->created_at)); ?>
 
-                            </td>
-                            <td class="text-start"><?php echo e($productInfo->code); ?></td>
-                            <td class="text-start"><?php echo e($productInfo->name); ?></td>
-                            <td class="text-start"><?php echo e(getRMName($value->raw_material_id)); ?></td>
-                            
-                            <td class="text-start"><?php echo e($value->raw_qty); ?></td>
-                            <td class="text-start"><?php echo e($value->quantity); ?></td>
-                            <td class="text-start" style="font-family: DejaVu Sans, sans-serif;">₹<?php echo e(number_format($value->sale_price,2)); ?></td>
-                            <?php
-                                $sub_tot_before_dis = $value->sale_price;
-                                $dis_val = $value->discount_percent != '0' ? $sub_tot_before_dis * ($value->discount_percent / 100) : '0';
-                                $sub_tot_af_dis = $dis_val!='0' ? $sub_tot_before_dis - $dis_val : $sub_tot_before_dis;
-                            ?>
-                            
-                            
-                            <?php
-                                if($value->igst=='') {
-                                    $gst_per = $value->cgst + $value->sgst;
-                                } else {
-                                    $gst_per = $value->igst;
-                                }
-                                $gst_value = $sub_tot_af_dis * ($gst_per/100);
-                                $total = $sub_tot_af_dis + $gst_value
-                            ?>
-                            <td class="text-start" style="font-family: DejaVu Sans, sans-serif;">₹<?php echo e(number_format($gst_value,2)); ?>
+                    </td>
+                    <td class="text-start" style="border:1px solid #000;"><?php echo e($productInfo->code); ?></td>
+                    <td class="text-start" style="border:1px solid #000;"><?php echo e($productInfo->name); ?></td>
+                    <td class="text-start" style="border:1px solid #000;"><?php echo e(getRMName($value->raw_material_id)); ?></td>
+                    
+                    <td class="text-start" style="border:1px solid #000;"><?php echo e($value->raw_qty); ?></td>
+                    <td class="text-start" style="border:1px solid #000;"><?php echo e($value->quantity); ?></td>
+                    <td class="text-start" style="border:1px solid #000; font-family: DejaVu Sans, sans-serif;">₹<?php echo e(number_format($value->sale_price,2)); ?></td>
+                    <?php
+                    $sub_tot_before_dis = $value->sale_price;
+                    $dis_val = $value->discount_percent != '0' ? $sub_tot_before_dis * ($value->discount_percent / 100) : '0';
+                    $sub_tot_af_dis = $dis_val != '0' ? $sub_tot_before_dis - $dis_val : $sub_tot_before_dis;
+                    ?>
+                    
+                    
+                    <?php
+                    if ($value->igst == '') {
+                        $gst_per = $value->cgst + $value->sgst;
+                    } else {
+                        $gst_per = $value->igst;
+                    }
+                    $gst_value = $sub_tot_af_dis * ($gst_per / 100);
+                    $total = $sub_tot_af_dis + $gst_value
+                    ?>
+                    <td class="text-start" style="border:1px solid #000; font-family: DejaVu Sans, sans-serif;">₹<?php echo e(number_format($gst_value,2)); ?>
 
-                            </td>
-                            <td class="text-start" style="font-family: DejaVu Sans, sans-serif;">₹<?php echo e(number_format($total,2)); ?>
+                    </td>
+                    <td class="text-start" style="border:1px solid #000; font-family: DejaVu Sans, sans-serif;">₹<?php echo e(number_format($total,2)); ?>
 
-                            </td>
-                        </tr>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </td>
+                </tr>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 <?php endif; ?>
             </tbody>
         </table>
+        <div class="text-right">
+            <p style="font-family: DejaVu Sans, sans-serif; font-weight:bold; padding:4px;"><?php echo app('translator')->get('index.total_cost'); ?>: ₹<?php echo e(number_format($obj->total_amount,2)); ?></p>
+        </div>
         
         
-        <table>
+        <table class="file_extension">
             <tr>
                 <td valign="top" class="w-50">
                     <div class="pt-20">
                         <h4 class="d-block pb-20">File</h4>
                         <div class="">
                             <?php if(isset($obj->file) && $obj->file): ?>
-                                <?php ($file = $obj->file); ?>
-                                <?php ($fileExtension = pathinfo($file, PATHINFO_EXTENSION)); ?>
-                                <?php if($fileExtension == 'pdf'): ?>
-                                <a class="text-decoration-none"
-                                    href="<?php echo e($baseURL); ?>uploads/order/<?php echo e($file); ?>"
-                                    target="_blank">
-                                    <img src="<?php echo e($baseURL); ?>assets/images/pdf.png"
-                                        alt="PDF Preview" class="img-thumbnail mx-2"
-                                        width="100px">
-                                </a>
-                                <?php elseif($fileExtension == 'doc' || $fileExtension == 'docx'): ?>
-                                <a class="text-decoration-none"
-                                    href="<?php echo e($baseURL); ?>uploads/order/<?php echo e($file); ?>"
-                                    target="_blank">
-                                    <img src="<?php echo e($baseURL); ?>assets/images/word.png"
-                                        alt="Word Preview" class="img-thumbnail mx-2"
-                                        width="100px">
-                                </a>
-                                <?php else: ?>
-                                <a class="text-decoration-none"
-                                    href="<?php echo e($baseURL); ?>uploads/order/<?php echo e($file); ?>"
-                                    target="_blank">
-                                    <img src="<?php echo e($baseURL); ?>uploads/order/<?php echo e($file); ?>"
-                                        alt="File Preview" class="img-thumbnail mx-2"
-                                        width="100px">
-                                </a>
-                                <?php endif; ?>
+                            <?php ($file = $obj->file); ?>
+                            <?php ($fileExtension = pathinfo($file, PATHINFO_EXTENSION)); ?>
+                            <?php if($fileExtension == 'pdf'): ?>
+                            <a class="text-decoration-none"
+                                href="<?php echo e($baseURL); ?>uploads/order/<?php echo e($file); ?>"
+                                target="_blank">
+                                <img src="<?php echo e($baseURL); ?>assets/images/pdf.png"
+                                    alt="PDF Preview" class="img-thumbnail mx-2"
+                                    width="25px">
+                            </a>
+                            <?php elseif($fileExtension == 'doc' || $fileExtension == 'docx'): ?>
+                            <a class="text-decoration-none"
+                                href="<?php echo e($baseURL); ?>uploads/order/<?php echo e($file); ?>"
+                                target="_blank">
+                                <img src="<?php echo e($baseURL); ?>assets/images/word.png"
+                                    alt="Word Preview" class="img-thumbnail mx-2"
+                                    width="25px">
+                            </a>
+                            <?php else: ?>
+                            <a class="text-decoration-none"
+                                href="<?php echo e($baseURL); ?>uploads/order/<?php echo e($file); ?>"
+                                target="_blank">
+                                <img src="<?php echo e($baseURL); ?>uploads/order/<?php echo e($file); ?>"
+                                    alt="File Preview" class="img-thumbnail mx-2"
+                                    width="50px">
+                            </a>
+                            <?php endif; ?>
                             <?php endif; ?>
                         </div>
                     </div>
+                </td>
+                <td style="text-align:right;">
                     <div class="pt-20">
                         <p class="pb-7 rgb-71">
                             <span class=""><?php echo app('translator')->get('index.quotation_note'); ?>:</span>
@@ -181,18 +187,6 @@ $baseURL = getBaseURL();
 
                         </p>
                     </div>
-                </td>
-                <td class="w-50">
-                    <table>
-                        <tr>
-                            <td class="w-50">
-                                <p class=""><?php echo app('translator')->get('index.total_cost'); ?></p>
-                            </td>
-                            <td class="w-50 text-right pr-0">
-                                <p style="font-family: DejaVu Sans, sans-serif;">₹<?php echo e(number_format($obj->total_amount,2)); ?></p>
-                            </td>
-                        </tr>
-                    </table>
                 </td>
             </tr>
         </table>
@@ -209,4 +203,5 @@ $baseURL = getBaseURL();
     <script src="<?php echo e($baseURL . ('assets/bower_components/jquery/dist/jquery.min.js')); ?>"></script>
     <script src="<?php echo e($baseURL . ('frequent_changing/js/onload_print.js')); ?>"></script>
 </body>
+
 </html><?php /**PATH C:\xampp\htdocs\danish-industries\resources\views/pages/customer_order/invoice.blade.php ENDPATH**/ ?>
