@@ -156,6 +156,36 @@
                     </ul>
                 </li>  
             @endif
+            @if (menuPermission('Instruments'))
+                <li class="parent-menu treeview menu__cidirp_10{{ request()->is('instrument_category*') || request()->is('instruments*') ? ' menu-open active_sub_menu' : '' }}">
+                    <a href="#">
+                        <iconify-icon icon="mdi:tools"></iconify-icon>
+                        <span class="match_bold">@lang('index.instruments')</span>
+                    </a>
+                    <ul class="treeview-menu">
+                        @if (routePermission('instrument_category.create'))
+                            <li class="menu_assign_class {{ request()->routeIs('instrument_category.create') ? ' treeMenuActive' : '' }}" data-menu__cid="irp_10"><a
+                                    href="{{ route('instrument_category.create') }}">@lang('index.add_instrument_category')</a>
+                            </li>
+                        @endif
+                        @if (routePermission('instrument_category.index'))
+                            <li class="menu_assign_class {{ request()->routeIs('instrument_category.index') ? ' treeMenuActive' : '' }}" data-menu__cid="irp_10"><a
+                                    href="{{ route('instrument_category.index') }}">@lang('index.list_instrument_category')</a>
+                            </li>
+                        @endif
+                        @if (routePermission('instruments.create'))
+                            <li class="menu_assign_class {{ request()->routeIs('instruments.create') ? ' treeMenuActive' : '' }}" data-menu__cid="irp_10"><a
+                                    href="{{ route('instruments.create') }}">@lang('index.add_instrument')</a>
+                            </li>
+                        @endif
+                        @if (routePermission('instruments.index'))
+                            <li class="menu_assign_class {{ request()->routeIs('instruments.index') ? ' treeMenuActive' : '' }}" data-menu__cid="irp_10"><a
+                                    href="{{ route('instruments.index') }}">@lang('index.list_instrument')</a>
+                            </li>
+                        @endif
+                    </ul>
+                </li>  
+            @endif
             @if (menuPermission('Item Setup'))
                 <li
                     class="parent-menu treeview menu__cidirp_10{{ request()->is('rmcategories*') || request()->is('rawmaterials*') || request()->is('noninventoryitems*') || request()->is('fpcategories*') || request()->is('finishedproducts*') ? ' menu-open active_sub_menu' : '' }}">

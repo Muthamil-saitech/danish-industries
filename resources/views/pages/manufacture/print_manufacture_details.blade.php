@@ -182,35 +182,35 @@ $whiteLabelInfo = App\WhiteLabelSettings::first();
                         <h4 class="d-block pb-10">@lang('index.files')</h4>
                         <div class="">
                             @if (isset($obj->file) && $obj->file)
-                                @php($files = explode(',', $obj->file))
-                                @foreach ($files as $file)
-                                    @php($fileExtension = pathinfo($file, PATHINFO_EXTENSION))
-                                    @if ($fileExtension == 'pdf')
-                                        <a class="text-decoration-none"
-                                            href="{{ $baseURL }}uploads/manufacture/{{ $file }}"
-                                            target="_blank">
-                                            <img src="{{ $baseURL }}assets/images/pdf.png"
-                                                alt="PDF Preview" class="img-thumbnail mx-2"
-                                                width="100px">
-                                        </a>
-                                    @elseif($fileExtension == 'doc' || $fileExtension == 'docx')
-                                        <a class="text-decoration-none"
-                                            href="{{ $baseURL }}uploads/manufacture/{{ $file }}"
-                                            target="_blank">
-                                            <img src="{{ $baseURL }}assets/images/word.png"
-                                                alt="Word Preview" class="img-thumbnail mx-2"
-                                                width="100px">
-                                        </a>
-                                    @else
-                                        <a class="text-decoration-none"
-                                            href="{{ $baseURL }}uploads/manufacture/{{ $file }}"
-                                            target="_blank">
-                                            <img src="{{ $baseURL }}uploads/manufacture/{{ $file }}"
-                                                alt="File Preview" class="img-thumbnail mx-2"
-                                                width="100px">
-                                        </a>
-                                    @endif
-                                @endforeach
+                            @php($files = explode(',', $obj->file))
+                            @foreach ($files as $file)
+                            @php($fileExtension = pathinfo($file, PATHINFO_EXTENSION))
+                            @if ($fileExtension == 'pdf')
+                            <a class="text-decoration-none"
+                                href="{{ $baseURL }}uploads/manufacture/{{ $file }}"
+                                target="_blank">
+                                <img src="{{ $baseURL }}assets/images/pdf.png"
+                                    alt="PDF Preview" class="img-thumbnail mx-2"
+                                    width="100px">
+                            </a>
+                            @elseif($fileExtension == 'doc' || $fileExtension == 'docx')
+                            <a class="text-decoration-none"
+                                href="{{ $baseURL }}uploads/manufacture/{{ $file }}"
+                                target="_blank">
+                                <img src="{{ $baseURL }}assets/images/word.png"
+                                    alt="Word Preview" class="img-thumbnail mx-2"
+                                    width="100px">
+                            </a>
+                            @else
+                            <a class="text-decoration-none"
+                                href="{{ $baseURL }}uploads/manufacture/{{ $file }}"
+                                target="_blank">
+                                <img src="{{ $baseURL }}uploads/manufacture/{{ $file }}"
+                                    alt="File Preview" class="img-thumbnail mx-2"
+                                    width="100px">
+                            </a>
+                            @endif
+                            @endforeach
                             @endif
                         </div>
                     </div>
@@ -240,4 +240,5 @@ $whiteLabelInfo = App\WhiteLabelSettings::first();
     <script src="{{ asset('assets/bower_components/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('frequent_changing/js/onload_print.js') }}"></script>
 </body>
+
 </html>

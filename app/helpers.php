@@ -149,6 +149,11 @@ function getCategoryById($id)
 {
     $row = \App\RawMaterialCategory::where('id', $id)->first();
     return isset($row->name) && $row->name ? $row->name : 'Unknown';
+
+}function getInstrumentCategoryById($id)
+{
+    $row = \App\InstrumentCategory::where('id', $id)->first();
+    return isset($row->category) && $row->category ? $row->category : 'Unknown';
 }
 
 /**

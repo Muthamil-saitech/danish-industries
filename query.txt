@@ -6,3 +6,11 @@ ALTER TABLE `tbl_material_stocks` ADD `hsn_no` VARCHAR(50) NULL DEFAULT NULL AFT
 ALTER TABLE `tbl_stock_adjust_logs` ADD `dc_inward_price` FLOAT NULL DEFAULT NULL AFTER `mat_doc_no`;
 ALTER TABLE `tbl_stock_adjust_logs` ADD `material_price` FLOAT NULL DEFAULT NULL AFTER `dc_inward_price`;
 ALTER TABLE `tbl_stock_adjust_logs` ADD `hsn_no` VARCHAR(50) NULL DEFAULT NULL AFTER `material_price`;
+
+
+===========================
+INSERT INTO `tbl_menus` (`id`, `title`, `description`, `created_at`, `updated_at`) VALUES (NULL, 'Instruments', NULL, NULL);
+INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '26', 'Add Instrument', 'instruments.create', 'No', 'No', NULL, NULL);
+INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '26', 'Instruments List', 'instruments.index', 'No', 'No', NULL, NULL);
+INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '26', 'Edit Instrument', 'instruments.edit', 'No', 'No', NULL, NULL);
+INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '26', 'Delete Instrument', 'instruments.delete', 'No', 'No', NULL, NULL);

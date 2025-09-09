@@ -121,6 +121,7 @@ Route::group(['middleware' => ['XSS']], function () {
         Route::post('getFinishProductRManufacture', [App\Http\Controllers\AjaxController::class, 'getFinishProductRMForManufacture'])->name('getFinishProductRM.post');
         Route::post('getFinishProductGST', [App\Http\Controllers\AjaxController::class, 'getFinishProductGST'])->name('getFinishProductGST.post');
         Route::post('getProductQty', [App\Http\Controllers\AjaxController::class, 'getProductQty'])->name('getProductQty.post');
+        Route::post('getInstrumentCategory', [App\Http\Controllers\AjaxController::class, 'getInstrumentCategory'])->name('getInstrumentCategory.post');
         Route::post('getFinishProductNONI', [App\Http\Controllers\AjaxController::class, 'getFinishProductNONI'])->name('getFinishProductNONI.post');
         Route::post('getFinishProductStages', [App\Http\Controllers\AjaxController::class, 'getFinishProductStages'])->name('getFinishProductStages.post');
         Route::post('getProductionStages', [App\Http\Controllers\AjaxController::class, 'getProductionStages'])->name('getProductionStages.post');
@@ -177,6 +178,7 @@ Route::group(['middleware' => ['XSS']], function () {
         Route::get('/generate-purchase/{id}',[App\Http\Controllers\RawMaterialPurchaseController::class, 'generatePurchase'])->name('generate_purchase');
         Route::resource('rmwastes', App\Http\Controllers\RMWasteController::class);
         Route::resource('fpcategories', App\Http\Controllers\FPCategoryController::class);
+        Route::resource('instrument_category', App\Http\Controllers\InstrumentCategoryController::class);
 
         Route::resource('finishedproducts', App\Http\Controllers\FinishedProductController::class)->only(['index', 'create', 'store', 'destroy', 'update', 'duplicate', 'duplicate_store', 'edit']);
         Route::get('product-price-history', [App\Http\Controllers\FinishedProductController::class, 'priceHistory'])->name('product.price.history');
@@ -187,6 +189,8 @@ Route::group(['middleware' => ['XSS']], function () {
         Route::resource('product-wastes', App\Http\Controllers\ProductWasteController::class);
 
         Route::resource('productions', App\Http\Controllers\ProductionController::class)->only(['index', 'create', 'store', 'destroy', 'update', 'show', 'edit']);
+        Route::resource('instrument_category', App\Http\Controllers\InstrumentCategoryController::class)->only(['index', 'create', 'store', 'destroy', 'update', 'show', 'edit']);
+        Route::resource('instruments', App\Http\Controllers\InstrumentController::class)->only(['index', 'create', 'store', 'destroy', 'update', 'show', 'edit']);
 
         Route::get('/productions/{mid}/task-track', [App\Http\Controllers\ProductionController::class, 'task_track']);
         Route::get('/productions/{mid}/drawer-image', [App\Http\Controllers\ProductionController::class, 'drawer_image']);
