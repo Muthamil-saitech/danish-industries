@@ -66,9 +66,10 @@
         }
     });
 
-    /* $(document).on("change", "#mat_cat_id", function () {
+    $(document).on("change", "#mat_cat_id", function () {
         let mat_cat_id = $(this).find(":selected").val();
-        let hidden_base_url = $("#hidden_base_url").val(); */
+        let mat_type = $("#mat_type").val();
+        let hidden_base_url = $("#hidden_base_url").val();
         /* if(mat_cat_id=="1") {
             $("#insert_mat_type_div").removeClass('d-none');
             $("#normal_mat_type_div").addClass('d-none');
@@ -90,10 +91,10 @@
             $("#mat_type").attr("name", "mat_type");
             $("#inp_mat_type").removeAttr("name");
         } */
-        /* $.ajax({
+        $.ajax({
             type: "POST",
             url: hidden_base_url + "getMaterialById",
-            data: { id: mat_cat_id },
+            data: { mat_type: mat_type, id: mat_cat_id },
             dataType: "json",
             success: function (data) { 
                 $(".add_tr").empty();
@@ -116,12 +117,12 @@
                 console.error("Failed to fetch product details.");
             },
         });
-    }); */
+    });
     $(document).on("change", "#mat_id", function () {
         let mat_id = $(this).find(":selected").val();
         let parts = mat_id.split('|');
         let hidden_base_url = $("#hidden_base_url").val();
-        $.ajax({
+        /* $.ajax({
             type: "POST",
             url: hidden_base_url + "getMaterialCatById",
             data: { mat_id: parts[0] },
@@ -135,7 +136,7 @@
             error: function () {
                 console.error("Failed to fetch product details.");
             },
-        });
+        }); */
         // let mat_cat_id = $("#mat_cat_id").val();
         $.ajax({
             type: "POST",
@@ -161,6 +162,7 @@
         $('#stock_type').val("").trigger('change.select2');
     });
     $(document).on("change", "#mat_type", function () {
+        let hidden_base_url = $("#hidden_base_url").val();
         let mat_type = $(this).find(":selected").val();
         // console.log("mat_type",typeof(mat_type));
         if(mat_type === "1") {
@@ -170,8 +172,33 @@
             $("#cust_div").addClass('d-none');
             $("#customer_id").val("");
         }  
-        // $(".select2").select2();
-        $('#stock_type').val("").trigger('change.select2');
+        $.ajax({
+            type: "POST",
+            url: hidden_base_url + "getMaterialCategory",
+            data: { mat_type_id: mat_type },
+            dataType: "json",
+            success: function (data) {
+                if(data) {
+                    let category = data;
+                    let select = $("#mat_cat_id");
+                    select.empty();
+                    select.append('<option value="">Please Select</option>');
+                    category.forEach(function(item) {
+                        if (item) {
+                            let id = item.id;
+                            let name = item.name;
+                            select.append('<option value="' + id + '">' + name + '</option>');
+                        }
+                    });
+                }                
+            },
+            error: function () {
+                console.error("Failed to fetch product details.");
+            },
+        });
+        // $('#mat_cat_id').val("").trigger('change.select2');
+        $('#mat_id').val("").trigger('change.select2');
+        // $('#stock_type').val("").trigger('change.select2');
     });
     $(document).on("change", "#stock_type", function (e) {
         let hidden_base_url = $("#hidden_base_url").val();

@@ -2073,3 +2073,15 @@ function getYourDCNo($manufacture_id) {
     $materialStock = \App\MaterialStock::where('id', $mrmaterial->stock_id)->where('mat_id', $mrmaterial->rmaterials_id)->where('del_status','Live')->first();
     return $materialStock ? $materialStock->dc_no : '';
 }
+
+function getMatTypeName($mat_type_id)
+{
+    $row = \App\MaterialType::where('del_status', 'Live')->where('id', $mat_type_id)->first();
+    return $row->type_name ?? 'N/A';
+}
+
+function getToolName($tool_id)
+{
+    $row = \App\Tool::where('del_status', 'Live')->where('id', $tool_id)->first();
+    return $row->tool_name ?? 'N/A';
+}

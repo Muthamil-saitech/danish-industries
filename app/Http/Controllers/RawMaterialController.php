@@ -19,6 +19,7 @@ namespace App\Http\Controllers;
 
 use App\FPrmitem;
 use App\MaterialStock;
+use App\MaterialType;
 use App\RawMaterial;
 use App\RawMaterialCategory;
 use App\RMPurchase_model;
@@ -62,10 +63,11 @@ class RawMaterialController extends Controller
         $title = __('index.add_raw_material');
         $categories = RawMaterialCategory::orderBy('id', 'DESC')->where('del_status', "Live")->get();
         $units = Unit::orderBy('id', 'DESC')->where('del_status', "Live")->get();
+        $material_types = MaterialType::where('del_status','Live')->orderBy('id','DESC')->get();
         // $obj_rm = RawMaterial::count();
         // //generate code
         // $code = "RM-" . str_pad($obj_rm + 1, 3, '0', STR_PAD_LEFT);
-        return view('pages.rawmaterial.addEditRawMaterial', compact('title', 'units', 'categories'));
+        return view('pages.rawmaterial.addEditRawMaterial', compact('title', 'units', 'categories', 'material_types'));
     }
 
     /**
@@ -84,6 +86,7 @@ class RawMaterialController extends Controller
                     'max:150',
                 ],
                 'category' => 'required',
+                'mat_type_id' => 'required',
                 // 'insert_type' => 'required_if:category,1',
                 'code' => [
                     'required',
@@ -102,6 +105,7 @@ class RawMaterialController extends Controller
             [
                 'name.required' => __('index.raw_mat_req'),
                 'category.required' => __('index.raw_mat_c_req'),
+                'mat_type_id.required' => __('index.mat_type_req'),
                 'code.required' => __('index.raw_mat_code_req'),
                 // 'insert_type.required_if' => "The Insert Type field is required",
             ]
@@ -111,6 +115,7 @@ class RawMaterialController extends Controller
         $obj->name = ucwords(escape_output($request->get('name')));
         $obj->code = escape_output($request->get('code'));
         $obj->category = escape_output($request->get('category'));
+        $obj->mat_type_id = escape_output($request->get('mat_type_id'));
         // $obj->insert_type = $request->get('category')=="1" ? escape_output($request->get('insert_type')) : null;
         $obj->insert_type = null;
         // $obj->heat_no = escape_output($request->get('heat_no'));
@@ -135,7 +140,8 @@ class RawMaterialController extends Controller
         $categories = RawMaterialCategory::orderBy('id', 'DESC')->where('del_status', "Live")->get();
         $units = Unit::orderBy('id', 'DESC')->where('del_status', "Live")->get();
         $obj = $rawmaterial;
-        return view('pages.rawmaterial.addEditRawMaterial', compact('title', 'obj', 'categories', 'units'));
+        $material_types = MaterialType::where('del_status','Live')->orderBy('id','DESC')->get();
+        return view('pages.rawmaterial.addEditRawMaterial', compact('title', 'obj', 'categories', 'units', 'material_types'));
     }
 
     /**
@@ -147,6 +153,7 @@ class RawMaterialController extends Controller
      */
     public function update(Request $request, RawMaterial $rawmaterial)
     {
+        // dd($request->all());
         request()->validate(
             [
                 'name' => [
@@ -155,6 +162,7 @@ class RawMaterialController extends Controller
                     'max:150',
                 ],
                 'category' => 'required',
+                'mat_type_id' => 'required',
                 'code' => [
                     'required',
                     'regex:/^(?=.*[a-zA-Z])[a-zA-Z0-9\/&\-\s]+$/',
@@ -172,15 +180,17 @@ class RawMaterialController extends Controller
             [
                 'name.required' => __('index.raw_mat_req'),
                 'category.required' => __('index.raw_mat_c_req'),
+                'mat_type_id.required' => __('index.mat_type_req'),
                 'code.required' => __('index.raw_mat_code_req'),
             ]
         );
 
         $rawmaterial->name = ucwords(escape_output($request->get('name')));
         $rawmaterial->code = escape_output($request->get('code'));
+        $rawmaterial->mat_type_id = escape_output($request->get('mat_type_id'));
         $rawmaterial->category = escape_output($request->get('category'));
-        // $rawmaterial->heat_no = escape_output($request->get('heat_no'));
         $rawmaterial->diameter = $request->filled('diameter') ? escape_output($request->get('diameter')) : null;
+        // $rawmaterial->heat_no = escape_output($request->get('heat_no'));
         // $rawmaterial->type = null_check(escape_output($request->get('type')));
         $rawmaterial->old_mat_no = html_entity_decode($request->get('old_mat_no'));
         $rawmaterial->remarks = html_entity_decode($request->get('remarks'));

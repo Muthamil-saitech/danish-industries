@@ -78,4 +78,33 @@ $(document).ready(function () {
     //         $("#insert_type_div").hide();
     //     }
     // });
+    $(document).on("change", "#mat_type_id", function () {
+        let mat_type_id = $(this).find(":selected").val();
+        let hidden_base_url = $("#hidden_base_url").val();
+        $.ajax({
+            type: "POST",
+            url: hidden_base_url + "getMaterialCategory",
+            data: { mat_type_id: mat_type_id },
+            dataType: "json",
+            success: function (data) {
+                if(data) {
+                    let category = data;
+                    let select = $("#category");
+                    select.empty();
+                    select.append('<option value="">Please Select</option>');
+                    category.forEach(function(item) {
+                        if (item) {
+                            let id = item.id;
+                            let name = item.name;
+                            select.append('<option value="' + id + '">' + name + '</option>');
+                        }
+                    });
+                }                
+            },
+            error: function () {
+                console.error("Failed to fetch product details.");
+            },
+        });
+        $('#category').val("").trigger('change.select2');
+    });
 });

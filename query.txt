@@ -14,3 +14,18 @@ INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name
 INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '26', 'Instruments List', 'instruments.index', 'No', 'No', NULL, NULL);
 INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '26', 'Edit Instrument', 'instruments.edit', 'No', 'No', NULL, NULL);
 INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '26', 'Delete Instrument', 'instruments.delete', 'No', 'No', NULL, NULL);
+
+===========================
+INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '5', 'Add Material Type', 'materialtypes.create', 'No', 'No', NULL, NULL);
+INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '5', 'List Material Type', 'materialtypes.index', 'No', 'No', NULL, NULL);
+INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '5', 'Edit Material Type', 'materialtype.edit', 'No', 'No', NULL, NULL);
+INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '5', 'Delete Material Type', 'materialtype.delete', 'No', 'No', NULL, NULL);
+INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '24', 'Add Tools/Gauges', 'tools.create', 'No', 'No', NULL, NULL);
+INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '24', 'Tools/Gauges List', 'tools.index', 'No', 'No', NULL, NULL);
+INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '24', 'Edit Tools/Gauges', 'tools.edit', 'No', 'No', NULL, NULL);
+INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '24', 'Delete Tools/Gauges', 'tools.delete', 'No', 'No', NULL, NULL);
+ALTER TABLE `tbl_rmcategory` ADD `mat_type_id` INT NOT NULL AFTER `company_id`;
+ALTER TABLE `tbl_rawmaterials` ADD `mat_type_id` INT NOT NULL AFTER `id`;
+ALTER TABLE `tbl_drawers` CHANGE `notes` `tools_id` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
+ALTER TABLE `tbl_drawers` ADD `stage_id` TEXT NOT NULL AFTER `tools_id`;
+

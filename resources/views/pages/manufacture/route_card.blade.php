@@ -119,13 +119,23 @@ $baseURL = getBaseURL();
             <div style="margin-bottom: 5px; padding: 5px 10px; border-bottom: 1px solid #000; line-height: 25px; display: flex; justify-content: space-between;">
                 <div>
                     <b>Tools/Gauges List : - Yes/No</b><br>
-                    1. {{ isset($drawer) && $drawer->notes!='' ? $drawer->notes : ' ' }}
+                    @if(isset($drawer) && $drawer->tools_id!='')
+                    @php $tools = explode(',',$drawer->tools_id); $j = 0; @endphp
+                        @foreach($tools as $key => $tool)
+                        {{ ++$j.'. '.getToolName($tool) }}<br>
+                        @endforeach
+                    @endif
                 </div>
                 {{-- <p>{{ isset($drawer) && $drawer->notes!='' ? 'Yes' : 'No' }}</p> --}}
             </div>
             <div style="margin-bottom: 5px; padding: 5px 10px; line-height: 25px;">
                 <b>Program List :- Yes/No</b><br>
-                1. {{ isset($drawer) && $drawer->program_code!='' ? $drawer->program_code : ' ' }}
+                @if(isset($drawer) && $drawer->program_code!='')
+                    @php $program_codes = json_decode($drawer->program_code,true); $i = 0; @endphp
+                    @foreach($program_codes as $key => $code)
+                    {{ ++$i.'. '.$code }}<br>
+                    @endforeach
+                @endif
             </div>
         </div>
     </div>

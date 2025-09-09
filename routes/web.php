@@ -164,7 +164,10 @@ Route::group(['middleware' => ['XSS']], function () {
         Route::resource('material_stocks', App\Http\Controllers\MaterialStockController::class);
         Route::get('material_stocks/{id}/stock_adjustments', [App\Http\Controllers\MaterialStockController::class, 'stock_adjustments']);
         Route::post('/materialStockAdjust', [App\Http\Controllers\MaterialStockController::class, 'materialStockAdjust'])->name('materialStockAdjust');
+        Route::resource('materialtypes', App\Http\Controllers\MaterialTypeController::class);
+        Route::resource('tools', App\Http\Controllers\ToolsController::class);
         Route::resource('rmcategories', App\Http\Controllers\RawMaterialCategoryController::class);
+        Route::post('getMaterialCategory', [App\Http\Controllers\AjaxController::class, 'getMaterialCategory'])->name('getMaterialCategory.post');
         Route::resource('productionstages', App\Http\Controllers\ProductionStageController::class);
         Route::resource('units', App\Http\Controllers\UnitController::class);
         Route::resource('drawers', App\Http\Controllers\DrawerController::class);

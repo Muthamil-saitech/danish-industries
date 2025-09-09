@@ -107,7 +107,7 @@
                 </li>
             @endif
             @if (menuPermission('Master'))
-                <li class="parent-menu treeview menu__cidirp_10{{ request()->is('units*') || request()->is('productionstages*') || request()->is('drawers*') || request()->is('inspections*') ? ' menu-open active_sub_menu' : '' }}">
+                <li class="parent-menu treeview menu__cidirp_10{{ request()->is('units*') || request()->is('productionstages*') || request()->is('drawers*') || request()->is('inspections*') || request()->is('tools*') ? ' menu-open active_sub_menu' : '' }}">
                     <a href="#">
                         <iconify-icon icon="solar:settings-broken"></iconify-icon>
                         <span class="match_bold">@lang('index.master')</span>
@@ -121,6 +121,15 @@
                         @if (routePermission('units.index'))
                             <li class="menu_assign_class {{ request()->routeIs('units.index') ? ' treeMenuActive' : '' }}" data-menu__cid="irp_10"><a
                                     href="{{ route('units.index') }}">@lang('index.list_unit')</a>
+                            </li>
+                        @endif
+                        @if (routePermission('tools.create'))
+                            <li class="menu_assign_class {{ request()->routeIs('tools.create') ? ' treeMenuActive' : '' }}" data-menu__cid="irp_10"><a href="{{ route('tools.create') }}">@lang('index.add_tools')</a>
+                            </li>
+                        @endif
+                        @if (routePermission('tools.index'))
+                            <li class="menu_assign_class {{ request()->routeIs('tools.index') ? ' treeMenuActive' : '' }}" data-menu__cid="irp_10"><a
+                                    href="{{ route('tools.index') }}">@lang('index.tools_list')</a>
                             </li>
                         @endif
                         @if (routePermission('drawers.create'))
@@ -157,7 +166,7 @@
                 </li>  
             @endif
             @if (menuPermission('Instruments'))
-                <li class="parent-menu treeview menu__cidirp_10{{ request()->is('instrument_category*') || request()->is('instruments*') ? ' menu-open active_sub_menu' : '' }}">
+                <li class="parent-menu treeview menu__cidirp_10{{ request()->is('instrument_category*') || request()->is('instruments*')  ? ' menu-open active_sub_menu' : '' }}">
                     <a href="#">
                         <iconify-icon icon="mdi:tools"></iconify-icon>
                         <span class="match_bold">@lang('index.instruments')</span>
@@ -188,12 +197,22 @@
             @endif
             @if (menuPermission('Item Setup'))
                 <li
-                    class="parent-menu treeview menu__cidirp_10{{ request()->is('rmcategories*') || request()->is('rawmaterials*') || request()->is('noninventoryitems*') || request()->is('fpcategories*') || request()->is('finishedproducts*') ? ' menu-open active_sub_menu' : '' }}">
+                    class="parent-menu treeview menu__cidirp_10{{ request()->is('rmcategories*') || request()->is('rawmaterials*') || request()->is('noninventoryitems*') || request()->is('fpcategories*') || request()->is('finishedproducts*') || request()->is('materialtypes*') ? ' menu-open active_sub_menu' : '' }}">
                     <a href="#">
                         <iconify-icon icon="solar:inbox-line-broken"></iconify-icon>
                         <span class="match_bold">@lang('index.item_setup')</span>
                     </a>
                     <ul class="treeview-menu">
+                        @if (routePermission('materialtypes.create'))
+                            <li class="menu_assign_class {{ request()->routeIs('materialtypes.create') ? ' treeMenuActive' : '' }}" data-menu__cid="irp_10"><a
+                                    href="{{ route('materialtypes.create') }}">@lang('index.add_mat_type')</a>
+                            </li>
+                        @endif
+                        @if (routePermission('materialtypes.index'))
+                            <li class="menu_assign_class {{ request()->routeIs('materialtypes.index') ? ' treeMenuActive' : '' }}" data-menu__cid="irp_10"><a
+                                    href="{{ route('materialtypes.index') }}">@lang('index.mat_type_list')</a>
+                            </li>
+                        @endif
                         @if (routePermission('rmcategory.create'))
                             <li class="menu_assign_class {{ request()->routeIs('rmcategories.create') ? ' treeMenuActive' : '' }}" data-menu__cid="irp_10"><a
                                     href="{{ route('rmcategories.create') }}">@lang('index.add_rm_category')</a>

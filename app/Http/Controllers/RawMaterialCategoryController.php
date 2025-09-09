@@ -17,6 +17,7 @@
 
 namespace App\Http\Controllers;
 
+use App\MaterialType;
 use App\RawMaterial;
 use App\RawMaterialCategory;
 use Illuminate\Http\Request;
@@ -53,8 +54,9 @@ class RawMaterialCategoryController extends Controller
      */
     public function create()
     {
+        $material_types = MaterialType::where('del_status','Live')->orderBy('id','DESC')->get();
         $title =  __('index.add_raw_material_category');
-        return view('pages.rmcategory.addEditRMCategory', compact('title'));
+        return view('pages.rmcategory.addEditRMCategory', compact('title', 'material_types'));
     }
 
     /**
@@ -74,13 +76,16 @@ class RawMaterialCategoryController extends Controller
                     return $query->where('del_status', 'Live');
                 }),
             ],
+            'mat_type_id' => 'required',
             'description' => 'max:250'
         ], [
+            'mat_type_id.required' => __('index.mat_type_req'),
             'name.required' => __('index.raw_mat_c_req'),
         ]);
 
         $obj = new \App\RawMaterialCategory;
         $obj->name = ucwords(escape_output($request->get('name')));
+        $obj->mat_type_id = $request->get('mat_type_id');
         $obj->description = html_entity_decode($request->get('description'));
         $obj->save();
         return redirect('rmcategories')->with(saveMessage());
@@ -95,9 +100,10 @@ class RawMaterialCategoryController extends Controller
     public function edit($id)
     {
         $rmcategory = RawMaterialCategory::find(encrypt_decrypt($id, 'decrypt'));
+        $material_types = MaterialType::where('del_status','Live')->orderBy('id','DESC')->get();
         $title =  __('index.edit_raw_material_category');
         $obj = $rmcategory;
-        return view('pages.rmcategory.addEditRMCategory', compact('title', 'obj'));
+        return view('pages.rmcategory.addEditRMCategory', compact('title', 'obj', 'material_types'));
     }
 
     /**
@@ -118,12 +124,15 @@ class RawMaterialCategoryController extends Controller
                     return $query->where('del_status', 'Live');
                 }),
             ],
+            'mat_type_id' => 'required',
             'description' => 'max:250'
         ], [
+            'mat_type_id.required' => __('index.mat_type_req'),
             'name.required' => __('index.raw_mat_c_req'),
         ]);
 
         $rmcategory->name = ucwords(escape_output($request->get('name')));
+        $rmcategory->mat_type_id = $request->get('mat_type_id');
         $rmcategory->description = html_entity_decode($request->get('description'));
         $rmcategory->save();
         return redirect('rmcategories')->with(updateMessage());

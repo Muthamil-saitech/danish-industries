@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use App\MaterialStock;
+use App\MaterialType;
 use App\RawMaterial;
 use App\RawMaterialCategory;
 use App\RMPurchase_model;
@@ -94,10 +95,11 @@ class MaterialStockController extends Controller
     {
         $title =  __('index.add_rm_stock');
         $units = Unit::where('del_status', 'Live')->orderBy('id', 'DESC')->get();
+        $material_types = MaterialType::where('del_status','Live')->orderBy('id','DESC')->get();
         $mat_categories = RawMaterialCategory::where('del_status', 'Live')->orderBy('id', 'DESC')->get();
         $materials = RawMaterial::where('del_status', 'Live')->orderBy('id', 'DESC')->get();
         $customers = Customer::where('del_status', 'Live')->orderBy('id', 'DESC')->get();
-        return view('pages.material_stock.addEditMaterialStock', compact('title', 'mat_categories', 'materials', 'customers', 'units'));
+        return view('pages.material_stock.addEditMaterialStock', compact('title', 'mat_categories', 'materials', 'customers', 'units', 'material_types'));
     }
     public function store(Request $request)
     {
@@ -145,6 +147,7 @@ class MaterialStockController extends Controller
         $title =  __('index.edit_rm_stock');
         $materialStock = MaterialStock::find(encrypt_decrypt($id, 'decrypt'));
         $units = Unit::where('del_status', 'Live')->orderBy('id', 'DESC')->get();
+        $material_types = MaterialType::where('del_status','Live')->orderBy('id','DESC')->get();
         $mat_categories = RawMaterialCategory::where('del_status', 'Live')->orderBy('id', 'DESC')->get();
         $materials = RawMaterial::where('del_status', 'Live')->orderBy('id', 'DESC')->get();
         $customers = Customer::where('del_status', 'Live')->orderBy('id', 'DESC')->get();
@@ -157,7 +160,7 @@ class MaterialStockController extends Controller
         } else {
             $purchases = [];
         }
-        return view('pages.material_stock.addEditMaterialStock', compact('title', 'obj', 'mat_categories', 'materials', 'customers', 'units', 'purchases'));
+        return view('pages.material_stock.addEditMaterialStock', compact('title', 'obj', 'mat_categories', 'materials', 'customers', 'units', 'purchases', 'material_types'));
     }
     public function update(Request $request, MaterialStock $material_stock)
     {

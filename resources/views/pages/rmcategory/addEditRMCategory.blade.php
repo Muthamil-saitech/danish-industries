@@ -1,18 +1,13 @@
 @extends('layouts.app')
 @section('script_top')
-
 @endsection
-
 @section('content')
-
 <section class="main-content-wrapper">
     <section class="content-header">
         <h3 class="top-left-header">
-            {{isset($title) && $title?$title:''}}
+            {{isset($title) && $title ? $title : ''}}
         </h3>
     </section>
-
-
     <div class="box-wrapper">
         <div class="table-box">
             <!-- form start -->
@@ -22,15 +17,29 @@
                 <div class="row">
                     <div class="col-sm-12 mb-2 col-md-6">
                         <div class="form-group">
+                            <label for="Name" class="col-form-label">@lang('index.mat_type') <span class="required_star">*</span></label>
+                            <select class="form-control @error('mat_type_id') is-invalid @enderror select2" name="mat_type_id" id="mat_type_id">
+                                <option value="">@lang('index.select')</option>
+                                @foreach ($material_types as $value)
+                                    <option
+                                        {{ (isset($obj->mat_type_id) && $obj->mat_type_id == $value->id) || old('mat_type_id') == $value->id ? 'selected' : '' }}
+                                        value="{{ $value->id }}">{{ $value->type_name }}</option>
+                                @endforeach
+                            </select>
+                            @error('mat_type_id')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-sm-12 mb-2 col-md-6">
+                        <div class="form-group">
                             <label for="Name" class="col-form-label">@lang('index.material_category') <span class="required_star">*</span></label>
-
                             <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" placeholder="@lang('index.material_category')" value="{{ isset($obj->name) ? $obj->name : old('name') }}">
                             @error('name')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                     </div>
-
                     <div class="col-sm-12 mb-2 col-md-6">
                         <div class="form-group">
                             <label for="Description" class="col-form-label">@lang('index.description')</label>

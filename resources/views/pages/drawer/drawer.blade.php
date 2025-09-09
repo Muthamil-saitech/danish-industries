@@ -34,9 +34,9 @@ if (isset($setting->base_color) && $setting->base_color) {
                             <th class="ir_w_16">@lang('index.revision_no')</th>
                             <th class="ir_w_16">@lang('index.revision_date')</th>
                             <th class="ir_w_25">@lang('index.drawer_loc')</th>
-                            <th class="ir_w_25">@lang('index.program_code')</th>
+                            {{-- <th class="ir_w_25">@lang('index.program_code')</th> --}}
                             <th class="ir_w_25">@lang('index.draw_img')</th>
-                            <th class="ir_w_25">Tools/Gauges List</th>
+                            {{-- <th class="ir_w_25">Tools/Gauges List</th> --}}
                             <th class="ir_w_1 ir_txt_center">@lang('index.actions')</th>
                         </tr>
                     </thead>
@@ -50,9 +50,9 @@ if (isset($setting->base_color) && $setting->base_color) {
                             <td>{{ $value->revision_no }}</td>
                             <td>{{ getDateFormat($value->revision_date) }}</td>
                             <td>{{ $value->drawer_loc }}</td>
-                            <td><span title="{{ $value->program_code }}">{{ substr_text($value->program_code,20) }}</span></td>
+                            {{-- <td><span title="{{ $value->program_code }}">{{ substr_text($value->program_code,20) }}</span></td> --}}
                             <td class="ir_txt_center">@if($value->drawer_img!='')<img src="{{ $baseURL }}uploads/drawer/{{ $value->drawer_img }}" alt="Drawer Image" class="img-thumbnail mx-2" width="100px"></a>@endif</td>
-                            <td><span title="{{ $value->notes }}">{{ substr_text($value->notes,20) }}</span></td>
+                            {{-- <td><span title="{{ $value->notes }}">{{ substr_text($value->notes,20) }}</span></td> --}}
                             <td class="text-start">
                                 @if (routePermission('drawers.edit'))
                                 <a href="{{ url('drawers') }}/{{ encrypt_decrypt($value->id, 'encrypt') }}/edit" class="button-success"

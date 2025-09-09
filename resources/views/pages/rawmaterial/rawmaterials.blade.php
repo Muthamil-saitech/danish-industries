@@ -35,6 +35,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                             <th class="width_1_p">@lang('index.sn')</th>
                             <th class="width_10_p">@lang('index.material_code')</th>
                             <th class="width_20_p">@lang('index.raw_material_name')</th>
+                            <th class="width_20_p">@lang('index.mat_type')</th>
                             <th class="width_20_p">@lang('index.material_category')</th>
                             {{-- <th class="width_20_p">@lang('index.ins_type')</th> --}}
                             <th class="width_10_p">@lang('index.diameter')</th>
@@ -55,6 +56,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                             <td class="c_center">{{ $i++ }}</td>
                             <td>{{ $value->code }}</td>
                             <td>{{ $value->name }}</td>
+                            <td>{{ getMatTypeName($value->mat_type_id) }}</td>
                             <td>{{ getCategoryById($value->category) }}</td>
                             {{-- <td>@if($value->insert_type == "1")
                                         Consumable

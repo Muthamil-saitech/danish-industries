@@ -18,7 +18,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                     data-id_name="datatable">
             </div>
             <div class="col-md-6 text-end">
-                <h5 class="mb-0">Total Material Categories: {{ $total_mat_categories }} </h5>
+                <h5 class="mb-0">Total Tools/Gauges: {{ isset($total_tools) ? $total_tools : '0' }} </h5>
             </div>
         </div>
     </section>
@@ -30,9 +30,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                     <thead>
                         <tr>
                             <th class="ir_w_1"> @lang('index.sn')</th>
-                            <th class="ir_w_25">@lang('index.mat_type')</th>
-                            <th class="ir_w_25">@lang('index.material_category')</th>
-                            <th class="ir_w_16">@lang('index.description')</th>
+                            <th class="ir_w_25">@lang('index.tools')</th>
                             <th class="ir_w_1 text-start not-export-col">@lang('index.actions')</th>
                         </tr>
                     </thead>
@@ -45,28 +43,24 @@ if (isset($setting->base_color) && $setting->base_color) {
                         @foreach ($obj as $value)
                         <tr>
                             <td class="ir_txt_center">{{ $i++ }}</td>
-                            <td>{{ getMatTypeName($value->mat_type_id) }}</td>
-                            <td>{{ $value->name }}</td>
-                            <td><span title="{{ $value->description }}">{{ substr_text($value->description,50) }}</span></td>
+                            <td>{{ $value->tool_name }}</td>
                             <td class="text-start">
-                                @if($value->id!=1)
-                                    @if (routePermission('rmcategory.edit'))
-                                    <a href="{{ url('rmcategories') }}/{{ encrypt_decrypt($value->id, 'encrypt') }}/edit"
-                                        class="button-success" data-bs-toggle="tooltip" data-bs-placement="top"
-                                        title="@lang('index.edit')"><i class="fa fa-edit tiny-icon"></i></a>
-                                    @endif
-                                    @if (routePermission('rmcategory.delete') && !$value->used_in_material)
-                                    <a href="#" class="delete button-danger" data-bs-toggle="tooltip" data-bs-placement="top"
-                                        title="@lang('index.delete')"
-                                        data-form_class="alertDelete{{ $value->id }}" type="submit">
-                                        <form action="{{ route('rmcategories.destroy', $value->id) }}"
-                                            class="alertDelete{{ $value->id }}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <i class="fa fa-trash tiny-icon"></i>
-                                        </form>
-                                    </a>
-                                    @endif
+                                @if (routePermission('tools.edit'))
+                                <a href="{{ url('tools') }}/{{ encrypt_decrypt($value->id, 'encrypt') }}/edit"
+                                    class="button-success" data-bs-toggle="tooltip" data-bs-placement="top"
+                                    title="@lang('index.edit')"><i class="fa fa-edit tiny-icon"></i></a>
+                                @endif
+                                @if (routePermission('tools.delete'))
+                                <a href="#" class="delete button-danger" data-bs-toggle="tooltip" data-bs-placement="top"
+                                    title="@lang('index.delete')"
+                                    data-form_class="alertDelete{{ $value->id }}" type="submit">
+                                    <form action="{{ route('tools.destroy', $value->id) }}"
+                                        class="alertDelete{{ $value->id }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <i class="fa fa-trash tiny-icon"></i>
+                                    </form>
+                                </a>
                                 @endif
                             </td>
                         </tr>

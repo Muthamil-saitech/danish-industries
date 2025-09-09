@@ -855,22 +855,23 @@ class AjaxController extends Controller
     }
     public function getMaterialById(Request $request)
     {
+        $mat_type = escape_output($request->post('mat_type'));
         $cat_id = escape_output($request->post('id'));
-        $raw_materials = RawMaterial::where('del_status', "Live")->where('category', $cat_id)->orderBy('id', 'DESC')->get();
+        $raw_materials = RawMaterial::where('mat_type_id',$mat_type)->where('category',$cat_id)->where('del_status', "Live")->orderBy('id', 'DESC')->get();
         echo json_encode($raw_materials);
     }
     public function getMaterialCatById(Request $request)
     {
         $mat_id = escape_output($request->post('mat_id'));
-        $raw_materials = RawMaterial::where('del_status', "Live")->where('id', $mat_id)->first();
-        $material_category = RawMaterialCategory::where('id', $raw_materials->category)->where('del_status', 'Live')->first();
+        $raw_materials = RawMaterial::where('del_status', "Live")->where('id',$mat_id)->first();
+        $material_category = RawMaterialCategory::where('id',$raw_materials->category)->where('del_status','Live')->first();
         echo json_encode($material_category);
     }
     public function getInsertType(Request $request)
     {
         // $mat_cat_id = escape_output($request->post('mat_cat_id'));
         $mat_id = escape_output($request->post('mat_id'));
-        $raw_material = RawMaterial::where('del_status', "Live")->where('id', $mat_id)->orderBy('id', 'DESC')->first();
+        $raw_material = RawMaterial::where('del_status', "Live")->where('id',$mat_id)->orderBy('id', 'DESC')->first();
         echo json_encode($raw_material);
     }
 

@@ -35,7 +35,6 @@ class InspectionController extends Controller
     }
     public function store(Request $request)
     {
-        // dd($request->all());
         $inspection = new Inspection();
         $inspection->mat_type = $request->get('mat_type');
         $inspection->ins_type = 0;

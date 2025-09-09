@@ -138,6 +138,8 @@
                                             </tr>
                                         @endforeach
                                     </tbody>
+                                @else
+                                <tr>No details found</tr>
                                 @endif
                             </table>
                         </div>
