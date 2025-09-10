@@ -284,10 +284,43 @@
             `;
             $(".add_pc").append(newRow);
         });
+        $(document).ready(function() {
+            $(".add_di_ins tr").addClass("rowDiCount");
+            $(".add_ap_ins tr").addClass("rowApCount");
+            resetSerialNumbers(".rowDiCount");
+            resetSerialNumbers(".rowApCount");
+        });
+        function resetSerialNumbers(selector) {
+            $(selector).each(function(index) {
+                $(this).find("td:first").text(index + 1);
+            });
+        }
+        $(document).on("click", "#di_param_add", function () {
+            let html = "<tr class='rowDiCount'>";
+            html += "<td class='text-center'></td>"; // will be updated
+            html += "<td><input type='text' name='di_param[]' class='form-control' maxlength='30'></td>";
+            html += "<td><input type='text' name='di_spec[]' class='form-control' maxlength='100'></td>";
+            html += "<td><input type='text' name='di_method[]' class='form-control' maxlength='100'></td>";
+            html += '<td class="text-center"><a class="btn btn-xs del_row remove-tr dlt_button"><iconify-icon icon="solar:trash-bin-minimalistic-broken"></iconify-icon></a></td>';
+            html += "</tr>";
+            $(".add_di_ins").append(html);
+            resetSerialNumbers(".add_di_ins .rowDiCount");
+        });
+        $(document).on("click", "#ap_param_add", function () {
+            let html = "<tr class='rowApCount'>";
+            html += "<td class='text-center'></td>"; // will be updated
+            html += "<td><input type='text' name='ap_param[]' class='form-control'></td>";
+            html += "<td><input type='text' name='ap_spec[]' class='form-control'></td>";
+            html += "<td><input type='text' name='ap_method[]' class='form-control'></td>";
+            html += '<td class="text-center"><a class="btn btn-xs del_row remove-tr dlt_button"><iconify-icon icon="solar:trash-bin-minimalistic-broken"></iconify-icon></a></td>';
+            html += "</tr>";
+            $(".add_ap_ins").append(html);
+            resetSerialNumbers(".add_ap_ins .rowApCount");
+        });
         $(document).on("click", ".del_row", function () {
             $(this).closest(".row").remove();
         });
-        $("#tools_id").select2({
+        /* $("#tools_id").select2({
             placeholder: "",
             closeOnSelect: false,
             allowClear: true,
@@ -355,40 +388,7 @@
             }
 
             container.html('<li class="select2-selection__choice">' + text + '</li>');
-        });
-        $(document).ready(function() {
-            $(".add_di_ins tr").addClass("rowDiCount");
-            $(".add_ap_ins tr").addClass("rowApCount");
-            resetSerialNumbers(".rowDiCount");
-            resetSerialNumbers(".rowApCount");
-        });
-        function resetSerialNumbers(selector) {
-            $(selector).each(function(index) {
-                $(this).find("td:first").text(index + 1);
-            });
-        }
-        $(document).on("click", "#di_param_add", function () {
-            let html = "<tr class='rowDiCount'>";
-            html += "<td class='text-center'></td>"; // will be updated
-            html += "<td><input type='text' name='di_param[]' class='form-control' maxlength='30'></td>";
-            html += "<td><input type='text' name='di_spec[]' class='form-control' maxlength='100'></td>";
-            html += "<td><input type='text' name='di_method[]' class='form-control' maxlength='100'></td>";
-            html += '<td class="text-center"><a class="btn btn-xs del_row remove-tr dlt_button"><iconify-icon icon="solar:trash-bin-minimalistic-broken"></iconify-icon></a></td>';
-            html += "</tr>";
-            $(".add_di_ins").append(html);
-            resetSerialNumbers(".add_di_ins .rowDiCount");
-        });
-        $(document).on("click", "#ap_param_add", function () {
-            let html = "<tr class='rowApCount'>";
-            html += "<td class='text-center'></td>"; // will be updated
-            html += "<td><input type='text' name='ap_param[]' class='form-control'></td>";
-            html += "<td><input type='text' name='ap_spec[]' class='form-control'></td>";
-            html += "<td><input type='text' name='ap_method[]' class='form-control'></td>";
-            html += '<td class="text-center"><a class="btn btn-xs del_row remove-tr dlt_button"><iconify-icon icon="solar:trash-bin-minimalistic-broken"></iconify-icon></a></td>';
-            html += "</tr>";
-            $(".add_ap_ins").append(html);
-            resetSerialNumbers(".add_ap_ins .rowApCount");
-        });
+        }); */
         $(document).on('submit', '#drawingForm', function (e) {
             // e.preventDefault();
             resetSerialNumbers(".rowDiCount");
