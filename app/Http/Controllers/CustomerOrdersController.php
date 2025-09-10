@@ -47,7 +47,7 @@ class CustomerOrdersController extends Controller
      */
     public function index(Request $request)
     {
-        $total_orders = CustomerOrder::where('del_status', 'Live')->count();
+        $total_orders = CustomerOrderDetails::where('del_status', 'Live')->count();
         $startDate = '';
         $endDate = '';
         $customer_id = escape_output($request->get('customer_id'));
@@ -64,8 +64,8 @@ class CustomerOrdersController extends Controller
         if (isset($customer_id) && $customer_id != '') {
             $order->where('customer_id', $customer_id);
         }
-        // dd($order->get());
-        $obj = $order->orderBy('id', 'DESC')->get();
+        $obj = $order->with('details')->orderBy('id', 'DESC')->get();
+        // dd($obj);
         $customers = Customer::where('del_status', 'Live')->orderBy('id', 'DESC')->get();
         $title = __('index.customer_order');
         return view('pages.customer_order.index', compact('title', 'obj', 'customers', 'startDate', 'endDate', 'customer_id', 'total_orders'));
@@ -112,9 +112,6 @@ class CustomerOrdersController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->file());
-        // dd($request->all());
-
         request()->validate([
             'reference_no' => [
                 'required',
@@ -171,9 +168,10 @@ class CustomerOrdersController extends Controller
                     $obj->tax_amount = null_check(escape_output($_POST['tax_amount'][$row] ?? 0));
                     $obj->sub_total = null_check(escape_output($_POST['sub_total'][$row] ?? 0));
                     $obj->delivery_date = $_POST['delivery_date_product'][$row] != '' ? date('Y-m-d', strtotime(escape_output($_POST['delivery_date_product'][$row] ?? ''))) : null;
+                    $obj->line_item_no = escape_output($_POST['line_item_no'][$row] ?? '');
+                    $obj->order_status = '0';
                     $obj->production_status = 0;
                     $obj->delivered_qty = 0;
-                    // dd($);
                     $obj->save();
                 }
             }
@@ -205,10 +203,9 @@ class CustomerOrdersController extends Controller
     public function show($id)
     {
         $id = encrypt_decrypt($id, 'decrypt');
-        $customerOrder = CustomerOrder::find($id);
+        $orderDetails = CustomerOrderDetails::where('id', $id)->where('del_status', "Live")->first();
+        $customerOrder = CustomerOrder::find($orderDetails->customer_order_id);
         $title = __('index.customer_order_details');
-        $orderDetails = CustomerOrderDetails::where('customer_order_id', $customerOrder->id)->where('del_status', "Live")->get();
-        // dd($orderDetails);
         $orderInvoice = CustomerOrderInvoice::where('customer_order_id', $customerOrder->id)->where('del_status', "Live")->orderBy('id', 'desc')->first();
         $orderDeliveries = CustomerOrderDelivery::where('customer_order_id', $customerOrder->id)->where('del_status', "Live")->orderBy('id', 'desc')->get();
         $obj = $customerOrder;
@@ -223,7 +220,9 @@ class CustomerOrdersController extends Controller
      */
     public function edit($id)
     {
-        $customerOrder = CustomerOrder::find(encrypt_decrypt($id, 'decrypt'));
+        $detail_id = encrypt_decrypt($id, 'decrypt');
+        $orderDetails = CustomerOrderDetails::where('id', $detail_id)->where('del_status', "Live")->first();
+        $customerOrder = CustomerOrder::find($orderDetails->customer_order_id);
         $title = __('index.edit_customer_order');
         $customers = Customer::orderBy('id', 'DESC')->where('del_status', "Live")->pluck('name', 'id');
         $orderTypes = ['Quotation' => 'Labor', 'Work Order' => 'Sales'];
@@ -241,7 +240,6 @@ class CustomerOrdersController extends Controller
             ->unique();
         $productList = FinishedProduct::orderBy('name', 'ASC')->where('del_status', "Live")->whereIn('id', $productIds)->get();
         $product = $productList->pluck('name', 'id');
-        $orderDetails = CustomerOrderDetails::where('customer_order_id', $customerOrder->id)->where('del_status', "Live")->get();
         $orderInvoice = CustomerOrderInvoice::where('customer_order_id', $customerOrder->id)->where('del_status', "Live")->get();
         $tax_types = TaxItems::where('del_status', 'Live')->where('collect_tax', 'Yes')->get();
         $orderDeliveries = CustomerOrderDelivery::where('customer_order_id', $customerOrder->id)->where('del_status', "Live")->orderBy('id', 'desc')->get();
@@ -258,7 +256,6 @@ class CustomerOrdersController extends Controller
     public function update(Request $request, CustomerOrder $customerOrder)
     {
         // dd($request->all());
-
         request()->validate([
             'reference_no' => [
                 'required',
@@ -281,10 +278,8 @@ class CustomerOrdersController extends Controller
             }
             $filename = time() . "_" . $uploadedFile->getClientOriginalName();
             $uploadedFile->move(base_path('uploads/order'), $filename);
-            // dd($filename);
             $customerOrder->file = $filename;
         } else {
-            // dd('not uploaded');
             if (!empty($file)) {
                 $customerOrder->file = $file;
             }
@@ -298,10 +293,10 @@ class CustomerOrdersController extends Controller
         $customerOrder->total_amount = null_check(escape_output($request->get('total_subtotal')));
         $customerOrder->quotation_note = html_entity_decode($request->get('quotation_note'));
         $customerOrder->internal_note = html_entity_decode($request->get('internal_note'));
-        // dd($customerOrder);
         $customerOrder->save();
         $last_id = $customerOrder->id;
-        CustomerOrderDetails::where('customer_order_id', $last_id)->update(['del_status' => "Deleted"]);
+        $detail_id = $request->get('detail_id');
+        CustomerOrderDetails::where('customer_order_id', $last_id)->where('id',$detail_id)->update(['del_status' => "Deleted"]);
         CustomerOrderInvoice::where('customer_order_id', $last_id)->update(['del_status' => "Deleted"]);
         $inter_state = array_values($_POST['inter_state']);
         if (isset($_POST['product']) && is_array($_POST['product'])) {
@@ -323,6 +318,8 @@ class CustomerOrdersController extends Controller
                 $obj->sgst = escape_output($_POST['sgst'][$row] ?? '');
                 $obj->igst = escape_output($_POST['igst'][$row] ?? '');
                 $obj->delivery_date = $_POST['delivery_date_product'][$row] != '' ? date('Y-m-d', strtotime(escape_output($_POST['delivery_date_product'][$row] ?? ''))) : null;
+                $obj->line_item_no = escape_output($_POST['line_item_no'][$row] ?? '');
+                $obj->order_status = '0';
                 $obj->production_status = 0;
                 $obj->delivered_qty = 0;
                 $obj->save();
@@ -335,6 +332,7 @@ class CustomerOrdersController extends Controller
         $inv_obj->invoice_date = null_check(date('Y-m-d', strtotime($request->get('po_date'))));
         $inv_obj->paid_amount = 0.00;
         $inv_obj->due_amount = null_check(escape_output($request->get('total_subtotal')));
+        $inv_obj->save();
         return redirect('customer-orders')->with(updateMessage());
     }
 
@@ -400,15 +398,13 @@ class CustomerOrdersController extends Controller
      * @param  \App\RawMaterialPurchase  $rawmaterialpurchase
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CustomerOrder $customerOrder)
+    public function destroy(CustomerOrderDetails $customerOrder)
     {
-        //delete previous data before add
-        CustomerOrderDetails::where('customer_order_id', $customerOrder->id)->update(['del_status' => "Deleted"]);
-        CustomerOrderInvoice::where('customer_order_id', $customerOrder->id)->update(['del_status' => "Deleted"]);
-        CustomerOrderDelivery::where('customer_order_id', $customerOrder->id)->update(['del_status' => "Deleted"]);
-
-        $customerOrder->del_status = "Deleted";
-        $customerOrder->save();
+        $customerOrder->update(['del_status' => 'Deleted']);
+        CustomerOrderInvoice::where('customer_order_id', $customerOrder->customer_order_id)
+            ->update(['del_status' => 'Deleted']);
+        CustomerOrderDelivery::where('customer_order_id', $customerOrder->customer_order_id)
+            ->update(['del_status' => 'Deleted']);
         return redirect('customer-orders')->with(deleteMessage());
     }
 
@@ -418,11 +414,11 @@ class CustomerOrdersController extends Controller
 
     public function downloadInvoice($id)
     {
-        $obj = CustomerOrder::find(encrypt_decrypt($id, 'decrypt'));
-        $orderDetails = CustomerOrderDetails::where('customer_order_id', $obj->id)->where('del_status', "Live")->get();
+        $detail_id = encrypt_decrypt($id, 'decrypt');
+        $orderDetails = CustomerOrderDetails::where('id', $detail_id)->where('del_status', "Live")->first();
+        $obj = CustomerOrder::find($orderDetails->customer_order_id);
         $orderInvoice = CustomerOrderInvoice::where('customer_order_id', $obj->id)->where('del_status', "Live")->orderBy('id', 'desc')->get();
         $orderDeliveries = CustomerOrderDelivery::where('customer_order_id', $obj->id)->where('del_status', "Live")->orderBy('id', 'desc')->get();
-
         $pdf = PDF::loadView('pages.customer_order.invoice', compact('obj', 'orderDetails', 'orderInvoice', 'orderDeliveries'))->setPaper('a4', 'landscape');
         return $pdf->download($obj->reference_no . '.pdf');
     }
@@ -433,11 +429,10 @@ class CustomerOrdersController extends Controller
 
     public function print($id)
     {
-        $obj = CustomerOrder::find($id);
-        $orderDetails = CustomerOrderDetails::where('customer_order_id', $obj->id)->where('del_status', "Live")->get();
+        $orderDetails = CustomerOrderDetails::where('id', $id)->where('del_status', "Live")->first();
+        $obj = CustomerOrder::find($orderDetails->customer_order_id);
         $orderInvoice = CustomerOrderInvoice::where('customer_order_id', $obj->id)->where('del_status', "Live")->orderBy('id', 'desc')->get();
         $orderDeliveries = CustomerOrderDelivery::where('customer_order_id', $obj->id)->where('del_status', "Live")->orderBy('id', 'desc')->get();
-
         return view('pages.customer_order.invoice', compact('obj', 'orderDetails', 'orderInvoice', 'orderDeliveries'));
     }
 }

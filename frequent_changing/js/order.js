@@ -550,6 +550,8 @@ $(document).ready(function () {
         '<td><span id="deliveries_qty_' +
         i +
         '">0</span></td>' +
+        '<td><input type="text" name="line_item_no[]" onfocus="this.select();" class="check_required form-control" placeholder="PO Line Item No" id="line_item_no_' +
+        i + '" ></td>' +
         '<td class="ir_txt_center"><a class="btn btn-xs del_row remove-tr dlt_button"><iconify-icon icon="solar:trash-bin-minimalistic-broken"></iconify-icon></a></td>' +
         "</tr>"
     );
@@ -1422,7 +1424,7 @@ $(document).ready(function () {
 
     let hasError = false;
 
-    if (order_type === "Work Order") {
+    /* if (order_type === "Work Order") {
       $("input[name='delivery_date_product[]']").each(function () {
         let deliveryDate = $(this).val();
         if (deliveryDate === "") {
@@ -1438,7 +1440,7 @@ $(document).ready(function () {
           $(this).next(".text-danger").remove();
         }
       });
-    }
+    } */
     /* let hasError = false;
         $("select[name='tax_type[]']").each(function () {
             let taxType = $(this).val();
@@ -1454,7 +1456,21 @@ $(document).ready(function () {
                 $container.next(".text-danger").remove();
             }
         }); */
-
+    $("input[name='line_item_no[]']").each(function () {
+      let lineNo = $(this).val();
+      if (lineNo === "") {
+        $(this).addClass("is-invalid");
+        if (!$(this).next(".text-danger").length) {
+          $(this).after(
+            '<div class="text-danger">The PO Line Item No field is required</div>'
+          );
+        }
+        hasError = true;
+      } else {
+        $(this).removeClass("is-invalid");
+        $(this).next(".text-danger").remove();
+      }
+    });
     if (hasError) {
       status = false;
     }

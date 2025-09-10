@@ -48,7 +48,7 @@ $baseURL = getBaseURL();
                     <h4 class="pb-7">@lang('index.order_info'):</h4>
                     <p class="pb-7">
                         <span class="">@lang('index.po_no'):</span>
-                        {{ $obj->reference_no }}
+                        {{ $obj->reference_no }}/{{ isset($orderDetails) ? $orderDetails->line_item_no : '' }}
                     </p>
                     <p class="pb-7 rgb-71">
                         <span class="">@lang('index.order_type'):</span>
@@ -82,38 +82,38 @@ $baseURL = getBaseURL();
             </thead>
             <tbody>
                 @if (isset($orderDetails) && $orderDetails)
-                @php($i = 1)
-                @foreach ($orderDetails as $key => $value)
+                {{-- @php($i = 1) --}}
+                {{-- @foreach ($orderDetails as $key => $value) --}}
                 <?php
-                $productRawInfo = getProductRawMaterialByProductId($value->product_id);
-                $productInfo = getFinishedProductInfo($value->product_id);
+                $productRawInfo = getProductRawMaterialByProductId($orderDetails->product_id);
+                $productInfo = getFinishedProductInfo($orderDetails->product_id);
                 ?>
-                <tr class="rowCount" data-id="{{ $value->product_id }}">
+                <tr class="rowCount" data-id="{{ $orderDetails->product_id }}">
                     <td class="width_1_p" style="border:1px solid #000;">
-                        <p class="set_sn">{{ $i++ }}</p>
+                        <p class="set_sn">1</p>
                     </td>
-                    <td class="text-start" style="border:1px solid #000;">{{ $value->po_date != null ? getDateFormat($value->po_date): getDateFormat($obj->created_at) }}
+                    <td class="text-start" style="border:1px solid #000;">{{ $obj->po_date != null ? getDateFormat($obj->po_date): getDateFormat($obj->created_at) }}
                     </td>
                     <td class="text-start" style="border:1px solid #000;">{{ $productInfo->code }}</td>
                     <td class="text-start" style="border:1px solid #000;">{{ $productInfo->name }}</td>
-                    <td class="text-start" style="border:1px solid #000;">{{ getRMName($value->raw_material_id) }}</td>
+                    <td class="text-start" style="border:1px solid #000;">{{ getRMName($orderDetails->raw_material_id) }}</td>
                     {{-- <td class="text-start">{{ getheatNo($value->raw_material_id) }}</td> --}}
-                    <td class="text-start" style="border:1px solid #000;">{{ $value->raw_qty }}</td>
-                    <td class="text-start" style="border:1px solid #000;">{{ $value->quantity }}</td>
-                    <td class="text-start" style="border:1px solid #000; font-family: DejaVu Sans, sans-serif;">₹{{ number_format($value->sale_price,2) }}</td>
+                    <td class="text-start" style="border:1px solid #000;">{{ $orderDetails->raw_qty }}</td>
+                    <td class="text-start" style="border:1px solid #000;">{{ $orderDetails->quantity }}</td>
+                    <td class="text-start" style="border:1px solid #000; font-family: DejaVu Sans, sans-serif;">₹{{ number_format($orderDetails->sale_price,2) }}</td>
                     <?php
-                    $sub_tot_before_dis = $value->sale_price;
-                    $dis_val = $value->discount_percent != '0' ? $sub_tot_before_dis * ($value->discount_percent / 100) : '0';
+                    $sub_tot_before_dis = $orderDetails->sale_price;
+                    $dis_val = $orderDetails->discount_percent != '0' ? $sub_tot_before_dis * ($orderDetails->discount_percent / 100) : '0';
                     $sub_tot_af_dis = $dis_val != '0' ? $sub_tot_before_dis - $dis_val : $sub_tot_before_dis;
                     ?>
                     {{-- <td class="text-start">₹{{ '-'.number_format($dis_val,2) }}
                     </td> --}}
                     {{-- <td class="text-start">₹{{ number_format($sub_tot_af_dis,2) }}</td> --}}
                     <?php
-                    if ($value->igst == '') {
-                        $gst_per = $value->cgst + $value->sgst;
+                    if ($orderDetails->igst == '') {
+                        $gst_per = $orderDetails->cgst + $orderDetails->sgst;
                     } else {
-                        $gst_per = $value->igst;
+                        $gst_per = $orderDetails->igst;
                     }
                     $gst_value = $sub_tot_af_dis * ($gst_per / 100);
                     $total = $sub_tot_af_dis + $gst_value
@@ -123,12 +123,12 @@ $baseURL = getBaseURL();
                     <td class="text-start" style="border:1px solid #000; font-family: DejaVu Sans, sans-serif;">₹{{ number_format($total,2) }}
                     </td>
                 </tr>
-                @endforeach
+                {{-- @endforeach --}}
                 @endif
             </tbody>
         </table>
         <div class="text-right">
-            <p style="font-family: DejaVu Sans, sans-serif; font-weight:bold; padding:4px;">@lang('index.total_cost'): ₹{{ number_format($obj->total_amount,2) }}</p>
+            <p style="font-family: DejaVu Sans, sans-serif; font-weight:bold; padding:4px;">@lang('index.total_cost'): ₹{{ number_format($total,2) }}</p>
         </div>
         {{-- <h4 class="mt-20">@lang('index.invoice_quotations')</h4>
         <table class="w-100 mt-10">

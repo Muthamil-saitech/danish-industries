@@ -21,11 +21,11 @@
                 <div class="col-md-6">
                     @if (routePermission('order.print-invoice'))
                         <a href="javascript:void();" target="_blank" class="btn bg-second-btn print_invoice"
-                            data-id="{{ $obj->id }}"><iconify-icon icon="solar:printer-broken"></iconify-icon>
+                            data-id="{{ isset($orderDetails) ? $orderDetails->id : '' }}"><iconify-icon icon="solar:printer-broken"></iconify-icon>
                             @lang('index.print')</a>
                     @endif
                     @if (routePermission('order.download-invoice'))
-                        <a href="{{ route('customer-order-download', encrypt_decrypt($obj->id, 'encrypt')) }}"
+                        <a href="{{ route('customer-order-download', encrypt_decrypt($orderDetails->id, 'encrypt')) }}"
                             target="_blank" class="btn bg-second-btn print_btn"><iconify-icon
                                 icon="solar:cloud-download-broken"></iconify-icon>
                             @lang('index.download')</a>
@@ -75,7 +75,7 @@
                                         <h4 class="pb-7">@lang('index.order_info'):</h4>
                                         <p class="pb-7">
                                             <span class="">@lang('index.po_no'):</span>
-                                            {{ $obj->reference_no }}
+                                            {{ $obj->reference_no }}/{{ isset($orderDetails) ? $orderDetails->line_item_no : '' }}
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class="">@lang('index.order_type'):</span>
@@ -109,38 +109,38 @@
                                 </thead>
                                 <tbody>
                                     @if (isset($orderDetails) && $orderDetails)
-                                        @php($i = 1)
-                                        @foreach ($orderDetails as $key => $value)
+                                        {{-- @php($i = 1) --}}
+                                        {{-- @foreach ($orderDetails as $key => $value) --}}
                                             <?php
-                                            $productRawInfo = getProductRawMaterialByProductId($value->product_id);
-                                            $productInfo = getFinishedProductInfo($value->product_id);
+                                            $productRawInfo = getProductRawMaterialByProductId($orderDetails->product_id);
+                                            $productInfo = getFinishedProductInfo($orderDetails->product_id);
                                             ?>
-                                            <tr class="rowCount" data-id="{{ $value->product_id }}">
+                                            <tr class="rowCount" data-id="{{ $orderDetails->product_id }}">
                                                 <td class="width_1_p">
-                                                    <p class="set_sn">{{ $i++ }}</p>
+                                                    <p class="set_sn">1</p>
                                                 </td>
-                                                <td class="text-start">{{ $value->po_date != null ? getDateFormat($value->po_date): getDateFormat($obj->created_at) }}
+                                                <td class="text-start">{{ $obj->po_date != null ? getDateFormat($obj->po_date): getDateFormat($obj->created_at) }}
                                                 </td>
                                                 <td class="text-start">{{ $productInfo->code }}</td>
                                                 <td class="text-start">{{ $productInfo->name }}</td>
-                                                <td class="text-start">{{ getRMName($value->raw_material_id) }}</td>
+                                                <td class="text-start">{{ getRMName($orderDetails->raw_material_id) }}</td>
                                                 {{-- <td class="text-start">{{ getheatNo($value->raw_material_id) }}</td> --}}
-                                                <td class="text-center">{{ $value->raw_qty }}</td>
-                                                <td class="text-center">{{ $value->quantity }}</td>
-                                                <td class="text-center">{{ getAmtCustom($value->sale_price) }}</td>
+                                                <td class="text-center">{{ $orderDetails->raw_qty }}</td>
+                                                <td class="text-center">{{ $orderDetails->quantity }}</td>
+                                                <td class="text-center">{{ getAmtCustom($orderDetails->sale_price) }}</td>
                                                 <?php
-                                                    $sub_tot_before_dis = $value->sale_price;
-                                                    $dis_val = $value->discount_percent != '0' ? $sub_tot_before_dis * ($value->discount_percent / 100) : '0';
+                                                    $sub_tot_before_dis = $orderDetails->sale_price;
+                                                    $dis_val = $orderDetails->discount_percent != '0' ? $sub_tot_before_dis * ($orderDetails->discount_percent / 100) : '0';
                                                     $sub_tot_af_dis = $dis_val!='0' ? $sub_tot_before_dis - $dis_val : $sub_tot_before_dis;
                                                 ?>
                                                 {{-- <td class="text-center">{{ '-'.getAmtCustom($dis_val) }}
                                                 </td> --}}
                                                 {{-- <td class="text-center">{{ getAmtCustom($sub_tot_af_dis) }}</td> --}}
                                                 <?php
-                                                    if($value->igst=='') {
-                                                        $gst_per = $value->cgst + $value->sgst;
+                                                    if($orderDetails->igst=='') {
+                                                        $gst_per = $orderDetails->cgst + $orderDetails->sgst;
                                                     } else {
-                                                        $gst_per = $value->igst;
+                                                        $gst_per = $orderDetails->igst;
                                                     }
                                                     $gst_value = $sub_tot_af_dis * ($gst_per/100);
                                                     $total = $sub_tot_af_dis + $gst_value
@@ -150,7 +150,7 @@
                                                 <td class="text-center">{{ getAmtCustom($total) }}
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        {{-- @endforeach --}}
                                     @endif
                                 </tbody>
                             </table>
@@ -242,7 +242,7 @@
                                                     <p class="">@lang('index.total_cost') :</p>
                                                 </td>
                                                 <td class="w-50 text-right pr-0">
-                                                    <p>{{ getAmtCustom($obj->total_amount) }}</p>
+                                                    <p>{{ getAmtCustom($total) }}</p>
                                                 </td>
                                             </tr>
                                         </table>

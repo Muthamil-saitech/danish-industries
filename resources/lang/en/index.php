@@ -983,4 +983,5 @@ return [
     'tool_name_unique' => 'The tools/gauges name field already exists',
     'add_mat_type' => 'Add Material Type',
     'edit_mat_type' => 'Edit Material Type',
+    'line_item_no' => 'PO Line Item No'
 ];

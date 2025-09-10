@@ -112,14 +112,14 @@ $orderType = isset($customerOrder->order_type) && $customerOrder->order_type ? $
                 $showIColumns = false;
                 $showCSColumns = false;
                 if (isset($orderDetails)) {
-                foreach ($orderDetails as $od) {
-                if ($od->inter_state === 'Y') {
+                // foreach ($orderDetails as $od) {
+                if ($orderDetails->inter_state === 'Y') {
                 $showIColumns = true;
                 }
-                if ($od->inter_state === 'N') {
+                if ($orderDetails->inter_state === 'N') {
                 $showCSColumns = true;
                 }
-                }
+                // }
                 }
                 @endphp
                 <table class="table">
@@ -143,36 +143,38 @@ $orderType = isset($customerOrder->order_type) && $customerOrder->order_type ? $
                             <th class="w-220-p">@lang('index.delivery_date')</th>
                             <th class="w-220-p">@lang('index.production_status')</th>
                             <th class="w-220-p">@lang('index.delivered') Quantity</th>
+                            <th class="w-220-p">@lang('index.line_item_no')</th>
                             @if(!isset($orderDetails))<th class="ir_txt_center">@lang('index.actions')</th>@endif
                         </tr>
                     </thead>
                     <tbody class="add_trm">
-                        <?php $i = 0; ?>
+                        <?php $i = 1; ?>
                         @if (isset($orderDetails) && $orderDetails)
-                        @foreach ($orderDetails as $key => $value)
-                        <?php $i++; ?>
-                        <tr class="rowCount" data-id="{{ $value->id }}">
-                            <td class="width_1_p ir_txt_center">{{ $i }}</td>
+                        {{-- @foreach ($orderDetails as $key => $value) --}}
+                        <?php /* $i++; */ ?>
+                        <tr class="rowCount" data-id="{{ $orderDetails->id }}">
+                            <td class="width_1_p ir_txt_center">1</td>
                             <td>
-                                <input type="hidden" name="product[]" value="{{ $value->product_id }}">
+                                <input type="hidden" name="detail_id" value="{{ $orderDetails->id }}">
+                                <input type="hidden" name="product[]" value="{{ $orderDetails->product_id }}">
                                 <select id="fproduct_id_{{ $i }}"
                                     class="form-control @error('title') is-invalid @enderror fproduct_id select2" {{ isset($orderDetails) ? 'disabled' : ''  }}>
                                     <option value="">@lang('index.please_select')</option>
                                     @foreach ($productList as $product)
-                                    <option value="{{ $product->id }}" @selected($product->id == $value->product_id)>
+                                    <option value="{{ $product->id }}" @selected($product->id == $orderDetails->product_id)>
                                         {{ $product->name }} ({{ $product->code }})
                                     </option>
                                     @endforeach
                                 </select>
                             </td>
                             <td>
-                                <input type="hidden" name="raw_material[]" value="{{ $value->raw_material_id }}">
+                                <input type="hidden" name="raw_material[]" value="{{ $orderDetails->raw_material_id }}">
                                 <select id="rm_id_{{ $i }}"
                                     class="form-control @error('title') is-invalid @enderror rm_id select2" {{ isset($orderDetails) ? 'disabled' : ''  }}>
                                     <option value="">@lang('index.please_select')</option>
                                     @foreach ($rawMaterialList as $rm)
                                     <option value="{{ $rm->id }}"
-                                        @selected($rm->id == optional($value)->raw_material_id)>
+                                        @selected($rm->id == optional($orderDetails)->raw_material_id)>
                                         {{ $rm->name }}
                                     </option>
                                     @endforeach
@@ -181,20 +183,20 @@ $orderType = isset($customerOrder->order_type) && $customerOrder->order_type ? $
                             <td>
                                 <input type="number" name="raw_quantity[]" onfocus="this.select();"
                                     class="check_required form-control @error('title') is-invalid @enderror integerchk rquantity_c"
-                                    placeholder="Raw Quantity" value="{{ $value->raw_qty }}"
+                                    placeholder="Raw Quantity" value="{{ $orderDetails->raw_qty }}"
                                     id="rquantity_{{ $i }}">
                             </td>
                             <td>
                                 <input type="number" name="prod_quantity[]" onfocus="this.select();"
                                     class="check_required form-control @error('title') is-invalid @enderror integerchk pquantity_c"
-                                    placeholder="Quantity" value="{{ $value->quantity }}"
+                                    placeholder="Quantity" value="{{ $orderDetails->quantity }}"
                                     id="pquantity_{{ $i }}">
                             </td>
                             <td>
                                 <div class="input-group">
                                     <input type="text" name="sale_price[]" onfocus="this.select();"
                                         class="check_required form-control @error('title') is-invalid @enderror integerchk sale_price_c"
-                                        placeholder="Unit Price" value="{{ $value->sale_price }}"
+                                        placeholder="Unit Price" value="{{ $orderDetails->sale_price }}"
                                         id="sale_price_{{ $i }}">
                                     <span class="input-group-text"> {{ $setting->currency }}</span>
                                 </div>
@@ -202,7 +204,7 @@ $orderType = isset($customerOrder->order_type) && $customerOrder->order_type ? $
                             <td>
                                 <input type="number" name="price[]" onfocus="this.select();"
                                     class="check_required form-control @error('price') is-invalid @enderror integerchk price_c"
-                                    placeholder="Price" value="{{ $value->price }}"
+                                    placeholder="Price" value="{{ $orderDetails->price }}"
                                     id="price_{{ $i }}" readonly>
                             </td>
                             {{-- <td>
@@ -212,196 +214,199 @@ $orderType = isset($customerOrder->order_type) && $customerOrder->order_type ? $
                             class="check_required form-control @error('title') is-invalid @enderror integerchk discount_percent_c"
                             value="{{ $value->discount_percent }}" placeholder="Discount">
                             <span class="input-group-text">%</span>
-            </div>
-            </td> --}}
-            <td>
-                <input type="hidden" name="tax_type[]" value="{{ $value->tax_type }}">
-                <select id="tax_type_id_{{ $i }}"
-                    class="form-control @error('title') is-invalid @enderror tax_type_id select2" {{ isset($orderDetails) ? 'disabled' : ''  }}>
-                    <option value="">@lang('index.please_select')</option>
-                    @foreach ($tax_types as $tax)
-                    <option value="{{ $tax->id }}" @selected($tax->id == $value->tax_type)>
-                        {{ $tax->tax_type }}
-                    </option>
-                    @endforeach
-                </select>
-            </td>
-            <td>
-                <div class="form-group radio_button_problem">
-                    <div class="radio">
-                        <label>
-                            <input tabindex="1" type="radio" name="disabled_inter_state[{{ $i }}]" id="inter_state_yes_{{ $i }}"
-                                value="Y" @if(isset($value->inter_state) && $value->inter_state === 'Y') checked @endif disabled>
-                            @lang('index.yes')
-                        </label>
-                        <label>
-                            <input tabindex="2" type="radio" name="disabled_inter_state[{{ $i }}]" id="inter_state_no_{{ $i }}"
-                                value="N" @if(isset($value->inter_state) && $value->inter_state === 'N') checked @endif disabled>
-                            @lang('index.no')
-                        </label>
-                    </div>
-                    <input type="hidden" name="inter_state[{{ $i }}]" value="{{ $value->inter_state }}">
-                </div>
-            </td>
-            <td class="cgst_cell" style="{{ ($showCSColumns && $value->inter_state == 'N') ? '' : 'display: none;' }}">
-                <input type="hidden" name="cgst[]" class="form-control cgst_input" value="{{ $value->cgst }}">
-                <input type="text" class="form-control cgst_input" value="{{ $value->cgst }}" {{ isset($orderDetails) ? 'disabled' : ''  }}>
-            </td>
-            <td class="sgst_cell" style="{{ ($showCSColumns && $value->inter_state == 'N') ? '' : 'display: none;' }}">
-                <input type="hidden" name="sgst[]" class="form-control sgst_input" value="{{ $value->sgst }}">
-                <input type="text" class="form-control sgst_input" value="{{ $value->sgst }}" {{ isset($orderDetails) ? 'disabled' : ''  }}>
-            </td>
-            <td class="igst_cell" style="{{ ($showIColumns && $value->inter_state == 'Y') ? '' : 'display: none;' }}">
-                <input type="hidden" name="igst[]" class="form-control igst_input" value="{{ $value->igst }}" {{ isset($orderDetails) ? 'disabled' : ''  }}>
-                <input type="text" class="form-control igst_input" value="{{ $value->igst }}">
-            </td>
-            <td>
-                <input type="text" name="tax_amount[]" onfocus="this.select();"
-                    class="check_required form-control @error('tax_amount') is-invalid @enderror integerchk tax_amount_c"
-                    placeholder="Tax Amount" value="{{ number_format($value->tax_amount,2) }}"
-                    id="tax_amount_{{ $i }}" readonly>
-            </td>
-            <td>
-                <div class="input-group">
-                    <input type="text" id="sub_total_{{ $i }}"
-                        name="sub_total[]"
-                        class="form-control sub_total_c"
-                        value="{{ number_format($value->sub_total,2) }}"
-                        placeholder="Subtotal"
-                        readonly>
+                            </div>
+                            </td> --}}
+                            <td>
+                                <input type="hidden" name="tax_type[]" value="{{ $orderDetails->tax_type }}">
+                                <select id="tax_type_id_{{ $i }}"
+                                    class="form-control @error('title') is-invalid @enderror tax_type_id select2" {{ isset($orderDetails) ? 'disabled' : ''  }}>
+                                    <option value="">@lang('index.please_select')</option>
+                                    @foreach ($tax_types as $tax)
+                                    <option value="{{ $tax->id }}" @selected($tax->id == $orderDetails->tax_type)>
+                                        {{ $tax->tax_type }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                            </td>
+                            <td>
+                                <div class="form-group radio_button_problem">
+                                    <div class="radio">
+                                        <label>
+                                            <input tabindex="1" type="radio" name="disabled_inter_state[{{ $i }}]" id="inter_state_yes_{{ $i }}"
+                                                value="Y" @if(isset($orderDetails->inter_state) && $orderDetails->inter_state === 'Y') checked @endif disabled>
+                                            @lang('index.yes')
+                                        </label>
+                                        <label>
+                                            <input tabindex="2" type="radio" name="disabled_inter_state[{{ $i }}]" id="inter_state_no_{{ $i }}"
+                                                value="N" @if(isset($orderDetails->inter_state) && $orderDetails->inter_state === 'N') checked @endif disabled>
+                                            @lang('index.no')
+                                        </label>
+                                    </div>
+                                    <input type="hidden" name="inter_state[{{ $i }}]" value="{{ $orderDetails->inter_state }}">
+                                </div>
+                            </td>
+                            <td class="cgst_cell" style="{{ ($showCSColumns && $orderDetails->inter_state == 'N') ? '' : 'display: none;' }}">
+                                <input type="hidden" name="cgst[]" class="form-control cgst_input" value="{{ $orderDetails->cgst }}">
+                                <input type="text" class="form-control cgst_input" value="{{ $orderDetails->cgst }}" {{ isset($orderDetails) ? 'disabled' : ''  }}>
+                            </td>
+                            <td class="sgst_cell" style="{{ ($showCSColumns && $orderDetails->inter_state == 'N') ? '' : 'display: none;' }}">
+                                <input type="hidden" name="sgst[]" class="form-control sgst_input" value="{{ $orderDetails->sgst }}">
+                                <input type="text" class="form-control sgst_input" value="{{ $orderDetails->sgst }}" {{ isset($orderDetails) ? 'disabled' : ''  }}>
+                            </td>
+                            <td class="igst_cell" style="{{ ($showIColumns && $orderDetails->inter_state == 'Y') ? '' : 'display: none;' }}">
+                                <input type="hidden" name="igst[]" class="form-control igst_input" value="{{ $orderDetails->igst }}" {{ isset($orderDetails) ? 'disabled' : ''  }}>
+                                <input type="text" class="form-control igst_input" value="{{ $orderDetails->igst }}">
+                            </td>
+                            <td>
+                                <input type="text" name="tax_amount[]" onfocus="this.select();"
+                                    class="check_required form-control @error('tax_amount') is-invalid @enderror integerchk tax_amount_c"
+                                    placeholder="Tax Amount" value="{{ number_format($orderDetails->tax_amount,2) }}"
+                                    id="tax_amount_{{ $i }}" readonly>
+                            </td>
+                            <td>
+                                <div class="input-group">
+                                    <input type="text" id="sub_total_{{ $i }}"
+                                        name="sub_total[]"
+                                        class="form-control sub_total_c"
+                                        value="{{ number_format($orderDetails->sub_total,2) }}"
+                                        placeholder="Subtotal"
+                                        readonly>
 
-                    <span class="input-group-text"> {{ $setting->currency }}</span>
-                </div>
-            </td>
-            <td>
-                @if(isset($orderDetails))
-                {!! Form::text('disabled_delivery_date_product[]', $value->delivery_date != '' ? date('d-m-Y', strtotime($value->delivery_date)) : '', [
-                'class' => 'form-control order_delivery_date',
-                'placeholder' => 'Delivery Date',
-                'disabled'
-                ]) !!}
-                {!! Form::hidden('delivery_date_product[]', $value->delivery_date != '' ? date('d-m-Y', strtotime($value->delivery_date)) : '') !!}
-                @else
-                {!! Form::text('delivery_date_product[]', date('d-m-Y'), [
-                'class' => 'form-control order_delivery_date',
-                'placeholder' => 'Delivery Date'
-                ]) !!}
-                @endif
-            </td>
-            <td>
-                <input type="hidden" name="status[]" value="{{ $value->status }}">
-                <select id="fstatus_id_{{ $i }}"
-                    class="form-control @error('title') is-invalid @enderror fstatus_id select2" {{ isset($orderDetails) ? 'disabled' : ''  }}>
-                    <option value="none" {{ $value->status == 'none' ? 'selected' : '' }}>
-                        @lang('index.none')
-                    </option>
-                    <option value="in_progress"
-                        {{ $value->status == 'in_progress' ? 'selected' : '' }}>
-                        @lang('index.in_progress')
-                    </option>
-                    <option value="done" {{ $value->status == 'done' ? 'selected' : '' }}>
-                        @lang('index.done')
-                    </option>
-                </select>
-            </td>
-            <td>
-                <input type="hidden" name="delivered_qty[]" value="{{ $value->delivered_qty }}">
-                <input type="number" class="check_required form-control @error('title') is-invalid @enderror integerchk" placeholder="@lang('index.delivered')" value="{{ $value->delivered_qty }}" id="delivered_{{ $i }}" {{ isset($orderDetails) ? 'disabled' : ''  }}>
-            </td>
-            @if(!isset($orderDetails))
-            <td class="ir_txt_center"><a class="btn btn-xs del_row dlt_button"><iconify-icon
-                        icon="solar:trash-bin-minimalistic-broken"></iconify-icon></a></td>
-            @endif
-            </tr>
-            @endforeach
-            @endif
-            </tbody>
-            </table>
-            @if(!isset($orderDetails))
-            <button id="finishProduct" class="btn bg-blue-btn w-10 mb-2 mt-2" type="button">@lang('index.add_more')</button>
-            @endif
-        </div>
-    </div>
-</div>
-<div class="row mt-2 gap-2">
-    <button class="btn bg-blue-btn w-20 stockCheck" data-bs-toggle="modal" data-bs-target="#stockCheck"
-        type="button">@lang('index.check_stock')</button>
-    {{-- <button class="btn bg-blue-btn w-20 estimateCost" data-bs-toggle="modal" data-bs-target="#estimateCost"
-            type="button">@lang('index.estimate_cost_date')</button> --}}
-</div>
-<div class="row mt-3">
-    <div class="col-sm-6 col-md-6 mb-2">
-        <div class="form-group">
-            <label>Upload Document</label>
-            <input type="hidden" name="file_old" value="{{ isset($customerOrder->file) && $customerOrder->file ? $customerOrder->file : '' }}">
-            <input type="file" name="file_button" id="file_button"
-                class="form-control @error('title') is-invalid @enderror file_checker_global image_preview"
-                accept="image/png,image/jpeg,image/jpg,application/pdf,.doc,.docx">
-            <p class="text-danger errorFile"></p>
-            <div class="image-preview-container">
-                @if (isset($customerOrder->file) && $customerOrder->file)
-                @php($file = $customerOrder->file)
-                {{-- @foreach ($files as $file) --}}
-                @php($fileExtension = pathinfo($file, PATHINFO_EXTENSION))
-                @if ($fileExtension == 'pdf')
-                <a class="text-decoration-none"
-                    href="{{ $baseURL }}uploads/order/{{ $file }}"
-                    target="_blank">
-                    <img src="{{ $baseURL }}assets/images/pdf.png"
-                        alt="PDF Preview" class="img-thumbnail mx-2"
-                        width="100px">
-                </a>
-                @elseif($fileExtension == 'doc' || $fileExtension == 'docx')
-                <a class="text-decoration-none"
-                    href="{{ $baseURL }}uploads/order/{{ $file }}"
-                    target="_blank">
-                    <img src="{{ $baseURL }}assets/images/word.png"
-                        alt="Word Preview" class="img-thumbnail mx-2"
-                        width="100px">
-                </a>
-                @else
-                <a class="text-decoration-none"
-                    href="{{ $baseURL }}uploads/order/{{ $file }}"
-                    target="_blank">
-                    <img src="{{ $baseURL }}uploads/order/{{ $file }}"
-                        alt="File Preview" class="img-thumbnail mx-2"
-                        width="100px">
-                </a>
-                @endif
-                {{-- @endforeach --}}
+                                    <span class="input-group-text"> {{ $setting->currency }}</span>
+                                </div>
+                            </td>
+                            <td>
+                                @if(isset($orderDetails))
+                                {!! Form::text('disabled_delivery_date_product[]', $orderDetails->delivery_date != '' ? date('d-m-Y', strtotime($orderDetails->delivery_date)) : '', [
+                                'class' => 'form-control order_delivery_date',
+                                'placeholder' => 'Delivery Date',
+                                'disabled'
+                                ]) !!}
+                                {!! Form::hidden('delivery_date_product[]', $orderDetails->delivery_date != '' ? date('d-m-Y', strtotime($orderDetails->delivery_date)) : '') !!}
+                                @else
+                                {!! Form::text('delivery_date_product[]', date('d-m-Y'), [
+                                'class' => 'form-control order_delivery_date',
+                                'placeholder' => 'Delivery Date'
+                                ]) !!}
+                                @endif
+                            </td>
+                            <td>
+                                <input type="hidden" name="status[]" value="{{ $orderDetails->status }}">
+                                <select id="fstatus_id_{{ $i }}"
+                                    class="form-control @error('title') is-invalid @enderror fstatus_id select2" {{ isset($orderDetails) ? 'disabled' : ''  }}>
+                                    <option value="none" {{ $orderDetails->status == 'none' ? 'selected' : '' }}>
+                                        @lang('index.none')
+                                    </option>
+                                    <option value="in_progress"
+                                        {{ $orderDetails->status == 'in_progress' ? 'selected' : '' }}>
+                                        @lang('index.in_progress')
+                                    </option>
+                                    <option value="done" {{ $orderDetails->status == 'done' ? 'selected' : '' }}>
+                                        @lang('index.done')
+                                    </option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="hidden" name="delivered_qty[]" value="{{ $orderDetails->delivered_qty }}">
+                                <input type="number" class="check_required form-control @error('title') is-invalid @enderror integerchk" placeholder="@lang('index.delivered')" value="{{ $orderDetails->delivered_qty }}" id="delivered_{{ $i }}" {{ isset($orderDetails) ? 'disabled' : ''  }}>
+                            </td>
+                            <td>
+                                <input type="text" name="line_item_no[]" class="check_required form-control @error('title') is-invalid @enderror" placeholder="@lang('index.line_item_no')" value="{{ $orderDetails->line_item_no }}" id="line_item_no_{{ $i }}" readonly>
+                            </td>
+                            @if(!isset($orderDetails))
+                            <td class="ir_txt_center"><a class="btn btn-xs del_row dlt_button"><iconify-icon
+                                        icon="solar:trash-bin-minimalistic-broken"></iconify-icon></a></td>
+                            @endif
+                        </tr>
+                        {{-- @endforeach --}}
+                        @endif
+                    </tbody>
+                </table>
+                @if(!isset($orderDetails))
+                <button id="finishProduct" class="btn bg-blue-btn w-10 mb-2 mt-2" type="button">@lang('index.add_more')</button>
                 @endif
             </div>
         </div>
     </div>
-</div>
-<div class="row mt-3">
-    <div class="col-sm-6 col-md-6 mb-2">
-        <div class="form-group">
-            <label>@lang('index.quotation_note')</label>
-            <textarea name="quotation_note" id="quotation_note" class="form-control @error('title') is-invalid @enderror" placeholder="{{ __('index.quotation_note') }}" rows="3">{{ isset($customerOrder) ?$customerOrder->quotation_note : "" }}</textarea>
-            <input type="hidden" name="total_subtotal" id="total_subtotal"
-                value="{{ isset($customerOrder->total_amount) ? $customerOrder->total_amount : 0 }}"
-                class="form-control input_aligning" placeholder="@lang('index.total')"
-                readonly="">
+    <div class="row mt-2 gap-2">
+        <button class="btn bg-blue-btn w-20 stockCheck" data-bs-toggle="modal" data-bs-target="#stockCheck"
+            type="button">@lang('index.check_stock')</button>
+        {{-- <button class="btn bg-blue-btn w-20 estimateCost" data-bs-toggle="modal" data-bs-target="#estimateCost"
+                type="button">@lang('index.estimate_cost_date')</button> --}}
+    </div>
+    <div class="row mt-3">
+        <div class="col-sm-6 col-md-6 mb-2">
+            <div class="form-group">
+                <label>Upload Document</label>
+                <input type="hidden" name="file_old" value="{{ isset($customerOrder->file) && $customerOrder->file ? $customerOrder->file : '' }}">
+                <input type="file" name="file_button" id="file_button"
+                    class="form-control @error('title') is-invalid @enderror file_checker_global image_preview"
+                    accept="image/png,image/jpeg,image/jpg,application/pdf,.doc,.docx">
+                <p class="text-danger errorFile"></p>
+                <div class="image-preview-container">
+                    @if (isset($customerOrder->file) && $customerOrder->file)
+                    @php($file = $customerOrder->file)
+                    {{-- @foreach ($files as $file) --}}
+                    @php($fileExtension = pathinfo($file, PATHINFO_EXTENSION))
+                    @if ($fileExtension == 'pdf')
+                    <a class="text-decoration-none"
+                        href="{{ $baseURL }}uploads/order/{{ $file }}"
+                        target="_blank">
+                        <img src="{{ $baseURL }}assets/images/pdf.png"
+                            alt="PDF Preview" class="img-thumbnail mx-2"
+                            width="100px">
+                    </a>
+                    @elseif($fileExtension == 'doc' || $fileExtension == 'docx')
+                    <a class="text-decoration-none"
+                        href="{{ $baseURL }}uploads/order/{{ $file }}"
+                        target="_blank">
+                        <img src="{{ $baseURL }}assets/images/word.png"
+                            alt="Word Preview" class="img-thumbnail mx-2"
+                            width="100px">
+                    </a>
+                    @else
+                    <a class="text-decoration-none"
+                        href="{{ $baseURL }}uploads/order/{{ $file }}"
+                        target="_blank">
+                        <img src="{{ $baseURL }}uploads/order/{{ $file }}"
+                            alt="File Preview" class="img-thumbnail mx-2"
+                            width="100px">
+                    </a>
+                    @endif
+                    {{-- @endforeach --}}
+                    @endif
+                </div>
+            </div>
         </div>
     </div>
+    <div class="row mt-3">
+        <div class="col-sm-6 col-md-6 mb-2">
+            <div class="form-group">
+                <label>@lang('index.quotation_note')</label>
+                <textarea name="quotation_note" id="quotation_note" class="form-control @error('title') is-invalid @enderror" placeholder="{{ __('index.quotation_note') }}" rows="3">{{ isset($customerOrder) ?$customerOrder->quotation_note : "" }}</textarea>
+                <input type="hidden" name="total_subtotal" id="total_subtotal"
+                    value="{{ isset($customerOrder->total_amount) ? $customerOrder->total_amount : 0 }}"
+                    class="form-control input_aligning" placeholder="@lang('index.total')"
+                    readonly="">
+            </div>
+        </div>
 
-    <div class="col-sm-6 col-md-6 mb-2">
-        <div class="form-group">
-            <label>@lang('index.internal_note')</label>
-            <textarea name="internal_note" id="internal_note" class="form-control @error('title') is-invalid @enderror" placeholder="{{ __('index.internal_note') }}" rows="3">{{ isset($customerOrder) ?$customerOrder->internal_note : "" }}</textarea>
+        <div class="col-sm-6 col-md-6 mb-2">
+            <div class="form-group">
+                <label>@lang('index.internal_note')</label>
+                <textarea name="internal_note" id="internal_note" class="form-control @error('title') is-invalid @enderror" placeholder="{{ __('index.internal_note') }}" rows="3">{{ isset($customerOrder) ?$customerOrder->internal_note : "" }}</textarea>
+            </div>
         </div>
     </div>
-</div>
-<div class="row mt-2">
-    <div class="col-sm-12 col-md-6 mb-2 d-flex gap-3">
-        <button type="submit" name="submit" value="submit"
-            class="btn bg-blue-btn order_submit_button"><iconify-icon
-                icon="solar:check-circle-broken"></iconify-icon>@lang('index.submit')</button>
-        <a class="btn bg-second-btn" href="{{ route('customer-orders.index') }}"><iconify-icon
-                icon="solar:round-arrow-left-broken"></iconify-icon>@lang('index.back')</a>
+    <div class="row mt-2">
+        <div class="col-sm-12 col-md-6 mb-2 d-flex gap-3">
+            <button type="submit" name="submit" value="submit"
+                class="btn bg-blue-btn order_submit_button"><iconify-icon
+                    icon="solar:check-circle-broken"></iconify-icon>@lang('index.submit')</button>
+            <a class="btn bg-second-btn" href="{{ route('customer-orders.index') }}"><iconify-icon
+                    icon="solar:round-arrow-left-broken"></iconify-icon>@lang('index.back')</a>
+        </div>
     </div>
-</div>
 </div>
 <select id="hidden_product" class="display_none">
     @foreach ($productList as $value)

@@ -825,12 +825,14 @@ class AjaxController extends Controller
     {
         // dd($request->all());
         $order_status = $request->order_status;
-        $order_id = $request->order_id;
+        $order_detail_id = $request->order_id;
+        $order_detail = CustomerOrderDetails::find($order_detail_id);
+        $order_id = $order_detail->customer_order_id;
         $order = CustomerOrder::find($order_id);
         // dd($order);
-        if ($order) {
-            $order->order_status = $order_status;
-            $order->save();
+        if ($order_detail) {
+            $order_detail->order_status = $order_status;
+            $order_detail->save();
             if ($order_status == '1') {
                 $order_invoice = new CustomerOrderInvoice();
                 $order_invoice->customer_order_id = $order_id;

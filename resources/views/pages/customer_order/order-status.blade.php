@@ -18,14 +18,10 @@
                         data-id_name="datatable">
                 </div>
                 <div class="col-md-offset-4 col-md-2">
-
                 </div>
             </div>
         </section>
-
-
         <div class="box-wrapper">
-
             <div class="table-box">
                 <!-- /.box-header -->
                 <div class="table-responsive">

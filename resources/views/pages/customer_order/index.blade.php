@@ -32,7 +32,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                             <th class="width_10_p">@lang('index.po_no')</th>
                             <th class="width_10_p">@lang('index.order_type')</th>
                             <th class="width_10_p">@lang('index.customer')</th>
-                            <th class="width_10_p">@lang('index.product_count')</th>
+                            {{-- <th class="width_10_p">@lang('index.product_count')</th> --}}
                             <th class="width_10_p">@lang('index.total_value')</th>
                             {{-- <th class="width_10_p">@lang('index.delivery_date')</th> --}}
                             <th class="width_10_p">@lang('index.status_for_quote')</th>
@@ -47,60 +47,62 @@ if (isset($setting->base_color) && $setting->base_color) {
                         ?>
                         @endif
                         @foreach ($obj as $value)
-                        <tr>
-                            <td>{{ $value->po_date ?  getDateFormat($value->po_date) : '-' }}</td>
-                            <td>{{ $value->reference_no }}</td>
-                            <td>{{ $value->order_type == "Quotation" ? "Labor" : "Sales" }}</td>
-                            <td>{{ $value->customer->name }}<br> ({{ $value->customer->customer_id }})</td>
-                            <td>{{ $value->total_product }}</td>
-                            <td>{{ getAmtCustom($value->total_amount) }}</td>
-                            {{-- <td>{{ getDateFormat($value->delivery_date) }}</td> --}}
-                            <td>
-                                <select name="order_status" class="form-control select2 order-quote-status" data-order_id="{{ $value->id }}" {{ in_array($value->order_status, [1,2]) ? 'disabled' : '' }}>
-                                    <option value="0" {{ $value->order_status == 0 ? 'selected' : '' }}>Pending</option>
-                                    <option value="1" {{ $value->order_status == 1 ? 'selected' : '' }}>Confirmed</option>
-                                    <option value="2" {{ $value->order_status == 2 ? 'selected' : '' }}>Cancelled</option>
-                                </select>
-                                <div class="status-msg"></div>
-                            </td>
-                            <td>{{ getUserName($value->created_by) }}</td>
-                            <td>
-                                @if (routePermission('order.view-details'))
-                                <a href="{{ url('customer-orders') }}/{{ encrypt_decrypt($value->id, 'encrypt') }}" class="button-info"
-                                    data-bs-toggle="tooltip" data-bs-placement="top"
-                                    title="@lang('index.view_details')"><i class="fa fa-eye tiny-icon"></i></a>
-                                @endif
-                                @if (routePermission('order.edit') && $value->order_status == 0)
-                                <a href="{{ url('customer-orders') }}/{{ encrypt_decrypt($value->id, 'encrypt') }}/edit"
-                                    class="button-success" data-bs-toggle="tooltip" data-bs-placement="top"
-                                    title="@lang('index.edit')"><i class="fa fa-edit tiny-icon"></i></a>
-                                @endif
-                                {{-- @if (routePermission('order.print-invoice'))
-                                            <a href="javascript:void()" class="button-info print_invoice"
-                                                data-id="{{ $value->id }}" data-bs-toggle="tooltip"
-                                data-bs-placement="top" title="@lang('index.print_invoice')"><i
-                                    class="fa fa-print tiny-icon"></i></a>
-                                @endif
-                                @if (routePermission('order.download-invoice'))
-                                <a href="{{ route('customer-order-download', encrypt_decrypt($value->id, 'encrypt')) }}"
-                                    class="button-info" data-bs-toggle="tooltip" data-bs-placement="top"
-                                    title="@lang('index.download_invoice')"><i class="fa fa-download tiny-icon"></i></a>
-                                @endif --}}
-                                @if (routePermission('order.delete') && $value->order_status == 0)
-                                <a href="#" class="delete button-danger"
-                                    data-form_class="alertDelete{{ $value->id }}" type="submit"
-                                    data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('index.delete')">
-                                    <form action="{{ route('customer-orders.destroy', $value->id) }}"
-                                        class="alertDelete{{ $value->id }}" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <i class="fa fa-trash tiny-icon"></i>
-                                    </form>
+                            @foreach ($value->details as $detail)
+                            <tr>
+                                <td>{{ $value->po_date ?  getDateFormat($value->po_date) : '-' }}</td>
+                                <td>{{ $value->reference_no.'/'.$detail->line_item_no }}</td>
+                                <td>{{ $value->order_type == "Quotation" ? "Labor" : "Sales" }}</td>
+                                <td>{{ $value->customer->name }}<br> ({{ $value->customer->customer_id }})</td>
+                                {{-- <td>{{ $value->total_product }}</td> --}}
+                                <td>{{ getAmtCustom($detail->sub_total) }}</td>
+                                {{-- <td>{{ getDateFormat($value->delivery_date) }}</td> --}}
+                                <td>
+                                    <select name="order_status" class="form-control select2 order-quote-status" data-order_id="{{ $detail->id }}" {{ in_array($detail->order_status, [1,2]) ? 'disabled' : '' }}>
+                                        <option value="0" {{ $detail->order_status == 0 ? 'selected' : '' }}>Pending</option>
+                                        <option value="1" {{ $detail->order_status == 1 ? 'selected' : '' }}>Confirmed</option>
+                                        <option value="2" {{ $detail->order_status == 2 ? 'selected' : '' }}>Cancelled</option>
+                                    </select>
+                                    <div class="status-msg"></div>
+                                </td>
+                                <td>{{ getUserName($value->created_by) }}</td>
+                                <td>
+                                    @if (routePermission('order.view-details'))
+                                    <a href="{{ url('customer-orders') }}/{{ encrypt_decrypt($detail->id, 'encrypt') }}" class="button-info"
+                                        data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="@lang('index.view_details')"><i class="fa fa-eye tiny-icon"></i></a>
+                                    @endif
+                                    @if (routePermission('order.edit') && $detail->order_status == 0)
+                                    <a href="{{ url('customer-orders') }}/{{ encrypt_decrypt($detail->id, 'encrypt') }}/edit"
+                                        class="button-success" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="@lang('index.edit')"><i class="fa fa-edit tiny-icon"></i></a>
+                                    @endif
+                                    {{-- @if (routePermission('order.print-invoice'))
+                                                <a href="javascript:void()" class="button-info print_invoice"
+                                                    data-id="{{ $value->id }}" data-bs-toggle="tooltip"
+                                    data-bs-placement="top" title="@lang('index.print_invoice')"><i
+                                        class="fa fa-print tiny-icon"></i></a>
+                                    @endif
+                                    @if (routePermission('order.download-invoice'))
+                                    <a href="{{ route('customer-order-download', encrypt_decrypt($value->id, 'encrypt')) }}"
+                                        class="button-info" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="@lang('index.download_invoice')"><i class="fa fa-download tiny-icon"></i></a>
+                                    @endif --}}
+                                    @if (routePermission('order.delete') && $detail->order_status == 0)
+                                    <a href="#" class="delete button-danger"
+                                        data-form_class="alertDelete{{ $detail->id }}" type="submit"
+                                        data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('index.delete')">
+                                        <form action="{{ route('customer-orders.destroy', $detail->id) }}"
+                                            class="alertDelete{{ $detail->id }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <i class="fa fa-trash tiny-icon"></i>
+                                        </form>
 
-                                </a>
-                                @endif
-                            </td>
-                        </tr>
+                                    </a>
+                                    @endif
+                                </td>
+                            </tr>
+                            @endforeach
                         @endforeach
                     </tbody>
                 </table>
