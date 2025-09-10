@@ -48,6 +48,7 @@ class MaterialTypeController extends Controller
             ],
         ], [
             'type_name.required' => __('index.mat_type_req'),
+            'type_name.unique' => __('index.mat_type_unique'),
         ]);
         $obj = new \App\MaterialType();
         $obj->type_name = ucwords(escape_output($request->get('type_name')));
@@ -73,6 +74,7 @@ class MaterialTypeController extends Controller
             ],
         ], [
             'type_name.required' => __('index.mat_type_req'),
+            'type_name.unique' => __('index.mat_type_unique'),
         ]);
 
         $materialtype->type_name = ucwords(escape_output($request->get('type_name')));

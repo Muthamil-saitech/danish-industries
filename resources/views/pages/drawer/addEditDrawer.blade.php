@@ -115,48 +115,39 @@
                             </div>
                         </div>
                         <div class="add_pc mt-3">
-                            @if(isset($obj) && $obj->program_code!='')
-                                @php $program_codes = json_decode($obj->program_code,true); @endphp
-                                @foreach($program_codes as $key => $program_code)
-                                <div class="row">
-                                    <div class="col-sm-12 mb-2 col-md-4">
-                                        <div class="form-group">
-                                            <label>@lang('index.program_code') <span class="required_star">*</span></label>
-                                            <input type="text" name="program_code[]" id="program_code[]" class="form-control @error('program_code') is-invalid @enderror" placeholder="Program Code" value="{{ $program_code ?? old('program_code') }}">
-                                            @error('program_code')
-                                                <div class="text-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    @if($key==0)
-                                        <div class="col-md-4 mb-3 mt-1">
-                                            <button id="programCodeAdd" class="btn bg-blue-btn mt-4" type="button">@lang('index.add_more')</button>
-                                        </div>
-                                    @else
-                                        @if(isset($program_codes) && count($program_codes) > 0)
-                                        <div class="col-md-4 mt-4">
-                                            <a href="#" class="pro_code button-danger"
-                                                data-contact_id="" type="submit"
-                                                data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('index.delete')">
-                                                <i class="fa fa-trash tiny-icon"></i>
-                                            </a>
-                                        </div>
-                                        @else
-                                            <div class="col-md-4 mt-4">
-                                                <button type="button" class="btn btn-xs del_row dlt_button">
-                                                    <iconify-icon icon="solar:trash-bin-minimalistic-broken"></iconify-icon>
-                                                </button>
-                                            </div>
-                                        @endif
-                                    @endif
-                                </div>
-                                @endforeach
-                            @else
+                            @php
+                                $program_codes = old('program_code', isset($obj->program_code) ? json_decode($obj->program_code, true) : []);
+                            @endphp
+                            @foreach($program_codes as $key => $program_code)
                             <div class="row">
                                 <div class="col-sm-12 mb-2 col-md-4">
                                     <div class="form-group">
                                         <label>@lang('index.program_code') <span class="required_star">*</span></label>
-                                        <input type="text" name="program_code[]" id="program_code[]" class="form-control @error('program_code') is-invalid @enderror" placeholder="Program Code" value="{{ isset($obj) && $obj->program_code ? $obj->program_code : old('program_code') }}">
+                                        <input type="text" name="program_code[]" id="program_code[]" class="form-control @error('program_code') is-invalid @enderror" placeholder="Program Code" value="{{ $program_code ?? old('program_code') }}">
+                                        @error('program_code')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                @if($key==0)
+                                    <div class="col-md-4 mb-3 mt-1">
+                                        <button id="programCodeAdd" class="btn bg-blue-btn mt-4" type="button">@lang('index.add_more')</button>
+                                    </div>
+                                @else
+                                    <div class="col-md-4 mt-4">
+                                        <button type="button" class="btn btn-xs del_row dlt_button">
+                                            <iconify-icon icon="solar:trash-bin-minimalistic-broken"></iconify-icon>
+                                        </button>
+                                    </div>
+                                @endif
+                            </div>
+                            @endforeach
+                            @if(empty($program_codes))
+                            <div class="row">
+                                <div class="col-sm-12 mb-2 col-md-4">
+                                    <div class="form-group">
+                                        <label>@lang('index.program_code') <span class="required_star">*</span></label>
+                                        <input type="text" name="program_code[]" id="program_code[]" class="form-control @error('program_code') is-invalid @enderror" placeholder="Program Code" value="">
                                         <p class="text-danger pro_code_err"></p>
                                         @error('program_code')
                                             <div class="text-danger">{{ $message }}</div>

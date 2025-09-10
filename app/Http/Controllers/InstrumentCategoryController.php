@@ -41,8 +41,9 @@ class InstrumentCategoryController extends Controller
                 }),
             ],
         ], [
-            'type.required' => "The Type field is required",
-            'category.required' => "The Category field is required"
+            'type.required' => "The type field is required",
+            'category.required' => "The instrument category field is required",
+            'category.unique' => "The instrument category field already exists",
         ]);
 
         $obj = new \App\InstrumentCategory;
@@ -73,8 +74,9 @@ class InstrumentCategoryController extends Controller
                 }),
             ],
         ], [
-            'type.required' => "The Type field is required",
-            'category.required' => "The Category field is required"
+            'type.required' => "The type field is required",
+            'category.required' => "The instrument category field is required",
+            'category.unique' => "The instrument category field already exists",
         ]);
 
         $instrument_category->type = escape_output($request->get('type'));

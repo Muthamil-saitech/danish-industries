@@ -367,12 +367,14 @@
                     </ul>
                 </li>
             @endif
+            @if (menuPermission('consumable'))
             <li class="parent-menu treeview2 menu_assign_class menu__cidirp_1{{ request()->is('consumable*') ? ' menu-open active_sub_menu' : '' }}" data-menu__cid="irp_1">
                 <a href="{{ route('consumable.index') }}">
                     <iconify-icon icon="solar:inbox-line-broken"></iconify-icon>
                     <span class="match_bold">@lang('index.consumable')</span>
                 </a>
             </li>
+            @endif
             @if (menuPermission('Inspection'))
                 <li class="parent-menu treeview2 menu_assign_class menu__cidirp_1{{ request()->is('inspection-generate*') ? ' menu-open active_sub_menu' : '' }}"
                     data-menu__cid="irp_1">
@@ -592,6 +594,7 @@
                     </ul>
                 </li>
             @endif
+            @if (menuPermission('reports'))
             <li
                 class="parent-menu treeview menu__cidirp_10{{ request()->is('sale-report*') || request()->is('expense-report*') || request()->is('salary-report*') ? ' menu-open active_sub_menu' : '' }}">
                 <a href="#">
@@ -607,6 +610,7 @@
                     <li class="menu_assign_class {{ request()->routeIs('salary-report') ? ' treeMenuActive' : '' }}" data-menu__cid="irp_10"><a href="{{ route('salary-report') }}">Salary Report</a></li>
                 </ul>
             </li>
+            @endif
             @if (menuPermission('Settings'))
                 <li
                     class="parent-menu treeview menu__cidirp_10{{ request()->is('settings') || request()->is('white-label') || request()->is('taxes') || request()->is('units*') || request()->is('mail-settings') || request()->is('productionstages*') || request()->is('currency*') || request()->is('data-import') ? ' menu-open active_sub_menu' : '' }}">

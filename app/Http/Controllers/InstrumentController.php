@@ -71,7 +71,9 @@ class InstrumentController extends Controller
             'remarks' => 'nullable'
         ], [
             'code.required' => "The instrument code field is required",
+            'code.unique' => "The instrument code field already exists",
             'instrument_name.required' => "The instrument name field is required",
+            'instrument_name.unique' => "The instrument name field already exists",
             'type.required' => "The type field is required",
             'category.required' => "The instrument category field is required",
             'unit.required' => "The unit field is required",

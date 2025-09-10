@@ -24,6 +24,7 @@ use App\Role;
 use App\RolePermission;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class RoleController extends Controller
 {
@@ -64,16 +65,17 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate(
-            $request,
-            [
-                'title' => 'required|max:191',
-            ],
-            [
-                'title.required' => __('index.role_name_required'),
-                'title.max' => __('index.role_name_max'),
+        request()->validate([
+            'title' => [
+                'required',
+                'max:191',
+                Rule::unique('tbl_roles', 'title'),
             ]
-        );
+        ],[
+            'title.required' => __('index.role_name_required'),
+            'title.max' => __('index.role_name_max'),
+            'title.unique' => __('index.role_name_unique'),
+        ]);
         $role = new Role();
         $role->title = ucwords($request->title);
         $role->save();
@@ -142,16 +144,17 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        $this->validate(
-            $request,
-            [
-                'title' => 'required|max:191'
-            ],
-            [
-                'title.required' => __('index.role_name_required'),
-                'title.max' => __('index.role_name_max')
+        request()->validate([
+            'title' => [
+                'required',
+                'max:191',
+                Rule::unique('tbl_roles', 'title')->ignore($role->id),
             ]
-        );
+        ],[
+            'title.required' => __('index.role_name_required'),
+            'title.max' => __('index.role_name_max'),
+            'title.unique' => __('index.role_name_unique'),
+        ]);
         $role->title = ucwords($request->title);
         $role->save();
         $activity_ids = $request->activity_id;

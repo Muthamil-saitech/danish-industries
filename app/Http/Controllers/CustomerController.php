@@ -287,7 +287,7 @@ class CustomerController extends Controller
             foreach ($request->cp_name as $row => $value) {
                 $cp_info = new \App\CustomerContactInfo();
                 $cp_info->customer_id = $customer->id;
-                $cp_info->cp_name = escape_output($request->cp_name[$row] ?? null);
+                $cp_info->cp_name = ucwords(escape_output($request->cp_name[$row] ?? null));
                 $cp_info->cp_department = escape_output($request->cp_department[$row] ?? null);
                 $cp_info->cp_designation = escape_output($request->cp_designation[$row] ?? null);
                 $cp_info->cp_phone = escape_output($request->cp_phone[$row] ?? null);

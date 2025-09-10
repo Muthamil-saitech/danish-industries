@@ -119,7 +119,7 @@
                                         class="form-control @error('username') is-invalid @enderror"
                                         placeholder="{{ __('index.username') }}" value="{{ isset($obj) && $obj->username ? $obj->username : old('username') }}" readonly>
                                 </div>
-                                @error('email')
+                                @error('username')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>

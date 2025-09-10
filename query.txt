@@ -29,3 +29,8 @@ ALTER TABLE `tbl_rawmaterials` ADD `mat_type_id` INT NOT NULL AFTER `id`;
 ALTER TABLE `tbl_drawers` CHANGE `notes` `tools_id` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
 ALTER TABLE `tbl_drawers` ADD `stage_id` TEXT NOT NULL AFTER `tools_id`;
 
+
+=========(10 Sep)===========
+INSERT INTO `tbl_menus` (`id`, `title`, `description`, `created_at`, `updated_at`) VALUES (NULL, 'consumable', NULL, NULL, NULL);
+INSERT INTO `tbl_menus` (`id`, `title`, `description`, `created_at`, `updated_at`) VALUES (NULL, 'reports', NULL, NULL, NULL);
+

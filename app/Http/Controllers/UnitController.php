@@ -78,7 +78,8 @@ class UnitController extends Controller
             ],
             'description' => 'max:100'
         ], [
-            'name.required' => "The unit name field is required"
+            'name.required' => "The unit name field is required",
+            'name.unique'   => "The unit name field already exists",
         ]);
 
         $obj = new \App\Unit;
@@ -122,7 +123,8 @@ class UnitController extends Controller
             ],
             'description' => 'max:100'
         ], [
-            'name.required' => "The unit name field is required"
+            'name.required' => "The unit name field is required",
+            'name.unique'   => "The unit name field already exists",
         ]);
 
         $unit->name = strtoupper(escape_output($request->get('name')));

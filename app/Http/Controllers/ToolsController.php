@@ -47,6 +47,7 @@ class ToolsController extends Controller
             ],
         ], [
             'tool_name.required' => __('index.tool_name_req'),
+            'tool_name.unique' => __('index.tool_name_unique'),
         ]);
         $obj = new \App\Tool();
         $obj->tool_name = ucwords(escape_output($request->get('tool_name')));
@@ -72,6 +73,7 @@ class ToolsController extends Controller
             ],
         ], [
             'tool_name.required' => __('index.tool_name_req'),
+            'tool_name.unique' => __('index.tool_name_unique'),
         ]);
 
         $tool->tool_name = ucwords(escape_output($request->get('tool_name')));

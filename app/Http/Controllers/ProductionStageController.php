@@ -76,7 +76,8 @@ class ProductionStageController extends Controller
             ],
             'description' => 'max:100'
         ], [
-            'name.required' => "The production stage name field is required"
+            'name.required' => "The production stage name field is required",
+            'name.unique' => "The production stage name already exists"
         ]);
 
         $obj = new \App\ProductionStage();
@@ -120,7 +121,8 @@ class ProductionStageController extends Controller
             ],
             'description' => 'max:100'
         ], [
-            'name.required' => "The production stage name field is required"
+            'name.required' => "The production stage name field is required",
+            'name.unique' => "The production stage name already exists"
         ]);
 
         $productionstage->name = ucwords(escape_output($request->get('name')));

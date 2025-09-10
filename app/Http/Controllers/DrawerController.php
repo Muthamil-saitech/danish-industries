@@ -47,11 +47,10 @@ class DrawerController extends Controller
             'revision_no' => 'required',
             'revision_date' => 'required',
             'drawer_loc' => 'required|max:100',
-            'tools_id' => 'array',
-            'stage_id' => 'array',
             'drawer_img' => 'nullable|mimes:jpeg,png,jpg,svg|max:1024',
         ], [
             'drawer_no.required' => "The drawing no field is required",
+            'drawer_no.unique' => "The drawing no field already exists",
             'drawer_loc.required' => "The drawing location field is required",
             'drawer_loc.max' => "The drawing location may not be greater than 100 characters.",
         ]);
@@ -60,7 +59,7 @@ class DrawerController extends Controller
         $obj->revision_no = escape_output($request->get('revision_no'));
         $obj->revision_date = date('Y-m-d', strtotime($request->get('revision_date')));
         $obj->drawer_loc = escape_output($request->get('drawer_loc'));
-        $obj->program_code = json_encode($request->get('program_code'),true);
+        $obj->program_code = json_encode($request->get('program_code', []));
         $obj->tools_id = implode(',', $request->get('tools_id', []));
         $obj->stage_id = implode(',', $request->get('stage_id', []));
         if ($request->hasFile('drawer_img')) {
@@ -122,6 +121,7 @@ class DrawerController extends Controller
             'drawer_img' => 'nullable|mimes:jpeg,png,jpg,svg|max:1024'
         ], [
             'drawer_no.required' => "The drawing no field is required",
+            'drawer_no.unique' => "The drawing no field already exists",
             'drawer_loc.required' => "The drawing location field is required",
             'drawer_loc.max' => "The drawing location may not be greater than 100 characters.",
         ]);
