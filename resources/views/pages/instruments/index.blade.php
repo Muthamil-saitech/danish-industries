@@ -37,7 +37,7 @@
                                 <th class="w-20">@lang('index.type')</th>
                                 <th class="w-20">@lang('index.instrument_category')</th>
                                 <th class="w-20">@lang('index.instrument_name')</th>
-                                <th class="w-20">@lang('index.code')</th>
+                                <th class="w-20">@lang('index.instrument_code')</th>
                                 <th class="w-10 ir_txt_center">@lang('index.actions')</th>
                             </tr>
                         </thead>

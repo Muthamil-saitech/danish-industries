@@ -299,6 +299,7 @@ return [
     'responsible_person' => 'Responsible Person',
     'select_responsible_person' => 'Select Responsible Person',
     'code' => 'Code',
+    'instrument_code' => 'Instrument Code',
     'material_code' => 'Material Code',
     'product_code' => 'Product Code',
     'customer_code' => 'Customer Code',

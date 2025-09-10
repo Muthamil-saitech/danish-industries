@@ -70,7 +70,7 @@ class InstrumentController extends Controller
             'calibration_due' => 'required',
             'remarks' => 'nullable'
         ], [
-            'code.required' => "The code field is required",
+            'code.required' => "The instrument code field is required",
             'instrument_name.required' => "The instrument name field is required",
             'type.required' => "The type field is required",
             'category.required' => "The instrument category field is required",
@@ -94,7 +94,7 @@ class InstrumentController extends Controller
         $obj->range = escape_output($request->get('range'));
         $obj->accuracy = escape_output($request->get('accuracy'));
         $obj->make = escape_output($request->get('make'));
-        $obj->calibration = date('Y-m-d', strtotime($request->get('calibration_due')));
+        $obj->calibration_due = date('Y-m-d', strtotime($request->get('calibration_due')));
         $obj->remarks = escape_output($request->get('remarks'));
         $obj->save();
         return redirect('instruments')->with(saveMessage());
@@ -152,7 +152,7 @@ class InstrumentController extends Controller
                 'max:255'
             ]
         ], [
-            'code.required' => "The code field is required",
+            'code.required' => "The instrument code field is required",
             'instrument_name.required' => "The instrument name field is required",
             'type.required' => "The type field is required",
             'category.required' => "The category field is required",
@@ -174,7 +174,7 @@ class InstrumentController extends Controller
         $instrument->range = escape_output($request->get('range'));
         $instrument->accuracy = escape_output($request->get('accuracy'));
         $instrument->make = escape_output($request->get('make'));
-        $instrument->calibration = date('Y-m-d', strtotime($request->get('calibration_due')));
+        $instrument->calibration_due = date('Y-m-d', strtotime($request->get('calibration_due')));
         $instrument->remarks = escape_output($request->get('remarks'));
         $instrument->save();
         return redirect('instruments')->with(saveMessage());

@@ -82,10 +82,10 @@
                         </div>
                         <div class="col-sm-6 mb-2 col-md-4">
                             <div class="form-group">
-                                <label>@lang('index.code') <span class="required_star">*</span></label>
+                                <label>@lang('index.instrument_code') <span class="required_star">*</span></label>
                                 <input type="text" name="code" id="code"
                                     class="check_required form-control @error('code') is-invalid @enderror code"
-                                    placeholder="@lang('index.code')"
+                                    placeholder="@lang('index.instrument_code')"
                                     value="{{ isset($obj->code) ? $obj->code : old('code') }}">
                                 @error('code')
                                     <div class="text-danger">{{ $message }}</div>
