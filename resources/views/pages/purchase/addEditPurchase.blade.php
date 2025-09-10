@@ -87,6 +87,15 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="col-sm-12 mb-2 col-md-4">
+                            <div class="form-group">
+                                <label>@lang('index.invoice_no')</label>
+                                <input type="text" name="invoice_no" class="form-control @error('invoice_no') is-invalid @enderror" placeholder="Invoice No" value="{{ isset($obj->invoice_no) && $obj->invoice_no ? $obj->invoice_no : old('invoice_no') }}">
+                                @error('invoice_no')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
                         <div class="clearfix"></div>
                         <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
@@ -98,7 +107,12 @@
                                 </select> --}}
                                 <select class="form-control @error('purchase_mat_type') is-invalid @enderror select2" name="mat_type" id="purchase_mat_type">
                                     <option value="">@lang('index.select')</option>
-                                    <option {{ (collect(old('mat_type', isset($obj->mat_type) ? explode(',', $obj->mat_type) : []))->contains("2")) ? 'selected' : '' }} value="2">Raw Material</option>
+                                    @foreach ($material_types as $value)
+                                        <option
+                                            {{ (isset($obj->mat_type) && $obj->mat_type == $value->id) || old('mat_type') == $value->id ? 'selected' : '' }}
+                                            value="{{ $value->id }}">{{ $value->type_name }}</option>
+                                    @endforeach
+                                    {{-- <option {{ (collect(old('mat_type', isset($obj->mat_type) ? explode(',', $obj->mat_type) : []))->contains("2")) ? 'selected' : '' }} value="2">Raw Material</option> --}}
                                 </select>
                                 <div class="text-danger d-none"></div>
                             </div>
@@ -108,11 +122,17 @@
                         </div>
                         <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
-                                <label>@lang('index.invoice_no')</label>
-                                <input type="text" name="invoice_no"
-                                    class="form-control @error('invoice_no') is-invalid @enderror" placeholder="Invoice No"
-                                    value="{{ isset($obj->invoice_no) && $obj->invoice_no ? $obj->invoice_no : old('invoice_no') }}">
-                                @error('invoice_no')
+                                <label>@lang('index.material_category') <span class="required_star">*</span></label>
+                                <select class="form-control @error('category') is-invalid @enderror select2" name="category"
+                                    id="category">
+                                    <option value="">@lang('index.select')</option>
+                                    @foreach ($categories as $value)
+                                        <option
+                                            {{ (isset($obj->category) && $obj->category == $value->id) || old('category') == $value->id ? 'selected' : '' }}
+                                            value="{{ $value->id }}">{{ $value->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('category')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>

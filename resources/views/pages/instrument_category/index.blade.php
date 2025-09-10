@@ -35,8 +35,8 @@
                             <tr>
                                 <th class="w-5 text-start">@lang('index.sn')</th>
                                 <th class="w-20">@lang('index.type')</th>
-                                <th class="w-40">@lang('index.category')</th>
-                                <th class="w-10 ir_txt_center">@lang('index.actions')</th>
+                                <th class="w-40">@lang('index.instrument_category')</th>
+                                <th class="w-10">@lang('index.actions')</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -58,7 +58,7 @@
                                         @endif
                                     </td>
                                     <td>{{ $value->category }}</td>
-                                    <td class="ir_txt_center">
+                                    <td class="">
                                         @if (routePermission('instrument_category.edit'))
                                             <a href="{{ url('instrument_category') }}/{{ encrypt_decrypt($value->id, 'encrypt') }}/edit"
                                                 class="button-success" data-bs-toggle="tooltip" data-bs-placement="top"

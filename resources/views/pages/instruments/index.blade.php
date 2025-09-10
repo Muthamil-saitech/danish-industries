@@ -38,6 +38,14 @@
                                 <th class="w-20">@lang('index.instrument_category')</th>
                                 <th class="w-20">@lang('index.instrument_name')</th>
                                 <th class="w-20">@lang('index.instrument_code')</th>
+                                <th class="w-20">@lang('index.unit')</th>
+                                <th class="w-20">@lang('index.owner')</th>
+                                <th class="w-20">@lang('index.customer')</th>
+                                <th class="w-20">@lang('index.range/size')</th>
+                                <th class="w-20">@lang('index.accuracy')</th>
+                                <th class="w-20">@lang('index.make')</th>
+                                <th class="w-20">@lang('index.calibration_due')</th>
+                                <th class="w-20">@lang('index.remarks')</th>
                                 <th class="w-10 ir_txt_center">@lang('index.actions')</th>
                             </tr>
                         </thead>
@@ -62,6 +70,14 @@
                                     <td>{{ getInstrumentCategoryById($value->category) }}</td>
                                     <td>{{ $value->instrument_name }}</td>
                                     <td>{{ $value->code }}</td>
+                                    <td>{{ $value->unit }}</td>
+                                    <td>{{ $value->owner_type==1 ? 'Own' : 'Customer' }}</td>
+                                    <td>{{ getStockCustomerNameById($value->customer_id) }} <br>{{ $value->owner_type!=1 ? '('.getCustomerCodeById($value->customer_id).')' : '' }}</td>
+                                    <td>{{ $value->range }}</td>
+                                    <td>{{ $value->accuracy }}</td>
+                                    <td>{{ $value->make }}</td>
+                                    <td>{{ getDateFormat($value->calibration_due) }}</td>
+                                    <td title="{{ $value->remarks }}">{{ substr_text(safe($value->remarks),20) }}</td>
                                     <td class="ir_txt_center">
                                         @if (routePermission('instruments.edit'))
                                             <a href="{{ url('instruments') }}/{{ encrypt_decrypt($value->id, 'encrypt') }}/edit"

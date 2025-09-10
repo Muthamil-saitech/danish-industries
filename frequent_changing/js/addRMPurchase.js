@@ -1,6 +1,6 @@
 $(document).ready(function () {
     "use strict";
-    $(document).on("change", "#purchase_mat_type", function (e) {
+    /* $(document).on("change", "#purchase_mat_type", function (e) {
         let hidden_base_url = $("#hidden_base_url").val();
         let purchase_mat_type = $("#purchase_mat_type").val();
         $.ajax({
@@ -15,6 +15,68 @@ $(document).ready(function () {
                 console.log("error");
             },
         });
+    }); */
+    $(document).on("change", "#purchase_mat_type", function () {
+        let mat_type_id = $(this).find(":selected").val();
+        let hidden_base_url = $("#hidden_base_url").val();
+        $.ajax({
+            type: "POST",
+            url: hidden_base_url + "getMaterialCategory",
+            data: { mat_type_id: mat_type_id },
+            dataType: "json",
+            success: function (data) {
+                if(data) {
+                    let category = data;
+                    let select = $("#category");
+                    select.empty();
+                    select.append('<option value="">Please Select</option>');
+                    category.forEach(function(item) {
+                        if (item) {
+                            let id = item.id;
+                            let name = item.name;
+                            select.append('<option value="' + id + '">' + name + '</option>');
+                        }
+                    });
+                }                
+            },
+            error: function () {
+                console.error("Failed to fetch product details.");
+            },
+        });
+        $('#category').val("").trigger('change.select2');
+    });
+
+    $(document).on("change", "#category", function () {
+        let cat_id = $(this).find(":selected").val();
+        let mat_type = $("#purchase_mat_type").val();
+        let hidden_base_url = $("#hidden_base_url").val();
+        $.ajax({
+            type: "POST",
+            url: hidden_base_url + "getMaterialById",
+            data: { mat_type: mat_type, id: cat_id},
+            dataType: "json",
+            success: function (data) {
+                if(data) {
+                    let materials = data;
+                    let select = $("#rmaterial");
+                    select.empty();
+                    select.append('<option value="">Please Select</option>');
+                    materials.forEach(function(item) {
+                        if (item) {
+                            let id = item.id;
+                            let name = item.name;
+                            let code = item.code;
+                            let insert_type = item.insert_type;
+                            select.append('<option value="' + id + '|' + name + ' (' + code + ')|' + name + '|' + insert_type + '">' + name + ' (' + code + ')</option>');
+                        }
+                    });
+                }                
+            },
+            error: function () {
+                console.error("Failed to fetch product details.");
+            },
+        });
+        $('#rmaterial').val("").trigger('change.select2');
     });
     
     let hidden_alert = $("#hidden_alert").val();

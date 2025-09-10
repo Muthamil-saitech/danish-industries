@@ -165,13 +165,13 @@
         let hidden_base_url = $("#hidden_base_url").val();
         let mat_type = $(this).find(":selected").val();
         // console.log("mat_type",typeof(mat_type));
-        if(mat_type === "1") {
+        /* if(mat_type === "1") {
             $("#cust_div").removeClass('d-none');
             $("#customer_id").val("").change();
         } else {
             $("#cust_div").addClass('d-none');
             $("#customer_id").val("");
-        }  
+        } */  
         $.ajax({
             type: "POST",
             url: hidden_base_url + "getMaterialCategory",
@@ -199,6 +199,18 @@
         // $('#mat_cat_id').val("").trigger('change.select2');
         $('#mat_id').val("").trigger('change.select2');
         // $('#stock_type').val("").trigger('change.select2');
+    });
+    $(document).on("change", "#owner_type", function () {
+        let hidden_base_url = $("#hidden_base_url").val();
+        let owner_type = $(this).find(":selected").val();
+        // console.log("mat_type",typeof(mat_type));
+        if(owner_type === "2") {
+            $("#cust_div").removeClass('d-none');
+            $("#customer_id").val("").change();
+        } else {
+            $("#cust_div").addClass('d-none');
+            $("#customer_id").val("");
+        }
     });
     $(document).on("change", "#stock_type", function (e) {
         let hidden_base_url = $("#hidden_base_url").val();

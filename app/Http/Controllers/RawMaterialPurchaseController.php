@@ -22,7 +22,9 @@ use App\AdminSettings;
 use App\CustomerOrder;
 use App\FinishedProduct;
 use App\Manufacture;
+use App\MaterialType;
 use App\RawMaterial;
+use App\RawMaterialCategory;
 use App\RawMaterialPurchase;
 use App\RMPurchase_model;
 use App\Supplier;
@@ -81,10 +83,12 @@ class RawMaterialPurchaseController extends Controller
         $accounts = Account::orderBy('name', 'ASC')->where('del_status', "Live")->get();
         // $rmaterials = RawMaterial::orderBy('name', 'ASC')->where('del_status', "Live")->get();
         $manufactures = Manufacture::orderBy('reference_no', 'ASC')->where('manufacture_status', '!=', 'done')->where('del_status', "Live")->get();
+        $categories = RawMaterialCategory::orderBy('id', 'DESC')->where('del_status', "Live")->get();
+        $material_types = MaterialType::where('del_status','Live')->orderBy('id','DESC')->get();
         $units = Unit::where('del_status', "Live")->get();
         $products = FinishedProduct::orderBy('name', 'ASC')->where('del_status', "Live")->get();
         $orders = CustomerOrder::orderBy('id', 'ASC')->where('del_status', "Live")->get();
-        return view('pages.purchase.addEditPurchase', compact('title', 'suppliers', 'accounts', 'manufactures', 'products', 'orders', 'units'));
+        return view('pages.purchase.addEditPurchase', compact('title', 'suppliers', 'accounts', 'manufactures', 'products', 'orders', 'units', 'material_types', 'categories'));
     }
 
     /**
@@ -226,7 +230,9 @@ class RawMaterialPurchaseController extends Controller
         $products = FinishedProduct::orderBy('name', 'ASC')->where('del_status', "Live")->get();
         $orders = CustomerOrder::orderBy('id', 'ASC')->where('del_status', "Live")->get();
         $units = Unit::where('del_status', "Live")->get();
-        return view('pages.purchase.addEditPurchase', compact('title', 'obj', 'suppliers', 'pruchse_rmaterials', 'accounts', 'products', 'orders', 'units'));
+        $categories = RawMaterialCategory::orderBy('id', 'DESC')->where('del_status', "Live")->get();
+        $material_types = MaterialType::where('del_status','Live')->orderBy('id','DESC')->get();
+        return view('pages.purchase.addEditPurchase', compact('title', 'obj', 'suppliers', 'pruchse_rmaterials', 'accounts', 'products', 'orders', 'units', 'categories', 'material_types'));
     }
 
     /**

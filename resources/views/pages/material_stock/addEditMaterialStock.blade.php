@@ -157,6 +157,20 @@
                                 @enderror
                             </div>
                         </div> --}}
+                        <div class="col-sm-12 mb-2 col-md-4">
+                            <div class="form-group">
+                                <label>@lang('index.owner') <span class="required_star">*</span></label>
+                                <select class="form-control @error('owner_type') is-invalid @enderror select2" name="owner_type" id="owner_type">
+                                    <option value="">@lang('index.select')</option>
+                                    <option {{ (isset($obj->owner_type) && $obj->owner_type == 1) || old('owner_type') == 1 ? 'selected' : '' }} value="1">@lang('index.owner')</option>
+                                    <option {{ (isset($obj->owner_type) && $obj->owner_type == 2) || old('owner_type') == 2 ? 'selected' : '' }} value="2">@lang('index.customer')</option>
+                                </select>
+                                <div class="text-danger d-none"></div>
+                                @error('owner_type')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
                         <div class="col-sm-12 mb-2 col-md-4 {{ (isset($obj) && $obj->mat_type == 1) || old('mat_type') == 1 ? '' : 'd-none' }}" id="cust_div">
                             <div class="form-group">
                                 <label>@lang('index.customer') </label>

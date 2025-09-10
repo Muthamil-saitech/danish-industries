@@ -1138,4 +1138,10 @@ class AjaxController extends Controller
         }
         return response()->json($tax_rate);
     }
+    public function getMaterialCategory(Request $request)
+    {
+        $mat_type_id = escape_output($request->post('mat_type_id'));
+        $material_categories = RawMaterialCategory::where('del_status', "Live")->where('mat_type_id', $mat_type_id)->get();
+        echo json_encode($material_categories);
+    }
 }
