@@ -68,7 +68,7 @@
                                     @foreach ($categories as $value)
                                         <option
                                             {{ isset($obj->category) && $obj->category == $value->id || old('category') == $value->id ? 'selected' : '' }}
-                                            value="{{ $value->id }}">{{ $value->category }}</option>
+                                            value="{{ $value->id }}">{{ $value->name }}</option>
                                     @endforeach
                                 </select>
                                 <div class="text-danger d-none"></div>

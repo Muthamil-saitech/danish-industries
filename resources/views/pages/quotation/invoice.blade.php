@@ -103,7 +103,7 @@
                         <td style="border:1px solid #000; padding:4px; border-bottom: none; text-align:center;">{{ $value->product_quantity }}</td>
                         <td style="border:1px solid #000; padding:4px; border-bottom: none; text-align:start;">{{ getRMUnitById($value->unit_id) }}</td>
                         {{-- <td style="border:1px solid #000; padding:4px; border-bottom: none; text-align:start;">{{ getOrderPrice($value->price,$orderDetail->sale_price,$orderDetail->tax_type) }}</td> --}}
-                        <td style="border:1px solid #000; padding:4px; border-bottom: none; text-align:start;">{{ $value->po_no }}
+                        <td style="border:1px solid #000; padding:4px; border-bottom: none; text-align:start;">{{ $value->po_no.'/'.$value->line_item_no }}
                         </td>
                         <td style="border:1px solid #000; padding:4px; border-bottom: none; text-align:start;">{{ $productInfo->hsn_sac_no }}</td>
                         <td style="border:1px solid #000; padding:4px; border-bottom: none; text-align:start;">{{ $value->dc_ref }}

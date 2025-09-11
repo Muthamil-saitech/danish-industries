@@ -40,7 +40,7 @@ class FPrmitem extends Model
     }
 
     public function getOrderProductRM($fproduct_id,$stk_mat_type,$selected_customer_id,$customer_order_id){
-        $order_material = CustomerOrderDetails::where('customer_order_id',$customer_order_id)->where('product_id',$fproduct_id)->where('del_status','Live')->first();
+        $order_material = CustomerOrderDetails::where('id',$customer_order_id)->where('product_id',$fproduct_id)->where('del_status','Live')->first();
         // dd($order_material->raw_material_id);
         if($stk_mat_type=="1" && $selected_customer_id) {
             $result = DB::select("

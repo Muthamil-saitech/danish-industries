@@ -79,7 +79,7 @@ $baseURL = getBaseURL();
                     {{-- <td colspan="2" style="padding:  7px 5px;">Drg No. : <b>{{ isset($drawer) ? $drawer->drawer_no : '-' }}</b></td> --}}
                 </tr>
                 <tr>
-                    <td colspan="2" style="padding:  7px 5px;">P.O No. : <b>{{ isset($order) ? $order->reference_no.'_'.date('d-M-y',strtotime($order->created_at)) : '-' }}</b></td>
+                    <td colspan="2" style="padding:  7px 5px;">P.O No. : <b>{{ isset($order) ? $order->reference_no.'/'.$order->line_item_no.'_'.date('d-M-y',strtotime($order->po_date)) : '-' }}</b></td>
                     {{-- <td colspan="2" style="padding:  7px 5px;">Size: Drg Location:<b> {{ isset($drawer) ? $drawer->drawer_loc : '-' }}</b></td> --}}
                     <td>
                         <div style="display: flex; justify-content: space-between; align-items: center; ">

@@ -69,7 +69,7 @@
                                                 <option {{ isset($obj->challan_id) && $obj->challan_id == $challan->id ? 'selected' : '' }} value="{{ $challan->id }}">{{ $challan->challan_no }}</option>
                                             @endforeach
                                         </select>
-                                    </div>                                    
+                                    </div>
                                 </div>
                                 <div class="text-danger chlnoErr d-none"></div>
                             </div>

@@ -52,7 +52,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                             <td>{{ $value->drawer_no }}</td>
                             <td>{{ $prodInfo->code }}</td>
                             <td>{{ $prodInfo->name }}</td>
-                            <td>{{ getPoNo($value->customer_order_id) }}</td>
+                            <td>{{ getPoNo($value->customer_order_id).'/'.getLineItemNo($value->customer_order_id) }}</td>
                             <td>{{ getCustomerNameById($value->customer_id).' ('.getCustomerCodeById($value->customer_id).')' }}</td>
                             <td>{{ getDateFormat($value->start_date) }}</td>
                             <td>{{ $value->complete_date!='' ? getDateFormat($value->complete_date) : ' - ' }}</td>

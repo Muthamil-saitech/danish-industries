@@ -61,7 +61,7 @@ $whiteLabelInfo = App\WhiteLabelSettings::first();
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2" style="padding:  7px 5px;">P.O No. : <b>{{ isset($order) ? $order->reference_no.'/'.date('d-m-Y',strtotime($order->created_at)) : '-' }}</b></td>
+                    <td colspan="2" style="padding:  7px 5px;">P.O No. : <b>{{ isset($order) ? $order->reference_no.'/'.$order->line_item_no.'_'.date('d-M-y',strtotime($order->po_date)) : '-' }}</b></td>
                     {{-- <td colspan="2" style="padding:  7px 5px;">Size: Drg Location:<b> {{ isset($drawer) ? $drawer->drawer_loc : '-' }}</b></td> --}}
                     <td>
                         <div style="display: flex; justify-content: space-between; align-items: center; ">

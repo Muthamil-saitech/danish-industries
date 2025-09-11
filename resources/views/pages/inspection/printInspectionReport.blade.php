@@ -57,7 +57,7 @@ $whiteLabelInfo = App\WhiteLabelSettings::first();
                             <p style="margin: 5px;"> {{ $manufacture->operation }}</p>
                         </div>
                         <div style="display: flex; align-items: center; gap: 10px;"> <span style="font-size: 16px; display: flex; justify-content: space-between; width: 100px;">PoNo <span>:</span> </span>
-                            <p style="margin: 5px;">{{ getPoNo($manufacture->customer_order_id) }}</p>
+                            <p style="margin: 5px;">{{ getPoNo($manufacture->customer_order_id).'/'.getLineItemNo($manufacture->customer_order_id) }}</p>
                         </div>
                     </div>
                     <div>

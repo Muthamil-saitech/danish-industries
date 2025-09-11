@@ -160,21 +160,21 @@
                                         <tr>
                                             <th class="w-5 text-start">@lang('index.sn')</th>
                                             {{-- <th class="w-30">@lang('index.finished_product')(@lang('index.code'))</th> --}}
-                                            <th class="w-50">@lang('index.part_no')</th>
+                                            <th class="w-10">@lang('index.part_no')</th>
                                             {{-- <th class="w-50">Rate</th> --}}
-                                            <th class="w-50">@lang('index.description')</th>
-                                            <th class="w-15">@lang('index.prod_quantity')</th>
+                                            <th class="w-20">@lang('index.description')</th>
+                                            <th class="w-5">@lang('index.prod_quantity')</th>
                                             {{-- <th class="w-15">@lang('index.raw_quantity')</th> --}}
                                             {{-- <th class="w-15">@lang('index.unit_price')</th> --}}
                                             {{-- <th class="w-15">@lang('index.profit')</th> --}}
                                             {{-- <th class="w-15">@lang('index.subtotal')</th> --}}
                                             {{-- <th class="w-15">@lang('index.unit')</th> --}}
                                             {{-- <th class="w-15">@lang('index.po_no')</th> --}}
-                                            <th class="w-15">@lang('index.hsn')</th>
-                                            <th class="w-15">@lang('index.dc_ref')</th>
-                                            <th class="w-15">@lang('index.dc_ref_date')</th>
-                                            <th class="w-15">@lang('index.challan_ref')</th>
-                                            <th class="w-30 ir_txt_center">@lang('index.remarks')</th>
+                                            <th class="w-5">@lang('index.hsn')</th>
+                                            <th class="w-10">@lang('index.dc_ref')</th>
+                                            <th class="w-5">@lang('index.dc_ref_date')</th>
+                                            <th class="w-10">@lang('index.challan_ref')</th>
+                                            <th class="w-20">@lang('index.remarks')</th>
                                             {{-- <th class="w-15">@lang('index.sale_price')(₹)</th> --}}
                                             {{-- <th class="w-15">@lang('index.discount')(₹)</th> --}}
                                             {{-- <th class="w-30">@lang('index.tax')(₹) </th> --}}
@@ -185,7 +185,7 @@
                                             {{-- <th class="w-30">IGST(%) </th> --}}
                                             {{-- <th class="w-30">IGST(₹) </th> --}}
                                             {{-- <th class="w-30">@lang('index.total')</th> --}}
-                                            @if(!isset($obj))<th class="w-5 ir_txt_center">@lang('index.actions')</th>@endif
+                                            @if(!isset($obj))<th class="w-5">@lang('index.actions')</th>@endif
                                         </tr>
                                     </thead>
                                     <tbody class="add_tr">
@@ -234,16 +234,16 @@
                                                         <span>{{ $productInfo->hsn_sac_no }}</span>
                                                     </td>
                                                     <td>
-                                                        <textarea class="form-control" name="dc_ref[]" placeholder="DC Reference" rows="3" cols="50" maxlength="50">{{ $value->dc_ref }}</textarea>
+                                                        <textarea class="form-control" name="dc_ref[]" placeholder="DC Reference" rows="3" cols="50">{{ $value->dc_ref }}</textarea>
                                                     </td>
                                                     <td>
                                                         <input type="text" name="dc_ref_date[]" class="form-control dc-ref-date" value="{{ $value->dc_ref_date!='' ? date('d-m-Y',strtotime($value->dc_ref_date)) : date('d-m-Y') }}">
                                                     </td>
                                                     <td>
-                                                        <textarea class="form-control" name="challan_ref[]" placeholder="Challan Reference" rows="3" cols="50" maxlength="50">{{ $value->challan_ref }}</textarea>
+                                                        <textarea class="form-control" name="challan_ref[]" placeholder="Challan Reference" rows="3" cols="50">{{ $value->challan_ref }}</textarea>
                                                     </td>
                                                     <td>
-                                                        <textarea class="form-control" name="description[]" placeholder="Description" rows="3" cols="50" maxlength="50">{{ $value->description ?? '' }}</textarea>
+                                                        <textarea class="form-control" name="description[]" placeholder="Remarks" rows="3" cols="50">{{ $value->description ?? '' }}</textarea>
                                                     </td>
                                                     {{-- <td>
                                                         <span>{{ $value->sale_price }}</span>

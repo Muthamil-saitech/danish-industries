@@ -27,6 +27,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use App\AdminSettings;
 use App\CustomerOrder;
 use App\CustomerOrderInvoice;
+use App\CustomerOrderDetails;
 use App\FinishedProduct;
 
 
@@ -43,7 +44,7 @@ class CustomerPaymentController extends Controller
         $endDate = '';
         $customer_id = escape_output($request->get('customer_id'));
         unset($request->_token);
-        $order = CustomerOrder::with('orderInvoice')->where('order_status',1)->where('del_status',"Live");
+        $order = CustomerOrder::where('del_status',"Live");
         if (isset($request->startDate) && $request->startDate != '') {
             $startDate = date('Y-m-d 00:00:00', strtotime($request->startDate));
             $order->where('created_at', '>=', $startDate);
@@ -55,11 +56,12 @@ class CustomerPaymentController extends Controller
         if (isset($customer_id) && $customer_id != '') {
             $order->where('customer_id', $customer_id);
         }
-        $obj = $order->orderBy('id', 'DESC')->get();
+        $obj = $order->with('details')->orderBy('id', 'DESC')->get();
+        $total_orders = CustomerOrderDetails::where('del_status', 'Live')->count();
         $title =  __('index.customer_due_receives');
         $customers = Customer::where('del_status','Live')->orderBy('id','DESC')->get();
         // dd($obj);
-        return view('pages.customer_payment.index',compact('title','obj','customers','customer_id', 'startDate', 'endDate'));
+        return view('pages.customer_payment.index',compact('title','obj','customers','customer_id', 'total_orders', 'startDate', 'endDate'));
     }
 
     /**
@@ -221,12 +223,13 @@ class CustomerPaymentController extends Controller
    public function print($id)
     {
         $title = __('index.customer_payment_invoice');
-        $customer_order = CustomerOrder::find($id);
-        $customer_inv = CustomerOrderInvoice::where('customer_order_id',$id)->first();
+        $order_details = CustomerOrderDetails::find($id);
+        $customer_order = CustomerOrder::find($order_details->customer_order_id);
+        $customer_inv = CustomerOrderInvoice::where('customer_order_id',$order_details->id)->first();
         $customer_due_entries = CustomerDueReceive::where('order_id',$id)->orderBy('id','DESC')->get();
         $obj = $customer_order;
         $company = AdminSettings::orderBy('name_company_name', 'ASC')->where('del_status', "Live")->get();
-        return view('pages.customer_payment.print_invoice', compact('title', 'obj', 'customer_inv', 'customer_due_entries', 'company'));
+        return view('pages.customer_payment.print_invoice', compact('title', 'obj', 'customer_inv', 'customer_due_entries', 'company','order_details'));
     }
     /* public function updatePayType(Request $request) {
         $payment_type = $request->payment_type;
@@ -249,10 +252,11 @@ class CustomerPaymentController extends Controller
         $pay_amount = $request->pay_amount;
         $payment_type = $request->payment_type;
         $note = $request->note;
-        $customer_order = CustomerOrder::where('id',$order_id)->where('order_status',1)->where('del_status','Live')->first();
+        $orderDetails = CustomerOrderDetails::where('id',$order_id)->where('order_status',1)->where('del_status','Live')->first();
+        $customer_order = CustomerOrder::where('id',$orderDetails->customer_order_id)->where('del_status','Live')->first();
         $customer_due = new CustomerDueReceive();
         $customer_due->order_id = $order_id;
-        $customer_due->reference_no = $customer_order->reference_no;
+        $customer_due->reference_no = $customer_order->reference_no.'/'.$orderDetails->line_item_no;
         $customer_due->order_date = date('Y-m-d', strtotime($customer_order->created_at));
         $customer_due->customer_id = $customer_order->customer_id;
         $customer_due->total_amount = $total_amount;
@@ -271,21 +275,20 @@ class CustomerPaymentController extends Controller
             $customer_due->payment_proof = $proofName;
         }
         $customer_due->user_id = auth()->user()->id;
-        // $customer_due->save();
+        $customer_due->save();
         $order_invoice = CustomerOrderInvoice::where('customer_order_id',$order_id)->where('del_status','Live')->first();
-        // dd($order_invoice);
         $order_invoice->paid_amount = $order_invoice->paid_amount + $pay_amount;
         $order_invoice->due_amount = $order_invoice->amount - $order_invoice->paid_amount;
         $order_invoice->save();
         return redirect('customer-payment')->with(saveMessage());
     }
     public function dueEntry($id) {
-        $customer_order = CustomerOrder::find(encrypt_decrypt($id, 'decrypt'));
-        $customer_inv = CustomerOrderInvoice::where('customer_order_id',encrypt_decrypt($id, 'decrypt'))->first();
+        $order_details = CustomerOrderDetails::find(encrypt_decrypt($id, 'decrypt'));
+        $customer_order = CustomerOrder::find($order_details->customer_order_id);
+        $customer_inv = CustomerOrderInvoice::where('customer_order_id',$order_details->id)->first();
         $title = __('index.customer_payment_invoice');
         $obj = $customer_order;
-        $customer_due_entries = CustomerDueReceive::where('order_id',encrypt_decrypt($id, 'decrypt'))->orderBy('id','DESC')->get();
-        // dd($customer_due_entries);
-        return view('pages.customer_payment.invoice', compact('title', 'obj', 'customer_due_entries','customer_inv'));
+        $customer_due_entries = CustomerDueReceive::where('order_id',$order_details->id)->orderBy('id','DESC')->get();
+        return view('pages.customer_payment.invoice', compact('title', 'obj', 'customer_due_entries','customer_inv','order_details'));
     }
 }

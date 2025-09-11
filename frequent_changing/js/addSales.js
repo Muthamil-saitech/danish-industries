@@ -1046,7 +1046,7 @@ $(document).ready(function () {
                                 <td class="w-5 text-start">${rowCount}</td>
                                 <td class="w-30">${product.code}<input type="hidden" name="part_no[]" value="${data.code}"></td>                                
                                 <td class="w-50">${product.name} (${product.code})</td>                                
-                                <td class="w-15">${data.product_quantity} ${data.unit_name}<input type="hidden" name="product_quantity[]" value="${data.product_quantity}"><input type="hidden" name="unit_id[]" value="${data.unit_id}"><input type="hidden" name="po_no[]" value="${data.reference_no}"><input type="hidden" name="po_date[]" value="${data.po_date}"></td>
+                                <td class="w-15">${data.product_quantity} ${data.unit_name}<input type="hidden" name="product_quantity[]" value="${data.product_quantity}"><input type="hidden" name="unit_id[]" value="${data.unit_id}"><input type="hidden" name="po_no[]" value="${data.reference_no}"><input type="hidden" name="line_item_no[]" value="${data.line_item_no}"><input type="hidden" name="po_date[]" value="${data.po_date}"></td>
                                 <td class="w-15">${product.hsn_sac_no}</td>
                                 <td class="w-15"><textarea class="form-control" name="dc_ref[]" placeholder="DC Reference" rows="3" cols="50" maxlength="50"></textarea></td>
                                 <td class="w-15"><input type="text" name="dc_ref_date[]" class="form-control dc-ref-date" placeholder="Delivery Challan Reference Date"></td>

@@ -303,7 +303,7 @@ class AjaxController extends Controller
         $customer_order_id = escape_output($request->post('customer_order_id'));
         $product_quantity = escape_output($request->post('value'));
         $setting = getSettingsInfo();
-        $material_qty = CustomerOrderDetails::where('customer_order_id', $customer_order_id)->where('product_id', $fproduct_id)->where('del_status', 'Live')->first()->raw_qty;
+        $material_qty = CustomerOrderDetails::where('id', $customer_order_id)->where('product_id', $fproduct_id)->where('del_status', 'Live')->first()->raw_qty;
         $obj2 = new FPrmitem();
         $finishProductRM = $obj2->getOrderProductRM($fproduct_id, $stk_mat_type, $selected_customer_id, $customer_order_id);
         $html = '';
@@ -592,7 +592,7 @@ class AjaxController extends Controller
     {
         $product_id = escape_output($request->post('product_id'));
         $customer_order_id = escape_output($request->post('customer_order_id'));
-        $orderDetail = CustomerOrderDetails::where('customer_order_id', $customer_order_id)->where('product_id', $product_id)->where('del_status', "Live")->first();
+        $orderDetail = CustomerOrderDetails::where('id', $customer_order_id)->where('product_id', $product_id)->where('del_status', "Live")->first();
         $data_arr['quantity'] = $orderDetail->quantity;
         $data_arr['profit'] = $orderDetail->profit;
         $data_arr['tax_type'] = TaxItems::where('id', $orderDetail->tax_type)->where('collect_tax', 'Yes')->first()->tax_type;
@@ -630,41 +630,27 @@ class AjaxController extends Controller
     public function getCustomerOrderList(Request $request)
     {
         $customer_id = escape_output($request->post('id'));
-        $orders = CustomerOrder::where('customer_id', $customer_id)
-            ->where('del_status', 'Live')
-            ->where('order_status', '1')
-            ->orderBy('id', 'DESC')
-            ->get();
-
+        $orders = CustomerOrder::join('tbl_customer_order_details as cod', 'cod.customer_order_id', '=',  'tbl_customer_orders.id')
+        ->where('tbl_customer_orders.customer_id', $customer_id)
+        ->where('tbl_customer_orders.del_status', 'Live')
+        ->where('cod.del_status', 'Live')
+        ->where('cod.order_status', 1)
+        ->select('tbl_customer_orders.*','cod.line_item_no', 'cod.id as codid', 'cod.product_id')
+        // ->distinct()
+        ->orderBy('tbl_customer_orders.id', 'DESC')
+        ->get();
         $html = '<option value="">Select</option>';
-
         foreach ($orders as $order) {
-            $totalProduct = $order->total_product;
-
-            // Count how many times this order ID is already used in production
-            $manufacturedCount = Manufacture::where('customer_order_id', $order->id)
-                ->where('del_status', 'Live')
-                ->count();
-
-            if ($totalProduct > $manufacturedCount) {
-                $html .= '<option value="' . $order->id . '">' . $order->reference_no . '</option>';
+            // $totalProduct = $order->total_product;
+            $manufact_exists = Manufacture::where('customer_order_id', $order->codid)
+            ->where('product_id', $order->product_id)
+            ->where('del_status', 'Live')
+            ->exists();
+            if (!$manufact_exists) {
+                $html .= '<option value="' . $order->codid . '">' . $order->reference_no . '/'. $order->line_item_no. '</option>';
             }
         }
-
         echo $html;
-
-        // dd($mf_cnt);
-        /* $used_order_ids = DB::table('tbl_manufactures')
-            ->where('customer_id', $customer_id)
-            ->pluck('customer_order_id')
-            ->toArray();
-
-        $customerOrderList = CustomerOrder::where('customer_id', $customer_id)
-            ->where('del_status', 'Live')
-            ->where('order_status', '1')
-            ->whereNotIn('id', $used_order_ids)
-            ->orderBy('id', 'DESC')
-            ->get(); */
     }
 
     public function getCustomerOrderProducts(Request $request)
@@ -673,9 +659,9 @@ class AjaxController extends Controller
         $from = escape_output($request->post('from'));
         $manufacture_prods = Manufacture::where('customer_order_id', $customer_order_id)->where('del_status', "Live")->pluck('product_id')->toArray();
         if (empty($manufacture_prods)) {
-            $orderDetails = CustomerOrderDetails::where('customer_order_id', $customer_order_id)->where('del_status', "Live")->get();
+            $orderDetails = CustomerOrderDetails::where('id', $customer_order_id)->where('del_status', "Live")->get();
         } else {
-            $orderDetails = CustomerOrderDetails::where('customer_order_id', $customer_order_id)->whereNotIn('product_id', $manufacture_prods)->where('del_status', "Live")->get();
+            $orderDetails = CustomerOrderDetails::where('id', $customer_order_id)->whereNotIn('product_id', $manufacture_prods)->where('del_status', "Live")->get();
         }
         $productId = [];
         $html = '<option value="">Select</option>';
@@ -717,7 +703,7 @@ class AjaxController extends Controller
                 $product = FinishedProduct::where('id', $manufacture->product_id)
                     ->where('del_status', 'Live')
                     ->first();
-
+                $order_line_no = CustomerOrderDetails::where('id',$manufacture->customer_order_id)->where('del_status','Live')->pluck('line_item_no')->first();
                 if ($product) {
                     $html .= '<option value="' . $product->id . "|" . $manufacture->customer_order_id . '">' . $manufacture->reference_no . ' (' . $product->name . ')</option>';
                 }
@@ -735,17 +721,15 @@ class AjaxController extends Controller
         $manufactureDetail->profit = $manufactureDetail->mrmcost_total * ($manufactureDetail->mprofit_margin / 100);
         $productionStockId = Mrmitem::where('manufacture_id', $manufactureDetail->id)->where('del_status', 'Live')->first();
         $stockUnitId = MaterialStock::where('id', $productionStockId->stock_id)->where('del_status', 'Live')->first();
-        /* if($stockUnitId->stock_type=='customer') {
-            $po_date = CustomerOrder::where('reference_no',$stockUnitId->reference_no)->where('del_status','Live')->pluck('created_at')->first();
-            $manufactureDetail->po_date = date('d-m-Y',strtotime($po_date));
-        } else {
-            $po_date = RawMaterialPurchase::where('reference_no',$stockUnitId->reference_no)->where('del_status','Live')->pluck('date')->first();
-            $manufactureDetail->po_date = date('d-m-Y',strtotime($po_date));
-        } */
-        $order = CustomerOrder::where('id', $customer_order_id)->where('del_status', 'Live')->first();
+        $order = CustomerOrder::join('tbl_customer_order_details as cod', 'cod.customer_order_id', '=', 'tbl_customer_orders.id')
+            ->where('tbl_customer_orders.del_status', 'Live')
+            ->where('cod.id', $customer_order_id)
+            ->select('tbl_customer_orders.*', 'cod.id as order_detail_id', 'cod.line_item_no', 'cod.product_id')
+            ->first();
         $manufactureDetail->unit_name = getRMUnitById($stockUnitId->unit_id);
         $manufactureDetail->unit_id = $stockUnitId->unit_id;
         $manufactureDetail->reference_no = $order->reference_no;
+        $manufactureDetail->line_item_no = $order->line_item_no;
         $manufactureDetail->po_date = date('d-m-Y', strtotime($order->created_at));
         $order_detail = CustomerOrderDetails::where('customer_order_id', $customer_order_id)->where('product_id', $product_id)->where('del_status', 'Live')->first();
         $sale_price = $order_detail->sale_price;
@@ -834,15 +818,15 @@ class AjaxController extends Controller
             $order_detail->order_status = $order_status;
             $order_detail->save();
             if ($order_status == '1') {
-                $order_invoice = new CustomerOrderInvoice();
-                $order_invoice->customer_order_id = $order_id;
+                /* $order_invoice = new CustomerOrderInvoice();
+                $order_invoice->customer_order_id = $order_detail->id;
                 $order_invoice->invoice_type = 'Quotation';
                 $order_invoice->amount = $order->total_amount;
                 $order_invoice->paid_amount = 0.00;
                 $order_invoice->due_amount = $order->total_amount;
                 $order_invoice->invoice_date = date('Y-m-d');
                 $order_invoice->updated_at = date('Y-m-d h:i:s');
-                $order_invoice->save();
+                $order_invoice->save(); */
                 return response()->json(['status' => true, 'message' => 'Order quotation confirmed successfully.']);
             }
             return response()->json(['status' => true, 'message' => 'Order quotation cancelled successfully.']);
@@ -999,23 +983,35 @@ class AjaxController extends Controller
                 return response()->json(['type' => 'purchase', 'html' => $html]);
             } else {
                 $html = "";
+                $line_item_no = "";
                 $qty = "";
                 $order_qty = "";
-                $order_ids = CustomerOrderDetails::where('raw_material_id', $mat_id)
-                    ->where('del_status', 'Live')
-                    ->pluck('customer_order_id');
-                $manufact_order_ids = Manufacture::where('del_status', 'Live')->pluck('customer_order_id')->unique();
-                $order = CustomerOrder::whereIn('id', $order_ids)->whereNotIn('id', $manufact_order_ids)
-                    ->where('customer_id', $customer_id)
-                    ->where('order_status', 1)
-                    ->where('del_status', 'Live')
-                    ->orderBy('id', 'ASC')
+                $order = CustomerOrder::join('tbl_customer_order_details as cod', 'cod.customer_order_id', '=', 'tbl_customer_orders.id')
+                    ->where('cod.raw_material_id', $mat_id)
+                    ->where('cod.del_status', 'Live')
+                    ->where('cod.order_status', 1)
+                    ->where('tbl_customer_orders.customer_id', $customer_id)
+                    ->where('tbl_customer_orders.del_status', 'Live')
+                    ->whereNotIn('tbl_customer_orders.id', function ($q) {
+                        $q->select('customer_order_id')
+                            ->from('tbl_manufactures')
+                            ->where('del_status', 'Live');
+                    })
+                    ->select(
+                        'tbl_customer_orders.id as order_id',
+                        'tbl_customer_orders.reference_no',
+                        'cod.id as codid',
+                        'cod.line_item_no',
+                        'cod.raw_qty'
+                    )
+                    ->orderBy('tbl_customer_orders.id', 'ASC')
                     ->first();
                 // dd($order);
                 if ($order) {
                     // foreach ($orders as $order) {
                     $reference_no = $order->reference_no;
-                    $qty = CustomerOrderDetails::where('customer_order_id', $order->id)->where('raw_material_id', $mat_id)->where('del_status', 'Live')->pluck('raw_qty');
+                    $line_item_no = $order->line_item_no;
+                    $qty = CustomerOrderDetails::where('id', $order->codid)->where('raw_material_id', $mat_id)->where('del_status', 'Live')->pluck('raw_qty');
                     $in_material_stock = MaterialStock::where('stock_type', 'customer')
                         ->where('mat_id', $mat_id)
                         ->where('customer_id', $customer_id)
@@ -1039,7 +1035,7 @@ class AjaxController extends Controller
                     }
                     // }
                 }
-                return response()->json(['type' => 'customer', 'html' => $html, 'qty' => $order_qty]);
+                return response()->json(['type' => 'customer', 'html' => $html, 'line_item_no' => $line_item_no ,'qty' => $order_qty]);
             }
         }
     }
@@ -1079,17 +1075,17 @@ class AjaxController extends Controller
             $product = FinishedProduct::where('id', $detail->product_id)
                 ->where('del_status', 'Live')
                 ->first();
-            $order = DB::table('tbl_customer_orders')
-                ->where('id', $detail->customer_order_id)
-                ->where('del_status', 'Live')
-                ->first();
             $orderDetail = DB::table('tbl_customer_order_details')
                 ->where('customer_order_id', $detail->customer_order_id)
                 ->where('product_id', $product->id)
                 ->where('del_status', 'Live')
                 ->first();
+            $order = DB::table('tbl_customer_orders')
+                ->where('id', $orderDetail->customer_order_id)
+                ->where('del_status', 'Live')
+                ->first();
             $manufacture = DB::table('tbl_manufactures')
-                ->where('customer_order_id', $detail->customer_order_id)
+                ->where('customer_order_id', $orderDetail->id)
                 ->where('product_id', $product->id)
                 ->where('del_status', 'Live')
                 ->first();
@@ -1098,7 +1094,7 @@ class AjaxController extends Controller
                     'product_id'   => $product->id,
                     'product_name' => $product->name,
                     'product_code' => $product->code,
-                    'order_id'     => $order->id,
+                    'order_id'     => $orderDetail->id,
                     'order_no'     => $order->reference_no,
                     'quantity'     => $orderDetail->quantity,
                     'sale_price'     => $orderDetail->sub_total,

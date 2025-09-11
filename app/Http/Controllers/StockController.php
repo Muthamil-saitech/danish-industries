@@ -250,7 +250,7 @@ class StockController extends Controller
         $selected_customer_id = escape_output($request->selected_customer_id);
 
         $rm = RawMaterial::find($rm_id);
-        $order_material = CustomerOrderDetails::where('customer_order_id',$customer_order_id)->where('product_id',$fproduct_id)->where('del_status','Live')->first();
+        $order_material = CustomerOrderDetails::where('id',$customer_order_id)->where('product_id',$fproduct_id)->where('del_status','Live')->first();
         if($stk_mat_type=="1") {
             $ms = MaterialStock::where('mat_cat_id', $rm->category)
             ->where('mat_type', $stk_mat_type)

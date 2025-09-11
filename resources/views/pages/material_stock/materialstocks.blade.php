@@ -316,7 +316,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                             </div>
                             <div class="col-sm-12 mb-2 col-md-6 d-none" id="inp_ref_no_div">
                                 <div class="form-group">
-                                    <label>@lang('index.reference_no') <span class="required_star">*</span></label>
+                                    <label>@lang('index.po_no') <span class="required_star">*</span></label>
                                     <input type="text" class="form-control @error('reference_no_customer') is-invalid @enderror" name="reference_no_customer" id="inp_ref_no" placeholder="@lang('index.po_no')" readonly>
                                     <p class="text-danger reference_no_err"></p>
                                 </div>

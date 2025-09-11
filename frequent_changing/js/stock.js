@@ -231,11 +231,15 @@
                     $("#select_ref_no").removeClass("d-none");
                     $("#inp_ref_no_div").addClass("d-none");
                     $("#inp_ref_no").val("");
+                    $("#line_item_no_hidden").val("");
                     $("#current_stock").val("");
                 } else {
+                    let line_item_no = data.html+'/'+data.line_item_no;                  
                     $("#select_ref_no").addClass("d-none");
                     $("#inp_ref_no_div").removeClass("d-none");
-                    $("#inp_ref_no").val(data.html);
+                    $("#line_no_wo_hidden").val(data.html);
+                    $("#inp_ref_no").val(line_item_no);
+                    $("#line_item_no_hidden").val(data.line_item_no);
                     $("#current_stock").val(data.qty);
                     $("#current_stock").attr("max", data.qty);
                 }                

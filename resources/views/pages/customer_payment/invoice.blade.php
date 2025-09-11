@@ -63,11 +63,11 @@ if (isset($setting->base_color) && $setting->base_color) {
                                     <h4 class="pb-7">@lang('index.order_info'):</h4>
                                     <p class="pb-7">
                                         <span class="">@lang('index.po_no'):</span>
-                                        {{ $obj->reference_no }}
+                                        {{ isset($obj) && isset($order_details) ? $obj->reference_no.'/'.$order_details->line_item_no : ''  }}
                                     </p>
                                     <p class="pb-7 rgb-71">
-                                        <span class="">@lang('index.order_date'):</span>
-                                        {{ getDateFormat($customer_inv->invoice_date) }}
+                                        <span class="">@lang('index.po_date'):</span>
+                                        {{ getDateFormat($obj->po_date) }}
                                     </p>
                                     <p class="pb-7 rgb-71">
                                         <span class="">@lang('index.total_amount'):</span>

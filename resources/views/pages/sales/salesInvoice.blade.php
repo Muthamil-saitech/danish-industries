@@ -103,10 +103,10 @@
                         {{ getYourDCNo($value->manufacture_id) }}
                     </td>
                     <td class="text-start">
-                        {{ $value->srn }}
+                        {{ $value->srn==0 ? 'NIL' : $value->srn }}
                     </td>
                     <td class="text-start">
-                        {{ getPoNo($value->order_id) }}
+                        {{ getPoNo($value->order_id).'/'.getLineItemNo($value->order_id) }}
                     </td>
                     <td class="text-start">{{ $value->product_quantity }}
                         {{-- {{ getRMUnitById($unit_id) }} --}}

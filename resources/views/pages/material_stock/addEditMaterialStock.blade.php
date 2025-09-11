@@ -240,11 +240,13 @@
                         <div class="col-sm-12 mb-2 col-md-4 {{ !isset($obj) || (isset($obj) && $obj->stock_type == 'customer') ? '' : 'd-none' }}" id="inp_ref_no_div">
                             <div class="form-group">
                                 <label>@lang('index.po_no') <span class="required_star">*</span></label>
-                                <input type="text" class="form-control @error('reference_no_customer') is-invalid @enderror" name="reference_no_customer" id="inp_ref_no" value="{{ isset($obj->reference_no) ? $obj->reference_no : old('reference_no') }}" placeholder="@lang('index.po_no')" readonly>
+                                <input type="text" class="form-control @error('reference_no_customer') is-invalid @enderror" name="reference_no_customer" id="inp_ref_no" value="{{ isset($obj->reference_no) ? $obj->reference_no.'/'.$obj->line_item_no : old('reference_no') }}" placeholder="@lang('index.po_no')" readonly>
                                 <div class="text-danger d-none"></div>
                             </div>
                         </div>
                         <input type="hidden" name="reference_no" id="reference_no_hidden">
+                        <input type="hidden" name="line_item_no" id="line_item_no_hidden">
+                        <input type="hidden" name="final_reference_no" id="line_no_wo_hidden">
                         <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
                                 <label>@lang('index.stock') <span class="required_star">*</span></label>

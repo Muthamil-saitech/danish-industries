@@ -76,12 +76,13 @@
                             <div class="form-group">
                                 <label>@lang('index.po_no')<span class="required_star">*</span></label>
                                 <input type="hidden" name="selected_customer_order_id" value="{{ isset($selected_customer_order_id) ? $selected_customer_order_id : old('selected_customer_order_id') }}" >
-                                <select class="form-control customer_order_id_c1 select2" name="customer_order_id" id="customer_order_id" {{ isset($selected_customer_order_id) ? 'disabled' : '' }}>
+                                <input type="hidden" name="selected_customer_order_detail_id" value="{{ isset($selected_customer_order_detail_id) ? $selected_customer_order_detail_id : old('selected_customer_order_detail_id') }}" id="selected_customer_order_detail_id">
+                                <select class="form-control customer_order_id_c1 select2" name="customer_order_id" id="customer_order_id" {{ isset($selected_customer_order_detail_id) ? 'disabled' : '' }}>
                                     <option value="">@lang('index.select')</option>
                                     @foreach ($customerOrderList as $value)
-                                        <option value="{{ $value->id }}"
-                                            {{ old('customer_order_id', $selected_customer_order_id ?? ($obj->customer_order_id ?? '')) == $value->id ? 'selected' : '' }}>
-                                            {{ $value->reference_no }}
+                                        <option value="{{ $value->codid }}"
+                                            {{ old('customer_order_id', $selected_customer_order_detail_id ?? ($obj->customer_order_id ?? '')) == $value->codid ? 'selected' : '' }}>
+                                            {{ $value->reference_no.'/'.$value->line_item_no }}
                                         </option>
                                     @endforeach
                                 </select>

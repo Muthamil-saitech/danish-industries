@@ -104,8 +104,9 @@ $baseURL = getBaseURL();
                             <tbody>
                                 @if (isset($sale_details) && $sale_details) <?php $sum = 0; ?>
                                 @foreach ($sale_details as $key => $value)
-                                <?php        
-                                $order = getOrderInfo($value->order_id);                        
+                                <?php
+                                $orderInfo = getOrderDetail($value->order_id,$value->product_id);
+                                $order = getOrderInfo($value->order_id);
                                 $productInfo = getFinishedProductInfo($value->product_id);
                                 $unit_id = optional($obj->quotation->quotationDetails
                                     ->where('product_id', $value->product_id)
@@ -113,8 +114,6 @@ $baseURL = getBaseURL();
                                 $quote_price = optional($obj->quotation->quotationDetails
                                     ->where('product_id', $value->product_id)
                                     ->first())->price;
-                                $orderInfo = getOrderDetail($value->order_id,$value->product_id);
-                                // dd($quotationDet);
                                 ?>
                                 <tr class="rowCount" data-id="{{ $value->product_id }}">
                                     <td class="width_1_p">
@@ -136,10 +135,10 @@ $baseURL = getBaseURL();
                                         {{ getYourDCNo($value->manufacture_id) }}
                                     </td>
                                     <td class="text-start">
-                                        {{ $value->srn }}
+                                        {{ $value->srn==0 ? 'NIL' : $value->srn }}
                                     </td>
                                     <td class="text-start">
-                                        {{ getPoNo($value->order_id) }}
+                                        {{ getPoNo($value->order_id).'/'.getLineItemNo($value->order_id) }}
                                     </td>
                                     <td class="text-start">{{ $value->product_quantity }}
                                         {{-- {{ getRMUnitById($unit_id) }} --}}

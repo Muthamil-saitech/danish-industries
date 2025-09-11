@@ -114,7 +114,6 @@ class MaterialStockController extends Controller
             'heat_no' => 'required',
             'date' => 'required',
             'mat_doc_no' => 'max:100',
-            // 'close_qty' => 'required',
         ]);
 
         $obj = new MaterialStock();
@@ -125,11 +124,13 @@ class MaterialStockController extends Controller
         $obj->unit_id = $request->unit_id;
         $obj->stock_type = $request->stock_type;
         $obj->old_mat_no = $request->old_mat_no;
+        $obj->owner_type = $request->owner_type;
         $obj->dc_no = $request->dc_no;
         $obj->heat_no = $request->heat_no;
         $obj->dc_date = date('Y-m-d', strtotime($request->date));
         $obj->mat_doc_no = $request->mat_doc_no;
-        $obj->reference_no = $request->reference_no;
+        $obj->reference_no = $request->final_reference_no;
+        $obj->line_item_no = $request->line_item_no;
         $obj->ins_type = null;
         $obj->customer_id = ($request->mat_type == '1') ? $request->customer_id : ($request->customer_id ?: null);
         $obj->current_stock = $request->current_stock ? $request->current_stock : 0; //stock
@@ -186,6 +187,7 @@ class MaterialStockController extends Controller
         $material_stock->old_mat_no = $request->old_mat_no;
         $material_stock->dc_no = $request->dc_no;
         $material_stock->heat_no = $request->heat_no;
+        $material_stock->owner_type = $request->owner_type;
         $material_stock->dc_date = date('Y-m-d', strtotime($request->date));
         $material_stock->mat_doc_no = $request->mat_doc_no;
         $material_stock->ins_type = null;

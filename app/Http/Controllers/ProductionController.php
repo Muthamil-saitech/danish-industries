@@ -20,6 +20,7 @@ namespace App\Http\Controllers;
 use App\Account;
 use App\Customer;
 use App\CustomerOrder;
+use App\CustomerOrderDetails;
 use App\FinishedProduct;
 use App\FPproductionstage;
 use App\Manufacture;
@@ -112,9 +113,18 @@ class ProductionController extends Controller
             $product = FinishedProduct::where('id', $pid)->where('del_status', 'Live')->first();
             $selected_product_id = $product->id;
             $selected_st_method = $product->stock_method;
-            $selected_customer_id = CustomerOrder::where('id', $coid)->where('del_status', 'Live')->where('order_status', '1')->pluck('customer_id')->first();
-            $selected_customer_order_id = CustomerOrder::where('id', $coid)->where('del_status', 'Live')->where('order_status', '1')->pluck('id')->first();
-            $customerOrderList = CustomerOrder::where('customer_id', $selected_customer_id)->where('del_status', "Live")->where('order_status', '1')->orderBy('id', 'DESC')->get();
+            $customer_order_id = CustomerOrderDetails::where('id', $coid)->where('del_status', 'Live')->where('order_status', '1')->pluck('customer_order_id')->first();
+            $selected_customer_id = CustomerOrder::where('id', $customer_order_id)->where('del_status', 'Live')->pluck('customer_id')->first();
+            $selected_customer_order_id = CustomerOrder::where('id', $customer_order_id)->where('del_status', 'Live')->pluck('id')->first();
+            $selected_customer_order_detail_id = $coid;
+            $customerOrderList = CustomerOrder::join('tbl_customer_order_details as cod', 'cod.customer_order_id', '=', 'tbl_customer_orders.id')
+            ->where('tbl_customer_orders.customer_id', $selected_customer_id)
+            ->where('tbl_customer_orders.del_status', 'Live')
+            ->where('cod.del_status', 'Live')
+            ->where('cod.order_status', 1)
+            ->orderBy('tbl_customer_orders.id', 'DESC')
+            ->select('tbl_customer_orders.*', 'cod.id as codid', 'cod.product_id', 'cod.line_item_no')
+            ->get();
             $manufactures = FinishedProduct::orderBy('name', 'ASC')->where('del_status', "Live")->get();
             // dd($selected_product_id);
         } else {
@@ -122,11 +132,12 @@ class ProductionController extends Controller
             $selected_st_method = null;
             $selected_customer_id = null;
             $selected_customer_order_id = null;
+            $selected_customer_order_detail_id = null;
             $customerOrderList = [];
             $manufactures = [];
         }
         // dd($p_stages);
-        return view('pages.manufacture.addEditManufacture', compact('title', 'ref_no', 'rmaterials', 'p_stages', 'nonitem', 'units', 'tax_items', 'lab_tax_items', 'sale_tax_items', 'manufactures', 'rm', 'accounts', 'customers', 'selected_customer_id', 'selected_customer_order_id', 'selected_product_id', 'selected_st_method', 'customerOrderList', 'employees', 'drawers'));
+        return view('pages.manufacture.addEditManufacture', compact('title', 'ref_no', 'rmaterials', 'p_stages', 'nonitem', 'units', 'tax_items', 'lab_tax_items', 'sale_tax_items', 'manufactures', 'rm', 'accounts', 'customers', 'selected_customer_id', 'selected_customer_order_id', 'selected_customer_order_detail_id', 'selected_product_id', 'selected_st_method', 'customerOrderList', 'employees', 'drawers'));
     }
 
     /**
@@ -188,15 +199,15 @@ class ProductionController extends Controller
             // $obj->dc_no = escape_output($request->get('dc_no'));
 
             // if ($request->get('manufacture_type') == 'fco') {
-            if ($request->get('selected_customer_id') != '' && $request->get('selected_customer_order_id') != '') {
+            if ($request->get('selected_customer_id') != '' && $request->get('selected_customer_order_detail_id') != '') {
                 $obj->customer_id = null_check(escape_output($request->get('selected_customer_id')));
-                $obj->customer_order_id = null_check(escape_output($request->get('selected_customer_order_id')));
+                $obj->customer_order_id = null_check(escape_output($request->get('selected_customer_order_detail_id')));
             } else {
                 $obj->customer_id = null_check(escape_output($request->get('customer_id')));
                 $obj->customer_order_id = null_check(escape_output($request->get('customer_order_id')));
             }
             // }
-            $customerOrder = CustomerOrder::where('id', $obj->customer_order_id)->where('del_status', 'Live')->first();
+            $customerOrder = CustomerOrder::where('id', $request->get('selected_customer_order_id'))->where('del_status', 'Live')->first();
             if ($customerOrder->order_type == 'Quotation') {
                 $prefix = 'L';
             } else {
@@ -427,10 +438,18 @@ class ProductionController extends Controller
         $productionScheduling = ProductionScheduling::where('manufacture_id', $manufacture->id)->where('del_status', "Live")->get();
         $selected_customer_id = $obj->customer_id;
         $selected_customer_order_id = $obj->customer_order_id;
-        $customerOrderList = CustomerOrder::where('customer_id', $manufacture->customer_id)->where('del_status', "Live")->where('order_status', '1')->orderBy('id', 'DESC')->get();
+        $selected_customer_order_detail_id = $obj->customer_order_id;
+        $customerOrderList = CustomerOrder::join('tbl_customer_order_details as cod', 'cod.customer_order_id', '=', 'tbl_customer_orders.id')
+            ->where('tbl_customer_orders.customer_id', $selected_customer_id)
+            ->where('tbl_customer_orders.del_status', 'Live')
+            ->where('cod.del_status', 'Live')
+            ->where('cod.order_status', 1)
+            ->orderBy('tbl_customer_orders.id', 'DESC')
+            ->select('tbl_customer_orders.*', 'cod.id as codid', 'cod.product_id', 'cod.line_item_no')
+            ->get();
         $qc_statuses = QcStatus::orderBy('id', 'ASC')->get();
         $move_to_next = ProductionScheduling::where('manufacture_id', $manufacture->id)->where('del_status', 'Live')->orderBy('id', 'DESC')->pluck('move_to_next')->first();
-        return view('pages.manufacture.addEditManufacture', compact('title', 'obj', 'rmaterials', 'productionScheduling', 'p_stages', 'manufactures', 'nonitem', 'accounts', 'tax_fields', 'm_rmaterials', 'm_nonitems', 'm_stages', 'units', 'tax_items', 'finishProductStage', 'customers', 'selected_customer_id', 'selected_customer_order_id', 'customerOrderList', 'employees', 'drawers', 'qc_employees', 'qc_statuses', 'move_to_next'));
+        return view('pages.manufacture.addEditManufacture', compact('title', 'obj', 'rmaterials', 'productionScheduling', 'p_stages', 'manufactures', 'nonitem', 'accounts', 'tax_fields', 'm_rmaterials', 'm_nonitems', 'm_stages', 'units', 'tax_items', 'finishProductStage', 'customers', 'selected_customer_id', 'selected_customer_order_id', 'selected_customer_order_detail_id', 'customerOrderList', 'employees', 'drawers', 'qc_employees', 'qc_statuses', 'move_to_next'));
     }
 
     /**
@@ -988,11 +1007,17 @@ class ProductionController extends Controller
     public function route_card($id)
     {
         $manufacture = Manufacture::find(encrypt_decrypt($id, 'decrypt'));
+        // dd($manufacture->customer_order_id);
         $title = __('index.route_card_detail');
         $units = Unit::orderBy('name', 'ASC')->where('del_status', "Live")->get();
         $drawer = Drawer::where('del_status', "Live")->where('drawer_no', $manufacture->drawer_no)->first();
         $product = FinishedProduct::where('del_status', "Live")->where('id', $manufacture->product_id)->first();
-        $order = CustomerOrder::where('del_status', "Live")->where('id', $manufacture->customer_order_id)->first();
+        $order = CustomerOrder::join('tbl_customer_order_details as cod', 'cod.customer_order_id', '=', 'tbl_customer_orders.id')
+        ->where('tbl_customer_orders.del_status', 'Live')
+        ->where('cod.id', $manufacture->customer_order_id)
+        ->select('tbl_customer_orders.*', 'cod.id as order_detail_id', 'cod.line_item_no', 'cod.product_id')
+        ->first();
+        // dd($order);
         $m_rmaterial = Mrmitem::with('materialStock')->where('manufacture_id', $manufacture->id)->where('del_status', "Live")->first();
         $rmaterial = RawMaterial::where('id', $m_rmaterial->rmaterials_id)->where('del_status', "Live")->first();
         $obj = $manufacture;
@@ -1020,7 +1045,11 @@ class ProductionController extends Controller
         $units = Unit::orderBy('name', 'ASC')->where('del_status', "Live")->get();
         $drawer = Drawer::where('del_status', "Live")->where('drawer_no', $manufacture->drawer_no)->first();
         $product = FinishedProduct::where('del_status', "Live")->where('id', $manufacture->product_id)->first();
-        $order = CustomerOrder::where('del_status', "Live")->where('id', $manufacture->customer_order_id)->first();
+        $order = CustomerOrder::join('tbl_customer_order_details as cod', 'cod.customer_order_id', '=', 'tbl_customer_orders.id')
+        ->where('tbl_customer_orders.del_status', 'Live')
+        ->where('cod.id', $manufacture->customer_order_id)
+        ->select('tbl_customer_orders.*', 'cod.id as order_detail_id', 'cod.line_item_no', 'cod.product_id')
+        ->first();
         $m_rmaterial = Mrmitem::where('manufacture_id', $manufacture->id)->where('del_status', "Live")->first();
         $rmaterial = RawMaterial::where('id', $m_rmaterial->rmaterials_id)->where('del_status', "Live")->first();
         $obj = $manufacture;

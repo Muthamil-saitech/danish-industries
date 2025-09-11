@@ -31,11 +31,16 @@ ALTER TABLE `tbl_drawers` ADD `stage_id` TEXT NOT NULL AFTER `tools_id`;
 
 
 =========(10 Sep)===========
-INSERT INTO `tbl_menus` (`id`, `title`, `description`, `created_at`, `updated_at`) VALUES (NULL, 'consumable', NULL, NULL, NULL);
-INSERT INTO `tbl_menus` (`id`, `title`, `description`, `created_at`, `updated_at`) VALUES (NULL, 'reports', NULL, NULL, NULL);
+INSERT INTO `tbl_menus` (`id`, `title`, `description`, `created_at`, `updated_at`) VALUES (NULL, 'Consumable', NULL, NULL, NULL);
+INSERT INTO `tbl_menus` (`id`, `title`, `description`, `created_at`, `updated_at`) VALUES (NULL, 'Reports', NULL, NULL, NULL);
 
 
 ===============================
 ALTER TABLE `tbl_customer_order_details` ADD `line_item_no` VARCHAR(30) NULL DEFAULT NULL AFTER `customer_order_id`;
 ALTER TABLE `tbl_customer_order_details` ADD `order_status` INT NULL DEFAULT NULL AFTER `last_update_date`;
+
+========11 sep========
+ALTER TABLE `tbl_material_stocks` ADD `line_item_no` VARCHAR(30) NULL DEFAULT NULL AFTER `reference_no`;
+ALTER TABLE `tbl_material_stocks` ADD `owner_type` INT NOT NULL AFTER `stock_type`;
+ALTER TABLE `tbl_quotation_details` ADD `line_item_no` VARCHAR(30) NULL DEFAULT NULL AFTER `po_no`;
 

@@ -242,7 +242,7 @@
                                                     <p class="">@lang('index.total_cost') :</p>
                                                 </td>
                                                 <td class="w-50 text-right pr-0">
-                                                    <p>{{ getAmtCustom($total) }}</p>
+                                                    <p>{{ isset($orderDetails) ? getAmtCustom($orderDetails->sub_total) : 0 }}</p>
                                                 </td>
                                             </tr>
                                         </table>

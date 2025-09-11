@@ -46,4 +46,10 @@ class CustomerOrderDetails extends Model
     {
         return $this->belongsTo(FinishedProduct::class, 'product_id');
     }
+
+    public function orderInvoice()
+    {
+        return $this->hasOne(CustomerOrderInvoice::class, 'customer_order_id', 'id')
+            ->where('del_status', 'Live');
+    }
 }

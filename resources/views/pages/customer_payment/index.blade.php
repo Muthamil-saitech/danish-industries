@@ -17,7 +17,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                 <input type="hidden" class="datatable_name" data-filter="yes" data-title="{{ isset($title) && $title ? $title : '' }}" data-id_name="datatable">
             </div>
             <div class="col-md-6 text-end">
-                <h5 class="mb-0">Total Customer Receives: {{ isset($obj) ? count($obj) : '0' }} </h5>
+                <h5 class="mb-0">Total Customer Receives: {{ isset($total_orders) ? $total_orders : '0' }} </h5>
             </div>
         </div>
     </section>
@@ -46,25 +46,27 @@ if (isset($setting->base_color) && $setting->base_color) {
                         $i = 1;
                         ?>
                         @endif
-                        @foreach ($obj as $key => $value)
-                        <tr>
-                            <td>{{ $i++ }}</td>
-                            <td>{{ $value->reference_no }}</td>
-                            <td>{{ $value->po_date ? getDateFormat($value->po_date) : '-' }}</td>
-                            <td>{{ getCustomerNameById($value->customer_id) }}<br><small>{{ '('.getCustomerCodeById($value->customer_id).')' }}</small></td>
-                            <td>{{ getAmtCustom($value->orderInvoice->amount) }}</td>
-                            <td>{{ getAmtCustom($value->orderInvoice->paid_amount) }}</td>
-                            <td>{{ getAmtCustom($value->orderInvoice->due_amount) }}</td>
-                            <td>
-                                <h6>@if($value->orderInvoice->due_amount==0.00) <span class="badge bg-success">Paid</span> @elseif($value->orderInvoice->paid_amount==0.00) <span class="badge bg-danger">Unpaid</span> @else <span class="badge bg-info">Partially Paid</span>@endif</h6>
-                            </td>
-                            <td class="text-end">
-                                @if($value->orderInvoice->due_amount!=0.00)
-                                <a class="button-success" id="customerDueModal" data-bs-toggle="modal" data-order_id="{{ $value->id }}" data-tot_amount="{{ $value->orderInvoice->amount }}" data-paid_amount="{{ $value->orderInvoice->paid_amount }}" data-due_amount="{{ $value->orderInvoice->due_amount }}" data-bs-target="#customerDue" data-bs-toggle="tooltip" data-bs-placement="top" title="Due Entry"><i class="fa fa-money-bill"></i></a>
-                                @endif
-                                <a href="{{ route('customer-payment-view', encrypt_decrypt($value->id, 'encrypt')) }}" class="button-info" data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('index.view_details')"><i class="fa fa-eye"></i></a>
-                            </td>
-                        </tr>
+                        @foreach ($obj as $value)
+                            @foreach ($value->details as $detail)
+                                <tr>
+                                    <td>{{ $i++ }}</td>
+                                    <td>{{ $value->reference_no.'/'.$detail->line_item_no  }}</td>
+                                    <td>{{ $value->po_date ? getDateFormat($value->po_date) : '-' }}</td>
+                                    <td>{{ getCustomerNameById($value->customer_id) }}<br><small>{{ '('.getCustomerCodeById($value->customer_id).')' }}</small></td>
+                                    <td>{{ getAmtCustom($detail->orderInvoice->amount) }}</td>
+                                    <td>{{ getAmtCustom($detail->orderInvoice->paid_amount) }}</td>
+                                    <td>{{ getAmtCustom($detail->orderInvoice->due_amount) }}</td>
+                                    <td>
+                                        <h6>@if($detail->orderInvoice->due_amount==0.00) <span class="badge bg-success">Paid</span> @elseif($detail->orderInvoice->paid_amount==0.00) <span class="badge bg-danger">Unpaid</span> @else <span class="badge bg-info">Partially Paid</span>@endif</h6>
+                                    </td>
+                                    <td class="text-end">
+                                        @if($detail->orderInvoice->due_amount!=0.00)
+                                        <a class="button-success" id="customerDueModal" data-bs-toggle="modal" data-order_id="{{ $detail->id }}" data-tot_amount="{{ $detail->orderInvoice->amount }}" data-paid_amount="{{ $detail->orderInvoice->paid_amount }}" data-due_amount="{{ $detail->orderInvoice->due_amount }}" data-bs-target="#customerDue" data-bs-toggle="tooltip" data-bs-placement="top" title="Due Entry"><i class="fa fa-money-bill"></i></a>
+                                        @endif
+                                        <a href="{{ route('customer-payment-view', encrypt_decrypt($detail->id, 'encrypt')) }}" class="button-info" data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('index.view_details')"><i class="fa fa-eye"></i></a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         @endforeach
                     </tbody>
                 </table>

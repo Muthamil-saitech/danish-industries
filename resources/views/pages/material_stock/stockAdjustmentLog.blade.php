@@ -68,7 +68,7 @@
                                                     <td class="text-start">{!! $material_stock->stock_type == 'customer'
                                                     ? $material_stock->stock_type . '<br><small>(' . getCustomerNameById($material_stock->customer_id) . ')</small>'
                                                     : $material_stock->stock_type !!}</td>
-                                                    <td class="text-start">{{ $material_stock->reference_no }}</td>
+                                                    <td class="text-start">{{ $material_stock->reference_no.'/'.$material_stock->line_item_no }}</td>
                                                     <td class="text-start">{{ $material_stock->current_stock }} {{ getRMUnitById($material_stock->unit_id) }}</td>
                                                     <td class="text-start">{{ $material_stock->close_qty }} {{ getRMUnitById($material_stock->unit_id) }}</td>
                                                     <td class="text-start">{{ $material_stock->float_stock }} {{ getRMUnitById($material_stock->unit_id) }}</td>

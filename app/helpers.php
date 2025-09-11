@@ -2051,7 +2051,7 @@ function getheatNo($mat_id)
 
 function getOrderDetail($order_id, $product_id)
 {
-    return CustomerOrderDetails::where('del_status', 'Live')->where('customer_order_id', $order_id)->where('product_id',$product_id)->first();
+    return CustomerOrderDetails::where('del_status', 'Live')->where('id', $order_id)->where('product_id',$product_id)->first();
 }
 function getOrderPrice($price,$unit_price,$tax_type) {
     if($tax_type == 1 || $tax_type == '1') {
@@ -2084,4 +2084,10 @@ function getToolName($tool_id)
 {
     $row = \App\Tool::where('del_status', 'Live')->where('id', $tool_id)->first();
     return $row->tool_name ?? 'N/A';
+}
+
+function getLineItemNo($customer_order_id)
+{
+    $row = \App\CustomerOrderDetails::where('del_status', 'Live')->where('id', $customer_order_id)->first();
+    return $row->line_item_no ?? '';
 }

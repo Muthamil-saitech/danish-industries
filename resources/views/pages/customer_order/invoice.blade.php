@@ -128,7 +128,7 @@ $baseURL = getBaseURL();
             </tbody>
         </table>
         <div class="text-right">
-            <p style="font-family: DejaVu Sans, sans-serif; font-weight:bold; padding:4px;">@lang('index.total_cost'): ₹{{ number_format($total,2) }}</p>
+            <p style="font-family: DejaVu Sans, sans-serif; font-weight:bold; padding:4px;">@lang('index.total_cost'): ₹{{ number_format($orderDetails->sub_total,2) }}</p>
         </div>
         {{-- <h4 class="mt-20">@lang('index.invoice_quotations')</h4>
         <table class="w-100 mt-10">
