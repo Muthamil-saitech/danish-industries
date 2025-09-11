@@ -35,7 +35,7 @@ class OrderStatusController extends Controller
             ->where('cod.del_status', 'Live')
             ->where('co.del_status', 'Live')
             ->where('cod.order_status', 0)
-            ->whereNotIn('co.id', function ($subquery) {
+            ->whereNotIn('cod.id', function ($subquery) {
                 $subquery->select('m.customer_order_id')
                     ->from('tbl_manufactures as m')
                     ->where('m.del_status', 'Live')
@@ -50,13 +50,14 @@ class OrderStatusController extends Controller
                 'cod.sub_total',
             )
             ->get();
+            // dd($order_quotation);
         $order_quotation_cancelled = DB::table('tbl_customer_order_details as cod')
             ->join('tbl_customer_orders as co', 'cod.customer_order_id', '=', 'co.id')
             ->join('tbl_finish_products as p', 'cod.product_id', '=', 'p.id')
             ->where('cod.del_status', 'Live')
             ->where('co.del_status', 'Live')
             ->where('cod.order_status', 2)
-            ->whereNotIn('co.id', function ($subquery) {
+            ->whereNotIn('cod.id', function ($subquery) {
                 $subquery->select('m.customer_order_id')
                     ->from('tbl_manufactures as m')
                     ->where('m.del_status', 'Live')
@@ -77,7 +78,7 @@ class OrderStatusController extends Controller
             ->where('cod.del_status', 'Live')
             ->where('co.del_status', 'Live')
             ->where('cod.order_status', 1)
-            ->whereNotIn(DB::raw('(cod.customer_order_id, cod.product_id)'), function ($subquery) {
+            ->whereNotIn(DB::raw('(cod.id, cod.product_id)'), function ($subquery) {
                 $subquery->selectRaw('m.customer_order_id, m.product_id')
                     ->from('tbl_manufactures as m')
                     ->where('m.del_status', 'Live')

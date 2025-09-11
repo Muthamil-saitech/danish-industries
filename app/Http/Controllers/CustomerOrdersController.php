@@ -176,10 +176,10 @@ class CustomerOrdersController extends Controller
                     $inv_obj = new \App\CustomerOrderInvoice();
                     $inv_obj->customer_order_id = null_check($obj->id);
                     $inv_obj->invoice_type = 'Quotation';
-                    $inv_obj->amount = null_check(escape_output($_POST['sub_total']));
+                    $inv_obj->amount = null_check(escape_output($_POST['sub_total'][$row] ?? 0));
                     $inv_obj->invoice_date = null_check(date('Y-m-d', strtotime($request->get('po_date'))));
                     $inv_obj->paid_amount = 0.00;
-                    $inv_obj->due_amount = null_check(escape_output($_POST['sub_total']));
+                    $inv_obj->due_amount = null_check(escape_output($_POST['sub_total'][$row] ?? 0));
                     // $inv_obj->order_due_amount = null_check($request->invoice_order_due[$key]);
                     $inv_obj->save();
                 }

@@ -2039,7 +2039,8 @@ if (!function_exists('substr_text')) {
 
 function getPoNo($customer_order_id)
 {
-    $row = \App\CustomerOrder::where('del_status', 'Live')->where('id', $customer_order_id)->first();
+    $orderDetail = CustomerOrderDetails::where('del_status', 'Live')->where('id', $customer_order_id)->first();
+    $row = \App\CustomerOrder::where('del_status', 'Live')->where('id', $orderDetail->customer_order_id)->first();
     return $row->reference_no ?? '';
 }
 
