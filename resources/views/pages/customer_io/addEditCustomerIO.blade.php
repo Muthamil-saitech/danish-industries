@@ -58,7 +58,7 @@
                         <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
                                 <label>@lang('index.date') <span class="required_star">*</span></label>
-                                {!! Form::text('po_date', old('po_date', date('Y-m-d')), [
+                                {!! Form::text('po_date', old('po_date', date('d-m-Y')), [
                                 'class' => 'form-control',
                                 'id' => 'date',
                                 'placeholder' => 'Date',

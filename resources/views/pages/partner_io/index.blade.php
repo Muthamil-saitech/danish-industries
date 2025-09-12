@@ -17,7 +17,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                 <input type="hidden" class="datatable_name" data-filter="yes" data-title="{{ isset($title) && $title ? $title : '' }}" data-id_name="datatable">
             </div>
             <div class="col-md-6 text-end">
-                <h5 class="mb-0">Total Partners: 2</h5>
+                <h5 class="mb-0">Total Partner IO: 2</h5>
             </div>
         </div>
     </section>
@@ -125,7 +125,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                         <div class="col-sm-6 mb-3">
                             <div class="form-group">
                                 <label>@lang('index.date') <span class="required_star">*</span></label>
-                                {!! Form::text('po_date', old('po_date', date('Y-m-d')), [
+                                {!! Form::text('po_date', old('po_date', date('d-m-Y')), [
                                 'class' => 'form-control',
                                 'id' => 'date',
                                 'placeholder' => 'Date',
@@ -140,7 +140,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                         </div>
                         <div class="col-sm-6 mb-3">
                             <div class="form-group">
-                                <label>@lang('index.notes') <span class="required_star">*</span></label>
+                                <label>@lang('index.notes') </label>
                                 <textarea name="notes" class="form-control" placeholder="@lang('index.notes')"></textarea>
                                 @if ($errors->has('notes'))
                                 <div class="error_alert text-danger">

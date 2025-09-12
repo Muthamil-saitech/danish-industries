@@ -117,7 +117,7 @@
                                         <td>P001/1</td>
                                         <td>Gauges/Checking Instruments	</td>
                                         <td>Plug Gauge</td>
-                                        <td>Material</td>
+                                        <td>Caliper (10001)</td>
                                         <td>5</td>
                                         <td>-</td>
                                     </tr>
@@ -125,7 +125,7 @@
                                         <td>2</td>
                                         <td>P001/2</td>
                                         <td>Gauges/Checking Instruments	</td>
-                                        <td>Vernier Caliper</td>
+                                        <td>Vernier Caliper (10002)</td>
                                         <td>Bore Gauge</td>
                                         <td>5</td>
                                         <td>-</td>
