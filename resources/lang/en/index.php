@@ -1000,5 +1000,7 @@ return [
     'partner_io' => 'Partner IO',
     'partners' => 'Partners',
     'view_partner' => 'View Partner',
-    'view_customer' => 'View Customer'
+    'view_customer' => 'View Customer',
+    'customer_io_details' => 'Customer IO Details',
+    'view_customer_io' => 'View Customer IO'
 ];

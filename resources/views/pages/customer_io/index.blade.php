@@ -47,7 +47,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                             </td>
                             <td>
                                 <a href="#" class="button-warning" data-bs-toggle="modal" data-bs-target="#calendarModal" title="@lang('index.view_calendar')"><i class="fa fa-calendar tiny-icon"></i></a>
-                                <a href="{{ url('partner_io/view') }}"
+                                <a href="{{ url('customer_io/view') }}"
                                     class="button-info" data-bs-toggle="tooltip" data-bs-placement="top"
                                     title="@lang('index.view_customer')"><i class="fa fa-eye tiny-icon"></i></a>
                                 <a href="{{ url('customer_io/create') }}"
@@ -74,7 +74,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                                <span class="badge bg-success">Outward</span>
                             </td>
                             <td>
-                                <a href="{{ url('partner_io/view') }}"
+                                <a href="{{ url('customer_io/view') }}"
                                     class="button-info" data-bs-toggle="tooltip" data-bs-placement="top"
                                     title="@lang('index.view_customer')"><i class="fa fa-eye tiny-icon"></i></a>
                                 <a href="{{ url('customer_io/create') }}"

@@ -25,7 +25,7 @@
                     <h2 class="top-left-header">{{ isset($title) && $title ? $title : '' }}</h2>
                 </div>
                 <div class="col-md-6">
-                        <a class="btn bg-second-btn" href="{{ route('partner_io.index') }}"><iconify-icon
+                        <a class="btn bg-second-btn" href="{{ route('customer_io.index') }}"><iconify-icon
                                 icon="solar:round-arrow-left-broken"></iconify-icon>@lang('index.back')</a>
                 </div>
             </div>
@@ -38,48 +38,49 @@
                     <div class="card-body p30">
                         <div class="m-auto b-r-5">
                             <div class="text-center pt-10 pb-10">
-                                <h3 class="color-000000 pt-20 pb-20">Partner Details</h3>
+                                <h2 class="color-000000 pt-20 pb-20">@lang('index.customer_io_details')</h2>
                             </div>
                             <table>
                                 <tr>
                                     <td class="w-50">
                                         <p class="pb-7 rgb-71">
-                                            <span class=""><strong>Partner Code:</strong></span>
-                                            P001
-                                        </p> 
+                                            <span class=""><strong>@lang('index.customer_code'):</strong></span>
+                                            CUS012
+                                        </p>
                                         <p class="pb-7 rgb-71">
-                                            <span class=""><strong>Partner Name:</strong></span>
-                                            Malini
+                                            <span class=""><strong>@lang('index.customer_type'):</strong></span>
+                                            Wholesale
+                                        </p>
+                                        <p class="pb-7 rgb-71">
+                                            <span class=""><strong>@lang('index.customer_name'):</strong></span>
+                                            Shalini
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.phone'):</strong></span>
-                                            7894561230
+                                            9856501235
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.email'):</strong></span>
-                                            malini@gmail.com
+                                            shalini@gmail.com
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.address'):</strong></span>
-                                            Anna nagar
+                                            J.K.Nagar
                                         </p>
-                                         <p class="pb-7 rgb-71">
+                                        <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.contact_person'):</strong></span>
-                                            Prakash
+                                            Kishore
                                         </p>
                                     </td>
                                     <td class="w-50 text-right">
                                         <p class="pb-7 rgb-71">
-                                            <span class=""><strong>@lang('index.gst_no'):</strong></span>
-                                            33AAACT7409H1ZH
+                                            <span class=""><strong>@lang('index.gst_no'):</strong></span>33AAACT7409H1ZH
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.ecc_no'):</strong></span>
-                                            
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.landmark'):</strong></span>
-                                           
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.created_on'):</strong></span>
@@ -97,38 +98,30 @@
                                 </tr>
                             </table>
                             <div class="text-center pt-10 pb-10">
-                                <h3 class="color-000000 pt-20 pb-20">Partner Order Details</h3>
                             </div>
                             <table>
                                 <thead>
                                     <tr>
                                         <th>@lang('index.sn')</th>
-                                        <th>@lang('index.reference_no')</th>
+                                        <th>@lang('index.po_no')</th>
+                                        <th>@lang('index.date')</th>
                                         <th>@lang('index.type')</th>
                                         <th>@lang('index.category')</th>
                                         <th>@lang('index.instrument_name') (Code)</th>
                                         <th>@lang('index.quantity')</th>
-                                        <th>@lang('index.remarks')</th>
+                                        <th>@lang('index.status')</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>1</td>
-                                        <td>P001/1</td>
-                                        <td>Gauges/Checking Instruments	</td>
-                                        <td>Plug Gauge</td>
-                                        <td>Material</td>
-                                        <td>5</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>P001/2</td>
+                                        <td>P001DSF/1</td>
+                                        <td>12-09-2025</td>
                                         <td>Gauges/Checking Instruments	</td>
                                         <td>Vernier Caliper</td>
                                         <td>Bore Gauge</td>
                                         <td>5</td>
-                                        <td>-</td>
+                                        <td><span class="badge bg-secondary">Inward</span></td>
                                     </tr>
                                 </tbody>
                             </table>

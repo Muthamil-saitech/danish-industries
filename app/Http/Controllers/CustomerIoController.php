@@ -19,7 +19,7 @@ class CustomerIoController extends Controller
         
     }
     public function show() {
-        $title = __('index.view_customer');
+        $title = __('index.view_customer_io');
         return view('pages.customer_io.view', compact('title'));
     }
 }
