@@ -6,7 +6,9 @@ use App\Drawer;
 use App\Inspection;
 use App\InspectionObservedDimension;
 use App\InspectionParam;
+use App\MaterialType;
 use App\RawMaterial;
+use App\RawMaterialCategory;
 use Illuminate\Http\Request;
 
 class InspectionController extends Controller
@@ -29,17 +31,21 @@ class InspectionController extends Controller
     public function create()
     {
         $title =  __('index.add_inspection');
+        $categories = RawMaterialCategory::orderBy('id', 'DESC')->where('del_status', "Live")->get();
+        $material_types = MaterialType::where('del_status','Live')->orderBy('id','DESC')->get();
         $materials = RawMaterial::where('category', '!=', 1)->where('del_status', 'Live')->orderBy('id', 'DESC')->get();
         $drawers = Drawer::where('del_status', 'Live')->get();
-        return view('pages.inspection.addEditInspection', compact('title', 'materials', 'drawers'));
+        return view('pages.inspection.addEditInspection', compact('title', 'materials', 'drawers', 'categories', 'material_types'));
     }
     public function store(Request $request)
     {
+        // dd($request->all());
         $inspection = new Inspection();
         $inspection->mat_type = $request->get('mat_type');
         $inspection->ins_type = 0;
+        $inspection->mat_cat_id = $request->get('mat_cat_id');
         $inspection->mat_id = $request->get('mat_id');
-        $inspection->mat_code = $request->get('mat_code');
+        // $inspection->mat_code = $request->get('mat_code');
         $inspection->drawer_id = $request->get('drawer_no');
         $inspection->save();
         $inspect_id = $inspection->id;
@@ -76,18 +82,21 @@ class InspectionController extends Controller
         $inspection = Inspection::find(encrypt_decrypt($id, 'decrypt'));
         $title =  __('index.edit_inspection');
         $obj = $inspection;
+        $categories = RawMaterialCategory::orderBy('id', 'DESC')->where('del_status', "Live")->get();
+        $material_types = MaterialType::where('del_status','Live')->orderBy('id','DESC')->get();
         $inspectParams = InspectionParam::where('inspect_id', $inspection->id)->where('del_status', 'Live')->get();
         $materials = RawMaterial::where('category', '!=', 1)->where('del_status', 'Live')->orderBy('id', 'DESC')->get();
         $drawers = Drawer::where('del_status', 'Live')->get();
-        return view('pages.inspection.addEditInspection', compact('title', 'obj', 'materials', 'drawers', 'inspectParams'));
+        return view('pages.inspection.addEditInspection', compact('title', 'obj', 'materials', 'drawers', 'inspectParams', 'categories', 'material_types'));
     }
     public function update(Request $request, Inspection $inspection)
     {
         // dd($request->all());
         $inspection->mat_type = $request->get('mat_type');
         $inspection->ins_type = 0;
+        $inspection->mat_cat_id = $request->get('mat_cat_id');
         $inspection->mat_id = $request->get('mat_id');
-        $inspection->mat_code = $request->get('mat_code');
+        // $inspection->mat_code = $request->get('mat_code');
         $inspection->drawer_id = $request->get('drawer_no');
         $inspection->save();
         $last_id = $inspection->id;

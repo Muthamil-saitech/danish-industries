@@ -31,7 +31,12 @@
                                 <label>@lang('index.mat_type') <span class="required_star">*</span></label>
                                 <select class="form-control @error('mat_type') is-invalid @enderror select2" name="mat_type" id="mat_type">
                                     <option value="">@lang('index.select')</option>
-                                    <option {{ (isset($obj->mat_type) && $obj->mat_type == 1) || old('mat_type') == 1 ? 'selected' : '' }} value="1">Raw Material</option>
+                                    @foreach ($material_types as $value)
+                                        <option
+                                            {{ (isset($obj->mat_type) && $obj->mat_type == $value->id) || old('mat_type') == $value->id ? 'selected' : '' }}
+                                            value="{{ $value->id }}">{{ $value->type_name }}</option>
+                                    @endforeach
+                                    {{-- <option {{ (isset($obj->mat_type) && $obj->mat_type == 1) || old('mat_type') == 1 ? 'selected' : '' }} value="1">Raw Material</option> --}}
                                     {{-- <option {{ (isset($obj->mat_type) && $obj->mat_type == 2) || old('mat_type') == 2 ? 'selected' : '' }} value="2">Insert</option> --}}
                                 </select>
                                 <p class="text-danger mat_type_err"></p>
@@ -56,7 +61,23 @@
                         </div> --}}
                         <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
-                                <label>@lang('index.material_name') <span class="required_star">*</span></label>
+                                <label>@lang('index.material_category') <span class="required_star">*</span></label>
+                                <select class="form-control @error('mat_cat_id') is-invalid @enderror select2" name="mat_cat_id" id="mat_cat_id">
+                                    <option value="">@lang('index.select')</option>
+                                    @foreach ($categories as $value)
+                                        <option
+                                            {{ (isset($obj->mat_cat_id) && $obj->mat_cat_id == $value->id) || old('mat_cat_id') == $value->id ? 'selected' : '' }}
+                                            value="{{ $value->id }}">{{ $value->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('category')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-sm-12 mb-2 col-md-4">
+                            <div class="form-group">
+                                <label>@lang('index.material_name') (@lang('index.code')) <span class="required_star">*</span></label>
                                 <select class="form-control @error('mat_id') is-invalid @enderror select2" name="mat_id" id="mat_id">
                                     <option value="">@lang('index.select')</option>
                                     @foreach($materials as $material)
@@ -69,7 +90,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-sm-12 mb-2 col-md-4">
+                        {{-- <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
                                 <label>@lang('index.material_code') <span class="required_star">*</span></label>
                                 <input type="text" name="mat_code" id="mat_code" class="form-control @error('mat_code') is-invalid @enderror" placeholder="@lang('index.material_code')" value="{{ isset($obj) && $obj->mat_code ? $obj->mat_code : old('mat_code') }}" readonly>
@@ -78,7 +99,7 @@
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
                                 <label>@lang('index.drawer_no') <span class="required_star">*</span></label>
@@ -244,7 +265,68 @@ $(document).on("click", "#ap_param_add", function () {
     }
     $('#ins_type').val("").trigger('change');
 }); */
-$(document).on("change","#mat_id", function () {
+$(document).on("change", "#mat_type", function () {
+    let mat_type_id = $(this).find(":selected").val();
+    let hidden_base_url = $("#hidden_base_url").val();
+    $.ajax({
+        type: "POST",
+        url: hidden_base_url + "getMaterialCategory",
+        data: { mat_type_id: mat_type_id },
+        dataType: "json",
+        success: function (data) {
+            if(data) {
+                let category = data;
+                let select = $("#mat_cat_id");
+                select.empty();
+                select.append('<option value="">Please Select</option>');
+                category.forEach(function(item) {
+                    if (item) {
+                        let id = item.id;
+                        let name = item.name;
+                        select.append('<option value="' + id + '">' + name + '</option>');
+                    }
+                });
+            }
+        },
+        error: function () {
+            console.error("Failed to fetch product details.");
+        },
+    });
+    $('#mat_cat_id').val("").trigger('change.select2');
+});
+$(document).on("change", "#mat_cat_id", function () {
+    let cat_id = $(this).find(":selected").val();
+    let mat_type = $("#mat_type").val();
+    let hidden_base_url = $("#hidden_base_url").val();
+    $.ajax({
+        type: "POST",
+        url: hidden_base_url + "getMaterialById",
+        data: { mat_type: mat_type, id: cat_id},
+        dataType: "json",
+        success: function (data) {
+            if(data) {
+                let materials = data;
+                let select = $("#mat_id");
+                select.empty();
+                select.append('<option value="">Please Select</option>');
+                materials.forEach(function(item) {
+                    if (item) {
+                        let id = item.id;
+                        let name = item.name;
+                        let code = item.code;
+                        let insert_type = item.insert_type;
+                        select.append('<option value="' + id + '">' + name + ' (' + code + ')</option>');
+                    }
+                });
+            }
+        },
+        error: function () {
+            console.error("Failed to fetch product details.");
+        },
+    });
+    $('#mat_id').val("").trigger('change.select2');
+});
+/* $(document).on("change","#mat_id", function () {
     let hidden_base_url = $("#hidden_base_url").val();
     let mat_id = $("#mat_id").val();
     $.ajax({
@@ -256,20 +338,20 @@ $(document).on("change","#mat_id", function () {
             $("#mat_code").val(data.code);
         },
     });
-});
+}); */
 $(document).on('submit', '#inspectionForm', function (e) {
     resetSerialNumbers(".rowDiCount");
     resetSerialNumbers(".rowApCount");
     let isValid = true;
 
     $('.is-invalid').removeClass('is-invalid');
-    $('.heat_no_err, .drawer_no_err, .mat_code_err, .mat_err, .mat_type_err').text('');
+    $('.heat_no_err, .drawer_no_err, .mat_err, .mat_type_err').text('');
     $('.add_di_ins .di-error-row, .add_ap_ins .ap-error-row').remove();
 
     let matType = $('#mat_type').val()?.trim() || '';
     // let insType = $('#ins_type').val()?.trim() || '';
     let matId   = $('#mat_id').val()?.trim() || '';
-    let matCode = $('#mat_code').val()?.trim() || '';
+    // let matCode = $('#mat_code').val()?.trim() || '';
     let drawNo  = $('#drawer_no').val()?.trim() || '';
     let heatNo  = $('#heat_no').val()?.trim() || '';
 
@@ -277,7 +359,7 @@ $(document).on('submit', '#inspectionForm', function (e) {
     if (!matType) $(".mat_type_err").text("The Material Type field is required"), isValid=false;
     // if (matType=='2' && !insType) $(".ins_type_err").text("The Insert Type field is required"), isValid=false;
     if (!matId) $(".mat_err").text("The Material Name field is required"), isValid=false;
-    if (!matCode) $(".mat_code_err").text("The Material Code field is required"), isValid=false;
+    // if (!matCode) $(".mat_code_err").text("The Material Code field is required"), isValid=false;
     if (!drawNo) $(".drawer_no_err").text("The Drawing No field is required"), isValid=false;
 
     // Dimension inspection validation
@@ -318,7 +400,6 @@ $(document).on('submit', '#inspectionForm', function (e) {
 
     if (!isValid) e.preventDefault();
 });
-
 // Delete row and reset numbers
 $(document).on("click", ".dlt_button", function () {
     const row = $(this).closest("tr");

@@ -44,3 +44,7 @@ ALTER TABLE `tbl_material_stocks` ADD `line_item_no` VARCHAR(30) NULL DEFAULT NU
 ALTER TABLE `tbl_material_stocks` ADD `owner_type` INT NOT NULL AFTER `stock_type`;
 ALTER TABLE `tbl_quotation_details` ADD `line_item_no` VARCHAR(30) NULL DEFAULT NULL AFTER `po_no`;
 
+
+======12 sep=========
+ALTER TABLE `tbl_inspections` ADD `mat_cat_id` INT NOT NULL AFTER `mat_type`;
+
