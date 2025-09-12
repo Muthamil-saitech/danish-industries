@@ -76,6 +76,7 @@ class FPCategoryController extends Controller
             'description' => 'max:250'
         ], [
             'name.required' => __('index.prod_cat_req'),
+            'name.unique' => __('index.prod_cat_unique'),
         ]);
 
         $obj = new \App\FPCategory;

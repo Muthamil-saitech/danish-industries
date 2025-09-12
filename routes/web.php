@@ -142,6 +142,7 @@ Route::group(['middleware' => ['XSS']], function () {
         Route::post('getPaidAmount', [App\Http\Controllers\AjaxController::class, 'getPaidAmount'])->name('getPaidAmount.post');
         Route::post('getStockMaterialsByCustomer', [App\Http\Controllers\AjaxController::class, 'getStockMaterialsByCustomer'])->name('getStockMaterialsByCustomer.post');
         Route::post('getMaterialById', [App\Http\Controllers\AjaxController::class, 'getMaterialById'])->name('getMaterialById.post');
+        Route::post('getMaterialName', [App\Http\Controllers\AjaxController::class, 'getMaterialName'])->name('getMaterialName.post');
         Route::post('getInsertType', [App\Http\Controllers\AjaxController::class, 'getInsertType'])->name('getInsertType.post');
         Route::post('getMaterialCatById', [App\Http\Controllers\AjaxController::class, 'getMaterialCatById'])->name('getMaterialCatById.post');
         Route::post('getMaterialByMatType', [App\Http\Controllers\AjaxController::class, 'getMaterialByMatType'])->name('getMaterialByMatType.post');
@@ -161,6 +162,8 @@ Route::group(['middleware' => ['XSS']], function () {
         Route::post('/contactDelete', [App\Http\Controllers\SupplierController::class, 'contactDelete'])->name('contactDelete');
         Route::post('/customerContactDelete', [App\Http\Controllers\CustomerController::class, 'customerContactDelete'])->name('customerContactDelete');
         Route::resource('customers', App\Http\Controllers\CustomerController::class)->only(['index', 'create', 'store', 'destroy', 'update', 'show', 'edit']);
+        Route::resource('customer_io', App\Http\Controllers\CustomerIOController::class)->only(['index', 'create', 'store', 'destroy', 'update', 'show', 'edit']);
+        Route::resource('partner_io', App\Http\Controllers\PartnerIOController::class)->only(['index', 'create', 'store', 'destroy', 'update', 'show', 'edit']);
         Route::resource('material_stocks', App\Http\Controllers\MaterialStockController::class);
         Route::get('material_stocks/{id}/stock_adjustments', [App\Http\Controllers\MaterialStockController::class, 'stock_adjustments']);
         Route::post('/materialStockAdjust', [App\Http\Controllers\MaterialStockController::class, 'materialStockAdjust'])->name('materialStockAdjust');

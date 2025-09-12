@@ -81,6 +81,7 @@ class RawMaterialCategoryController extends Controller
         ], [
             'mat_type_id.required' => __('index.mat_type_req'),
             'name.required' => __('index.raw_mat_c_req'),
+            'name.unique' => __('index.raw_mat_c_unique'),
         ]);
 
         $obj = new \App\RawMaterialCategory;

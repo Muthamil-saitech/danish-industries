@@ -104,9 +104,11 @@ class RawMaterialController extends Controller
             ],
             [
                 'name.required' => __('index.raw_mat_req'),
+                'name.required' => __('index.raw_mat_unique'),
                 'category.required' => __('index.raw_mat_c_req'),
                 'mat_type_id.required' => __('index.mat_type_req'),
                 'code.required' => __('index.raw_mat_code_req'),
+                'code.unique' => __('index.raw_mat_code_unique'),
                 // 'insert_type.required_if' => "The Insert Type field is required",
             ]
         );

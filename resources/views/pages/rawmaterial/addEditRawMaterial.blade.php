@@ -55,7 +55,7 @@
                             <label>@lang('index.material_code') <span class="required_star">*</span></label>
                             <input type="text" name="code" id="code"
                                 class="form-control @error('code') is-invalid @enderror" placeholder="@lang('index.material_code')"
-                                value="{{ isset($obj->code) ? $obj->code : '' }}" onfocus="select()">
+                                value="{{ isset($obj->code) ? $obj->code : old('code') }}" onfocus="select()">
                             @error('code')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror

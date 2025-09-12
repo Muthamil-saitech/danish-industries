@@ -195,6 +195,26 @@
                     </ul>
                 </li>  
             @endif
+            <li class="parent-menu treeview menu__cidirp_10 {{ request()->is('inward_outward*')  || request()->is('customer_io') || request()->is('customer_io/*') || request()->is('partner_io') || request()->is('partner_io/*') ? ' menu-open active_sub_menu' : '' }}">
+                <a href="#">
+                    <iconify-icon icon="material-symbols:menu"></iconify-icon>
+                    <span class="match_bold">@lang('index.inward&outward')</span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="menu_assign_class {{ request()->routeIs('customer_io.create') ? ' treeMenuActive' : '' }}" data-menu__cid="irp_10"><a
+                            href="{{ route('customer_io.create') }}">@lang('index.add_customer')</a>
+                    </li>
+                    <li class="menu_assign_class {{ request()->routeIs('customer_io.index') ? ' treeMenuActive' : '' }}" data-menu__cid="irp_10"><a
+                            href="{{ route('customer_io.index') }}">@lang('index.customer_io')</a>
+                    </li>
+                    <li class="menu_assign_class {{ request()->routeIs('partner_io.create') ? ' treeMenuActive' : '' }}" data-menu__cid="irp_10"><a
+                            href="{{ route('partner_io.create') }}">@lang('index.add_partner')</a>
+                    </li>
+                    <li class="menu_assign_class {{ request()->routeIs('partner_io.index') ? ' treeMenuActive' : '' }}" data-menu__cid="irp_10"><a
+                            href="{{ route('partner_io.index') }}">@lang('index.partner_io')</a>
+                    </li>
+                </ul>
+            </li>  
             @if (menuPermission('Item Setup'))
                 <li
                     class="parent-menu treeview menu__cidirp_10{{ request()->is('rmcategories*') || request()->is('rawmaterials*') || request()->is('noninventoryitems*') || request()->is('fpcategories*') || request()->is('finishedproducts*') || request()->is('materialtypes*') ? ' menu-open active_sub_menu' : '' }}">

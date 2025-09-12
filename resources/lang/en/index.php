@@ -983,5 +983,22 @@ return [
     'tool_name_unique' => 'The tools/gauges name field already exists',
     'add_mat_type' => 'Add Material Type',
     'edit_mat_type' => 'Edit Material Type',
-    'line_item_no' => 'PO Line Item No'
+    'line_item_no' => 'PO Line Item No',
+    'raw_mat_c_unique' => 'The material category already exists',
+    'raw_mat_code_unique' => 'The material code already exists',
+    'raw_mat_unique' => 'The material name already exists',
+    'prod_cat_unique' => 'The product category already exists',
+    'historycardno' => 'History Card No',
+    'due_date' => 'Due Date',
+    'location' => 'Location',
+    'inward&outward' => 'Inward & Outward',
+    'customer_io' => 'Customer IO',
+    'calendar' => 'Calendar',
+    'view_calendar' => 'View Calendar',
+    'notes' => 'Notes',
+    'add_partner' => 'Add Partner',
+    'partner_io' => 'Partner IO',
+    'partners' => 'Partners',
+    'view_partner' => 'View Partner',
+    'view_customer' => 'View Customer'
 ];

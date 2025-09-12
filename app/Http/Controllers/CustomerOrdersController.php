@@ -123,6 +123,8 @@ class CustomerOrdersController extends Controller
             'customer_id' => 'required',
             'order_type' => 'required',
             'po_date' => 'required',
+        ],[
+            'reference_no.unique' => 'The po number field already exists'
         ]);
         try {
             $productList = $request->get('product');

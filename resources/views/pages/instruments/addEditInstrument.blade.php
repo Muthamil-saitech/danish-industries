@@ -180,18 +180,44 @@
                         </div>
                         <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
-                                <label>@lang('index.calibration_due') <span class="required_star">*</span></label>
-                                {!! Form::text('calibration_due', isset($obj->calibration_due) && $obj->calibration_due ? date('Y-m-d',strtotime($obj->calibration_due)) : (old('calibration_due') ?: date('d-m-Y')), [
+                                <label>@lang('index.historycardno') <span class="required_star">*</span></label>
+                                <input type="text" name="history_card_no" id="history_card_no"
+                                    class="check_required form-control @error('history_card_no') is-invalid @enderror history_card_no"
+                                    placeholder="@lang('index.historycardno')"
+                                    value="{{ isset($obj->history_card_no) ? $obj->history_card_no : old('history_card_no') }}">
+                                <div class="text-danger d-none"></div>
+                                @error('history_card_no')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-sm-12 mb-2 col-md-4">
+                            <div class="form-group">
+                                <label>@lang('index.due_date') <span class="required_star">*</span></label>
+                                {!! Form::text('due_date', isset($obj->due_date) && $obj->due_date ? date('Y-m-d',strtotime($obj->due_date)) : (old('due_date') ?: date('d-m-Y')), [
                                 'class' => 'form-control',
-                                'id' => 'calibration_due',
-                                'placeholder' => 'Calibration Due',
+                                'id' => 'due_date',
+                                'placeholder' => 'Due date',
                                 ]) !!}
-                                @if ($errors->has('calibration_due'))
+                                @if ($errors->has('due_date'))
                                 <div class="error_alert text-danger">
-                                    {{ $errors->first('calibration_due') }}
+                                    {{ $errors->first('due_date') }}
                                 </div>
                                 @endif
                                 <div class="text-danger d-none"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 mb-2 col-md-4">
+                            <div class="form-group">
+                                <label>@lang('index.location') <span class="required_star">*</span></label>
+                                <input type="text" name="location" id="location"
+                                    class="check_required form-control @error('location') is-invalid @enderror range"
+                                    placeholder="@lang('index.location')"
+                                    value="{{ isset($obj->location) ? $obj->location : old('location') }}">
+                                <div class="text-danger d-none"></div>
+                                @error('location')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-sm-12 mb-2 col-md-4">

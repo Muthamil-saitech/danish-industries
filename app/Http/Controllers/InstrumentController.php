@@ -67,8 +67,19 @@ class InstrumentController extends Controller
                 'required',
                 'max:25'
             ],
-            'calibration_due' => 'required',
-            'remarks' => 'nullable'
+            'history_card_no' => [
+                'required',
+                'max:50'
+            ],
+            'due_date' => 'required',
+            'location' => [
+                'required',
+                'max:50'
+            ],
+            'remarks' => [
+                'nullable',
+                'max:255'
+            ],
         ], [
             'code.required' => "The instrument code field is required",
             'code.unique' => "The instrument code field already exists",
@@ -82,7 +93,8 @@ class InstrumentController extends Controller
             'range.required' => "The range/size field is required",
             'accuracy.required' => "The accuracy field is required",
             'make.required' => "The make field is required",
-            'calibration_due.required' => "The calibration due field is required",
+            'history_card_no.required' => "The history card no field is required",
+            'due_date.required' => "The due date field is required",
         ]);
 
         $obj = new \App\Instrument;
@@ -96,7 +108,9 @@ class InstrumentController extends Controller
         $obj->range = escape_output($request->get('range'));
         $obj->accuracy = escape_output($request->get('accuracy'));
         $obj->make = escape_output($request->get('make'));
-        $obj->calibration_due = date('Y-m-d', strtotime($request->get('calibration_due')));
+        $obj->history_card_no = escape_output($request->get('history_card_no'));
+        $obj->due_date = date('Y-m-d', strtotime($request->get('due_date')));
+        $obj->location = escape_output($request->get('location'));
         $obj->remarks = escape_output($request->get('remarks'));
         $obj->save();
         return redirect('instruments')->with(saveMessage());
@@ -148,11 +162,19 @@ class InstrumentController extends Controller
                 'required',
                 'max:25'
             ],
-            'calibration_due' => 'required',
+            'history_card_no' => [
+                'required',
+                'max:50'
+            ],
+            'due_date' => 'required',
+            'location' => [
+                'required',
+                'max:50'
+            ],
             'remarks' => [
                 'nullable',
                 'max:255'
-            ]
+            ],
         ], [
             'code.required' => "The instrument code field is required",
             'instrument_name.required' => "The instrument name field is required",
@@ -163,7 +185,8 @@ class InstrumentController extends Controller
             'range.required' => "The range field is required",
             'accuracy.required' => "The accuracy field is required",
             'make.required' => "The make field is required",
-            'calibration_due.required' => "The calibration due field is required",
+            'history_card_no.required' => "The history card no field is required",
+            'due_date.required' => "The due date field is required",
         ]);
 
         $instrument->type = $request->get('type');
@@ -176,7 +199,9 @@ class InstrumentController extends Controller
         $instrument->range = escape_output($request->get('range'));
         $instrument->accuracy = escape_output($request->get('accuracy'));
         $instrument->make = escape_output($request->get('make'));
-        $instrument->calibration_due = date('Y-m-d', strtotime($request->get('calibration_due')));
+        $instrument->history_card_no = escape_output($request->get('history_card_no'));
+        $instrument->due_date = date('Y-m-d', strtotime($request->get('due_date')));
+        $instrument->location = escape_output($request->get('location'));
         $instrument->remarks = escape_output($request->get('remarks'));
         $instrument->save();
         return redirect('instruments')->with(saveMessage());

@@ -422,7 +422,7 @@ $(document).ready(function () {
         let hidden_base_url = $("#hidden_base_url").val();
         $.ajax({
             type: "POST",
-            url: hidden_base_url + "getMaterialById",
+            url: hidden_base_url + "getMaterialName",
             data: { id: mat_cat_id },
             dataType: "json",
             success: function (data) { 
