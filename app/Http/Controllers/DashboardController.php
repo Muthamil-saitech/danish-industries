@@ -56,30 +56,29 @@ class DashboardController extends Controller
         ];
 
         $running_production = Manufacture::where('manufacture_status', 'inProgress')->where('del_status', 'Live')->get();
-        $order_ids = CustomerOrderDetails::where('delivery_date', '>=', today())->where('del_status', 'Live')->pluck('customer_order_id');
-        $running_order = CustomerOrder::with('details')->whereIn('id',$order_ids)->where('del_status', 'Live')->get();
+        // $order_ids = CustomerOrderDetails::where('po_date', '>=', today())->where('del_status', 'Live')->pluck('customer_order_id');
+        $running_order = CustomerOrder::with('details')->where('po_date', '>=', today())->where('del_status', 'Live')->get();
         $lowRawMaterialStocks = new Stock();
         $lowRawMaterialStocks = $lowRawMaterialStocks->getLowRMStock();
         $supplierPayments = RawMaterialPurchase::with('supplierPayments')->where('status','Completed')->where('subtotal','!=',0)->where('paid','!=',0)->where('due','!=',0)->where('del_status','Live')->orderBy('id','DESC')->get();
         // $customerPayments = CustomerDueReceive::where('del_status',"Live")->where('total_amount','!=',0)->where('pay_amount','!=',0)->where('balance_amount','!=',0)->orderBy('order_date','DESC')->get();
-        $customerPayments = CustomerOrder::with('orderInvoice')
-        ->where('order_status', 1)
+        $customerPayments = CustomerOrder::with(['details.orderInvoice'])
         ->where('del_status', 'Live')
-        ->whereHas('orderInvoice', function ($query) {
-            $query->where('paid_amount', '>', 0)
-                ->where('due_amount', '>', 0);
+        ->whereHas('details.orderInvoice', function ($q) {
+            $q->where('paid_amount', '>', 0)
+            ->where('due_amount', '>', 0)
+            ->where('del_status', 'Live');
         })
         ->orderBy('id', 'DESC')
         ->get();
-        
-        // Close to Finish Products
+        // dd($customerPayments);
         $closeToFinishProducts = Manufacture::with('product')->where('manufacture_status', 'done')->where('del_status', 'Live')->where('expiry_days', '!=', 0)->orderBy('complete_date', 'asc')->get()->map(function($item){
             $item->expiry_date = expireDate($item->complete_date, $item->expiry_days);
             return $item;
-        });      
+        });
         $expiredProducts = [];
         $closeToExpiryProducts = [];
-        foreach($closeToFinishProducts as $item){            
+        foreach($closeToFinishProducts as $item){
             if($item->expiry_date < today()){
                 $expiredProducts[] = $item;
             $item->status = 'expired';
@@ -94,7 +93,6 @@ class DashboardController extends Controller
         $percentage_rm = 10;
         $percentage_supplier = 10;
         $percentage_customer = 10;
-
         return view('pages.dashboard', compact('total', 'running_production', 'running_order', 'lowRawMaterialStocks', 'supplierPayments', 'customerPayments', 'closeToFinishProducts', 'percentage_product', 'percentage_rm', 'percentage_supplier', 'percentage_customer', 'mergedProducts'));
     }
     /**
