@@ -46,7 +46,7 @@
             @endif
             @if (menuPermission('Parties'))
                 <li
-                    class="parent-menu treeview menu__cidirp_10{{ request()->is('suppliers*') || request()->is('customers*') ? ' menu-open active_sub_menu' : '' }}">
+                    class="parent-menu treeview menu__cidirp_10{{ request()->is('suppliers*') || request()->is('customers*') || request()->is('partners*') ? ' menu-open active_sub_menu' : '' }}">
                     <a href="#">
                         <iconify-icon icon="solar:users-group-two-rounded-broken"></iconify-icon>
                         <span class="match_bold">@lang('index.parties')</span>
@@ -73,6 +73,12 @@
                                     href="{{ route('suppliers.index') }}">@lang('index.list_supplier')</a>
                             </li>
                         @endif
+                        <li class="menu_assign_class {{ request()->routeIs('partners.create') ? ' treeMenuActive' : '' }}" data-menu__cid="irp_10"><a
+                                href="{{ route('partners.create') }}">@lang('index.add_partner')</a>
+                        </li>
+                        <li class="menu_assign_class {{ request()->routeIs('partners.index') ? ' treeMenuActive' : '' }}" data-menu__cid="irp_10"><a
+                                href="{{ route('partners.index') }}">@lang('index.list_partner')</a>
+                        </li>
                     </ul>
                 </li>
             @endif
@@ -195,7 +201,7 @@
                     </ul>
                 </li>  
             @endif
-            <li class="parent-menu treeview menu__cidirp_10 {{ request()->is('inward_outward*')  || request()->is('customer_io') || request()->is('customer_io/*') || request()->is('partner_io') || request()->is('partner_io/*') ? ' menu-open active_sub_menu' : '' }}">
+            <li class="parent-menu treeview menu__cidirp_10 {{ request()->is('inward_outward*') || request()->is('customer_io*') || request()->is('partner_io*')  ? 'menu-open active_sub_menu' : '' }}">
                 <a href="#">
                     <iconify-icon icon="material-symbols:menu"></iconify-icon>
                     <span class="match_bold">@lang('index.inward&outward')</span>
