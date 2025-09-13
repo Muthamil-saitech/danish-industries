@@ -51,9 +51,9 @@ if (isset($setting->base_color) && $setting->base_color) {
                         <thead>
                             <tr>
                                 <th class="width_1_p">@lang('index.sn')</th>
-                                {{-- <th class="width_10_p">@lang('index.material_category')</th> --}}
-                                <th class="width_10_p">@lang('index.material_name')(@lang('index.code'))</th>
                                 <th class="width_10_p">@lang('index.mat_type')</th>
+                                <th class="width_10_p">@lang('index.material_category')</th>
+                                <th class="width_10_p">@lang('index.material_name')(@lang('index.code'))</th>
                                 {{-- <th class="width_10_p">@lang('index.ins_type')</th> --}}
                                 <th class="width_10_p">@lang('index.customer')<br>(@lang('index.code'))</th>
                                 <th class="width_10_p">@lang('index.stock')</th>
@@ -69,16 +69,9 @@ if (isset($setting->base_color) && $setting->base_color) {
                             @if(getStockCustomerNameById($value->customer_id) == 'Danish')
                             <tr>
                                 <td>{{ $i++ }}</td>
+                                <td>{{ getMatTypeName($value->mat_type) }}</td>
+                                <td>{{ getCategoryById($value->mat_cat_id) }}</td>
                                 <td title="{{ getRMName($value->mat_id) }}">{{ substr_text(getRMName($value->mat_id),30) }}</td>
-                                <td>
-                                    @if($value->mat_type == 1)
-                                    Material
-                                    @elseif($value->mat_type == 2)
-                                    Raw Material
-                                    @else
-                                    N/A
-                                    @endif
-                                </td>
                                 {{-- <td>
                                                 @if($value->ins_type == 1)
                                                     Consumable
@@ -134,8 +127,9 @@ if (isset($setting->base_color) && $setting->base_color) {
                         <thead>
                             <tr>
                                 <th class="width_1_p">@lang('index.sn')</th>
-                                <th class="width_10_p">@lang('index.material_name')(@lang('index.code'))</th>
                                 <th class="width_10_p">@lang('index.mat_type')</th>
+                                <th class="width_10_p">@lang('index.material_category')</th>
+                                <th class="width_10_p">@lang('index.material_name')(@lang('index.code'))</th>
                                 {{-- <th class="width_10_p">@lang('index.ins_type')</th> --}}
                                 <th class="width_10_p">@lang('index.customer')<br>(@lang('index.code'))</th>
                                 <th class="width_10_p">@lang('index.stock')</th>
@@ -151,6 +145,8 @@ if (isset($setting->base_color) && $setting->base_color) {
                             @if(getStockCustomerNameById($value->customer_id) != 'Danish')
                             <tr>
                                 <td class="c_center">{{ $i++ }}</td>
+                                <td>{{ getMatTypeName($value->mat_type) }}</td>
+                                <td>{{ getCategoryById($value->mat_cat_id) }}</td>
                                 <td title="{{ getRMName($value->mat_id) }}">{{ substr_text(getRMName($value->mat_id),30) }}</td>
                                 <td>
                                     @if($value->mat_type == 1)

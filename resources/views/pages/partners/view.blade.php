@@ -64,7 +64,7 @@
                                             41/A, Jaihindpuram, Madurai.	
                                         </p>
                                     </td>
-                                    <td class="w-50 text-right">
+                                    <td class="w-50" style="float: inline-end">
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.gst_no'):</strong></span>
                                             N/A	
@@ -109,11 +109,11 @@
                                 <tbody>
                                     <tr>
                                         <td>1</td>
-                                        <td>Elakkiya</td>
-                                        <td>Cutting Department</td>
-                                        <td>Supervisior</td>
-                                        <td>7536984120</td>
-                                        <td>elakkiya@gmail.com</td>
+                                        <td>Usha</td>
+                                        <td>Manager</td>
+                                        <td>Management</td>
+                                        <td>9639639631</td>
+                                        <td>usha@gmail.com</td>
                                     </tr>
                                 </tbody>
                             </table>
