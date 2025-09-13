@@ -45,11 +45,11 @@
                                     <td class="w-50">
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.partner_code'):</strong></span>
-                                            PARTNER001
+                                            P001
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.partner_name'):</strong></span>
-                                            Riyan
+                                            Kishore
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.phone'):</strong></span>
@@ -57,15 +57,11 @@
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.email'):</strong></span>
-                                            riyan@gmail.com
+                                            kishore@gmail.com	
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.address'):</strong></span>
-                                            Jaihindpuram	
-                                        </p>
-                                        <p class="pb-7 rgb-71">
-                                            <span class=""><strong>@lang('index.contact_person'):</strong></span>
-                                            Elakkiya
+                                            41/A, Jaihindpuram, Madurai.	
                                         </p>
                                     </td>
                                     <td class="w-50 text-right">
@@ -111,14 +107,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Elakkiya</td>
-                                            <td>Cutting Department</td>
-                                            <td>Supervisior</td>
-                                            <td>7536984120</td>
-                                            <td>elakkiya@gmail.com</td>
-                                        </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Elakkiya</td>
+                                        <td>Cutting Department</td>
+                                        <td>Supervisior</td>
+                                        <td>7536984120</td>
+                                        <td>elakkiya@gmail.com</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

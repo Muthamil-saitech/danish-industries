@@ -61,10 +61,10 @@ if (isset($setting->base_color) && $setting->base_color) {
                             <td>Admin</td>
                             <td>13-09-2025</td>
                             <td class="text-start">
-                                <a href="{{ url('partners.show') }}"
+                                <a href="{{ url('partners/show') }}"
                                     class="button-info" data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('index.view_details')"><i class="fa fa-eye"></i>
                                 </a>
-                                <a href="{{ url('partners.create') }}"
+                                <a href="{{ url('partners/create') }}"
                                     class="button-success" data-bs-toggle="tooltip" data-bs-placement="top"
                                     title="@lang('index.edit')"><i class="fa fa-edit tiny-icon"></i></a>
                                 <a href="#" class="delete button-danger"
