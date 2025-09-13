@@ -38,7 +38,7 @@
                     <div class="card-body p30">
                         <div class="m-auto b-r-5">
                             <div class="text-center pt-10 pb-10">
-                                <h3 class="color-000000 pt-20 pb-20">Partner Details</h3>
+                                <h3 class="color-000000 pt-20 pb-20">Partner I/O Details</h3>
                             </div>
                             <table>
                                 <tr>
