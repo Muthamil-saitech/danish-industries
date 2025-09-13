@@ -83,7 +83,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                             <td class="c_center">2</td>
                             <td>P002</td>
                             <td>Vinothini</td>
-                            <td>Elakkiya</td>
+                            {{-- <td>Elakkiya</td> --}}
                             <td>7569841032</td>
                             <td>vinothini@gmail.com</td>
                             <td title="">Koodal Nagar</td>
