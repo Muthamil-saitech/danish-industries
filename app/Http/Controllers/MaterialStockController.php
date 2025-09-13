@@ -184,6 +184,7 @@ class MaterialStockController extends Controller
         $material_stock->mat_type = $request->mat_type;
         $material_stock->stock_type = $request->stock_type;
         $material_stock->reference_no = $request->reference_no;
+        $material_stock->line_item_no = $request->line_item_no;
         $material_stock->old_mat_no = $request->old_mat_no;
         $material_stock->dc_no = $request->dc_no;
         $material_stock->heat_no = $request->heat_no;

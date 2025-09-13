@@ -39,16 +39,16 @@
                                         <table class="table table-striped">
                                             <thead class="b-r-3 bg-color-000000">
                                                 <tr>
-                                                    <th class="w-30 text-start">@lang('index.raw_material_name')<br>(@lang('index.code'))</th>
-                                                    <th class="w-15 text-start">Heat No</th>
+                                                    <th class="w-50 text-start">@lang('index.raw_material_name')<br>(@lang('index.code'))</th>
+                                                    <th class="w-20 text-start">Heat No</th>
                                                     <th class="w-30 text-start">@lang('index.challan_no')<br>(DC Date)</th>
                                                     <th class="w-30 text-start">@lang('index.doc_no')</th>
-                                                    <th class="w-15 text-start">@lang('index.stock_type')</th>
-                                                    <th class="w-15 text-start">@lang('index.po_no')</th>
-                                                    <th class="w-15 text-start">@lang('index.stock')</th>
-                                                    <th class="w-15 text-start">@lang('index.alter_level')</th>
-                                                    <th class="w-15 text-start">@lang('index.floating_stock')</th>
-                                                    <th class="w-15 text-start">@lang('index.mat_price')</th>
+                                                    <th class="w-20 text-start">@lang('index.stock_type')</th>
+                                                    <th class="w-20 text-start">@lang('index.po_no')</th>
+                                                    <th class="w-20 text-start">@lang('index.stock')</th>
+                                                    <th class="w-20 text-start">@lang('index.alter_level')</th>
+                                                    <th class="w-20 text-start">@lang('index.floating_stock')</th>
+                                                    <th class="w-20 text-start">@lang('index.mat_price')</th>
                                                     <th class="w-30 text-start">@lang('index.hsn_no')</th>
                                                     <th class="w-30 text-start">@lang('index.created_on')</th>
                                                 </tr>

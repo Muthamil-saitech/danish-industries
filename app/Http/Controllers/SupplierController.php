@@ -71,7 +71,7 @@ class SupplierController extends Controller
         request()->validate(
             [
                 'name' => 'required|max:50|regex:/^[\pL\s]+$/u',
-                'contact_person' => 'max:50|regex:/^[\pL\s]+$/u',
+                // 'contact_person' => 'max:50|regex:/^[\pL\s]+$/u',
                 'phone' => [
                     'required',
                     'max:50',
@@ -117,7 +117,7 @@ class SupplierController extends Controller
         $obj = new \App\Supplier;
         $obj->supplier_id = escape_output($request->get('supplier_id'));
         $obj->name = ucwords(escape_output($request->get('name')));
-        $obj->contact_person = ucwords(escape_output($request->get('contact_person')));
+        // $obj->contact_person = ucwords(escape_output($request->get('contact_person')));
         $obj->phone = escape_output($request->get('phone'));
         $obj->email = escape_output($request->get('email'));
         $obj->address = escape_output($request->get('address'));
@@ -136,7 +136,7 @@ class SupplierController extends Controller
             foreach ($_POST['scp_name'] as $row => $value) {
                 $scp_info = new \App\SupplierContactInfo();
                 $scp_info->supplier_id = $obj->id;
-                $scp_info->scp_name = uc_words(escape_output($_POST['scp_name'][$row] ?? null));
+                $scp_info->scp_name = ucwords(escape_output($_POST['scp_name'][$row] ?? null));
                 $scp_info->scp_department = escape_output($_POST['scp_department'][$row] ?? null);
                 $scp_info->scp_designation = escape_output($_POST['scp_designation'][$row] ?? null);
                 $scp_info->scp_phone = escape_output($_POST['scp_phone'][$row] ?? null);

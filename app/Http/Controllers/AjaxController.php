@@ -998,10 +998,19 @@ class AjaxController extends Controller
                     ->where('cod.order_status', 1)
                     ->where('tbl_customer_orders.customer_id', $customer_id)
                     ->where('tbl_customer_orders.del_status', 'Live')
-                    ->whereNotIn('tbl_customer_orders.id', function ($q) {
+                    ->whereNotIn('cod.id', function ($q) {
                         $q->select('customer_order_id')
                             ->from('tbl_manufactures')
                             ->where('del_status', 'Live');
+                    })
+                    ->whereNotExists(function ($q) use ($mat_id, $customer_id) {
+                        $q->selectRaw(1)
+                            ->from('tbl_material_stocks as ms')
+                            ->whereColumn('ms.reference_no', 'tbl_customer_orders.reference_no')
+                            ->whereColumn('ms.line_item_no', 'cod.line_item_no')
+                            ->where('ms.mat_id', $mat_id)
+                            ->where('ms.customer_id', $customer_id)
+                            ->where('ms.del_status', 'Live');
                     })
                     ->select(
                         'tbl_customer_orders.id as order_id',
@@ -1018,24 +1027,26 @@ class AjaxController extends Controller
                     $reference_no = $order->reference_no;
                     $line_item_no = $order->line_item_no;
                     $qty = CustomerOrderDetails::where('id', $order->codid)->where('raw_material_id', $mat_id)->where('del_status', 'Live')->pluck('raw_qty');
-                    $in_material_stock = MaterialStock::where('stock_type', 'customer')
+                    /* $in_material_stock = MaterialStock::where('stock_type', 'customer')
                         ->where('mat_id', $mat_id)
                         ->where('customer_id', $customer_id)
                         ->where('reference_no', $reference_no)
+                        ->where('line_item_no', $line_item_no)
                         ->where('del_status', 'Live')
-                        ->exists();
-                    // dd($in_material_stock);
+                        ->exists(); */
                     $in_adjust_logs = DB::table('tbl_stock_adjust_logs as logs')
                         ->join('tbl_material_stocks as ms', 'logs.mat_stock_id', '=', 'ms.id')
                         ->where('logs.stock_type', 'customer')
                         ->where('logs.reference_no', $reference_no)
+                        ->where('logs.line_item_no', $line_item_no)
                         ->where('logs.type', 'addition')
                         ->where('logs.del_status', 'Live')
                         ->where('ms.mat_id', $mat_id)
                         ->where('ms.customer_id', $customer_id)
                         ->where('ms.del_status', 'Live')
                         ->exists();
-                    if (!$in_material_stock && !$in_adjust_logs) {
+                    // dd($in_adjust_logs);
+                    if (!$in_adjust_logs) {
                         $html .= $reference_no;
                         $order_qty = $qty;
                     }

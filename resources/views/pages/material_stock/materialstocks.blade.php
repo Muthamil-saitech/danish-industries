@@ -182,7 +182,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                                 <td>{{ $value->float_stock }} {{ getRMUnitById($value->unit_id) }}</td>
                                 <td>{{ getUserName($value->added_by) }}</td>
                                 <td>
-                                    <a class="button-info" id="stockAdjBtn" data-bs-toggle="modal" data-id="{{ $value->id }}" data-mat_id="{{ $value->mat_id }}" data-customer_id="{{ $value->customer_id }}" data-material="{{ getRMName($value->mat_id) }}" data-bs-target="#stockAdjModal" title="Stock Adjustment"><i class="fa fa-pencil"></i></a>
+                                    <a class="button-info" id="stockAdjBtn" data-bs-toggle="modal" data-id="{{ $value->id }}" data-mat_id="{{ $value->mat_id }}" data-ref_no="{{ $value->reference_no }}"  data-line_item_no="{{ $value->line_item_no }}" data-dc_no="{{ $value->dc_no }}" data-heat_no="{{ $value->heat_no }}" data-mat_doc_no="{{ $value->mat_doc_no }}"  data-customer_id="{{ $value->customer_id }}" data-material_price="{{ $value->material_price }}" data-hsn_no="{{ $value->hsn_no }}" data-material="{{ getRMName($value->mat_id) }}" data-bs-target="#stockAdjModal" title="Stock Adjustment"><i class="fa fa-pencil"></i></a>
                                     <a href="{{ url('material_stocks') }}/{{ encrypt_decrypt($value->id, 'encrypt') }}/stock_adjustments" class="button-info" data-bs-toggle="tooltip" data-bs-placement="top" title="View Stock Adjustments"><i class="fa fa-list"></i></a>
                                     @if (routePermission('material_stocks.edit') && !$value->used_in_manufacture)
                                     <a href="{{ url('material_stocks') }}/{{ encrypt_decrypt($value->id, 'encrypt') }}/edit"
@@ -290,9 +290,15 @@ if (isset($setting->base_color) && $setting->base_color) {
                     <form class="form-horizontal">
                         <div class="row">
                             <div class="col-sm-12 col-md-12 mb-2" id="selected_material">
-
                             </div>
-                            <div class="col-sm-12 col-md-6 mb-2">
+                            <div class="col-sm-12 mb-2 col-md-6">
+                                <div class="form-group">
+                                    <label>@lang('index.po_no') <span class="required_star">*</span></label>
+                                    <input type="text" class="form-control @error('reference_no_customer') is-invalid @enderror" name="reference_no_customer" id="inp_ref_no" placeholder="@lang('index.po_no')" readonly>
+                                    <p class="text-danger reference_no_err"></p>
+                                </div>
+                            </div>
+                            {{-- <div class="col-sm-12 col-md-6 mb-2">
                                 <div class="form-group">
                                     <label class="control-label">@lang('index.stock_type')<span class="ir_color_red">*</span></label>
                                     <select class="form-control @error('title') is-invalid @enderror select2"
@@ -303,8 +309,8 @@ if (isset($setting->base_color) && $setting->base_color) {
                                     </select>
                                     <p class="text-danger stock_type_err"></p>
                                 </div>
-                            </div>
-                            <div class="col-sm-12 col-md-6 mb-2 d-none" id="select_ref_no">
+                            </div> --}}
+                            {{-- <div class="col-sm-12 col-md-6 mb-2 d-none" id="select_ref_no">
                                 <div class="form-group">
                                     <label class="control-label">@lang('index.po_no')<span class="ir_color_red">*</span></label>
                                     <select class="form-control @error('reference_no_purchase') is-invalid @enderror select2"
@@ -320,8 +326,8 @@ if (isset($setting->base_color) && $setting->base_color) {
                                     <input type="text" class="form-control @error('reference_no_customer') is-invalid @enderror" name="reference_no_customer" id="inp_ref_no" placeholder="@lang('index.po_no')" readonly>
                                     <p class="text-danger reference_no_err"></p>
                                 </div>
-                            </div>
-                            <div class="col-sm-12 col-md-6 mb-2">
+                            </div> --}}
+                            {{-- <div class="col-sm-12 col-md-6 mb-2">
                                 <div class="form-group">
                                     <label class="control-label">@lang('index.adj_type')<span class="ir_color_red">*</span></label>
                                     <input type="hidden" name="mat_stock_id" id="mat_stock_id">
@@ -336,7 +342,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                                     </select>
                                     <p class="text-danger material_id_err"></p>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="col-sm-12 col-md-6 mb-2">
                                 <div class="form-group">
                                     <label class="control-label">@lang('index.quantity')<span class="ir_color_red"> *</span></label>
@@ -349,14 +355,14 @@ if (isset($setting->base_color) && $setting->base_color) {
                             <div class="col-sm-12 mb-2 col-md-6">
                                 <div class="form-group">
                                     <label>@lang('index.challan_no') <span class="required_star">*</span></label>
-                                    <input type="text" name="dc_no" class="form-control" id="dc_no" placeholder="@lang('index.challan_no')">
+                                    <input type="text" name="dc_no" class="form-control" id="dc_no" placeholder="@lang('index.challan_no')" readonly>
                                     <p class="text-danger dc_no_err"></p>
                                 </div>
                             </div>
                             <div class="col-sm-12 mb-2 col-md-6">
                                 <div class="form-group">
                                     <label>Heat No <span class="required_star">*</span></label>
-                                    <input type="text" name="heat_no" class="form-control" id="heat_no" placeholder="Heat No">
+                                    <input type="text" name="heat_no" class="form-control" id="heat_no" placeholder="Heat No" readonly>
                                     <p class="text-danger heat_no_err"></p>
                                 </div>
                             </div>
@@ -374,7 +380,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                             <div class="col-sm-12 mb-2 col-md-6">
                                 <div class="form-group">
                                     <label>@lang('index.doc_no')</label>
-                                    <input type="text" class="form-control @error('mat_doc_no') is-invalid @enderror" name="mat_doc_no" id="mat_doc_no" placeholder="@lang('index.doc_no')">
+                                    <input type="text" class="form-control @error('mat_doc_no') is-invalid @enderror" name="mat_doc_no" id="mat_doc_no" placeholder="@lang('index.doc_no')" readonly>
                                     <p class="text-danger mat_doc_no_err"></p>
                                 </div>
                             </div>
@@ -387,13 +393,13 @@ if (isset($setting->base_color) && $setting->base_color) {
                             <div class="col-sm-12 mb-2 col-md-6">
                                 <div class="form-group">
                                     <label>@lang('index.mat_price') </label>
-                                    <input type="text" class="form-control @error('material_price') is-invalid @enderror" name="material_price" id="material_price" value="{{ isset($obj->material_price) && $obj->material_price ? $obj->material_price : old('material_price') }}" placeholder="@lang('index.mat_price')">
+                                    <input type="text" class="form-control @error('material_price') is-invalid @enderror" name="material_price" id="material_price" value="{{ isset($obj->material_price) && $obj->material_price ? $obj->material_price : old('material_price') }}" placeholder="@lang('index.mat_price')" readonly>
                                 </div>
                             </div>
                             <div class="col-sm-12 mb-2 col-md-6">
                                 <div class="form-group">
                                     <label>@lang('index.hsn_no') </label>
-                                    <input type="text" class="form-control @error('hsn_no') is-invalid @enderror" name="hsn_no" id="hsn_no" value="{{ isset($obj->hsn_no) && $obj->hsn_no ? $obj->hsn_no : old('hsn_no') }}" placeholder="@lang('index.hsn_no')">
+                                    <input type="text" class="form-control @error('hsn_no') is-invalid @enderror" name="hsn_no" id="hsn_no" value="{{ isset($obj->hsn_no) && $obj->hsn_no ? $obj->hsn_no : old('hsn_no') }}" placeholder="@lang('index.hsn_no')" readonly>
                                 </div>
                             </div>
                         </div>
@@ -513,15 +519,34 @@ if (isset($setting->base_color) && $setting->base_color) {
         $('#mat_stock_id').val(mat_stock_id);
         var mat_id = $(this).data('mat_id');
         $('#stk_mat_id').val(mat_id);
+        var ref_no = $(this).data('ref_no');
+        var line_item_no = $(this).data('line_item_no');
+        let reference_no = '';
+        if(ref_no!='' && line_item_no!='') {
+            reference_no = ref_no+'/'+line_item_no;
+        } else {
+            reference_no = '';
+        }
+        $('#inp_ref_no').val(reference_no);
         var customer_id = $(this).data('customer_id');
         $('#customer_id').val(customer_id);
+        var dc_no = $(this).data('dc_no');
+        $('#dc_no').val(dc_no);
+        var heat_no = $(this).data('heat_no');
+        $('#heat_no').val(heat_no);
+        var mat_doc_no = $(this).data('mat_doc_no');
+        $('#mat_doc_no').val(mat_doc_no);
+        var material_price = $(this).data('material_price');
+        $('#material_price').val(material_price);
+        var hsn_no = $(this).data('hsn_no');
+        $('#hsn_no').val(hsn_no);
         var material = $(this).data('material');
         $('#selected_material').html('<p>' + material + '</p>');
         $('#stock_type').val("").trigger('change.select2');
-        $('#reference_no').val("").trigger('change.select2');
-        $("#select_ref_no").addClass("d-none");
-        $("#inp_ref_no_div").addClass("d-none");
-        $('#inp_ref_no').val("");
+        // $('#reference_no').val("").trigger('change.select2');
+        // $("#select_ref_no").addClass("d-none");
+        // $("#inp_ref_no_div").addClass("d-none");
+        // $('#inp_ref_no').val("");
         $('#stock_qty').val("");
         $('#adj_type').val("").trigger('change.select2');
         $(".quantity_error").html("");
