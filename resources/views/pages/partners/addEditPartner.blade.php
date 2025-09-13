@@ -26,13 +26,13 @@
                             <div class="form-group mb-3">
                                 <label>@lang('index.partner_name') <span class="required_star">*</span></label>
                                 <input type="text" name="name" id="name"
-                                    class="form-control @error('name') is-invalid @enderror" placeholder="Name" value="">
+                                    class="form-control @error('name') is-invalid @enderror" placeholder="@lang('index.partner_name')" value="">
                                 @error('name')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-6 col-lg-4">
+                        {{-- <div class="col-md-6 col-lg-4">
                             <div class="form-group mb-3">
                                 <label>@lang('index.contact_person')</label>
                                 <input type="text" name="contact_person" id="contact_person"
@@ -42,7 +42,7 @@
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-md-6 col-lg-4">
                             <div class="form-group mb-3">
                                 <label>@lang('index.phone') <span class="required_star">*</span></label>

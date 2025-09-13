@@ -34,7 +34,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                             <th class="width_1_p">@lang('index.sn')</th>
                             <th class="width_1_p">@lang('index.partner_code')</th>
                             <th class="width_13_p">@lang('index.partner_name')</th>
-                            <th class="width_10_p">@lang('index.contact_person')</th>
+                            {{-- <th class="width_10_p">@lang('index.contact_person')</th> --}}
                             <th class="width_10_p">@lang('index.phone')</th>
                             <th class="width_10_p">@lang('index.email')</th>
                             <th class="width_10_p">@lang('index.address')</th>
@@ -50,12 +50,12 @@ if (isset($setting->base_color) && $setting->base_color) {
                         <tr>
                             <td class="c_center">1</td>
                             <td>P001</td>
-                            <td>Riyan</td>
-                            <td>Elakkiya</td>
+                            <td>Kishore</td>
+                            {{-- <td>Elakkiya</td> --}}
                             <td>7458961231</td>
-                            <td>riyan@gmail.com</td>
-                            <td title="">Jaihindpuram</td>
-                            <td>N/A</td>
+                            <td>kishore@gmail.com</td>
+                            <td title="">41/A, Jaihindpuram, Madurai.</td>
+                            <td>33AAACT7409H1ZH</td>
                             <td>N/A</td>
                             <td title="">Madurai</td>
                             <td>Admin</td>
