@@ -32,8 +32,8 @@
                                 <label>@lang('index.po_no') <span class="required_star">*</span></label>
                                 <select name="po_no" id="po_no" class="form-control select2">
                                     <option value="">@lang('index.select')</option>
-                                    <option value="P0012">P0012</option>
-                                    <option value="P0013">P0013</option>
+                                    <option value="6500149072">6500149072</option>
+                                    <option value="6500150191">6500150191</option>
                                 </select>
                                 <div class="error_alert text-danger">
                                     {{ $errors->first('po_no') }}
@@ -44,13 +44,9 @@
                         <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
                                 <label>@lang('index.customer') <span class="required_star">*</span></label>
-                                <select name="" id="customer_id" class="form-control select2">
-                                    <option value="">@lang('index.select')</option>
-                                    <option value="Shalini(CUS001)">Shalini(CUS001)</option>
-                                    <option value="Malini(CUS001)">Malini(CUS001)</option>
-                                </select>
+                                <input type="text" name="customer_name[]" class="form-control" placeholder="Contact Person Name" value="Malini(CUS001)" readonly>
                                 <div class="error_alert text-danger">
-                                    {{ $errors->first('po_no') }}
+                                    {{ $errors->first('customer_name') }}
                                 </div>
                                 <div class="text-danger d-none"></div>
                             </div>
@@ -58,9 +54,9 @@
                         <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
                                 <label>@lang('index.date') <span class="required_star">*</span></label>
-                                {!! Form::text('po_date', old('po_date', date('d-m-Y')), [
+                                {!! Form::text('date', old('date', date('d-m-Y')), [
                                 'class' => 'form-control',
-                                'id' => 'date',
+                                'id' => 'io_date',
                                 'placeholder' => 'Date',
                                 ]) !!}
                                 @if ($errors->has('date'))
@@ -75,12 +71,6 @@
                     <div class="row">
                         <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
-                               <label>Contact Person Name </label>
-                                <input type="text" name="cp_name[]" class="form-control" placeholder="Contact Person Name" value="Nithin">
-                            </div>
-                        </div>
-                        <div class="col-sm-12 mb-2 col-md-4">
-                            <div class="form-group">
                                <label>Phone Number </label>
                                 <input type="text" name="cp_phn_no[]" class="form-control" placeholder="Phone Number" value="7419632580">
                             </div>
@@ -89,6 +79,12 @@
                             <div class="form-group">
                                <label>Email </label>
                                 <input type="text" name="cp_email[]" class="form-control" placeholder="Email" value="nithin@gmail.com">
+                            </div>
+                        </div>
+                        <div class="col-sm-12 mb-2 col-md-4">
+                            <div class="form-group">
+                               <label>Delivery Address </label>
+                                <textarea name="d_address[]" id="d_address" class="form-control" rows="3">41/A, Anna Nagar, Madurai</textarea>
                             </div>
                         </div>
                     </div>
@@ -139,7 +135,6 @@
                         </div>
                     </div>
                 </div>
-                <input type="hidden" id="default_currency" value="{{ $setting->currency }}" />
                 {!! Form::close() !!}
             </div>
         </div>

@@ -33,6 +33,11 @@ $("#date").datepicker({
     autoclose: true,
     todayHighlight: true,
 });
+$("#inward_date").datepicker({
+  format: "dd-mm-yyyy",
+  autoclose: true,
+  todayHighlight: true,
+});
 let currentDate = new Date();
 let year = currentDate.getFullYear() - 18;
 let month = currentDate.getMonth();

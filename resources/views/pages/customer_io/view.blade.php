@@ -25,8 +25,8 @@
                     <h2 class="top-left-header">{{ isset($title) && $title ? $title : '' }}</h2>
                 </div>
                 <div class="col-md-6">
-                        <a class="btn bg-second-btn" href="{{ route('customer_io.index') }}"><iconify-icon
-                                icon="solar:round-arrow-left-broken"></iconify-icon>@lang('index.back')</a>
+                        <a class="btn bg-second-btn" href="{{ route('customer_io.index') }}">
+                            <iconify-icon icon="solar:round-arrow-left-broken"></iconify-icon>@lang('index.back')</a>
                 </div>
             </div>
         </section>
@@ -45,7 +45,7 @@
                                     <td class="w-50">
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.customer_code'):</strong></span>
-                                            CUS012
+                                            CUS001
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.customer_type'):</strong></span>
@@ -53,26 +53,22 @@
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.customer_name'):</strong></span>
-                                            Shalini
+                                            Malini
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.phone'):</strong></span>
-                                            9856501235
+                                            7419632580
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.email'):</strong></span>
-                                            shalini@gmail.com
+                                            malini@gmail.com
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.address'):</strong></span>
-                                            J.K.Nagar
-                                        </p>
-                                        <p class="pb-7 rgb-71">
-                                            <span class=""><strong>@lang('index.contact_person'):</strong></span>
-                                            Kishore
+                                            41/A, Anna Nagar, Madurai
                                         </p>
                                     </td>
-                                    <td class="w-50 text-right">
+                                    <td class="w-50" style="float: inline-end">
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.gst_no'):</strong></span>33AAACT7409H1ZH
                                         </p>
@@ -92,7 +88,10 @@
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.note'):</strong></span>
-                                            
+                                        </p>
+                                        <p class="pb-7 rgb-71">
+                                            <span class=""><strong>@lang('index.status'):</strong></span>
+                                            <span class="badge bg-secondary">Inward</span>
                                         </p>
                                     </td>
                                 </tr>
@@ -109,19 +108,26 @@
                                         <th>@lang('index.category')</th>
                                         <th>@lang('index.instrument_name') (Code)</th>
                                         <th>@lang('index.quantity')</th>
-                                        <th>@lang('index.status')</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>1</td>
-                                        <td>P001DSF/1</td>
+                                        <td>6500150191</td>
                                         <td>12-09-2025</td>
                                         <td>Gauges/Checking Instruments	</td>
-                                        <td>Vernier Caliper</td>
-                                        <td>Bore Gauge</td>
+                                        <td>Plug Gauge</td>
+                                        <td>Micrometer Screw Gauge(INS001)</td>
                                         <td>5</td>
-                                        <td><span class="badge bg-secondary">Inward</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>6500150191</td>
+                                        <td>12-09-2025</td>
+                                        <td>Measuring Instruments</td>
+                                        <td>Vernier Caliper</td>
+                                        <td>Digital Multimeter(INS002)</td>
+                                        <td>5</td>
                                     </tr>
                                 </tbody>
                             </table>

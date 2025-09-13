@@ -34,8 +34,9 @@ if (isset($setting->base_color) && $setting->base_color) {
                             <th>@lang('index.date')</th>
                             <th>@lang('index.type')</th>
                             <th>@lang('index.category')</th>
-                            <th>@lang('index.instrument_name')</th>
+                            <th>@lang('index.instrument_name')(Code)</th>
                             <th>@lang('index.quantity')</th>
+                            <th>@lang('index.status')</th>
                             <th>@lang('index.actions')</th>
                         </tr>
                     </thead>
@@ -47,8 +48,11 @@ if (isset($setting->base_color) && $setting->base_color) {
                             <td>12-09-2025</td>
                             <td>Gauges/Checking Instruments</td>
                             <td>Plug Gauge</td>
-                            <td>Material</td>
+                            <td>Material(INS001)</td>
                             <td>5</td>
+                            <td>
+                                <span class="badge bg-secondary">Inward</span>
+                            </td>
                             <td>
                                 <a href="#" class="button-warning" data-bs-toggle="modal" data-bs-target="#calendarModal" title="@lang('index.view_calendar')"><i class="fa fa-calendar tiny-icon"></i></a>
                                 <a href="{{ url('partner_io/view') }}"
@@ -76,10 +80,12 @@ if (isset($setting->base_color) && $setting->base_color) {
                             <td>12-09-2025</td>
                             <td>Gauges/Checking Instruments</td>
                             <td>Vernier Caliper</td>
-                            <td>Bore Gauge</td>
+                            <td>Bore Gauge(INS002)</td>
                             <td>5</td>
                             <td>
-                                <a href="#" class="button-warning" data-bs-toggle="modal" data-bs-target="#calendarModal" title="@lang('index.view_calendar')"><i class="fa fa-calendar tiny-icon"></i></a>
+                                <span class="badge bg-success">Outward</span>
+                            </td>
+                            <td>
                                  <a href="{{ url('partner_io/view') }}"
                                     class="button-info" data-bs-toggle="tooltip" data-bs-placement="top"
                                     title="@lang('index.view_partner')"><i class="fa fa-eye tiny-icon"></i></a>

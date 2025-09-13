@@ -39,9 +39,9 @@ if (isset($setting->base_color) && $setting->base_color) {
                     <tbody>
                         <tr>
                             <td>1</td>
-                            <td>P001DSF/1</td>
-                            <td>Malini</td>
-                            <td>12-09-2025</td>
+                            <td>6500149072</td>
+                            <td>Malini(CUS001)</td>
+                            <td>13-09-2025</td>
                             <td>
                                 <span class="badge bg-secondary">Inward</span>
                             </td>
@@ -67,8 +67,8 @@ if (isset($setting->base_color) && $setting->base_color) {
                         </tr>
                         <tr>
                             <td>2</td>
-                            <td>P001DSF/1</td>
-                            <td>Akash</td>
+                            <td>6500150191</td>
+                            <td>Akash(CUS002)</td>
                             <td>11-09-2025</td>
                             <td>
                                <span class="badge bg-success">Outward</span>
@@ -115,24 +115,24 @@ if (isset($setting->base_color) && $setting->base_color) {
                     'enctype' => 'multipart/form-data',
                     ]) !!}
                     @csrf
-                    <div class="row">
-                        <div class="col-sm-6 mb-3">
+                    <div class="row d-flex justify-content-center align-items-center">
+                        <div class="col-sm-10 mb-3">
                             <div class="form-group">
                                 <label>@lang('index.date') <span class="required_star">*</span></label>
-                                {!! Form::text('po_date', old('po_date', date('d-m-Y')), [
-                                'class' => 'form-control',
-                                'id' => 'date',
-                                'placeholder' => 'Date',
+                                {!! Form::text('inward_date', null, [
+                                    'class' => 'form-control',
+                                    'id' => 'inward_date',
+                                    'placeholder' => 'Date',
                                 ]) !!}
-                                @if ($errors->has('date'))
+                                @if ($errors->has('inward_date'))
                                 <div class="error_alert text-danger">
-                                    {{ $errors->first('date') }}
+                                    {{ $errors->first('inward_date') }}
                                 </div>
                                 @endif
                                 <div class="text-danger d-none"></div>
                             </div>
                         </div>
-                        <div class="col-sm-6 mb-3">
+                        <div class="col-sm-10 mb-3">
                             <div class="form-group">
                                 <label>@lang('index.notes') </label>
                                 <textarea name="notes" class="form-control" placeholder="@lang('index.notes')"></textarea>
