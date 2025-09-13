@@ -63,12 +63,8 @@
                                             <span class=""><strong>@lang('index.address'):</strong></span>
                                             Anna nagar
                                         </p>
-                                         <p class="pb-7 rgb-71">
-                                            <span class=""><strong>@lang('index.contact_person'):</strong></span>
-                                            Prakash
-                                        </p>
                                     </td>
-                                    <td class="w-50 text-right">
+                                    <td class="w-50" style="float: inline-end">
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.gst_no'):</strong></span>
                                             33AAACT7409H1ZH

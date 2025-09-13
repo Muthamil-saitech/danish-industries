@@ -64,7 +64,7 @@
                                             malini@gmail.com
                                         </p>
                                         <p class="pb-7 rgb-71">
-                                            <span class=""><strong>@lang('index.address'):</strong></span>
+                                            <span class=""><strong>@lang('index.delivery_address'):</strong></span>
                                             41/A, Anna Nagar, Madurai
                                         </p>
                                     </td>
@@ -80,7 +80,7 @@
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.created_on'):</strong></span>
-                                            12-09-2025
+                                            13-09-2025
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.created_by'):</strong></span>
