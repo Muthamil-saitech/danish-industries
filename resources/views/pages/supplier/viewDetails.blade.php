@@ -65,10 +65,10 @@
                                             <span class=""><strong>@lang('index.address'):</strong></span>
                                             {{ $obj->address }}
                                         </p>
-                                        <p class="pb-7 rgb-71">
+                                        {{-- <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.contact_person'):</strong></span>
                                             {{ $obj->contact_person }}
-                                        </p>
+                                        </p> --}}
                                     </td>
                                     <td class="w-50 text-right">
                                         <p class="pb-7 rgb-71">

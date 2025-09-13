@@ -171,7 +171,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-sm-12 mb-2 col-md-4 {{ (isset($obj) && $obj->mat_type == 1) || old('mat_type') == 1 ? '' : 'd-none' }}" id="cust_div">
+                        <div class="col-sm-12 mb-2 col-md-4 {{ (isset($obj) && $obj->owner_type == 2) || old('owner_type') == 2 ? '' : 'd-none' }}" id="cust_div">
                             <div class="form-group">
                                 <label>@lang('index.customer') </label>
                                 <select class="form-control @error('mat_cat_id') is-invalid @enderror select2" name="customer_id" id="customer_id">

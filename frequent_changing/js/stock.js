@@ -209,7 +209,7 @@
             $("#customer_id").val("").change();
         } else {
             $("#cust_div").addClass('d-none');
-            $("#customer_id").val("");
+            $("#customer_id").val(null);
         }
     });
     $(document).on("change", "#stock_type", function (e) {
@@ -281,12 +281,20 @@
         } else if (stock_type === "customer") {
             reference_no = $("#inp_ref_no").val();
         }
-
+        let owner_type = $("#owner_type").val();
+        let customer_id = null
+        if (owner_type === "1") {
+            customer_id = null;
+        } else if (owner_type === "2") {
+            customer_id = $('#customer_id').val();
+        }
         // Set final reference_no in hidden field
         $("#reference_no_hidden").val(reference_no);
          
         let mat_type = $("#mat_type").val();
-        let customer_id = $('#customer_id').val();
+        // let customer_id = $('#customer_id').val();
+        console.log("customer_id",customer_id);
+        
         let current_stock = $('#current_stock').val();
         if(mat_cat_id == "") {
             status = false;
@@ -344,7 +352,7 @@
             $("#mat_type").closest("div").find(".text-danger").addClass("d-none");
         }
 
-        if(mat_type == "1" && customer_id == "") {
+        if(owner_type == "2" && customer_id == null) {
             status = false;
             showErrorMessage("customer_id", "The Customer field is required, if the Material Type is Material");
         }else{

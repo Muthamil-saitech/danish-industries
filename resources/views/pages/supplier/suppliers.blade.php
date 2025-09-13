@@ -34,7 +34,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                             <th class="width_1_p">@lang('index.sn')</th>
                             <th class="width_1_p">@lang('index.supplier_id')</th>
                             <th class="width_13_p">@lang('index.supplier_name')</th>
-                            <th class="width_10_p">@lang('index.contact_person')</th>
+                            {{-- <th class="width_10_p">@lang('index.contact_person')</th> --}}
                             <th class="width_10_p">@lang('index.phone')</th>
                             <th class="width_10_p">@lang('index.email')</th>
                             <th class="width_10_p">@lang('index.address')</th>
@@ -57,7 +57,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                             <td class="c_center">{{ $i++ }}</td>
                             <td>{{ $value->supplier_id }}</td>
                             <td>{{ $value->name }}</td>
-                            <td>{{ safe($value->contact_person) }}</td>
+                            {{-- <td>{{ safe($value->contact_person) }}</td> --}}
                             <td>{{ safe($value->phone)  }}</td>
                             <td>{{ safe($value->email)  }}</td>
                             <td title="{{ $value->address }}">{{ substr_text(safe($value->address),30)  }}</td>

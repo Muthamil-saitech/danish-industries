@@ -132,7 +132,7 @@ class MaterialStockController extends Controller
         $obj->reference_no = $request->final_reference_no;
         $obj->line_item_no = $request->line_item_no;
         $obj->ins_type = null;
-        $obj->customer_id = ($request->mat_type == '1') ? $request->customer_id : ($request->customer_id ?: null);
+        $obj->customer_id = ($request->owner_type == '2') ? $request->customer_id : ($request->customer_id ?: null);
         $obj->current_stock = $request->current_stock ? $request->current_stock : 0; //stock
         $obj->close_qty = $request->close_qty ? $request->close_qty : 0;
         $obj->float_stock = 0;
@@ -192,7 +192,7 @@ class MaterialStockController extends Controller
         $material_stock->dc_date = date('Y-m-d', strtotime($request->date));
         $material_stock->mat_doc_no = $request->mat_doc_no;
         $material_stock->ins_type = null;
-        $material_stock->customer_id = ($request->mat_type == '1') ? $request->customer_id : ($request->customer_id ?: null);
+        $material_stock->customer_id = ($request->owner_type == '2') ? $request->customer_id : ($request->customer_id ?: null);
         $material_stock->unit_id = $request->unit_id;
         $material_stock->current_stock = $request->current_stock ? $request->current_stock : 0;
         $material_stock->close_qty = $request->close_qty ? $request->close_qty : 0;
