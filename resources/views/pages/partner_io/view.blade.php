@@ -122,7 +122,7 @@
                                         <td>Plug Gauge</td>
                                         <td>Micrometer Screw Gauge (INS001)</td>
                                         <td>5</td>
-                                        <td>-</td>
+                                        <td>Ok</td>
                                         <td><span class="badge bg-secondary">Inward</span></td>
                                     </tr>
                                 </tbody>
