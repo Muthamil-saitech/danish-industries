@@ -32,8 +32,8 @@
                                 <label>@lang('index.po_no') <span class="required_star">*</span></label>
                                 <select name="po_no" id="po_no" class="form-control select2">
                                     <option value="">@lang('index.select')</option>
-                                    <option value="6500149072">6500149072</option>
-                                    <option value="6500150191">6500150191</option>
+                                    <option value="6500149072/1">6500149072/1</option>
+                                    <option value="6500150191/2">6500150191/2</option>
                                 </select>
                                 <div class="error_alert text-danger">
                                     {{ $errors->first('po_no') }}

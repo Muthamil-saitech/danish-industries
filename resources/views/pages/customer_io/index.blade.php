@@ -39,7 +39,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                     <tbody>
                         <tr>
                             <td>1</td>
-                            <td>6500149072</td>
+                            <td>6500149072/1</td>
                             <td>Malini(CUS001)</td>
                             <td>13-09-2025</td>
                             <td>
@@ -67,7 +67,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                         </tr>
                         <tr>
                             <td>2</td>
-                            <td>6500150191</td>
+                            <td>6500150191/2</td>
                             <td>Akash(CUS002)</td>
                             <td>11-09-2025</td>
                             <td>

@@ -113,8 +113,8 @@
                                 <tbody>
                                     <tr>
                                         <td>1</td>
-                                        <td>6500150191</td>
-                                        <td>12-09-2025</td>
+                                        <td>6500150191/1</td>
+                                        <td>13-09-2025</td>
                                         <td>Gauges/Checking Instruments	</td>
                                         <td>Plug Gauge</td>
                                         <td>Micrometer Screw Gauge(INS001)</td>
@@ -122,8 +122,8 @@
                                     </tr>
                                     <tr>
                                         <td>2</td>
-                                        <td>6500150191</td>
-                                        <td>12-09-2025</td>
+                                        <td>6500150191/1</td>
+                                        <td>13-09-2025</td>
                                         <td>Measuring Instruments</td>
                                         <td>Vernier Caliper</td>
                                         <td>Digital Multimeter(INS002)</td>
