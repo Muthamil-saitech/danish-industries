@@ -17,7 +17,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                 <input type="hidden" class="datatable_name" data-filter="yes" data-title="{{ isset($title) && $title ? $title : '' }}" data-id_name="datatable">
             </div>
             <div class="col-md-6 text-end">
-                <h5 class="mb-0">Total Customer IO: 2</h5>
+                <h5 class="mb-0">Total Customer I/O: 2</h5>
             </div>
         </div>
     </section>
