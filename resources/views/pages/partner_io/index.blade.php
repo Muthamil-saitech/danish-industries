@@ -30,7 +30,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                         <tr>
                             <th>@lang('index.sn')</th>
                             <th>@lang('index.reference_no')</th>
-                            <th>@lang('index.partners')</th>
+                            <th>@lang('index.partners')(Code)</th>
                             <th>@lang('index.date')</th>
                             <th>@lang('index.type')</th>
                             <th>@lang('index.category')</th>
@@ -57,7 +57,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                                 <a href="#" class="button-warning" data-bs-toggle="modal" data-bs-target="#calendarModal" title="@lang('index.view_calendar')"><i class="fa fa-calendar tiny-icon"></i></a>
                                 <a href="{{ url('partner_io/view') }}"
                                     class="button-info" data-bs-toggle="tooltip" data-bs-placement="top"
-                                    title="@lang('index.view_partner')"><i class="fa fa-eye tiny-icon"></i></a>
+                                    title="@lang('index.view_details')"><i class="fa fa-eye tiny-icon"></i></a>
                                 <a href="{{ url('partner_io/create') }}"
                                     class="button-success" data-bs-toggle="tooltip" data-bs-placement="top"
                                     title="@lang('index.edit')"><i class="fa fa-edit tiny-icon"></i></a>
@@ -88,7 +88,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                             <td>
                                  <a href="{{ url('partner_io/view') }}"
                                     class="button-info" data-bs-toggle="tooltip" data-bs-placement="top"
-                                    title="@lang('index.view_partner')"><i class="fa fa-eye tiny-icon"></i></a>
+                                    title="@lang('index.view_details')"><i class="fa fa-eye tiny-icon"></i></a>
                                 <a href="{{ url('partner_io/create') }}"
                                     class="button-success" data-bs-toggle="tooltip" data-bs-placement="top"
                                     title="@lang('index.edit')"><i class="fa fa-edit tiny-icon"></i></a>
@@ -125,13 +125,13 @@ if (isset($setting->base_color) && $setting->base_color) {
                     'enctype' => 'multipart/form-data',
                     ]) !!}
                     @csrf
-                    <div class="row">
-                        <div class="col-sm-6 mb-3">
+                    <div class="row d-flex justify-content-center align-items-center">
+                        <div class="col-sm-10 mb-3">
                             <div class="form-group">
                                 <label>@lang('index.date') <span class="required_star">*</span></label>
                                 {!! Form::text('io_date', old('io_date', date('d-m-Y')), [
                                 'class' => 'form-control',
-                                'id' => 'date',
+                                'id' => 'inward_date',
                                 'placeholder' => 'Date',
                                 ]) !!}
                                 @if ($errors->has('date'))
@@ -142,7 +142,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                                 <div class="text-danger d-none"></div>
                             </div>
                         </div>
-                        <div class="col-sm-6 mb-3">
+                        <div class="col-sm-10 mb-3">
                             <div class="form-group">
                                 <label>@lang('index.notes') </label>
                                 <textarea name="notes" class="form-control" placeholder="@lang('index.notes')"></textarea>

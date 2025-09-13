@@ -95,7 +95,14 @@
                                     </td>
                                 </tr>
                             </table>
-                            <div class="text-center pt-10 pb-10">
+                            <div class="pt-10 pb-10">
+                                <div class="text-left">
+                                    <h3 class="pt-20 pb-20">Documents</h3>
+                                    <div class="d-flex flex-wrap gap-3">
+                                        <img src="{{ url('uploads/drawer/1749707112_istockphoto-2114257458-612x612.jpg') }}" alt="Document 1" width="100" class="img-thumbnail rounded">
+                                        <img src="{{ url('uploads/drawer/1749707144_10578248670642b.jpg') }}" alt="Document 2" width="100" class="img-thumbnail rounded">
+                                    </div>
+                                </div>
                             </div>
                             <table>
                                 <thead>
@@ -107,6 +114,7 @@
                                         <th>@lang('index.category')</th>
                                         <th>@lang('index.instrument_name') (Code)</th>
                                         <th>@lang('index.quantity')</th>
+                                        <th>@lang('index.remarks')</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -118,6 +126,7 @@
                                         <td>Plug Gauge</td>
                                         <td>Micrometer Screw Gauge(INS001)</td>
                                         <td>5</td>
+                                        <td>Ok</td>
                                     </tr>
                                     <tr>
                                         <td>2</td>
@@ -127,6 +136,7 @@
                                         <td>Vernier Caliper</td>
                                         <td>Digital Multimeter(INS002)</td>
                                         <td>5</td>
+                                        <td>Ok</td>
                                     </tr>
                                 </tbody>
                             </table>

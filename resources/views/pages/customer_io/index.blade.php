@@ -30,7 +30,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                         <tr>
                             <th>@lang('index.sn')</th>
                             <th>@lang('index.po_no')</th>
-                            <th>@lang('index.customer')</th>
+                            <th>@lang('index.customer')(Code)</th>
                             <th>@lang('index.date')</th>
                             <th>@lang('index.status')</th>
                             <th>@lang('index.actions')</th>
@@ -49,7 +49,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                                 <a href="#" class="button-warning" data-bs-toggle="modal" data-bs-target="#calendarModal" title="@lang('index.view_calendar')"><i class="fa fa-calendar tiny-icon"></i></a>
                                 <a href="{{ url('customer_io/view') }}"
                                     class="button-info" data-bs-toggle="tooltip" data-bs-placement="top"
-                                    title="@lang('index.view_customer')"><i class="fa fa-eye tiny-icon"></i></a>
+                                    title="@lang('index.view_details')"><i class="fa fa-eye tiny-icon"></i></a>
                                 <a href="{{ url('customer_io/create') }}"
                                     class="button-success" data-bs-toggle="tooltip" data-bs-placement="top"
                                     title="@lang('index.edit')"><i class="fa fa-edit tiny-icon"></i></a>
@@ -76,7 +76,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                             <td>
                                 <a href="{{ url('customer_io/view') }}"
                                     class="button-info" data-bs-toggle="tooltip" data-bs-placement="top"
-                                    title="@lang('index.view_customer')"><i class="fa fa-eye tiny-icon"></i></a>
+                                    title="@lang('index.view_details')"><i class="fa fa-eye tiny-icon"></i></a>
                                 <a href="{{ url('customer_io/create') }}"
                                     class="button-success" data-bs-toggle="tooltip" data-bs-placement="top"
                                     title="@lang('index.edit')"><i class="fa fa-edit tiny-icon"></i></a>

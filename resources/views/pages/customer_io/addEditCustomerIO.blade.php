@@ -44,7 +44,7 @@
                         </div>
                         <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
-                                <label>@lang('index.customer') <span class="required_star">*</span></label>
+                                <label>@lang('index.customer')(Code) <span class="required_star">*</span></label>
                                 <input type="text" name="customer_name[]" class="form-control" placeholder="Contact Person Name" value="Malini(CUS001)" readonly>
                                 <div class="error_alert text-danger">
                                     {{ $errors->first('customer_name') }}

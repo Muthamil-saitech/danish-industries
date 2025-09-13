@@ -1009,4 +1009,5 @@ return [
     'partner_name' => 'Partner Name',
     'partner_code' => 'Partner Code',
     'partner_details' => 'Partner Details',
+    'view' => 'View'
 ];

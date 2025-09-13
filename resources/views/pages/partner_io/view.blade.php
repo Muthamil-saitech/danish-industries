@@ -92,6 +92,15 @@
                                     </td>
                                 </tr>
                             </table>
+                            <div class="pt-10 pb-10">
+                                <div class="text-left">
+                                    <h3 class="pt-20 pb-20">Documents</h3>
+                                    <div class="d-flex flex-wrap gap-3">
+                                        <img src="{{ url('uploads/drawer/1749707112_istockphoto-2114257458-612x612.jpg') }}" alt="Document 1" width="100" class="img-thumbnail rounded">
+                                        <img src="{{ url('uploads/drawer/1749707144_10578248670642b.jpg') }}" alt="Document 2" width="100" class="img-thumbnail rounded">
+                                    </div>
+                                </div>
+                            </div>
                             <table>
                                 <thead>
                                     <tr>

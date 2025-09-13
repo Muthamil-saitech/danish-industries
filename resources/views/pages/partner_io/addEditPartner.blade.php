@@ -39,7 +39,7 @@
                         </div>
                         <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
-                                <label>@lang('index.partners') <span class="required_star">*</span></label>
+                                <label>@lang('index.partners')(Code) <span class="required_star">*</span></label>
                                 <select name="" id="customer_id" class="form-control select2">
                                     <option value="">@lang('index.select')</option>
                                     <option value="Kishore(CUS001)">Kishore(P001)</option>
