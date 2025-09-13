@@ -13,10 +13,10 @@ class PartnerController extends Controller
     }
     public function create() {
         $title = __('index.add_partner');
-        return view('pages.partner_io.addEditPartner', compact('title'));
+        return view('pages.partners.addEditPartner', compact('title'));
     }
     public function show() {
         $title = __('index.view_partner');
-        return view('pages.partner_io.view', compact('title'));
+        return view('pages.partners.view', compact('title'));
     }
 }

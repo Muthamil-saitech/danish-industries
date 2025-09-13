@@ -49,19 +49,19 @@
                                         </p> 
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>Partner Name:</strong></span>
-                                            Malini
+                                            Kishore
                                         </p>
                                         <p class="pb-7 rgb-71">
-                                            <span class=""><strong>@lang('index.phone'):</strong></span>
-                                            7894561230
+                                            <span class=""><strong>@lang('index.phone_number'):</strong></span>
+                                            7458961231
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.email'):</strong></span>
-                                            malini@gmail.com
+                                            kishore@gmail.com
                                         </p>
                                         <p class="pb-7 rgb-71">
-                                            <span class=""><strong>@lang('index.address'):</strong></span>
-                                            Anna nagar
+                                            <span class=""><strong>@lang('index.delivery_address'):</strong></span>
+                                            41/A, Jaihindpuram, Madurai.
                                         </p>
                                     </td>
                                     <td class="w-50" style="float: inline-end">
@@ -79,7 +79,7 @@
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.created_on'):</strong></span>
-                                            12-09-2025
+                                            13-09-2025
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.created_by'):</strong></span>
@@ -92,9 +92,6 @@
                                     </td>
                                 </tr>
                             </table>
-                            <div class="text-center pt-10 pb-10">
-                                <h3 class="color-000000 pt-20 pb-20">Partner Order Details</h3>
-                            </div>
                             <table>
                                 <thead>
                                     <tr>
@@ -105,26 +102,19 @@
                                         <th>@lang('index.instrument_name') (Code)</th>
                                         <th>@lang('index.quantity')</th>
                                         <th>@lang('index.remarks')</th>
+                                        <th>@lang('index.status')</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>1</td>
-                                        <td>P001/1</td>
+                                        <td>SPO0001/1</td>
                                         <td>Gauges/Checking Instruments	</td>
                                         <td>Plug Gauge</td>
-                                        <td>Caliper (10001)</td>
+                                        <td>Micrometer Screw Gauge (INS001)</td>
                                         <td>5</td>
                                         <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>P001/2</td>
-                                        <td>Gauges/Checking Instruments	</td>
-                                        <td>Vernier Caliper (10002)</td>
-                                        <td>Bore Gauge</td>
-                                        <td>5</td>
-                                        <td>-</td>
+                                        <td><span class="badge bg-secondary">Inward</span></td>
                                     </tr>
                                 </tbody>
                             </table>

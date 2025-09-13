@@ -18,7 +18,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                     data-id_name="datatable">
             </div>
             <div class="col-md-6 text-end">
-                <h5 class="mb-0">Total Suppliers: {{ $total_suppliers }} </h5>
+                <h5 class="mb-0">Total Partners: 2 </h5>
             </div>
         </div>
     </section>
@@ -32,8 +32,8 @@ if (isset($setting->base_color) && $setting->base_color) {
                     <thead>
                         <tr>
                             <th class="width_1_p">@lang('index.sn')</th>
-                            <th class="width_1_p">@lang('index.supplier_id')</th>
-                            <th class="width_13_p">@lang('index.supplier_name')</th>
+                            <th class="width_1_p">@lang('index.partner_code')</th>
+                            <th class="width_13_p">@lang('index.partner_name')</th>
                             <th class="width_10_p">@lang('index.contact_person')</th>
                             <th class="width_10_p">@lang('index.phone')</th>
                             <th class="width_10_p">@lang('index.email')</th>
@@ -47,50 +47,70 @@ if (isset($setting->base_color) && $setting->base_color) {
                         </tr>
                     </thead>
                     <tbody>
-                        @if ($obj && !empty($obj))
-                        <?php
-                        $i = 1;
-                        ?>
-                        @endif
-                        @foreach ($obj as $value)
                         <tr>
-                            <td class="c_center">{{ $i++ }}</td>
-                            <td>{{ $value->supplier_id }}</td>
-                            <td>{{ $value->name }}</td>
-                            <td>{{ safe($value->contact_person) }}</td>
-                            <td>{{ safe($value->phone)  }}</td>
-                            <td>{{ safe($value->email)  }}</td>
-                            <td title="{{ $value->address }}">{{ substr_text(safe($value->address),30)  }}</td>
-                            <td>{{ safe($value->gst_no)  }}</td>
-                            <td>{{ safe($value->ecc_no)  }}</td>
-                            <td title="{{ $value->area }}">{{ substr_text(safe($value->area),30)  }}</td>
-                            <td>{{ getUserName($value->added_by) }}</td>
-                            <td>{{ getDateFormat($value->created_at) }}</td>
+                            <td class="c_center">1</td>
+                            <td>P001</td>
+                            <td>Riyan</td>
+                            <td>Elakkiya</td>
+                            <td>7458961231</td>
+                            <td>riyan@gmail.com</td>
+                            <td title="">Jaihindpuram</td>
+                            <td>N/A</td>
+                            <td>N/A</td>
+                            <td title="">Madurai</td>
+                            <td>Admin</td>
+                            <td>13-09-2025</td>
                             <td class="text-start">
-                                <a href="{{ route('suppliers.show', encrypt_decrypt($value->id, 'encrypt')) }}"
+                                <a href="{{ url('partners.show') }}"
                                     class="button-info" data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('index.view_details')"><i class="fa fa-eye"></i>
                                 </a>
-                                @if (routePermission('supplier.edit'))
-                                <a href="{{ url('suppliers') }}/{{ encrypt_decrypt($value->id, 'encrypt') }}/edit"
+                                <a href="{{ url('partners.create') }}"
                                     class="button-success" data-bs-toggle="tooltip" data-bs-placement="top"
                                     title="@lang('index.edit')"><i class="fa fa-edit tiny-icon"></i></a>
-                                @endif
-                                @if (routePermission('supplier.delete') && !$value->used_in_purchase)
                                 <a href="#" class="delete button-danger"
-                                    data-form_class="alertDelete{{ $value->id }}" type="submit"
+                                    data-form_class="alertDelete1" type="submit"
                                     data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('index.delete')">
-                                    <form action="{{ route('suppliers.destroy', $value->id) }}"
-                                        class="alertDelete{{ $value->id }}" method="post">
+                                    <form action=""
+                                        class="alertDelete1" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <i class="fa fa-trash tiny-icon"></i>
                                     </form>
                                 </a>
-                                @endif
-
                             </td>
                         </tr>
-                        @endforeach
+                        <tr>
+                            <td class="c_center">2</td>
+                            <td>PARTNER002</td>
+                            <td>Vinothini</td>
+                            <td>Elakkiya</td>
+                            <td>7569841032</td>
+                            <td>vinothini@gmail.com</td>
+                            <td title="">Koodal Nagar</td>
+                            <td>N/A</td>
+                            <td>N/A</td>
+                            <td title="">Madurai</td>
+                            <td>Admin</td>
+                            <td>13-09-2025</td>
+                            <td class="text-start">
+                                <a href="{{ url('partners/show') }}"
+                                    class="button-info" data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('index.view_details')"><i class="fa fa-eye"></i>
+                                </a>
+                                <a href="{{ url('partners/create') }}"
+                                    class="button-success" data-bs-toggle="tooltip" data-bs-placement="top"
+                                    title="@lang('index.edit')"><i class="fa fa-edit tiny-icon"></i></a>
+                                <a href="#" class="delete button-danger"
+                                    data-form_class="alertDelete1" type="submit"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('index.delete')">
+                                    <form action=""
+                                        class="alertDelete1" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <i class="fa fa-trash tiny-icon"></i>
+                                    </form>
+                                </a>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

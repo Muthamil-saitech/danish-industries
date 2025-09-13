@@ -25,10 +25,8 @@
                     <h2 class="top-left-header">{{ isset($title) && $title ? $title : '' }}</h2>
                 </div>
                 <div class="col-md-6">
-                    @if (routePermission('supplier.index'))
-                        <a class="btn bg-second-btn" href="{{ route('suppliers.index') }}"><iconify-icon
+                        <a class="btn bg-second-btn" href="{{ route('partners.index') }}"><iconify-icon
                                 icon="solar:round-arrow-left-broken"></iconify-icon>@lang('index.back')</a>
-                    @endif
                 </div>
             </div>
         </section>
@@ -40,94 +38,88 @@
                     <div class="card-body p30">
                         <div class="m-auto b-r-5">
                             <div class="text-center pt-10 pb-10">
-                                <h2 class="color-000000 pt-20 pb-20">@lang('index.supplier_details')</h2>
+                                <h2 class="color-000000 pt-20 pb-20">@lang('index.partner_details')</h2>
                             </div>
                             <table>
                                 <tr>
                                     <td class="w-50">
                                         <p class="pb-7 rgb-71">
-                                            <span class=""><strong>@lang('index.supplier_id'):</strong></span>
-                                            {{ $obj->supplier_id }}
+                                            <span class=""><strong>@lang('index.partner_code'):</strong></span>
+                                            PARTNER001
                                         </p>
                                         <p class="pb-7 rgb-71">
-                                            <span class=""><strong>@lang('index.supplier_name'):</strong></span>
-                                            {{ $obj->name }}
+                                            <span class=""><strong>@lang('index.partner_name'):</strong></span>
+                                            Riyan
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.phone'):</strong></span>
-                                            {{ $obj->phone }}
+                                            7458961231
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.email'):</strong></span>
-                                            {{ $obj->email }}
+                                            riyan@gmail.com
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.address'):</strong></span>
-                                            {{ $obj->address }}
+                                            Jaihindpuram	
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.contact_person'):</strong></span>
-                                            {{ $obj->contact_person }}
+                                            Elakkiya
                                         </p>
                                     </td>
                                     <td class="w-50 text-right">
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.gst_no'):</strong></span>
-                                            {{ $obj->gst_no }}
+                                            N/A	
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.ecc_no'):</strong></span>
-                                            {{ $obj->ecc_no }}
+                                           N/A	
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.landmark'):</strong></span>
-                                            {{ $obj->area }}
+                                            Madurai
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.created_on'):</strong></span>
-                                            {{ getDateFormat($obj->created_at) }}
+                                            13-09-2025	
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.created_by'):</strong></span>
-                                            {{ getUserName($obj->added_by) }}
+                                            Admin
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.note'):</strong></span>
-                                            {{ $obj->note }}
+                                            
                                         </p>
                                     </td>
                                 </tr>
                             </table>
                             <div class="text-center pt-10 pb-10">
-                                <h3 class="color-000000 pt-20 pb-20">Supplier Contact Info</h3>
+                                <h3 class="color-000000 pt-20 pb-20">Partner Contact Info</h3>
                             </div>
                             <table>
-                                @if(isset($supplier_contact_details) && count($supplier_contact_details) > 0)
-                                    <thead>
+                                <thead>
+                                    <tr>
+                                        <th>@lang('index.sn')</th>
+                                        <th>Contact Person Name</th>
+                                        <th>Department</th>
+                                        <th>Designation</th>
+                                        <th>Phone Number</th>
+                                        <th>Email</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
                                         <tr>
-                                            <th>@lang('index.sn')</th>
-                                            <th>Contact Person Name</th>
-                                            <th>Department</th>
-                                            <th>Designation</th>
-                                            <th>Phone Number</th>
-                                            <th>Email</th>
+                                            <td>1</td>
+                                            <td>Elakkiya</td>
+                                            <td>Cutting Department</td>
+                                            <td>Supervisior</td>
+                                            <td>7536984120</td>
+                                            <td>elakkiya@gmail.com</td>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($supplier_contact_details as $contact)
-                                            <tr>
-                                                <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $contact->scp_name!='' ? $contact->scp_name : 'N/A' }}</td>
-                                                <td>{{ $contact->scp_department!='' ? $contact->scp_department : 'N/A' }}</td>
-                                                <td>{{ $contact->scp_designation!='' ? $contact->scp_designation : 'N/A' }}</td>
-                                                <td>{{ $contact->scp_phone!='' ? $contact->scp_phone : 'N/A' }}</td>
-                                                <td>{{ $contact->scp_email!='' ? $contact->scp_email : 'N/A' }}</td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                @else
-                                <tr>No details found</tr>
-                                @endif
+                                </tbody>
                             </table>
                         </div>
                     </div>

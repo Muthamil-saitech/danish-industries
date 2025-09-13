@@ -24,11 +24,9 @@
                     <div class="row">
                         <div class="col-md-6 col-lg-4">
                             <div class="form-group mb-3">
-                                <label>@lang('index.supplier_name') <span class="required_star">*</span></label>
-                                <input type="hidden" name="supplier_id" value="{{ isset($obj->supplier_id) ? $obj->supplier_id : $supplier_id }}"
-                                    onfocus="select()" readonly>
+                                <label>@lang('index.partner_name') <span class="required_star">*</span></label>
                                 <input type="text" name="name" id="name"
-                                    class="form-control @error('name') is-invalid @enderror" placeholder="Name" value="{{ isset($obj->name) && $obj->name ? $obj->name : old('name') }}">
+                                    class="form-control @error('name') is-invalid @enderror" placeholder="Name" value="">
                                 @error('name')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -39,7 +37,7 @@
                                 <label>@lang('index.contact_person')</label>
                                 <input type="text" name="contact_person" id="contact_person"
                                     class="form-control @error('contact_person') is-invalid @enderror"
-                                    placeholder="Contact Person" value="{{ isset($obj->contact_person) && $obj->contact_person ? $obj->contact_person : old('contact_person') }}">
+                                    placeholder="Contact Person" value="">
                                 @error('contact_person')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -50,7 +48,7 @@
                                 <label>@lang('index.phone') <span class="required_star">*</span></label>
                                 <input type="text" name="phone" id="phone"
                                     class="form-control @error('phone') is-invalid @enderror"
-                                    placeholder="Phone" value="{{ isset($obj->phone) && $obj->phone ? $obj->phone : old('phone') }}">
+                                    placeholder="Phone" value="">
                                 @error('phone')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -60,7 +58,7 @@
                             <div class="form-group mb-3">
                                 <label>@lang('index.email')</label>
                                 <input type="text" name="email" id="email"
-                                    class="form-control @error('email') is-invalid @enderror" placeholder="Email" value="{{ isset($obj->email) && $obj->email ? $obj->email : old('email') }}">
+                                    class="form-control @error('email') is-invalid @enderror" placeholder="Email" value="">
                                 @error('email')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -72,7 +70,7 @@
                                 <input type="text" name="gst_no" id="gst_no"
                                     class="form-control @error('gst_no') is-invalid @enderror"
                                     placeholder="{{ __('index.gst_no') }}"
-                                    value="{{ isset($obj) && $obj->gst_no ? $obj->gst_no : old('gst_no') }}">
+                                    value="">
                                 @error('gst_no')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -84,7 +82,7 @@
                                 <input type="text" name="ecc_no" id="ecc_no"
                                     class="form-control @error('ecc_no') is-invalid @enderror"
                                     placeholder="{{ __('index.ecc_no') }}"
-                                    value="{{ isset($obj) && $obj->ecc_no ? $obj->ecc_no : old('ecc_no') }}">
+                                    value="">
                                 @error('ecc_no')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -96,57 +94,17 @@
                                 <input type="text" name="area" id="area"
                                     class="form-control @error('area') is-invalid @enderror"
                                     placeholder="{{ __('index.landmark') }}"
-                                    value="{{ isset($obj) && $obj->area ? $obj->area : old('area') }}">
+                                    value="">
                                 @error('area')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
-                        
-                        {{--<div class="col-md-6 col-lg-4">
-                            <div class="d-flex justify-content-between">
-                                <div class="form-group w-100 me-2">
-                                    <label>@lang('index.opening_balance')</label>
-                                    <input type="text" name="opening_balance" id="opening_balance"
-                                        class="form-control @error('opening_balance') is-invalid @enderror integerchk"
-                                        placeholder="Opening Balance" value="{{ isset($obj->opening_balance) && $obj->opening_balance ? $obj->opening_balance : old('opening_balance') }}">
-                                    @error('opening_balance')
-                                        <div class="text-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="form-group w-100">
-                                    <label>&nbsp;</label>
-                                    <select class="form-control @error('opening_balance_type') is-invalid @enderror select2"
-                                        name="opening_balance_type" id="opening_balance_type">
-                                        <option value="Debit"
-                                            {{ isset($obj) && $obj->opening_balance_type  == 'Debit' || old('opening_balance_type') == 'Debit' ? 'selected' : '' }}>
-                                            @lang('index.debit')</option>
-                                        <option value="Credit"
-                                            {{ isset($obj) && $obj->opening_balance_type  == 'Credit' || old('opening_balance_type') == 'Credit' ? 'selected' : '' }}>
-                                            @lang('index.credit')</option>
-                                    </select>
-                                    @error('opening_balance_type')
-                                        <div class="text-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4">
-                            <div class="form-group">
-                                <label class="control-label">@lang('index.credit_limit')</label>
-                                <div>
-                                    <input type="text"
-                                        class="form-control @error('title') is-invalid @enderror integerchk"
-                                        id="credit_limit" name="credit_limit" placeholder="Credit Limit"
-                                        value="{{ isset($obj) && $obj->credit_limit ? $obj->credit_limit : old('credit_limit')  }}">
-                                </div>
-                            </div>
-                        </div>--}}
                         <div class="col-md-6 col-lg-4">
                             <div class="form-group mb-3">
                                 <label>@lang('index.address')</label>
                                 <textarea name="address" id="address" class="form-control @error('address') is-invalid @enderror"
-                                    placeholder="Address" rows="3">{{ isset($obj->address) && $obj->address ? $obj->address : old('address') }}</textarea>
+                                    placeholder="Address" rows="3"></textarea>
                                 @error('address')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -156,7 +114,7 @@
                             <div class="form-group mb-3">
                                 <label>@lang('index.note')</label>
                                 <textarea name="note" id="note" class="form-control @error('note') is-invalid @enderror"
-                                    placeholder="note" rows="3">{{ isset($obj->note) && $obj->note ? $obj->note : old('note') }}</textarea>
+                                    placeholder="note" rows="3"></textarea>
                                 @error('note')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -202,12 +160,12 @@
                                     </div>
                                     @if($key==0)
                                         <div class="col-md-4 mb-3 mt-1">
-                                            <button id="supContactPerson" class="btn bg-blue-btn mt-4" type="button">@lang('index.add_more')</button>
+                                            <button id="partnerContactPerson" class="btn bg-blue-btn mt-4" type="button">@lang('index.add_more')</button>
                                         </div>
                                     @else
                                         @if(isset($supplier_contact_info) && $supplier_contact_info->count() > 0)
                                         <div class="col-md-4 mt-4">
-                                            <a href="#" class="sup_c_del button-danger"
+                                            <a href="#" class="partner_c_del button-danger"
                                                 data-contact_id="{{ $contact_info->id }}" type="submit"
                                                 data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('index.delete')">
                                                 <i class="fa fa-trash tiny-icon"></i>
@@ -258,7 +216,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4 mb-3 mt-1">
-                                    <button id="supContactPerson" class="btn bg-blue-btn mt-4" type="button">@lang('index.add_more')</button>
+                                    <button id="partnerContactPerson" class="btn bg-blue-btn mt-4" type="button">@lang('index.add_more')</button>
                                 </div>
                             </div>
                         @endif
@@ -267,7 +225,7 @@
                         <div class="col-sm-12 col-md-6 mb-2 d-flex gap-3">
                             <button type="submit" name="submit" value="submit" class="btn bg-blue-btn"><iconify-icon
                                     icon="solar:check-circle-broken"></iconify-icon>@lang('index.submit')</button>
-                            <a class="btn bg-second-btn" href="{{ route('suppliers.index') }}"><iconify-icon
+                            <a class="btn bg-second-btn" href="{{ route('partners.index') }}"><iconify-icon
                                     icon="solar:round-arrow-left-broken"></iconify-icon>@lang('index.back')</a>
                         </div>
                     </div>
@@ -290,7 +248,7 @@
         let thischaracterisnotallowed = $(".thischaracterisnotallowed").val();
         let are_you_sure = $(".are_you_sure").val();
         let i = 0;
-        $(document).on("click", "#supContactPerson", function (e) {
+        $(document).on("click", "#partnerContactPerson", function (e) {
             ++i;
             let newRow = `
                 <div class="row mt-3" id="cp_row_${i}">
@@ -335,7 +293,7 @@
         $(document).on("click", ".del_row", function () {
             $(this).closest(".row").remove();
         });
-        $('body').on('click', '.sup_c_del', function (e) {
+        $('body').on('click', '.partner_c_del', function (e) {
             e.preventDefault();
             let contact_id = $(this).attr('data-contact_id');
             // console.log("contact_id",contact_id);

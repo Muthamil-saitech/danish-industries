@@ -32,13 +32,12 @@
         </section>
 
         <section class="content">
-
             <div class="col-md-12">
                 <div class="card" id="dash_0">
                     <div class="card-body p30">
                         <div class="m-auto b-r-5">
                             <div class="text-center pt-10 pb-10">
-                                <h2 class="color-000000 pt-20 pb-20">@lang('index.customer_io_details')</h2>
+                                <h3 class="color-000000 pt-20 pb-20">@lang('index.customer_io_details')</h3>
                             </div>
                             <table>
                                 <tr>
@@ -56,7 +55,7 @@
                                             Malini
                                         </p>
                                         <p class="pb-7 rgb-71">
-                                            <span class=""><strong>@lang('index.phone'):</strong></span>
+                                            <span class=""><strong>@lang('index.phone_number'):</strong></span>
                                             7419632580
                                         </p>
                                         <p class="pb-7 rgb-71">

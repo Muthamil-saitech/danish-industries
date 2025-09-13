@@ -30,7 +30,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                         <tr>
                             <th>@lang('index.sn')</th>
                             <th>@lang('index.reference_no')</th>
-                            <th>@lang('index.customer')</th>
+                            <th>@lang('index.partners')</th>
                             <th>@lang('index.date')</th>
                             <th>@lang('index.type')</th>
                             <th>@lang('index.category')</th>
@@ -43,12 +43,12 @@ if (isset($setting->base_color) && $setting->base_color) {
                     <tbody>
                         <tr>
                             <td>1</td>
-                            <td>P001/1</td>
-                            <td>Malini</td>
-                            <td>12-09-2025</td>
+                            <td>SPO0001/1</td>
+                            <td>Kishore(P001)</td>
+                            <td>13-09-2025</td>
                             <td>Gauges/Checking Instruments</td>
                             <td>Plug Gauge</td>
-                            <td>Material(INS001)</td>
+                            <td>Micrometer Screw Gauge(INS001)</td>
                             <td>5</td>
                             <td>
                                 <span class="badge bg-secondary">Inward</span>
@@ -75,9 +75,9 @@ if (isset($setting->base_color) && $setting->base_color) {
                         </tr>
                         <tr>
                             <td>2</td>
-                            <td>P001/2</td>
-                            <td>Malini</td>
-                            <td>12-09-2025</td>
+                            <td>SPO0001/2</td>
+                            <td>Kishore(P001)</td>
+                            <td>13-09-2025</td>
                             <td>Gauges/Checking Instruments</td>
                             <td>Vernier Caliper</td>
                             <td>Bore Gauge(INS002)</td>
@@ -107,9 +107,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                     </tbody>
                 </table>
             </div>
-            <!-- /.box-body -->
         </div>
-
     </div>
     <div class="modal fade" id="calendarModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -131,7 +129,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                         <div class="col-sm-6 mb-3">
                             <div class="form-group">
                                 <label>@lang('index.date') <span class="required_star">*</span></label>
-                                {!! Form::text('po_date', old('po_date', date('d-m-Y')), [
+                                {!! Form::text('io_date', old('io_date', date('d-m-Y')), [
                                 'class' => 'form-control',
                                 'id' => 'date',
                                 'placeholder' => 'Date',
@@ -182,9 +180,4 @@ if (isset($setting->base_color) && $setting->base_color) {
 <script src="{!! $baseURL . 'frequent_changing/newDesign/js/forTable.js' !!}"></script>
 <script src="{!! $baseURL . 'frequent_changing/js/custom_report.js' !!}"></script>
 <script src="{!! $baseURL . 'frequent_changing/js/order.js' !!}"></script>
-<script>
-    $("#fil_customer_id").select2({
-        dropdownParent: $("#filterModal"),
-    });
-</script>
 @endsection

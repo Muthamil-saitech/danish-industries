@@ -67,7 +67,7 @@ $(document).on("click", "#partner", function (e) {
       '<td><textarea class="form-control" name="remarks[]" placeholder="Remarks" id="remarks_' +
       j +
       '"></textarea></td>' +
-      '<td><input type="text" name="line_item_no[]" class="form-control" placeholder="PO Line Item No" /></td>' +
+      '<td><input type="text" name="line_item_no[]" class="form-control" placeholder="Line Item No" /></td>' +
       '<td class="ir_txt_center"><a class="btn btn-xs del_row remove-tr dlt_button"><iconify-icon icon="solar:trash-bin-minimalistic-broken"></iconify-icon></a></td>' +
       "</tr>"
   );
