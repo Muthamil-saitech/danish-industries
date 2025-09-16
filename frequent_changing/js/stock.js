@@ -288,7 +288,6 @@
         } else if (owner_type === "2") {
             customer_id = $('#customer_id').val();
         }
-        // Set final reference_no in hidden field
         $("#reference_no_hidden").val(reference_no);
          
         let mat_type = $("#mat_type").val();

@@ -27,16 +27,24 @@
                         <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
                                 <label>@lang('index.mat_type') <span class="required_star">*</span></label>
+                                @if(isset($obj))
+                                <input type="hidden" name="mat_type" value="{{ $obj->mat_type}}">
+                                <select class="form-control @error('mat_type') is-invalid @enderror select2" id="mat_type" {{ isset($obj) ? 'disabled' : ''}}>
+                                    <option value="">@lang('index.select')</option>
+                                    @foreach ($material_types as $value)
+                                        <option {{ (isset($obj->mat_type) && $obj->mat_type == $value->id) || old('mat_type') == $value->id ? 'selected' : '' }} value="{{ $value->id }}">{{ $value->type_name }}</option>
+                                    @endforeach
+                                </select>
+                                @else
                                 <select class="form-control @error('mat_type') is-invalid @enderror select2" name="mat_type" id="mat_type">
                                     <option value="">@lang('index.select')</option>
                                     @foreach ($material_types as $value)
-                                        <option
-                                            {{ (isset($obj->mat_type) && $obj->mat_type == $value->id) || old('mat_type') == $value->id ? 'selected' : '' }}
-                                            value="{{ $value->id }}">{{ $value->type_name }}</option>
+                                        <option {{ (isset($obj->mat_type) && $obj->mat_type == $value->id) || old('mat_type') == $value->id ? 'selected' : '' }} value="{{ $value->id }}">{{ $value->type_name }}</option>
                                     @endforeach
                                     {{-- <option {{ (isset($obj->mat_type) && $obj->mat_type == 1) || old('mat_type') == 1 ? 'selected' : '' }} value="1">Material</option>
                                     <option {{ (isset($obj->mat_type) && $obj->mat_type == 2) || old('mat_type') == 2 ? 'selected' : '' }} value="2">Raw Material</option> --}}
                                 </select>
+                                @endif
                                 <div class="text-danger d-none"></div>
                                 @error('mat_type')
                                     <div class="text-danger">{{ $message }}</div>
@@ -46,8 +54,17 @@
                         <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
                                 <label>@lang('index.material_category') <span class="required_star">*</span></label>
-                                {{-- <input type="hidden" name="mat_cat_id" class="form-control" id="mat_cat_id" placeholder="@lang('index.material_category') " value="{{ isset($obj) && $obj->mat_cat_id!='' ? $obj->mat_cat_id : old('mat_cat_id') }}" readonly>
-                                <input type="text" name="mat_cat" class="form-control" id="mat_cat" placeholder="@lang('index.material_category')" value="{{ isset($obj) ? getCategoryById($obj->mat_cat_id) : old('mat_cat') }}" readonly> --}}
+                                @if(isset($obj))
+                                <input type="hidden" name="mat_cat_id" class="form-control" id="mat_cat_id" placeholder="@lang('index.material_category') " value="{{ isset($obj) && $obj->mat_cat_id!='' ? $obj->mat_cat_id : old('mat_cat_id') }}" readonly>
+                                <select class="form-control @error('mat_cat_id') is-invalid @enderror select2" id="mat_cat_id" {{ isset($obj) ? 'disabled' : '' }}>
+                                    <option value="">@lang('index.select')</option>
+                                    @foreach ($mat_categories as $value)
+                                        <option
+                                            {{ (isset($obj->mat_cat_id) && $obj->mat_cat_id == $value->id) || old('mat_cat_id') == $value->id ? 'selected' : '' }}
+                                            value="{{ $value->id }}">{{ $value->name }}</option>
+                                    @endforeach
+                                </select>
+                                @else
                                 <select class="form-control @error('mat_cat_id') is-invalid @enderror select2" name="mat_cat_id" id="mat_cat_id">
                                     <option value="">@lang('index.select')</option>
                                     @foreach ($mat_categories as $value)
@@ -56,6 +73,7 @@
                                             value="{{ $value->id }}">{{ $value->name }}</option>
                                     @endforeach
                                 </select>
+                                @endif
                                 <div class="text-danger d-none"></div>
                                 @error('mat_cat_id')
                                     <div class="text-danger">{{ $message }}</div>
@@ -65,17 +83,27 @@
                         <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
                                 <label>@lang('index.raw_material_name') (Code) <span class="required_star">*</span></label>
-                                @if(isset($materials) && $materials)
-                                    <select tabindex="4" class="form-control @error('mat_id') is-invalid @enderror select2 select2-hidden-accessible" name="mat_id" id="mat_id">
+                                @if(isset($obj))
+                                    <input type="hidden" name="mat_id" class="form-control" value="{{ isset($obj) && $obj->mat_id!='' ? $obj->mat_id : old('mat_id') }}" readonly>
+                                    <select tabindex="4" class="form-control @error('mat_id') is-invalid @enderror select2 select2-hidden-accessible" id="mat_id" {{ isset($obj) ? 'disabled' : '' }}>
                                         <option value="">@lang('index.select')</option>
                                         @foreach($materials as $rm)
                                             <option value="{{ $rm->id.'|'.$rm->name.'|'.$rm->code }}" {{ isset($obj) && $rm->id === $obj->mat_id ? 'selected' : '' }}>{{ $rm->name }} ({{ $rm->code }})</option>
                                         @endforeach
                                     </select>
-                                @else 
-                                    <select tabindex="4" class="form-control @error('mat_id') is-invalid @enderror select2 select2-hidden-accessible" name="mat_id" id="mat_id">
-                                        <option value="">@lang('index.select')</option>
-                                    </select>
+                                @else
+                                    @if(isset($materials) && $materials)
+                                        <select tabindex="4" class="form-control @error('mat_id') is-invalid @enderror select2 select2-hidden-accessible" name="mat_id" id="mat_id">
+                                            <option value="">@lang('index.select')</option>
+                                            @foreach($materials as $rm)
+                                                <option value="{{ $rm->id.'|'.$rm->name.'|'.$rm->code }}" {{ isset($obj) && $rm->id === $obj->mat_id ? 'selected' : '' }}>{{ $rm->name }} ({{ $rm->code }})</option>
+                                            @endforeach
+                                        </select>
+                                    @else 
+                                        <select tabindex="4" class="form-control @error('mat_id') is-invalid @enderror select2 select2-hidden-accessible" name="mat_id" id="mat_id">
+                                            <option value="">@lang('index.select')</option>
+                                        </select>
+                                    @endif
                                 @endif
                                 <div class="text-danger d-none"></div>
                                 @error('mat_id')
@@ -244,9 +272,9 @@
                                 <div class="text-danger d-none"></div>
                             </div>
                         </div>
-                        <input type="hidden" name="reference_no" id="reference_no_hidden">
-                        <input type="hidden" name="line_item_no" id="line_item_no_hidden">
-                        <input type="hidden" name="final_reference_no" id="line_no_wo_hidden">
+                        <input type="hidden" name="reference_no" id="reference_no_hidden" >
+                        <input type="hidden" name="line_item_no" id="line_item_no_hidden" value="{{ isset($obj->line_item_no) ? $obj->line_item_no : '' }}">
+                        <input type="hidden" name="final_reference_no" id="line_no_wo_hidden" value="{{ isset($obj->reference_no) ? $obj->reference_no : '' }}">
                         <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
                                 <label>@lang('index.stock') <span class="required_star">*</span></label>

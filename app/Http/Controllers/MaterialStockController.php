@@ -179,11 +179,11 @@ class MaterialStockController extends Controller
             // 'close_qty' => 'required',
         ]);
         $material_stock->mat_cat_id = $request->mat_cat_id;
-        $exploded = explode('|', $request->mat_id);
-        $material_stock->mat_id = $exploded[0];
+        // $exploded = explode('|', $request->mat_id);
+        $material_stock->mat_id = $request->mat_id;
         $material_stock->mat_type = $request->mat_type;
         $material_stock->stock_type = $request->stock_type;
-        $material_stock->reference_no = $request->reference_no;
+        $material_stock->reference_no = $request->final_reference_no;
         $material_stock->line_item_no = $request->line_item_no;
         $material_stock->old_mat_no = $request->old_mat_no;
         $material_stock->dc_no = $request->dc_no;
@@ -211,12 +211,14 @@ class MaterialStockController extends Controller
     }
     public function materialStockAdjust(Request $request)
     {
+        // dd($request->all());
         $mat_id = $request->mat_id;
         $mat_stock_id = $request->mat_stock_id;
-        $adj_type = $request->adj_type;
+        $adj_type = "addition";
         $stock_qty = $request->stock_qty;
         $stock_type = $request->stock_type;
         $reference_no = $request->reference_no;
+        $line_item_no = $request->line_item_no;
         $dc_no = $request->dc_no;
         $mat_doc_no = $request->mat_doc_no;
         $heat_no = $request->heat_no;
@@ -234,6 +236,7 @@ class MaterialStockController extends Controller
         $obj->quantity = $stock_qty;
         $obj->stock_type = $stock_type;
         $obj->reference_no = $reference_no;
+        $obj->line_item_no = $line_item_no;
         $obj->dc_no = $dc_no;
         $obj->mat_doc_no = $mat_doc_no;
         $obj->heat_no = $heat_no;

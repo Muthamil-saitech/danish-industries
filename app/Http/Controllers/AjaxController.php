@@ -1093,7 +1093,7 @@ class AjaxController extends Controller
                 ->where('del_status', 'Live')
                 ->first();
             $orderDetail = DB::table('tbl_customer_order_details')
-                ->where('customer_order_id', $detail->customer_order_id)
+                ->where('id', $detail->customer_order_id)
                 ->where('product_id', $product->id)
                 ->where('del_status', 'Live')
                 ->first();

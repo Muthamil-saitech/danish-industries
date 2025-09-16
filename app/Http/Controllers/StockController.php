@@ -18,6 +18,7 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
+use App\CustomerOrder;
 use App\CustomerOrderDetails;
 use App\FinishedProduct;
 use App\FPrmitem;
@@ -251,17 +252,22 @@ class StockController extends Controller
 
         $rm = RawMaterial::find($rm_id);
         $order_material = CustomerOrderDetails::where('id',$customer_order_id)->where('product_id',$fproduct_id)->where('del_status','Live')->first();
+        $order = CustomerOrder::where('id',$order_material->customer_order_id)->where('del_status','Live')->first();
         if($stk_mat_type=="1") {
             $ms = MaterialStock::where('mat_cat_id', $rm->category)
             ->where('mat_type', $stk_mat_type)
             ->where('mat_id', $order_material->raw_material_id)
             ->where('customer_id', $selected_customer_id)
+            ->where('reference_no', $order->reference_no)
+            ->where('line_item_no', $order_material->line_item_no)
             ->where('del_status', 'Live')
             ->first();
         } else {
             $ms = MaterialStock::where('mat_cat_id', $rm->category)
             ->where('mat_type', $stk_mat_type)
             ->where('mat_id', $order_material->raw_material_id)
+            ->where('reference_no', $order->reference_no)
+            ->where('line_item_no', $order_material->line_item_no)
             ->where('del_status', 'Live')
             ->first();
         }

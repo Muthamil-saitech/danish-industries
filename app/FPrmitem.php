@@ -41,6 +41,7 @@ class FPrmitem extends Model
 
     public function getOrderProductRM($fproduct_id,$stk_mat_type,$selected_customer_id,$customer_order_id){
         $order_material = CustomerOrderDetails::where('id',$customer_order_id)->where('product_id',$fproduct_id)->where('del_status','Live')->first();
+        $order = CustomerOrder::where('id',$order_material->customer_order_id)->where('del_status','Live')->first();
         // dd($order_material->raw_material_id);
         if($stk_mat_type=="1" && $selected_customer_id) {
             $result = DB::select("
@@ -55,8 +56,10 @@ class FPrmitem extends Model
                     AND tbl_material_stocks.mat_type = ?
                     AND tbl_material_stocks.customer_id = ?
                     AND tbl_material_stocks.mat_id = ?
+                    AND tbl_material_stocks.reference_no = ?
+                    AND tbl_material_stocks.line_item_no = ?
                 ORDER BY tbl_material_stocks.id DESC
-            ", [$stk_mat_type, $selected_customer_id, $order_material->raw_material_id]);
+            ", [$stk_mat_type, $selected_customer_id, $order_material->raw_material_id, $order->reference_no, $order_material->line_item_no]);
             // $result = DB::select("SELECT * FROM tbl_material_stocks WHERE del_status='Live' AND mat_type='$stk_mat_type' AND customer_id='$selected_customer_id' AND mat_id='$order_material->raw_material_id' ORDER BY id DESC");
         } else {
             $result = DB::select("SELECT * FROM tbl_material_stocks WHERE del_status='Live' AND mat_type='$stk_mat_type' AND mat_id='$order_material->raw_material_id' ORDER BY id DESC");

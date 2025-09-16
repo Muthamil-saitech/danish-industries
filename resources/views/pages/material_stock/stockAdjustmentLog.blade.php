@@ -88,7 +88,7 @@
                                 <thead class="b-r-3 bg-color-000000">
                                     <tr>
                                         <th class="w-5 text-start">@lang('index.sn')</th>
-                                        <th class="w-15 text-start">@lang('index.adj_type')</th>
+                                        {{-- <th class="w-15 text-start">@lang('index.adj_type')</th> --}}
                                         <th class="w-15 text-start">Heat No</th>
                                         <th class="w-15 text-start">@lang('index.challan_no')<br>(DC Date)</th>
                                         <th class="w-15 text-start">@lang('index.doc_no')</th>
@@ -110,7 +110,7 @@
                                                 <td class="width_1_p">
                                                     <p class="set_sn">{{ $i++ }}</p>
                                                 </td>
-                                                <td class="text-start">{{ $value->type }}</td>
+                                                {{-- <td class="text-start">{{ $value->type }}</td> --}}
                                                 @if($value->dc_no!='')
                                                     <td class="text-start" title="{{ $value->heat_no }}">{{ substr_text($value->heat_no,30) }}</td>
                                                     <td class="text-start">{{ $value->dc_no }}<br>({{ date('d-m-Y',strtotime($value->dc_date)) }})</td>
@@ -120,8 +120,8 @@
                                                     <td class="text-start"> - </td>
                                                     <td class="text-start"> - </td>
                                                 @endif
-                                                <td class="text-start">{{ $value->stock_type }}</td>
-                                                <td class="text-start">{{ $value->reference_no }}</td>
+                                                <td class="text-start">{!! $value->stock_type == 'customer' ? $value->stock_type . '<br><small>(' . getCustomerNameById ($material_stock->customer_id) . ')</small>' : $value->stock_type !!}</td>
+                                                <td class="text-start">{{ $value->reference_no.'/'.$value->line_item_no }}</td>
                                                 <td class="text-start">{{ $value->quantity }} {{ isset($material_stock) ?  getRMUnitById($material_stock->unit_id) : "" }}</td>
                                                 <td class="text-start">{{ $value->material_price!='0' ? '₹'.$value->material_price : '' }}</td>
                                                 <td class="text-start">{{ $value->hsn_no }}</td>

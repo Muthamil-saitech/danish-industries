@@ -148,24 +148,15 @@ if (isset($setting->base_color) && $setting->base_color) {
                                 <td>{{ getMatTypeName($value->mat_type) }}</td>
                                 <td>{{ getCategoryById($value->mat_cat_id) }}</td>
                                 <td title="{{ getRMName($value->mat_id) }}">{{ substr_text(getRMName($value->mat_id),30) }}</td>
-                                <td>
-                                    @if($value->mat_type == 1)
-                                    Material
-                                    @elseif($value->mat_type == 2)
-                                    Raw Material
-                                    @else
-                                    N/A
-                                    @endif
-                                </td>
                                 {{-- <td>
-                                                @if($value->ins_type == 1)
-                                                    Consumable
-                                                @elseif($value->ins_type == 2)
-                                                    Non Consumable
-                                                @else
-                                                    N/A
-                                                @endif
-                                            </td> --}}
+                                    @if($value->ins_type == 1)
+                                        Consumable
+                                    @elseif($value->ins_type == 2)
+                                        Non Consumable
+                                    @else
+                                        N/A
+                                    @endif
+                                </td> --}}
                                 @if(!$value->customer_id)
                                 <td title="{{ getStockCustomerNameById($value->customer_id) }}">{{ substr_text(getStockCustomerNameById($value->customer_id),30) }}</td>
                                 @else
@@ -178,7 +169,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                                 <td>{{ $value->float_stock }} {{ getRMUnitById($value->unit_id) }}</td>
                                 <td>{{ getUserName($value->added_by) }}</td>
                                 <td>
-                                    <a class="button-info" id="stockAdjBtn" data-bs-toggle="modal" data-id="{{ $value->id }}" data-mat_id="{{ $value->mat_id }}" data-ref_no="{{ $value->reference_no }}"  data-line_item_no="{{ $value->line_item_no }}" data-dc_no="{{ $value->dc_no }}" data-heat_no="{{ $value->heat_no }}" data-mat_doc_no="{{ $value->mat_doc_no }}"  data-customer_id="{{ $value->customer_id }}" data-material_price="{{ $value->material_price }}" data-hsn_no="{{ $value->hsn_no }}" data-material="{{ getRMName($value->mat_id) }}" data-bs-target="#stockAdjModal" title="Stock Adjustment"><i class="fa fa-pencil"></i></a>
+                                    <a class="button-info" id="stockAdjBtn" data-bs-toggle="modal" data-id="{{ $value->id }}" data-mat_id="{{ $value->mat_id }}" data-stock_type="customer" data-ref_no="{{ $value->reference_no }}"  data-line_item_no="{{ $value->line_item_no }}" data-dc_no="{{ $value->dc_no }}" data-heat_no="{{ $value->heat_no }}" data-mat_doc_no="{{ $value->mat_doc_no }}"  data-customer_id="{{ $value->customer_id }}" data-material_price="{{ $value->material_price }}" data-hsn_no="{{ $value->hsn_no }}" data-material="{{ getRMName($value->mat_id) }}" data-bs-target="#stockAdjModal" title="Stock Adjustment"><i class="fa fa-pencil"></i></a>
                                     <a href="{{ url('material_stocks') }}/{{ encrypt_decrypt($value->id, 'encrypt') }}/stock_adjustments" class="button-info" data-bs-toggle="tooltip" data-bs-placement="top" title="View Stock Adjustments"><i class="fa fa-list"></i></a>
                                     @if (routePermission('material_stocks.edit') && !$value->used_in_manufacture)
                                     <a href="{{ url('material_stocks') }}/{{ encrypt_decrypt($value->id, 'encrypt') }}/edit"
@@ -298,7 +289,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                                 <div class="form-group">
                                     <label class="control-label">@lang('index.stock_type')<span class="ir_color_red">*</span></label>
                                     <select class="form-control @error('title') is-invalid @enderror select2"
-                                        name="stock_type" id="stock_type">
+                                        name="stock_type">
                                         <option value="">@lang('index.select')</option>
                                         <option value="purchase">@lang('index.purchase_order')</option>
                                         <option value="customer">@lang('index.customer_order_no')</option>
@@ -329,7 +320,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                                     <input type="hidden" name="mat_stock_id" id="mat_stock_id">
                                     <input type="hidden" name="mat_id" id="stk_mat_id">
                                     <input type="hidden" name="customer_id" id="customer_id">
-                                    <input type="hidden" name="reference_no" id="reference_no_hidden">
+                                    <input type="hidden" name="reference_no">
                                     <select class="form-control @error('title') is-invalid @enderror select2"
                                         name="adj_type" id="adj_type">
                                         <option value="">@lang('index.select')</option>
@@ -396,6 +387,11 @@ if (isset($setting->base_color) && $setting->base_color) {
                                 <div class="form-group">
                                     <label>@lang('index.hsn_no') </label>
                                     <input type="text" class="form-control @error('hsn_no') is-invalid @enderror" name="hsn_no" id="hsn_no" value="{{ isset($obj->hsn_no) && $obj->hsn_no ? $obj->hsn_no : old('hsn_no') }}" placeholder="@lang('index.hsn_no')" readonly>
+                                    <input type="hidden" name="reference_no" id="reference_no_hidden">
+                                    <input type="hidden" name="line_item_no" id="line_item_no">
+                                    <input type="hidden" name="stock_type" id="stock_type">
+                                    <input type="hidden" name="mat_stock_id" id="mat_stock_id">
+                                    <input type="hidden" name="mat_id" id="stk_mat_id">
                                 </div>
                             </div>
                         </div>
@@ -424,15 +420,15 @@ if (isset($setting->base_color) && $setting->base_color) {
 <script src="{!! $baseURL . 'frequent_changing/newDesign/js/forTable.js' !!}"></script>
 <script src="{!! $baseURL . 'frequent_changing/js/custom_report.js' !!}"></script>
 <script>
-    $('#adj_type').select2({
+    /* $('#adj_type').select2({
         dropdownParent: $('#stockAdjModal')
-    });
-    $('#stock_type').select2({
+    }); */
+    /* $('#stock_type').select2({
         dropdownParent: $('#stockAdjModal')
-    });
-    $('#reference_no').select2({
+    }); */
+    /* $('#reference_no').select2({
         dropdownParent: $('#stockAdjModal')
-    });
+    }); */
     $('#mat_id').select2({
         dropdownParent: $('#filterModal')
     });
@@ -516,6 +512,8 @@ if (isset($setting->base_color) && $setting->base_color) {
         var mat_id = $(this).data('mat_id');
         $('#stk_mat_id').val(mat_id);
         var ref_no = $(this).data('ref_no');
+        var stock_type = $(this).data('stock_type');
+        $('#stock_type').val(stock_type);
         var line_item_no = $(this).data('line_item_no');
         let reference_no = '';
         if(ref_no!='' && line_item_no!='') {
@@ -524,6 +522,8 @@ if (isset($setting->base_color) && $setting->base_color) {
             reference_no = '';
         }
         $('#inp_ref_no').val(reference_no);
+        $('#reference_no_hidden').val(ref_no);
+        $('#line_item_no').val(line_item_no);
         var customer_id = $(this).data('customer_id');
         $('#customer_id').val(customer_id);
         var dc_no = $(this).data('dc_no');
@@ -538,19 +538,19 @@ if (isset($setting->base_color) && $setting->base_color) {
         $('#hsn_no').val(hsn_no);
         var material = $(this).data('material');
         $('#selected_material').html('<p>' + material + '</p>');
-        $('#stock_type').val("").trigger('change.select2');
+        // $('#stock_type').val("");
         // $('#reference_no').val("").trigger('change.select2');
         // $("#select_ref_no").addClass("d-none");
         // $("#inp_ref_no_div").addClass("d-none");
         // $('#inp_ref_no').val("");
         $('#stock_qty').val("");
-        $('#adj_type').val("").trigger('change.select2');
+        // $('#adj_type').val("").trigger('change.select2');
         $(".quantity_error").html("");
-        $(".stock_type_err").html("");
+        // $(".stock_type_err").html("");
         $(".reference_no_err").html("");
         $(".material_id_err").html("");
     });
-    $(document).on("change", "#stock_type", function(e) {
+    /* $(document).on("change", "#stock_type", function(e) {
         let hidden_base_url = $("#hidden_base_url").val();
         let stock_type = $("#stock_type").val();
         var mat_id = $("#stk_mat_id").val();
@@ -586,7 +586,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                 console.log("error");
             },
         });
-    });
+    }); */
     $(document).on("change", "#reference_no", function(e) {
         let selected = $(this).val();
         let split = selected.split('|');
@@ -609,7 +609,7 @@ if (isset($setting->base_color) && $setting->base_color) {
         let hidden_base_url = $("#hidden_base_url").val();
         let mat_stock_id = $("#mat_stock_id").val();
         let mat_id = $("#stk_mat_id").val();
-        let adj_type = $("#adj_type").val();
+        // let adj_type = $("#adj_type").val();
         let stock_type = $("#stock_type").val();
         let dc_no = $("#dc_no").val();
         let heat_no = $("#heat_no").val();
@@ -617,33 +617,34 @@ if (isset($setting->base_color) && $setting->base_color) {
         let mat_doc_no = $("#mat_doc_no").val();
         // let dc_inward_price = $("#dc_inward_price").val();
         let material_price = $("#material_price").val();
+        let line_item_no = $("#line_item_no").val();
         let hsn_no = $("#hsn_no").val();
         let reference_no = "";
         if (stock_type === "purchase") {
             reference_no = $("#reference_no").val().split('|')[0];
         } else if (stock_type === "customer") {
-            reference_no = $("#inp_ref_no").val();
+            reference_no = $("#reference_no_hidden").val();
         }
         $("#reference_no_hidden").val(reference_no);
         let stock_qty = $("#stock_qty").val();
-        if (adj_type == "") {
+        /* if (adj_type == "") {
             $(".material_id_err").text("The Adjustment Type field is required.");
             status = false;
         } else {
             $(".material_id_err").text("");
-        }
+        } */
         if (stock_qty == "") {
             $(".quantity_error").text("The Quantity field is required.");
             status = false;
         } else {
             $(".quantity_error").text("");
         }
-        if (stock_type == "") {
+        /* if (stock_type == "") {
             $(".stock_type_err").text("The Stock Type field is required.");
             status = false;
         } else {
             $(".stock_type_err").text("");
-        }
+        } */
         if (dc_no == "") {
             $(".dc_no_err").text("The Customer DC No field is required.");
             status = false;
@@ -686,11 +687,12 @@ if (isset($setting->base_color) && $setting->base_color) {
             url: hidden_base_url + "materialStockAdjust",
             data: {
                 mat_stock_id: mat_stock_id,
-                adj_type: adj_type,
+                // adj_type: adj_type,
                 stock_qty: stock_qty,
                 mat_id: mat_id,
                 stock_type: stock_type,
                 reference_no: reference_no,
+                line_item_no: line_item_no,
                 dc_no: dc_no,
                 heat_no: heat_no,
                 dc_date: dc_date,
