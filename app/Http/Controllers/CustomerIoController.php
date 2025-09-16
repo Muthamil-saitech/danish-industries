@@ -85,7 +85,7 @@ class CustomerIoController extends Controller
                 $obj->type = null_check(escape_output($type));
                 $obj->ins_category = null_check(escape_output($_POST['ins_category'][$row] ?? '0')); 
                 $obj->ins_name = null_check(escape_output($_POST['ins_name'][$row] ?? '0')); 
-                $obj->qty = null_check(escape_output($_POST['qty'][$row] ?? 0));
+                $obj->qty = null_check(escape_output($_POST['qty'][$row] ?? ''));
                 $obj->remarks = escape_output($_POST['remarks'][$row] ?? ''); 
                 $obj->save();
             }

@@ -53,3 +53,24 @@ ALTER TABLE `tbl_instruments` ADD `location` VARCHAR(50) NOT NULL AFTER `due_dat
 
 ======13 sep======
 ALTER TABLE `tbl_stock_adjust_logs` ADD `line_item_no` VARCHAR(30) NULL DEFAULT NULL AFTER `reference_no`;
+
+======16 sep ======
+INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '21', 'Add Partner', 'partner.create', 'No', 'No', NULL, NULL);
+INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '21', 'Partner List', 'partner.index', 'No', 'No', NULL, NULL);
+INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '21', 'Edit Partner', 'partner.edit', 'No', 'No', NULL, NULL);
+INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '21', 'Delete Partner', 'partner.delete', 'No', 'No', NULL, NULL);
+
+INSERT INTO `tbl_menus` (`id`, `title`, `description`, `created_at`, `updated_at`) VALUES (NULL, 'Inward Outward', NULL, NULL, NULL);
+INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '29', 'Add Customer IO', 'customer_io.create', 'No', 'No', NULL, NULL);
+INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '29', 'Customer IO List', 'customer_io.index', 'No', 'No', NULL, NULL);
+INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '29', 'Edit Customer IO', 'customer_io.edit', 'No', 'No', NULL, NULL);
+INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '29', 'Delete Customer IO', 'customer_io.delete', 'No', 'No', NULL, NULL);
+INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '29', 'Add Partner IO', 'partner_io.create', 'No', 'No', NULL, NULL);
+INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '29', 'Partner IO List', 'partner_io.index', 'No', 'No', NULL, NULL);
+INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '29', 'Edit Partner IO', 'partner_io.edit', 'No', 'No', NULL, NULL);
+INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '29', 'Delete Partner IO', 'partner_io.delete', 'No', 'No', NULL, NULL);
+INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '29', 'Calendar Partner IO', 'partner_io.calendar', 'No', 'No', NULL, NULL);
+INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '29', 'Calendar Customer IO', 'customer_io.calendar', 'No', 'No', NULL, NULL);
+INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '', 'View Details Partner IO', 'partner_io.view_details', 'No', 'No', NULL, NULL);
+INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '29', 'View Details Customer IO', 'customer_io.view_details', 'No', 'No', NULL, NULL);
+

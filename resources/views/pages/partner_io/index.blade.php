@@ -73,18 +73,25 @@ if (isset($setting->base_color) && $setting->base_color) {
                                     @endif
                                 </td>
                                 <td>
-                                    @if($detail->status == 'Inward')
-                                        <a href="#" class="button-warning open-calendar" data-id="{{ $detail->id }}"  
-                                            data-bs-toggle="modal" data-bs-target="#calendarModal">
-                                            <i class="fa fa-calendar tiny-icon"></i>
-                                        </a>
+                                    @if (routePermission('partner_io.calendar')) 
+                                        @if($detail->status == 'Inward')
+                                            <a href="#" class="button-warning open-calendar" data-id="{{ $detail->id }}"  
+                                                data-bs-toggle="modal" data-bs-target="#calendarModal">
+                                                <i class="fa fa-calendar tiny-icon"></i>
+                                            </a>
+                                        @endif
                                     @endif
+                                    @if (routePermission('partner_io.view_details')) 
                                     <a href="{{ url('partner_io') }}/{{ encrypt_decrypt($detail->id, 'encrypt') }}"
                                         class="button-info" data-bs-toggle="tooltip" data-bs-placement="top"
                                         title="@lang('index.view_details')"><i class="fa fa-eye tiny-icon"></i></a>
+                                    @endif
+                                    @if (routePermission('partner_io.edit')) 
                                     <a href="{{ url('partner_io') }}/{{ encrypt_decrypt($detail->id, 'encrypt') }}/edit"
                                         class="button-success" data-bs-toggle="tooltip" data-bs-placement="top"
                                         title="@lang('index.edit')"><i class="fa fa-edit tiny-icon"></i></a>
+                                    @endif
+                                    @if(routePermission('partner_io.delete'))
                                     <a href="#" class="delete button-danger"
                                         data-form_class="alertDelete1" type="submit"
                                         data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('index.delete')">
@@ -95,6 +102,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                                             <i class="fa fa-trash tiny-icon"></i>
                                         </form>
                                     </a>
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach 

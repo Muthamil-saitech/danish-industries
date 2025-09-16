@@ -69,12 +69,12 @@ if (isset($setting->base_color) && $setting->base_color) {
                                     <a href="{{ route('partners.show', encrypt_decrypt($value->id, 'encrypt')) }}"
                                         class="button-info" data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('index.view_details')"><i class="fa fa-eye"></i>
                                     </a>
-                                    {{-- @if (routePermission('supplier.edit')) --}}
+                                    @if (routePermission('partner.edit')) 
                                     <a href="{{ url('partners') }}/{{ encrypt_decrypt($value->id, 'encrypt') }}/edit"
                                         class="button-success" data-bs-toggle="tooltip" data-bs-placement="top"
                                         title="@lang('index.edit')"><i class="fa fa-edit tiny-icon"></i></a>
-                                    {{-- @endif 
-                                    @if (routePermission('supplier.delete') && !$value->used_in_purchase) --}}
+                                    @endif 
+                                    @if (routePermission('partner.delete') && !$value->used_in_partner_po) 
                                     <a href="#" class="delete button-danger"
                                         data-form_class="alertDelete{{ $value->id }}" type="submit"
                                         data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('index.delete')">
@@ -85,7 +85,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                                             <i class="fa fa-trash tiny-icon"></i>
                                         </form>
                                     </a>
-                                    {{-- @endif --}}
+                                    @endif 
                                 </td>
                             </tr>
                         @endforeach

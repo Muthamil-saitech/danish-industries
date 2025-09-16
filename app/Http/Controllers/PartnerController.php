@@ -6,13 +6,18 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Partner;
 use App\PartnerContactInfo;
+use App\PartnerIO;
 use Illuminate\Validation\Rule;
 
 
 class PartnerController extends Controller
 {
-     public function index() {
-        $obj = Partner::orderBy('id', 'DESC')->where('del_status', "Live")->get();
+    public function index() {
+        $obj = Partner::orderBy('id', 'DESC')->where('del_status', "Live")->get()->map(function ($partner) {
+            $usedInPartner = PartnerIO::where('partner_id', $partner->id)->exists();
+            $partner->used_in_partner_po = $usedInPartner;
+            return $partner;
+        });
         $title = __('index.partners');
         return view('pages.partners.index', compact('title','obj'));
     }
@@ -23,7 +28,6 @@ class PartnerController extends Controller
         return view('pages.partners.addEditPartner', compact('title','partner_id'));
     }
     public function store(Request $request){
-        // dd($request->all());
         request()->validate([
             'name' => [
                 'required',

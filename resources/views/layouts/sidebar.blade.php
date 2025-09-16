@@ -73,12 +73,16 @@
                                     href="{{ route('suppliers.index') }}">@lang('index.list_supplier')</a>
                             </li>
                         @endif
+                        @if (routePermission('partner.create'))
                         <li class="menu_assign_class {{ request()->routeIs('partners.create') ? ' treeMenuActive' : '' }}" data-menu__cid="irp_10"><a
                                 href="{{ route('partners.create') }}">@lang('index.add_partner')</a>
                         </li>
+                        @endif
+                        @if (routePermission('partner.index'))
                         <li class="menu_assign_class {{ request()->routeIs('partners.index') ? ' treeMenuActive' : '' }}" data-menu__cid="irp_10"><a
                                 href="{{ route('partners.index') }}">@lang('index.list_partner')</a>
                         </li>
+                        @endif
                     </ul>
                 </li>
             @endif
@@ -201,26 +205,36 @@
                     </ul>
                 </li>  
             @endif
+            @if (menuPermission('Inward Outward'))
             <li class="parent-menu treeview menu__cidirp_10 {{ request()->is('inward_outward*') || request()->is('customer_io*') || request()->is('partner_io*')  ? 'menu-open active_sub_menu' : '' }}">
                 <a href="#">
                     <iconify-icon icon="material-symbols:menu"></iconify-icon>
                     <span class="match_bold">@lang('index.inward&outward')</span>
                 </a>
                 <ul class="treeview-menu">
+                    @if (routePermission('customer_io.create'))
                     <li class="menu_assign_class {{ request()->routeIs('customer_io.create') ? ' treeMenuActive' : '' }}" data-menu__cid="irp_10"><a
                             href="{{ route('customer_io.create') }}">@lang('index.add_customer')</a>
                     </li>
+                    @endif
+                    @if(routePermission('customer_io.index'))
                     <li class="menu_assign_class {{ request()->routeIs('customer_io.index') ? ' treeMenuActive' : '' }}" data-menu__cid="irp_10"><a
                             href="{{ route('customer_io.index') }}">@lang('index.customer_io')</a>
                     </li>
+                    @endif
+                    @if(routePermission('partner_io.create'))
                     <li class="menu_assign_class {{ request()->routeIs('partner_io.create') ? ' treeMenuActive' : '' }}" data-menu__cid="irp_10"><a
                             href="{{ route('partner_io.create') }}">@lang('index.add_partner')</a>
                     </li>
+                    @endif
+                    @if(routePermission('partner_io.index'))
                     <li class="menu_assign_class {{ request()->routeIs('partner_io.index') ? ' treeMenuActive' : '' }}" data-menu__cid="irp_10"><a
                             href="{{ route('partner_io.index') }}">@lang('index.partner_io')</a>
                     </li>
+                    @endif
                 </ul>
             </li>  
+            @endif
             @if (menuPermission('Item Setup'))
                 <li
                     class="parent-menu treeview menu__cidirp_10{{ request()->is('rmcategories*') || request()->is('rawmaterials*') || request()->is('noninventoryitems*') || request()->is('fpcategories*') || request()->is('finishedproducts*') || request()->is('materialtypes*') ? ' menu-open active_sub_menu' : '' }}">
