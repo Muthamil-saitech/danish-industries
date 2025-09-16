@@ -45,6 +45,8 @@ use App\Tax;
 use App\TaxItems;
 use App\CustomerDueReceive;
 use App\InstrumentCategory;
+use App\Instrument;
+use App\Partner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -626,7 +628,27 @@ class AjaxController extends Controller
         echo $html;
     }
 
+    public function getInstruments(Request $request) {
+        $type = escape_output($request->post('type'));
+        $ins_category = escape_output($request->post('ins_category'));
+        $selected_instrument = $request->post('selected'); 
 
+        $instruments = Instrument::where('type', $type)->where('category',$ins_category)
+            ->where('del_status', 'Live')
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        $html = '<option value="">Select</option>';
+
+        foreach ($instruments as $instrument) {
+            $selected = ($selected_instrument == $instrument->id) ? 'selected' : '';
+            $html .= '<option value="' . $instrument->id . '" ' . $selected . '>'
+                    . $instrument->instrument_name . '</option>';
+        }
+
+        echo $html;
+
+    }
     public function getCustomerOrderList(Request $request)
     {
         $customer_id = escape_output($request->post('id'));
@@ -1158,5 +1180,16 @@ class AjaxController extends Controller
         $mat_type_id = escape_output($request->post('mat_type_id'));
         $material_categories = RawMaterialCategory::where('del_status', "Live")->where('mat_type_id', $mat_type_id)->get();
         echo json_encode($material_categories);
+    }
+    public function getCustomerName(Request $request) {
+        $po_no =  escape_output($request->post('po_no'));
+        $customer_id = CustomerOrder::where('reference_no',$po_no)->where('del_status','Live')->value('customer_id');
+        $get_customer = Customer::where('id',$customer_id)->where('del_status','Live')->first();
+        echo json_encode($get_customer);
+    }
+    public function getPartner(Request $request) {
+        $partner_id = escape_output($request->post('partner_id'));
+        $partner  = Partner::where('id',$partner_id)->where('del_status','Live')->first();
+        echo json_encode($partner);
     }
 }

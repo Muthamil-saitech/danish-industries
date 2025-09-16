@@ -122,6 +122,7 @@ Route::group(['middleware' => ['XSS']], function () {
         Route::post('getFinishProductGST', [App\Http\Controllers\AjaxController::class, 'getFinishProductGST'])->name('getFinishProductGST.post');
         Route::post('getProductQty', [App\Http\Controllers\AjaxController::class, 'getProductQty'])->name('getProductQty.post');
         Route::post('getInstrumentCategory', [App\Http\Controllers\AjaxController::class, 'getInstrumentCategory'])->name('getInstrumentCategory.post');
+        Route::post('getInstruments', [App\Http\Controllers\AjaxController::class, 'getInstruments'])->name('getInstruments.post');
         Route::post('getFinishProductNONI', [App\Http\Controllers\AjaxController::class, 'getFinishProductNONI'])->name('getFinishProductNONI.post');
         Route::post('getFinishProductStages', [App\Http\Controllers\AjaxController::class, 'getFinishProductStages'])->name('getFinishProductStages.post');
         Route::post('getProductionStages', [App\Http\Controllers\AjaxController::class, 'getProductionStages'])->name('getProductionStages.post');
@@ -161,9 +162,13 @@ Route::group(['middleware' => ['XSS']], function () {
         Route::resource('suppliers', App\Http\Controllers\SupplierController::class)->only(['index', 'create', 'store', 'destroy', 'update', 'show', 'edit',]);
         Route::post('/contactDelete', [App\Http\Controllers\SupplierController::class, 'contactDelete'])->name('contactDelete');
         Route::post('/customerContactDelete', [App\Http\Controllers\CustomerController::class, 'customerContactDelete'])->name('customerContactDelete');
+        Route::post('/partnerContactDelete', [App\Http\Controllers\PartnerController::class, 'partnerContactDelete'])->name('partnerContactDelete');
         Route::resource('customers', App\Http\Controllers\CustomerController::class)->only(['index', 'create', 'store', 'destroy', 'update', 'show', 'edit']);
         Route::resource('partners', App\Http\Controllers\PartnerController::class)->only(['index', 'create', 'store', 'destroy', 'update', 'show', 'edit']);
         Route::resource('customer_io', App\Http\Controllers\CustomerIOController::class)->only(['index', 'create', 'store', 'destroy', 'update', 'show', 'edit']);
+        Route::post('customer_io/inward-to-outward',[App\Http\Controllers\CustomerIOController::class, 'inward_to_outward'])->name('customer_io.inward_to_outward');
+        Route::post('partner_io/inward-to-outward',[App\Http\Controllers\PartnerIOController::class, 'inward_to_outward'])->name('partner_io.inward_to_outward');
+
         Route::resource('partner_io', App\Http\Controllers\PartnerIOController::class)->only(['index', 'create', 'store', 'destroy', 'update', 'show', 'edit']);
         Route::resource('material_stocks', App\Http\Controllers\MaterialStockController::class);
         Route::get('material_stocks/{id}/stock_adjustments', [App\Http\Controllers\MaterialStockController::class, 'stock_adjustments']);
@@ -256,6 +261,8 @@ Route::group(['middleware' => ['XSS']], function () {
         Route::post('getCustomerOrderList', [App\Http\Controllers\AjaxController::class, 'getCustomerOrderList'])->name('getCustomerOrderList.post');
         Route::post('getCustomerOrderProducts', [App\Http\Controllers\AjaxController::class, 'getCustomerOrderProducts'])->name('getCustomerOrderProducts.post');
         Route::post('getCustomerProductionProducts', [App\Http\Controllers\AjaxController::class, 'getCustomerProductionProducts'])->name('getCustomerProductionProducts.post');
+        Route::post('getCustomerName', [App\Http\Controllers\AjaxController::class, 'getCustomerName'])->name('getCustomerName.post');
+        Route::post('getPartner', [App\Http\Controllers\AjaxController::class, 'getPartner'])->name('getPartner.post');
 
         Route::get('/customer-order-download/{id}', [App\Http\Controllers\CustomerOrdersController::class, 'downloadInvoice'])->name('customer-order-download');
         Route::get('/customer-order-print/{id}', [App\Http\Controllers\CustomerOrdersController::class, 'print'])->name('customer-order-print');

@@ -18,7 +18,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                     data-id_name="datatable">
             </div>
             <div class="col-md-6 text-end">
-                <h5 class="mb-0">Total Partners: 2 </h5>
+                <h5 class="mb-0">Total Partners: {{ isset($obj) && $obj ? count($obj) : '-' }} </h5>
             </div>
         </div>
     </section>
@@ -47,70 +47,48 @@ if (isset($setting->base_color) && $setting->base_color) {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="c_center">1</td>
-                            <td>P001</td>
-                            <td>Kishore</td>
-                            {{-- <td>Elakkiya</td> --}}
-                            <td>7458961231</td>
-                            <td>kishore@gmail.com</td>
-                            <td title="">41/A, Jaihindpuram, Madurai.</td>
-                            <td>33AAACT7409H1ZH</td>
-                            <td>N/A</td>
-                            <td title="">Madurai</td>
-                            <td>Admin</td>
-                            <td>13-09-2025</td>
-                            <td class="text-start">
-                                <a href="{{ url('partners/show') }}"
-                                    class="button-info" data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('index.view_details')"><i class="fa fa-eye"></i>
-                                </a>
-                                <a href="{{ url('partners/create') }}"
-                                    class="button-success" data-bs-toggle="tooltip" data-bs-placement="top"
-                                    title="@lang('index.edit')"><i class="fa fa-edit tiny-icon"></i></a>
-                                <a href="#" class="delete button-danger"
-                                    data-form_class="alertDelete1" type="submit"
-                                    data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('index.delete')">
-                                    <form action=""
-                                        class="alertDelete1" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <i class="fa fa-trash tiny-icon"></i>
-                                    </form>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="c_center">2</td>
-                            <td>P002</td>
-                            <td>Vinothini</td>
-                            {{-- <td>Elakkiya</td> --}}
-                            <td>7569841032</td>
-                            <td>vinothini@gmail.com</td>
-                            <td title="">Koodal Nagar</td>
-                            <td>N/A</td>
-                            <td>N/A</td>
-                            <td title="">Madurai</td>
-                            <td>Admin</td>
-                            <td>13-09-2025</td>
-                            <td class="text-start">
-                                <a href="{{ url('partners/show') }}"
-                                    class="button-info" data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('index.view_details')"><i class="fa fa-eye"></i>
-                                </a>
-                                <a href="{{ url('partners/create') }}"
-                                    class="button-success" data-bs-toggle="tooltip" data-bs-placement="top"
-                                    title="@lang('index.edit')"><i class="fa fa-edit tiny-icon"></i></a>
-                                <a href="#" class="delete button-danger"
-                                    data-form_class="alertDelete1" type="submit"
-                                    data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('index.delete')">
-                                    <form action=""
-                                        class="alertDelete1" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <i class="fa fa-trash tiny-icon"></i>
-                                    </form>
-                                </a>
-                            </td>
-                        </tr>
+                         @if ($obj && !empty($obj))
+                        <?php
+                        $i = 1;
+                        ?>
+                        @endif
+                        @foreach ($obj as $value)
+                            <tr>
+                                <td class="c_center">{{ $i++ }}</td>
+                                <td>{{ $value->partner_id }}</td>
+                                <td>{{ $value->name }}</td>
+                                <td>{{ safe($value->phone)  }}</td>
+                                <td>{{ safe($value->email)  }}</td>
+                                <td title="{{ $value->address }}">{{ substr_text(safe($value->address),30)  }}</td>
+                                <td>{{ safe($value->gst_no)  }}</td>
+                                <td>{{ safe($value->ecc_no)  }}</td>
+                                <td title="{{ $value->area }}">{{ substr_text(safe($value->area),30)  }}</td>
+                                <td>{{ getUserName($value->added_by) }}</td>
+                                <td>{{ getDateFormat($value->created_at) }}</td>
+                                <td class="text-start">
+                                    <a href="{{ route('partners.show', encrypt_decrypt($value->id, 'encrypt')) }}"
+                                        class="button-info" data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('index.view_details')"><i class="fa fa-eye"></i>
+                                    </a>
+                                    {{-- @if (routePermission('supplier.edit')) --}}
+                                    <a href="{{ url('partners') }}/{{ encrypt_decrypt($value->id, 'encrypt') }}/edit"
+                                        class="button-success" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="@lang('index.edit')"><i class="fa fa-edit tiny-icon"></i></a>
+                                    {{-- @endif 
+                                    @if (routePermission('supplier.delete') && !$value->used_in_purchase) --}}
+                                    <a href="#" class="delete button-danger"
+                                        data-form_class="alertDelete{{ $value->id }}" type="submit"
+                                        data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('index.delete')">
+                                        <form action="{{ route('partners.destroy', $value->id) }}"
+                                            class="alertDelete{{ $value->id }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <i class="fa fa-trash tiny-icon"></i>
+                                        </form>
+                                    </a>
+                                    {{-- @endif --}}
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

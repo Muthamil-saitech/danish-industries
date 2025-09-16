@@ -44,66 +44,100 @@
                                     <td class="w-50">
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.customer_code'):</strong></span>
-                                            CUS001
+                                            {{ $customer_io->customer->customer_id }}
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.customer_type'):</strong></span>
-                                            Wholesale
+                                            {{ $customer_io->customer->customer_type }}
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.customer_name'):</strong></span>
-                                            Malini
+                                            {{ $customer_io->customer->name }}
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.phone_number'):</strong></span>
-                                            7419632580
+                                            {{ $customer_io->customer->phone }}
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.email'):</strong></span>
-                                            malini@gmail.com
+                                            {{ $customer_io->customer->email ? $customer_io->customer->email : 'N/A' }}
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.delivery_address'):</strong></span>
-                                            41/A, Anna Nagar, Madurai
+                                            {{ $customer_io->d_address }}
+                                        </p> 
+                                        <p class="pb-7 rgb-71">
+                                            <span class=""><strong>@lang('index.inward_date'):</strong></span>
+                                            {{  date('d-m-Y', strtotime($customer_io->inward_date)) ?? '' }}
                                         </p>
                                     </td>
                                     <td class="w-50" style="float: inline-end">
                                         <p class="pb-7 rgb-71">
-                                            <span class=""><strong>@lang('index.gst_no'):</strong></span>33AAACT7409H1ZH
+                                            <span class=""><strong>@lang('index.gst_no'):</strong></span>
+                                            {{ $customer_io->customer->gst_no }}
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.ecc_no'):</strong></span>
+                                            {{ $customer_io->customer->ecc_no }}
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.landmark'):</strong></span>
+                                            {{ $customer_io->customer->area }}
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.created_on'):</strong></span>
-                                            13-09-2025
+                                            {{ getDateFormat($customer_io->customer->created_at) }}
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.created_by'):</strong></span>
-                                            Admin
+                                            {{ getUserName($customer_io->customer->added_by) }}
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.note'):</strong></span>
+                                            {{ $customer_io->customer->note}}
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.status'):</strong></span>
+                                            @if($customer_io->status == 'Inward')
                                             <span class="badge bg-secondary">Inward</span>
+                                            @else
+                                            <span class="badge bg-success">Outward</span>
+                                            @endif
+                                        </p>
+                                        <p class="pb-7 rgb-71">
+                                            <span class=""><strong>@lang('index.inward_notes'):</strong></span>
+                                            {{ $customer_io->notes}}
                                         </p>
                                     </td>
                                 </tr>
                             </table>
-                            <div class="pt-10 pb-10">
-                                <div class="text-left">
-                                    <h3 class="pt-20 pb-20">Documents</h3>
-                                    <div class="d-flex flex-wrap gap-3">
-                                        <img src="{{ url('uploads/drawer/1749707112_istockphoto-2114257458-612x612.jpg') }}" alt="Document 1" width="100" class="img-thumbnail rounded">
-                                        <img src="{{ url('uploads/drawer/1749707144_10578248670642b.jpg') }}" alt="Document 2" width="100" class="img-thumbnail rounded">
+                            @if(isset($customer_io->file) && $customer_io->file != '')
+                                <div class="pt-10 pb-10">
+                                    <div class="text-left">
+                                        <h3 class="pt-20 pb-20">Documents</h3>
+                                        <div class="d-flex flex-wrap gap-3">
+                                            @php
+                                                $file = $customer_io->file;
+                                                $fileExtension = pathinfo($file, PATHINFO_EXTENSION);
+                                            @endphp
+
+                                            @if(in_array(strtolower($fileExtension), ['pdf']))
+                                                <a class="text-decoration-none" href="{{ url('uploads/customer_io/' . $file) }}" target="_blank">
+                                                    <img src="{{ url('assets/images/pdf.png') }}" alt="PDF Preview" class="img-thumbnail rounded" width="100">
+                                                </a>
+                                            @elseif(in_array(strtolower($fileExtension), ['doc', 'docx']))
+                                                <a class="text-decoration-none" href="{{ url('uploads/customer_io/' . $file) }}" target="_blank">
+                                                    <img src="{{ url('assets/images/word.png') }}" alt="Word Preview" class="img-thumbnail rounded" width="100">
+                                                </a>
+                                            @else
+                                                <a class="text-decoration-none" href="{{ url('uploads/customer_io/' . $file) }}" target="_blank">
+                                                    <img src="{{ url('uploads/customer_io/' . $file) }}" alt="File Preview" class="img-thumbnail rounded" width="100">
+                                                </a>
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endif
                             <table>
                                 <thead>
                                     <tr>
@@ -118,27 +152,31 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>6500150191/1</td>
-                                        <td>13-09-2025</td>
-                                        <td>Gauges/Checking Instruments	</td>
-                                        <td>Plug Gauge</td>
-                                        <td>Micrometer Screw Gauge(INS001)</td>
-                                        <td>5</td>
-                                        <td>Ok</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>6500150191/1</td>
-                                        <td>13-09-2025</td>
-                                        <td>Measuring Instruments</td>
-                                        <td>Vernier Caliper</td>
-                                        <td>Digital Multimeter(INS002)</td>
-                                        <td>5</td>
-                                        <td>Ok</td>
-                                    </tr>
-                                </tbody>
+                                <?php $i = 1; ?>
+                                @if(isset($customer_io_details) && $customer_io_details->count())
+                                @foreach($customer_io_details as $detail)
+                                @php 
+                                    $ins_category = \App\InstrumentCategory::where('id',$detail->ins_category)->first();
+                                    $instrument = \App\Instrument::where('id',$detail->ins_name)->first();
+                                @endphp
+                                        <tr class="rowCount" data-id="{{ $detail->id }}">
+                                            <td>{{ $i++ }}</td>
+                                            <td>{{ $customer_io->po_no .'/'. $customer_io->line_item_no }}</td>
+                                            <td>{{ date('d-m-Y', strtotime($customer_io->date)) }}</td>
+                                            @if($detail->type == '1')
+                                                <td>Gauges/Checking Instruments</td>
+                                            @else
+                                                <td>Measuring Instruments</td>
+                                            @endif
+                                            <td>{{ $ins_category->category ?? 'N/A' }}</td>
+                                            <td>{{ $instrument->instrument_name }}</td>
+                                            <td>{{ $detail->qty ?? 'N/A' }}</td>
+                                            <td>{{ $detail->remarks ?? 'N/A' }}</td>
+                                        </tr>
+                                    @endforeach
+                                @endif
+                            </tbody>
+
                             </table>
                         </div>
                     </div>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('script_top')
     <?php
-    $setting = getSettingsInfo();
+        $setting = getSettingsInfo();
     $tax_setting = getTaxInfo();
     $baseURL = getBaseURL();
     ?>
@@ -17,7 +17,7 @@
             <div class="table-box">
                 {!! Form::model(isset($obj) && $obj ? $obj : '', [
                     'method' => isset($obj) && $obj ? 'PATCH' : 'POST',
-                    'route' => ['suppliers.update', isset($obj->id) && $obj->id ? $obj->id : ''],
+                    'route' => ['partners.update', isset($obj->id) && $obj->id ? $obj->id : ''],
                 ]) !!}
                 @csrf
                 <div>
@@ -25,8 +25,10 @@
                         <div class="col-md-6 col-lg-4">
                             <div class="form-group mb-3">
                                 <label>@lang('index.partner_name') <span class="required_star">*</span></label>
+                                <input type="hidden" name="partner_id" value="{{ isset($obj->partner_id) ? $obj->partner_id : $partner_id }}"
+                                    onfocus="select()" readonly>
                                 <input type="text" name="name" id="name"
-                                    class="form-control @error('name') is-invalid @enderror" placeholder="@lang('index.partner_name')" value="">
+                                    class="form-control @error('name') is-invalid @enderror" placeholder="@lang('index.partner_name')" value="{{ isset($obj->name) && $obj->name ? $obj->name : old('name') }}">
                                 @error('name')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -37,7 +39,7 @@
                                 <label>@lang('index.contact_person')</label>
                                 <input type="text" name="contact_person" id="contact_person"
                                     class="form-control @error('contact_person') is-invalid @enderror"
-                                    placeholder="Contact Person" value="">
+                                    placeholder="Contact Person" value="{{ isset($obj->contact_person) && $obj->contact_person ? $obj->contact_person : old('contact_person') }}">
                                 @error('contact_person')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -48,7 +50,7 @@
                                 <label>@lang('index.phone') <span class="required_star">*</span></label>
                                 <input type="text" name="phone" id="phone"
                                     class="form-control @error('phone') is-invalid @enderror"
-                                    placeholder="Phone" value="">
+                                    placeholder="Phone" value="{{ isset($obj->phone) && $obj->phone ? $obj->phone : old('phone') }}">
                                 @error('phone')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -58,7 +60,7 @@
                             <div class="form-group mb-3">
                                 <label>@lang('index.email')</label>
                                 <input type="text" name="email" id="email"
-                                    class="form-control @error('email') is-invalid @enderror" placeholder="Email" value="">
+                                    class="form-control @error('email') is-invalid @enderror" placeholder="Email" value="{{ isset($obj->email) && $obj->email ? $obj->email : old('email') }}">
                                 @error('email')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -70,7 +72,7 @@
                                 <input type="text" name="gst_no" id="gst_no"
                                     class="form-control @error('gst_no') is-invalid @enderror"
                                     placeholder="{{ __('index.gst_no') }}"
-                                    value="">
+                                    value="{{ isset($obj) && $obj->gst_no ? $obj->gst_no : old('gst_no') }}">
                                 @error('gst_no')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -82,7 +84,7 @@
                                 <input type="text" name="ecc_no" id="ecc_no"
                                     class="form-control @error('ecc_no') is-invalid @enderror"
                                     placeholder="{{ __('index.ecc_no') }}"
-                                    value="">
+                                    value="{{ isset($obj) && $obj->ecc_no ? $obj->ecc_no : old('ecc_no') }}">
                                 @error('ecc_no')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -94,7 +96,7 @@
                                 <input type="text" name="area" id="area"
                                     class="form-control @error('area') is-invalid @enderror"
                                     placeholder="{{ __('index.landmark') }}"
-                                    value="">
+                                    value="{{ isset($obj) && $obj->area ? $obj->area : old('area') }}">
                                 @error('area')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -104,7 +106,7 @@
                             <div class="form-group mb-3">
                                 <label>@lang('index.address')</label>
                                 <textarea name="address" id="address" class="form-control @error('address') is-invalid @enderror"
-                                    placeholder="Address" rows="3"></textarea>
+                                    placeholder="Address" rows="3">{{ isset($obj->address) && $obj->address ? $obj->address : old('address') }}</textarea>
                                 @error('address')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -114,7 +116,7 @@
                             <div class="form-group mb-3">
                                 <label>@lang('index.note')</label>
                                 <textarea name="note" id="note" class="form-control @error('note') is-invalid @enderror"
-                                    placeholder="note" rows="3"></textarea>
+                                    placeholder="note" rows="3">{{ isset($obj->note) && $obj->note ? $obj->note : old('note') }}</textarea>
                                 @error('note')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -123,39 +125,39 @@
                     </div>
                     <hr>
                     <div class="add_scp">
-                        @if(isset($supplier_contact_info) && $supplier_contact_info->count() > 0)
+                        @if(isset($partner_contact_info) && $partner_contact_info->count() > 0)
                             {{-- Edit case: loop through existing contacts --}}
-                            @foreach($supplier_contact_info as $key => $contact_info)
+                            @foreach($partner_contact_info as $key => $contact_info)
                                 <div class="row">
                                     <div class="col-md-4 mb-3">
                                         <div class="form-group">
                                             <label>Contact Person Name </label>
-                                            <input type="hidden" name="scp_id[]" value="{{ $contact_info->id ?? '' }}">
-                                            <input type="text" name="scp_name[]" class="form-control" placeholder="Contact Person Name" value="{{ $contact_info->scp_name ?? old('scp_name') }}">
+                                            <input type="hidden" name="pcp_id[]" value="{{ $contact_info->id ?? '' }}">
+                                            <input type="text" name="pcp_name[]" class="form-control" placeholder="Contact Person Name" value="{{ $contact_info->pcp_name ?? old('pcp_name') }}">
                                         </div>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <div class="form-group">
                                             <label>Department </label>
-                                            <input type="text" name="scp_department[]" class="form-control" placeholder="Department" value="{{ $contact_info->scp_department ?? old('scp_department') }}">
+                                            <input type="text" name="pcp_department[]" class="form-control" placeholder="Department" value="{{ $contact_info->pcp_department ?? old('pcp_department') }}">
                                         </div>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <div class="form-group">
                                             <label>Designation </label>
-                                            <input type="text" name="scp_designation[]" class="form-control" placeholder="Designation" value="{{ $contact_info->scp_designation ?? old('scp_designation') }}">
+                                            <input type="text" name="pcp_designation[]" class="form-control" placeholder="Designation" value="{{ $contact_info->pcp_designation ?? old('pcp_designation') }}">
                                         </div>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <div class="form-group">
                                             <label>Phone Number </label>
-                                            <input type="text" name="scp_phone[]" class="form-control" placeholder="Phone Number" value="{{ $contact_info->scp_phone ?? old('scp_phone') }}">
+                                            <input type="text" name="pcp_phone[]" class="form-control" placeholder="Phone Number" value="{{ $contact_info->pcp_phone ?? old('pcp_phone') }}">
                                         </div>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <div class="form-group">
                                             <label>Email </label>
-                                            <input type="text" name="scp_email[]" class="form-control" placeholder="Email" value="{{ $contact_info->scp_email ?? old('scp_email') }}">
+                                            <input type="text" name="pcp_email[]" class="form-control" placeholder="Email" value="{{ $contact_info->pcp_email ?? old('pcp_email') }}">
                                         </div>
                                     </div>
                                     @if($key==0)
@@ -163,7 +165,7 @@
                                             <button id="partnerContactPerson" class="btn bg-blue-btn mt-4" type="button">@lang('index.add_more')</button>
                                         </div>
                                     @else
-                                        @if(isset($supplier_contact_info) && $supplier_contact_info->count() > 0)
+                                        @if(isset($partner_contact_info) && $partner_contact_info->count() > 0)
                                         <div class="col-md-4 mt-4">
                                             <a href="#" class="partner_c_del button-danger"
                                                 data-contact_id="{{ $contact_info->id }}" type="submit"
@@ -187,32 +189,32 @@
                                 <div class="col-md-4 mb-3">
                                     <div class="form-group">
                                         <label>Contact Person Name </label>
-                                        <input type="hidden" name="scp_id[]" value="">
-                                        <input type="text" name="scp_name[]" class="form-control" placeholder="Contact Person Name" value="{{ old('scp_name.0') }}">
+                                        <input type="hidden" name="pcp_id[]" value="">
+                                        <input type="text" name="pcp_name[]" class="form-control" placeholder="Contact Person Name" value="{{ old('pcp_name.0') }}">
                                     </div>
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <div class="form-group">
                                         <label>Department </label>
-                                        <input type="text" name="scp_department[]" class="form-control" placeholder="Department" value="{{ old('scp_department.0') }}">
+                                        <input type="text" name="pcp_department[]" class="form-control" placeholder="Department" value="{{ old('pcp_department.0') }}">
                                     </div>
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <div class="form-group">
                                         <label>Designation </label>
-                                        <input type="text" name="scp_designation[]" class="form-control" placeholder="Designation" value="{{ old('scp_designation.0') }}">
+                                        <input type="text" name="pcp_designation[]" class="form-control" placeholder="Designation" value="{{ old('pcp_designation.0') }}">
                                     </div>
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <div class="form-group">
                                         <label>Phone Number </label>
-                                        <input type="text" name="scp_phone[]" class="form-control" placeholder="Phone Number" value="{{ old('scp_phone.0') }}">
+                                        <input type="text" name="pcp_phone[]" class="form-control" placeholder="Phone Number" value="{{ old('pcp_phone.0') }}">
                                     </div>
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <div class="form-group">
                                         <label>Email </label>
-                                        <input type="text" name="scp_email[]" class="form-control" placeholder="Email" value="{{ old('scp_email.0') }}">
+                                        <input type="text" name="pcp_email[]" class="form-control" placeholder="Email" value="{{ old('pcp_email.0') }}">
                                     </div>
                                 </div>
                                 <div class="col-md-4 mb-3 mt-1">
@@ -255,31 +257,31 @@
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
                             <label>Contact Person Name</label>
-                            <input type="text" name="scp_name[]" class="form-control" placeholder="Contact Person Name">
+                            <input type="text" name="pcp_name[]" class="form-control" placeholder="Contact Person Name">
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
                             <label>Department</label>
-                            <input type="text" name="scp_department[]" class="form-control" placeholder="Department">
+                            <input type="text" name="pcp_department[]" class="form-control" placeholder="Department">
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
                             <label>Designation</label>
-                            <input type="text" name="scp_designation[]" class="form-control" placeholder="Designation">
+                            <input type="text" name="pcp_designation[]" class="form-control" placeholder="Designation">
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
                             <label>Phone Number</label>
-                            <input type="text" name="scp_phone[]" class="form-control" placeholder="Phone Number">
+                            <input type="text" name="pcp_phone[]" class="form-control" placeholder="Phone Number">
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="text" name="scp_email[]" class="form-control" placeholder="Email">
+                            <input type="text" name="pcp_email[]" class="form-control" placeholder="Email">
                         </div>
                     </div>
                     <div class="col-md-4 mb-3 mt-4">
@@ -308,7 +310,7 @@
                 if (isConfirm) {
                     $.ajax({
                         type: "POST",
-                        url: hidden_base_url + "contactDelete",
+                        url: hidden_base_url + "partnerContactDelete",
                         data: {
                             contact_id: contact_id
                         },

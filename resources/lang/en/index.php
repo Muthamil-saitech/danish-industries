@@ -1009,5 +1009,9 @@ return [
     'partner_name' => 'Partner Name',
     'partner_code' => 'Partner Code',
     'partner_details' => 'Partner Details',
-    'view' => 'View'
+    'partner_name_required' => 'The partner name field is required',
+    'edit_partner' => 'Edit Partner',
+    'edit_partner_io' => 'Edit Partner IO',
+    'inward_date' => 'Inward Date',
+    'inward_notes' => 'Inward Notes'
 ];

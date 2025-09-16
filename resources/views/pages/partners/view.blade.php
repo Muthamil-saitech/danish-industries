@@ -45,49 +45,49 @@
                                     <td class="w-50">
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.partner_code'):</strong></span>
-                                            P001
+                                            {{ $obj->partner_id }}
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.partner_name'):</strong></span>
-                                            Kishore
+                                            {{ $obj->name }}
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.phone'):</strong></span>
-                                            7458961231
+                                            {{ $obj->phone }}
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.email'):</strong></span>
-                                            kishore@gmail.com	
+                                            {{ $obj->email }}
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.address'):</strong></span>
-                                            41/A, Jaihindpuram, Madurai.	
+                                            {{ $obj->address }}
                                         </p>
                                     </td>
                                     <td class="w-50" style="float: inline-end">
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.gst_no'):</strong></span>
-                                            N/A	
+                                            {{ $obj->gst_no }}
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.ecc_no'):</strong></span>
-                                           N/A	
+                                           {{ $obj->ecc_no }}
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.landmark'):</strong></span>
-                                            Madurai
+                                            {{ $obj->area }}
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.created_on'):</strong></span>
-                                            13-09-2025	
+                                            {{ getDateFormat($obj->created_at) }}
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.created_by'):</strong></span>
-                                            Admin
+                                            {{ getUserName($obj->added_by) }}
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.note'):</strong></span>
-                                            
+                                             {{ $obj->note }}
                                         </p>
                                     </td>
                                 </tr>
@@ -96,6 +96,7 @@
                                 <h3 class="color-000000 pt-20 pb-20">Partner Contact Info</h3>
                             </div>
                             <table>
+                                @if(isset($partner_contact_details) && count($partner_contact_details) > 0)
                                 <thead>
                                     <tr>
                                         <th>@lang('index.sn')</th>
@@ -108,14 +109,21 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>1</td>
-                                        <td>Usha</td>
-                                        <td>Manager</td>
-                                        <td>Management</td>
-                                        <td>9639639631</td>
-                                        <td>usha@gmail.com</td>
+                                        @foreach($partner_contact_details as $partner)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $partner->pcp_name!='' ? $partner->pcp_name : 'N/A' }}</td>
+                                                <td>{{ $partner->pcp_department!='' ? $partner->pcp_department : 'N/A' }}</td>
+                                                <td>{{ $partner->pcp_designation!='' ? $partner->pcp_designation : 'N/A' }}</td>
+                                                <td>{{ $partner->pcp_phone!='' ? $partner->pcp_phone : 'N/A' }}</td>
+                                                <td>{{ $partner->pcp_email!='' ? $partner->pcp_email : 'N/A' }}</td>
+                                            </tr>
+                                        @endforeach
                                     </tr>
                                 </tbody>
+                                @else
+                                <tr>No details found</tr>
+                                @endif
                             </table>
                         </div>
                     </div>

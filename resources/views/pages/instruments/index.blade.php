@@ -18,7 +18,7 @@
                         data-id_name="datatable">
                 </div>
                 <div class="col-md-6 text-end">
-                    <h5 class="mb-0">Total Instrument Categories: {{ isset($obj) ? count($obj) : '0' }} </h5>
+                    <h5 class="mb-0">Total Instruments: {{ isset($obj) ? count($obj) : '0' }} </h5>
                 </div>
             </div>
         </section>
