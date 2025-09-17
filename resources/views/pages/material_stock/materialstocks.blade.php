@@ -55,7 +55,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                                 <th class="width_10_p">@lang('index.material_category')</th>
                                 <th class="width_10_p">@lang('index.material_name')(@lang('index.code'))</th>
                                 {{-- <th class="width_10_p">@lang('index.ins_type')</th> --}}
-                                <th class="width_10_p">@lang('index.customer')<br>(@lang('index.code'))</th>
+                                <th class="width_10_p">@lang('index.supplier_name')<br>(@lang('index.code'))</th>
                                 <th class="width_10_p">@lang('index.stock')</th>
                                 <th class="width_10_p">@lang('index.alter_level')</th>
                                 <th class="width_10_p">@lang('index.floating_stock')</th>
@@ -81,11 +81,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                                                     N/A
                                                 @endif
                                             </td> --}}
-                                @if(!$value->customer_id)
-                                <td title="{{ getStockCustomerNameById($value->customer_id) }}">{{ substr_text(getStockCustomerNameById($value->customer_id),30) }}</td>
-                                @else
-                                <td title="{{ getStockCustomerNameById($value->customer_id) }}">{{ substr_text(getStockCustomerNameById($value->customer_id),30) }}<br><small>({{ getCustomerCodeById($value->customer_id) }})</small></td>
-                                @endif
+                                <td title="{{ getSupplierNameCode($value->supplier_id) }}">{{ substr_text(getSupplierNameCode($value->supplier_id),30) }}</td>
                                 <td>{{ $value->current_stock }} {{ getRMUnitById($value->unit_id) }}
                                     <div id="qty_msg"></div>
                                 </td>

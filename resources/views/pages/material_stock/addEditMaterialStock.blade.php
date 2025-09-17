@@ -279,7 +279,7 @@
                             <div class="form-group">
                                 <label>@lang('index.supplier') <span class="required_star">*</span></label>
                                 <input type="hidden" name="supplier_id" id="supplier_id" >
-                                <input type="text" class="form-control @error('supplier') is-invalid @enderror" name="supplier" id="supplier" value="{{ isset($obj->supplier_id) ? $obj->supplier_id : old('supplier') }}" placeholder="@lang('index.supplier')" readonly>
+                                <input type="text" class="form-control @error('supplier') is-invalid @enderror" name="supplier" id="supplier" value="{{ isset($obj->supplier_id) ? getSupplierNameCode($obj->supplier_id) : getSupplierNameCode(old('supplier')) }}" placeholder="@lang('index.supplier')" readonly>
                                 <div class="text-danger d-none"></div>
                                 @error('supplier')
                                     <div class="text-danger">{{ $message }}</div>

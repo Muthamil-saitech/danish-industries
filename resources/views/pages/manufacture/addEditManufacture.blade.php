@@ -37,6 +37,7 @@
                 @csrf
                 {!! Form::hidden('stage_counter', null, ['class' => 'stage_counter', 'id' => 'stage_counter']) !!}
                 {!! Form::hidden('stage_name', null, ['class' => 'stage_name', 'id' => 'stage_name']) !!}
+                {!! Form::hidden('supplier_id', null, ['class' => 'supplier_id', 'id' => 'supplier_id']) !!}
                 <div>
                     <div class="row">
                         {{-- <div class="col-sm-12 mb-2 col-md-4">
@@ -91,7 +92,7 @@
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                        </div>
+                        </div>                        
                         <div class="clearfix"></div>
                         <div class="col-sm-12 col-md-6 mb-2 col-lg-4">
                             <div class="form-group">
@@ -177,25 +178,18 @@
                         </div>
                         <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
-                                <label>@lang('index.mat_type') <span class="required_star">*</span></label>
-                                @if (isset($obj->stk_mat_type) && $obj->stk_mat_type !== '')
-                                    <input type="hidden" name="stk_mat_type" id="stk_mat_type" value="{{ $obj->stk_mat_type }}">
-                                    <input type="text"
-                                        class="form-control @error('stk_mat_type') is-invalid @enderror check_required"
-                                        id="stk_mat_type" value="{{ getMaterialType($obj->stk_mat_type) }}" readonly>
-                                @else
-                                    <select class="form-control @error('stk_mat_type') is-invalid @enderror select2" name="stk_mat_type" id="stk_mat_type">
-                                        <option value="">@lang('index.select')</option>
-                                        <option value="1" {{ (isset($obj->stk_mat_type) && $obj->stk_mat_type == 1) || old('stk_mat_type') == 1 ? 'selected' : '' }}>Material</option>
-                                        <option value="2" {{ (isset($obj->stk_mat_type) && $obj->stk_mat_type == 2) || old('stk_mat_type') == 2 ? 'selected' : '' }}>Raw Material</option>
-                                    </select>
-                                @endif
+                                <label>@lang('index.owner') <span class="required_star">*</span></label>
+                                <select class="form-control @error('owner_type') is-invalid @enderror select2" name="owner_type" id="owner_type">
+                                    <option value="">@lang('index.select')</option>
+                                    <option {{ (isset($obj->owner_type) && $obj->owner_type == 1) || old('owner_type') == 1 ? 'selected' : '' }} value="1">@lang('index.owner')</option>
+                                    <option {{ (isset($obj->owner_type) && $obj->owner_type == 2) || old('owner_type') == 2 ? 'selected' : '' }} value="2">@lang('index.customer')</option>
+                                </select>
                                 <div class="text-danger d-none"></div>
-                                @error('stk_mat_type')
+                                @error('owner_type')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                        </div> 
+                        </div>
                         {{-- <div
                             class="col-sm-12 mb-2 col-md-2 none_method fefo_method @if (in_array($st_method, ['none', 'fifo', 'fefo'])) d-none @endif">
                             <div class="form-group">
@@ -226,10 +220,7 @@
                         {{-- <input type="hidden" name="st_method" id="st_method"> --}}
                         <div class="col-sm-12 mb-2 col-md-2">
                             <div class="form-group">
-                                <button id="pr_go"
-                                    class="btn bg-blue-btn w-100 goBtn govalid {{ isset($obj) ? 'disabled' : '' }}"><span
-                                        class="me-2">@lang('index.go')</span> <iconify-icon
-                                        icon="solar:arrow-right-broken"></iconify-icon></button>
+                                <button id="pr_go" class="btn bg-blue-btn w-100 goBtn govalid {{ isset($obj) ? 'disabled' : '' }}"><span class="me-2">@lang('index.go')</span> <iconify-icon icon="solar:arrow-right-broken"></iconify-icon></button>
                             </div>
                         </div>
                         <div class="clearfix"></div>
@@ -242,14 +233,15 @@
                                     <thead>
                                         <tr>
                                             <th class="w-5 text-start">@lang('index.sn')</th>
+                                            <th class="w-30">Stock</th>
                                             <th class="w-30">@lang('index.material_name')(@lang('index.code'))</th>
-                                            <th class="w-30">@lang('index.stock')</th>
+                                            <th class="w-10">@lang('index.stock')</th>
                                             {{-- <th class="w-20"> @lang('index.rate_per_unit') <span class="required_star">*</span> <i
                                                     data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                     title="@lang('index.rm_stock_price_calculate')"
                                                     class="fa fa-question-circle base_color c_pointer"></i>
                                             </th> --}}
-                                            <th class="w-20"> @lang('index.consumption') <span class="required_star">*</span>
+                                            <th class="w-30"> @lang('index.consumption') <span class="required_star">*</span>
                                             </th>
                                             {{-- <th class="w-20">@lang('index.total_cost')</th> --}}
                                             {{-- <th class="w-5 text-end">@lang('index.actions')</th> --}}
@@ -262,6 +254,10 @@
                                                     <td class="width_1_p text-start">
                                                         <p class="set_sn"></p>
                                                     </td>
+                                                    <td>
+                                                        <input type="hidden" name="supplier_id[]" value="{{ $value->supplier_id }}">
+                                                        <label>{{ getSupplierNameCode($value->supplier_id) }}</label>
+                                                    </td>
                                                     <td><input type="hidden" value="{{ $value->stock_id }}"
                                                             name="stock_id[]">
                                                         <input type="hidden" value="{{ $value->rmaterials_id }}"
@@ -270,7 +266,7 @@
                                                     </td>
                                                     <td>
                                                         <input type="hidden"
-                                                            id="mat_stock" name="stock[]"       
+                                                            id="mat_stock" name="stock[]"
                                                             class="check_required form-control"
                                                             value="{{ $value->stock }}"
                                                             placeholder="Stock">

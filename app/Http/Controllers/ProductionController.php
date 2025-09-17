@@ -33,6 +33,7 @@ use App\ProductionScheduling;
 use App\ProductionStage;
 use App\RawMaterial;
 use App\MaterialStock;
+use App\MaterialType;
 use App\Tax;
 use App\TaxItems;
 use App\Unit;
@@ -109,6 +110,7 @@ class ProductionController extends Controller
         $rm = RawMaterial::all();
         $ref_no = "MP-" . str_pad($obj_rm + 1, 6, '0', STR_PAD_LEFT);
         $customers = Customer::orderBy('id', 'DESC')->where('del_status', "Live")->get();
+        $material_types = MaterialType::where('del_status','Live')->orderBy('id','DESC')->get();
         if ($coid && $pid) {
             $product = FinishedProduct::where('id', $pid)->where('del_status', 'Live')->first();
             $selected_product_id = $product->id;
@@ -137,7 +139,7 @@ class ProductionController extends Controller
             $manufactures = [];
         }
         // dd($p_stages);
-        return view('pages.manufacture.addEditManufacture', compact('title', 'ref_no', 'rmaterials', 'p_stages', 'nonitem', 'units', 'tax_items', 'lab_tax_items', 'sale_tax_items', 'manufactures', 'rm', 'accounts', 'customers', 'selected_customer_id', 'selected_customer_order_id', 'selected_customer_order_detail_id', 'selected_product_id', 'selected_st_method', 'customerOrderList', 'employees', 'drawers'));
+        return view('pages.manufacture.addEditManufacture', compact('title', 'ref_no', 'rmaterials', 'p_stages', 'nonitem', 'units', 'tax_items', 'lab_tax_items', 'sale_tax_items', 'manufactures', 'rm', 'accounts', 'customers', 'selected_customer_id', 'selected_customer_order_id', 'selected_customer_order_detail_id', 'selected_product_id', 'selected_st_method', 'customerOrderList', 'employees', 'drawers','material_types'));
     }
 
     /**

@@ -39,11 +39,11 @@ class FPrmitem extends Model
         return $result;
     }
 
-    public function getOrderProductRM($fproduct_id,$stk_mat_type,$selected_customer_id,$customer_order_id){
+    public function getOrderProductRM($fproduct_id,$selected_customer_id,$customer_order_id,$owner_type){
         $order_material = CustomerOrderDetails::where('id',$customer_order_id)->where('product_id',$fproduct_id)->where('del_status','Live')->first();
         $order = CustomerOrder::where('id',$order_material->customer_order_id)->where('del_status','Live')->first();
         // dd($order_material->raw_material_id);
-        if($stk_mat_type=="1" && $selected_customer_id) {
+        if($owner_type=="2" && $selected_customer_id) {
             $result = DB::select("
                 SELECT 
                     tbl_material_stocks.*,
@@ -53,16 +53,38 @@ class FPrmitem extends Model
                 LEFT JOIN tbl_customers 
                     ON tbl_material_stocks.customer_id = tbl_customers.id
                 WHERE tbl_material_stocks.del_status = 'Live'
-                    AND tbl_material_stocks.mat_type = ?
                     AND tbl_material_stocks.customer_id = ?
                     AND tbl_material_stocks.mat_id = ?
                     AND tbl_material_stocks.reference_no = ?
                     AND tbl_material_stocks.line_item_no = ?
+                    AND tbl_material_stocks.owner_type = ?
                 ORDER BY tbl_material_stocks.id DESC
-            ", [$stk_mat_type, $selected_customer_id, $order_material->raw_material_id, $order->reference_no, $order_material->line_item_no]);
+            ", [$selected_customer_id, $order_material->raw_material_id, $order->reference_no, $order_material->line_item_no, $owner_type]);
+            // dd($result);
             // $result = DB::select("SELECT * FROM tbl_material_stocks WHERE del_status='Live' AND mat_type='$stk_mat_type' AND customer_id='$selected_customer_id' AND mat_id='$order_material->raw_material_id' ORDER BY id DESC");
+        } elseif($owner_type=="1") {
+            $result = DB::select("
+                SELECT 
+                    tbl_material_stocks.mat_id,
+                    tbl_material_stocks.owner_type,
+                    GROUP_CONCAT(DISTINCT tbl_suppliers.name ORDER BY tbl_suppliers.name SEPARATOR ', ') AS supplier_names,
+                    GROUP_CONCAT(DISTINCT tbl_suppliers.supplier_id ORDER BY tbl_suppliers.supplier_id SEPARATOR ', ') AS supplier_codes,
+                    GROUP_CONCAT(tbl_suppliers.id ORDER BY tbl_suppliers.id SEPARATOR ', ') AS supplier_ids,
+                    GROUP_CONCAT(tbl_material_stocks.id ORDER BY tbl_material_stocks.id DESC SEPARATOR ', ') AS stock_ids,
+                    GROUP_CONCAT(tbl_material_stocks.current_stock ORDER BY tbl_material_stocks.id DESC SEPARATOR ', ') AS supplier_stocks,
+                    MAX(tbl_material_stocks.created_at) AS last_created_at
+                FROM tbl_material_stocks
+                LEFT JOIN tbl_suppliers 
+                    ON tbl_material_stocks.supplier_id = tbl_suppliers.id
+                WHERE tbl_material_stocks.del_status = 'Live'
+                    AND tbl_material_stocks.mat_id = ?
+                    AND tbl_material_stocks.owner_type = ?
+                GROUP BY tbl_material_stocks.mat_id, tbl_material_stocks.owner_type
+                ORDER BY MAX(tbl_material_stocks.id) DESC
+            ", [$order_material->raw_material_id, $owner_type]);
+            // dd($result);
         } else {
-            $result = DB::select("SELECT * FROM tbl_material_stocks WHERE del_status='Live' AND mat_type='$stk_mat_type' AND mat_id='$order_material->raw_material_id' ORDER BY id DESC");
+            $result = [];
         }
         return $result;
     }

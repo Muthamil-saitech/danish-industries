@@ -76,3 +76,7 @@ INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name
 
 ======16 sep=======
 ALTER TABLE `tbl_material_stocks` ADD `supplier_id` INT NULL DEFAULT NULL AFTER `customer_id`;
+
+=====17 sep========
+ALTER TABLE `tbl_manufactures_rmaterials` ADD `owner_type` INT NULL DEFAULT NULL AFTER `manufacture_id`;
+ALTER TABLE `tbl_manufactures_rmaterials` ADD `stk_user_id` INT NULL DEFAULT NULL AFTER `owner_type`;

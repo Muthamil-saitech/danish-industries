@@ -300,35 +300,80 @@ class AjaxController extends Controller
     public function getFinishProductRMForManufacture(Request $request)
     {
         $fproduct_id = escape_output($request->post('id'));
-        $stk_mat_type = escape_output($request->post('stk_mat_type'));
+        // $stk_mat_type = escape_output($request->post('stk_mat_type'));
+        $owner_type = escape_output($request->post('owner_type'));
         $selected_customer_id = escape_output($request->post('selected_customer_id'));
         $customer_order_id = escape_output($request->post('customer_order_id'));
         $product_quantity = escape_output($request->post('value'));
         $setting = getSettingsInfo();
         $material_qty = CustomerOrderDetails::where('id', $customer_order_id)->where('product_id', $fproduct_id)->where('del_status', 'Live')->first()->raw_qty;
         $obj2 = new FPrmitem();
-        $finishProductRM = $obj2->getOrderProductRM($fproduct_id, $stk_mat_type, $selected_customer_id, $customer_order_id);
+        $finishProductRM = $obj2->getOrderProductRM($fproduct_id, $selected_customer_id, $customer_order_id, $owner_type);
         $html = '';
         if (!empty($finishProductRM) && count($finishProductRM) > 0) {
-            foreach ($finishProductRM as $value) {
-                $consumption = $value->current_stock;
-                if (isset($value->customer_name)) {
-                    $customer_name = $value->customer_name . '(' . $value->customer_code . ')';
-                } else {
-                    $customer_name = "Danish";
+            $value = $finishProductRM[0];
+            if ($value->owner_type == 1) {
+                // Supplier material → grouped suppliers
+                $customer_name = '<td class="width_1_p">
+                    <select class="form-select supplier_select">
+                        <option value="">Select Supplier</option>';
+
+                $supplierNames  = explode(',', $value->supplier_names);
+                $supplierCodes  = explode(',', $value->supplier_codes);
+                $supplierIds    = explode(',', $value->supplier_ids);     // add in your query
+                $supplierStocks = explode(',', $value->supplier_stocks);  // add in your query
+                $stockIds = explode(',', $value->stock_ids);  // add in your query
+
+                foreach ($supplierNames as $index => $name) {
+                    $code     = $supplierCodes[$index]  ?? '';
+                    $id       = $supplierIds[$index]    ?? '';
+                    $stock    = $supplierStocks[$index] ?? 0;
+                    $stockid    = $stockIds[$index] ?? 0;
+
+                    $customer_name .= '<option value="' . trim($id) . '" 
+                                            data-stock-id="'.trim($stockid).'" 
+                                            data-stock="' . trim($stock) . '">'
+                                        . trim($name) . ' (' . trim($code) . ')</option>';
                 }
-                // dd($customer_name);
-                $html .= '<tr class="rowCount" data-id="' . $value->id . '">
-                            <td class="width_1_p text-start"><p class="set_sn"></p></td>
-                            <td><input type="hidden" value="' . $value->id . '" name="stock_id[]" class="stock_id"><input type="hidden" value="' . $value->mat_id . '" name="rm_id[]" class="rm_id"> <span>' . getRMName($value->mat_id) . '<br><small>' . $customer_name . '</small></span></td>
-                            <td><input type="hidden" value="' . $consumption . '" name="stock[]" class="stock"><p id="show_stock">' . $consumption . ' <span>' . getStockUnitById($value->id) . '</span></p></td>
-                            <td><div class="input-group"><input type="text" data-countid="1" tabindex="51" id="qty_1" name="quantity_amount[]" onfocus="this.select();" class="check_required form-control integerchk input_aligning qty_c cal_row" value="' . $material_qty . '" placeholder="Consumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57" ><span class="input-group-text">' . getStockUnitById($value->id) . '</span></div><div class="text-danger quantityErr d-none"></div></td>
-                            <td class="text-end"><a class="btn btn-xs del_row dlt_button"><iconify-icon icon="solar:trash-bin-minimalistic-broken"></iconify-icon></a></td>
-                        </tr>';
+
+                $customer_name .= '</select></td>';
+                $displayStock = 0;
+                $stockId = '';
+                $uom = 'KG';
+            } elseif ($value->owner_type == 2) {
+                // Customer material → always single
+                $customer_name = '<td><input type="hidden" name="stk_customer_id" value="'.$value->customer_id.'">' . $value->customer_name . ' (' . $value->customer_code . ')</td>';
+                $displayStock = $value->current_stock ?? 0;
+                $stockId = $value->id ?? '';
+                $uom = getStockUnitById($stockId);
             }
+            $html = '<tr class="rowCount">
+                        <td class="width_1_p text-start"><p class="set_sn"></p></td>
+                        ' . $customer_name . '
+                        <td>
+                            <input type="hidden" value="" name="stock_id[]" class="stock_id">
+                            <input type="hidden" value="' . $value->mat_id . '" name="rm_id[]" class="rm_id"> 
+                            <span>' . getRMName($value->mat_id) . '</span>
+                        </td>
+                        <td>
+                            <p class="show_stock"><span>'.$displayStock.' '.$uom.'</span></p>
+                        </td>
+                        <td>
+                            <div class="input-group">
+                                <input type="text" data-countid="1" tabindex="51" id="qty_1" 
+                                    name="quantity_amount[]" onfocus="this.select();" 
+                                    class="check_required form-control integerchk input_aligning qty_c cal_row" 
+                                    value="' . $material_qty . '" placeholder="Consumption" 
+                                    onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                                <span class="input-group-text">'.$uom.'</span>
+                            </div>
+                            <div class="text-danger quantityErr d-none"></div>
+                        </td>
+                    </tr>';
+
             return response()->json(['result' => 'true', 'html' => $html]);
         } else {
-            if ($stk_mat_type == "1") {
+            if ($owner_type == "2") {
                 $html .= '<tr><td colspan="4" class="text-danger text-center">No Stock Material Available for this customer</td></tr>';
             } else {
                 $html .= '<tr><td colspan="4" class="text-danger text-center">No Stock Material Available</td></tr>';

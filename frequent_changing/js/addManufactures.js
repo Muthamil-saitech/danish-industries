@@ -482,7 +482,8 @@ $(document).ready(function () {
       let product_quantity = $(".product_quantity").val();
       let selected_customer_id = $("#customer_id").val();
       let customer_order_id = $("#customer_order_id").val();
-      let stk_mat_type = $("#stk_mat_type").val();
+      // let stk_mat_type = $("#stk_mat_type").val();
+      let owner_type = $("#owner_type").val();
       let params = $(".fproduct_id").val();
       let separate_params = params.split("|");
       let fproduct_id = separate_params[0];
@@ -505,7 +506,8 @@ $(document).ready(function () {
         data: {
           id: fproduct_id,
           value: product_quantity,
-          stk_mat_type: stk_mat_type,
+          // stk_mat_type: stk_mat_type,
+          owner_type: owner_type,
           selected_customer_id: selected_customer_id,
           customer_order_id: customer_order_id,
         },
@@ -689,6 +691,21 @@ $(document).ready(function () {
       error: function () {},
     });
   });
+  $(document).on('change', '.supplier_select', function() {
+    var $sel = $(this);
+    var $row = $sel.closest('tr');
+    var $opt = $sel.find('option:selected');
+    var stock = $opt.data('stock') !== undefined ? $opt.data('stock') : 0;
+    var stockId = $opt.data('stock-id') !== undefined ? $opt.data('stock-id') : '';
+    var unitText = $row.find('.input-group-text').text().trim();
+    $row.find('.stock_id').val(stockId);
+    $row.find('.show_stock span').text(stock + ' ' + unitText);
+    var selectedSupplier = $('.supplier_select').val();
+    $("#supplier_id").val(selectedSupplier); 
+    let material_id = $row.find('.rm_id').val();
+    let quantity = $row.find('.qty_c').val();
+    checkSingleMaterialStock(material_id,quantity);
+  });
 
   let i = 0;
   $(document).on("change", ".rmaterials_id", function (e) {
@@ -819,7 +836,9 @@ $(document).ready(function () {
   function checkSingleMaterialStock(material_id, quantity) {
     let hidden_base_url = $("#hidden_base_url").val();
     let stk_mat_type = $("#stk_mat_type").val();
+    let owner_type = $("#owner_type").val();
     let params = $(".fproduct_id").val();
+    let selectedSupplier = $('.supplier_select').val();
     let separate_params = params.split("|");
     let fproduct_id = separate_params[0];
     let customer_order_id = $("#customer_order_id").val();
@@ -831,7 +850,8 @@ $(document).ready(function () {
       data: {
         material_id: material_id,
         quantity: quantity,
-        stk_mat_type: stk_mat_type,
+        owner_type: owner_type,
+        supplier_id: selectedSupplier,
         fproduct_id: fproduct_id,
         customer_order_id: customer_order_id,
         selected_customer_id: selected_customer_id,
@@ -863,6 +883,14 @@ $(document).ready(function () {
     $("#stage_counter").val(this_value);
     $("#stage_name").val(stage_name);
   });
+  /* $(document).on("click", ".set_supplier_class", function (e) {
+    let this_value = $(this).val();
+    let supplier_name = $(this).attr("data-supplier_name");
+    console.log("supplier id => " + this_value);
+    console.log("supplier name =>" + supplier_name);
+    $("#supplier_id").val(this_value);
+    $("#supplier_name").val(supplier_name);
+  }); */
 
   $(document).on("submit", "#manufacture_form", function (e) {
     let status = true;

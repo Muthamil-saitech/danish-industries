@@ -243,35 +243,36 @@ class StockController extends Controller
 
     public function checkSingleMaterialStock(Request $request)
     {
+        // dd($request->all());
         $rm_id = escape_output($request->material_id);
         $quantity = escape_output($request->quantity);
-        $stk_mat_type = escape_output($request->stk_mat_type);
+        $owner_type = escape_output($request->owner_type);
         $fproduct_id = escape_output($request->fproduct_id);
+        $supplier_id = escape_output($request->supplier_id);
         $customer_order_id = escape_output($request->customer_order_id);
         $selected_customer_id = escape_output($request->selected_customer_id);
 
         $rm = RawMaterial::find($rm_id);
         $order_material = CustomerOrderDetails::where('id',$customer_order_id)->where('product_id',$fproduct_id)->where('del_status','Live')->first();
         $order = CustomerOrder::where('id',$order_material->customer_order_id)->where('del_status','Live')->first();
-        if($stk_mat_type=="1") {
+        if($owner_type=="1") {
             $ms = MaterialStock::where('mat_cat_id', $rm->category)
-            ->where('mat_type', $stk_mat_type)
             ->where('mat_id', $order_material->raw_material_id)
+            ->where('owner_type', $owner_type)
+            ->where('supplier_id', $supplier_id)
+            ->where('del_status', 'Live')
+            ->first();
+        } else {
+            $ms = MaterialStock::where('mat_cat_id', $rm->category)
+            ->where('mat_id', $order_material->raw_material_id)
+            ->where('owner_type', $owner_type)
             ->where('customer_id', $selected_customer_id)
             ->where('reference_no', $order->reference_no)
             ->where('line_item_no', $order_material->line_item_no)
             ->where('del_status', 'Live')
             ->first();
-        } else {
-            $ms = MaterialStock::where('mat_cat_id', $rm->category)
-            ->where('mat_type', $stk_mat_type)
-            ->where('mat_id', $order_material->raw_material_id)
-            ->where('reference_no', $order->reference_no)
-            ->where('line_item_no', $order_material->line_item_no)
-            ->where('del_status', 'Live')
-            ->first();
         }
-        
+        // dd($ms);
         // $consumptionQuantity = $rm->consumption_check == 1 ? $quantity / $rm->conversion_rate : $quantity;
         $stock = [
             'id' => $rm->id,
