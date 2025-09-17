@@ -168,7 +168,6 @@ class ProductionController extends Controller
             'complete_date_m' => 'required_if:manufacture_status,done',
             'file_button.*' => 'max:5120|mimes:jpeg,jpg,png,gif,doc,docx,pdf,txt',
         ]);
-
         DB::beginTransaction();
         try {
             $product_id = $request->get('product_id');
@@ -197,7 +196,6 @@ class ProductionController extends Controller
             $obj->rev = escape_output($request->get('rev'));
             $obj->operation = escape_output($request->get('operation'));
             // $obj->dc_no = escape_output($request->get('dc_no'));
-
             // if ($request->get('manufacture_type') == 'fco') {
             if ($request->get('selected_customer_id') != '' && $request->get('selected_customer_order_detail_id') != '') {
                 $obj->customer_id = null_check(escape_output($request->get('selected_customer_id')));
@@ -235,7 +233,6 @@ class ProductionController extends Controller
                 $obj->file = implode(',', $fileNames);
             }
             $obj->added_by = auth()->user()->id;
-
             $obj->save();
             $last_id = $obj->id;
             $rm_id = $request->get('rm_id');

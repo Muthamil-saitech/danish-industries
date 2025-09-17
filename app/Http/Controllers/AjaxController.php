@@ -1192,4 +1192,11 @@ class AjaxController extends Controller
         $partner  = Partner::where('id',$partner_id)->where('del_status','Live')->first();
         echo json_encode($partner);
     }
+    public function getSupplierByPurchase(Request $request)
+    {
+        $purchase_no = escape_output($request->post('purchase_no'));
+        $supplier_id = RawMaterialPurchase::where('del_status', "Live")->where('reference_no', $purchase_no)->pluck('supplier')->first();
+        $supplier = Supplier::where('del_status', "Live")->where('id', $supplier_id)->first();
+        echo json_encode($supplier);
+    }
 }

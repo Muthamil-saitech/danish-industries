@@ -126,7 +126,9 @@
                                         @endforeach
                                     </tbody>
                                 @else
-                                <tr>No details found</tr>
+                                <tr>
+                                    <td colspan="5" class="text-center">No data found</td>
+                                </tr>
                                 @endif
                             </table>
                         </div>

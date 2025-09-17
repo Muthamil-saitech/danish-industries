@@ -2092,3 +2092,9 @@ function getLineItemNo($customer_order_id)
     $row = \App\CustomerOrderDetails::where('del_status', 'Live')->where('id', $customer_order_id)->first();
     return $row->line_item_no ?? '';
 }
+
+function getSupplierNameCode($id)
+{
+    $row = \App\Supplier::where('id', $id)->first();
+    return isset($row->name) && $row->name ? $row->name.'('.$row->supplier_id.')' : '-';
+}

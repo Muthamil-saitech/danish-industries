@@ -26,15 +26,12 @@
                 </div>
                 <div class="col-md-6">
                     @if (routePermission('customer.index'))
-                        <a class="btn bg-second-btn" href="{{ route('customers.index') }}"><iconify-icon
-                                icon="solar:round-arrow-left-broken"></iconify-icon>@lang('index.back')</a>
+                        <a class="btn bg-second-btn" href="{{ route('customers.index') }}"><iconify-icon icon="solar:round-arrow-left-broken"></iconify-icon>@lang('index.back')</a>
                     @endif
                 </div>
             </div>
         </section>
-
         <section class="content">
-
             <div class="col-md-12">
                 <div class="card" id="dash_0">
                     <div class="card-body p30">
@@ -139,7 +136,9 @@
                                         @endforeach
                                     </tbody>
                                 @else
-                                <tr>No details found</tr>
+                                <tr>
+                                    <td colspan="5" class="text-center">No data found</td>
+                                </tr>
                                 @endif
                             </table>
                         </div>

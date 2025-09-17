@@ -74,3 +74,5 @@ INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name
 INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '', 'View Details Partner IO', 'partner_io.view_details', 'No', 'No', NULL, NULL);
 INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '29', 'View Details Customer IO', 'customer_io.view_details', 'No', 'No', NULL, NULL);
 
+======16 sep=======
+ALTER TABLE `tbl_material_stocks` ADD `supplier_id` INT NULL DEFAULT NULL AFTER `customer_id`;

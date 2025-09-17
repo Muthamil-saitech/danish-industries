@@ -67,8 +67,8 @@
                                                     @endif
                                                     <td class="text-start">{!! $material_stock->stock_type == 'customer'
                                                     ? $material_stock->stock_type . '<br><small>(' . getCustomerNameById($material_stock->customer_id) . ')</small>'
-                                                    : $material_stock->stock_type !!}</td>
-                                                    <td class="text-start">{{ $material_stock->reference_no.'/'.$material_stock->line_item_no }}</td>
+                                                    : $material_stock->stock_type. '<br><small>(' . getSupplierNameCode($material_stock->supplier_id) . ')</small>' !!}</td>
+                                                    <td class="text-start">{{$material_stock->line_item_no!='' ? $material_stock->reference_no.'/'.$material_stock->line_item_no : $material_stock->reference_no }}</td>
                                                     <td class="text-start">{{ $material_stock->current_stock }} {{ getRMUnitById($material_stock->unit_id) }}</td>
                                                     <td class="text-start">{{ $material_stock->close_qty }} {{ getRMUnitById($material_stock->unit_id) }}</td>
                                                     <td class="text-start">{{ $material_stock->float_stock }} {{ getRMUnitById($material_stock->unit_id) }}</td>
@@ -101,7 +101,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if (isset($stock_adjustments) && $stock_adjustments)
+                                    @if (isset($stock_adjustments) && count($stock_adjustments) > 0)
                                         <?php
                                         $i = 1;
                                         ?>
@@ -120,8 +120,8 @@
                                                     <td class="text-start"> - </td>
                                                     <td class="text-start"> - </td>
                                                 @endif
-                                                <td class="text-start">{!! $value->stock_type == 'customer' ? $value->stock_type . '<br><small>(' . getCustomerNameById ($material_stock->customer_id) . ')</small>' : $value->stock_type !!}</td>
-                                                <td class="text-start">{{ $value->reference_no.'/'.$value->line_item_no }}</td>
+                                                <td class="text-start">{!! $value->stock_type == 'customer' ? $value->stock_type . '<br><small>(' . getCustomerNameById ($material_stock->customer_id) . ')</small>' : $value->stock_type. '<br><small>(' . getSupplierNameCode($material_stock->supplier_id) . ')</small>' !!}</td>
+                                                <td class="text-start">{{ $value->line_item_no!='' ? $value->reference_no.'/'.$value->line_item_no : $value->reference_no }}</td>
                                                 <td class="text-start">{{ $value->quantity }} {{ isset($material_stock) ?  getRMUnitById($material_stock->unit_id) : "" }}</td>
                                                 <td class="text-start">{{ $value->material_price!='0' ? '₹'.$value->material_price : '' }}</td>
                                                 <td class="text-start">{{ $value->hsn_no }}</td>
@@ -129,6 +129,10 @@
                                                 </td>
                                             </tr>
                                         @endforeach
+                                    @else
+                                    <tr>
+                                        <td colspan="9" class="text-center">No data found</td>
+                                    </tr>
                                     @endif
                                 </tbody>
                             </table>

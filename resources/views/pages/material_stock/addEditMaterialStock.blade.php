@@ -275,6 +275,17 @@
                         <input type="hidden" name="reference_no" id="reference_no_hidden" >
                         <input type="hidden" name="line_item_no" id="line_item_no_hidden" value="{{ isset($obj->line_item_no) ? $obj->line_item_no : '' }}">
                         <input type="hidden" name="final_reference_no" id="line_no_wo_hidden" value="{{ isset($obj->reference_no) ? $obj->reference_no : '' }}">
+                        <div class="col-sm-12 mb-2 col-md-4 {{ isset($obj) && $obj->stock_type == 'purchase' ? '' : 'd-none' }}" id="supplier_div">
+                            <div class="form-group">
+                                <label>@lang('index.supplier') <span class="required_star">*</span></label>
+                                <input type="hidden" name="supplier_id" id="supplier_id" >
+                                <input type="text" class="form-control @error('supplier') is-invalid @enderror" name="supplier" id="supplier" value="{{ isset($obj->supplier_id) ? $obj->supplier_id : old('supplier') }}" placeholder="@lang('index.supplier')" readonly>
+                                <div class="text-danger d-none"></div>
+                                @error('supplier')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
                         <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
                                 <label>@lang('index.stock') <span class="required_star">*</span></label>

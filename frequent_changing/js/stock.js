@@ -216,7 +216,8 @@
         let hidden_base_url = $("#hidden_base_url").val();
         let stock_type = $("#stock_type").val();
         var mat_id = $("#mat_id").val();
-        var customer_id = $("#customer_id").val();    
+        var customer_id = $("#customer_id").val();   
+        let line_item_no = ""; 
         $.ajax({
             type: "POST",
             url: hidden_base_url + "getStockReference",
@@ -233,8 +234,15 @@
                     $("#inp_ref_no").val("");
                     $("#line_item_no_hidden").val("");
                     $("#current_stock").val("");
+                    /* $("#supplier_div").addClass("d-none");
+                    $("#supplier").val("");
+                    $("#supplier_id").val("");   */
                 } else {
-                    let line_item_no = data.html+'/'+data.line_item_no;                  
+                    if(data.html == "" && data.line_item_no == "") {
+                        line_item_no = "";             
+                    } else {
+                        line_item_no = data.html+'/'+data.line_item_no;
+                    }
                     $("#select_ref_no").addClass("d-none");
                     $("#inp_ref_no_div").removeClass("d-none");
                     $("#line_no_wo_hidden").val(data.html);
@@ -242,6 +250,9 @@
                     $("#line_item_no_hidden").val(data.line_item_no);
                     $("#current_stock").val(data.qty);
                     $("#current_stock").attr("max", data.qty);
+                    /* $("#supplier_div").addClass("d-none");
+                    $("#supplier").val("");
+                    $("#supplier_id").val("");   */
                 }                
             },
             error: function () {
@@ -254,6 +265,27 @@
         let split = selected.split('|');
         $("#current_stock").val(split[1]);
         $("#current_stock").attr("max", split[1]);
+        let hidden_base_url = $("#hidden_base_url").val();
+        $("#supplier").val("");
+        $("#supplier_id").val(""); 
+        $.ajax({
+            type: "POST",
+            url: hidden_base_url + "getSupplierByPurchase",
+            data: { purchase_no: split[0] },
+            dataType: "html",
+            success: function (data) {
+                if (typeof data === "string") {
+                    data = JSON.parse(data);
+                }
+                let supplier_name = data.name+'('+data.supplier_id+')';
+                $("#supplier_div").removeClass("d-none");
+                $("#supplier").val(supplier_name);
+                $("#supplier_id").val(data.id);                          
+            },
+            error: function () {
+                console.log("error");
+            },
+        });
     });
     $("#current_stock").on("input", function () {
         let enteredQty = parseFloat($(this).val());
@@ -289,11 +321,8 @@
             customer_id = $('#customer_id').val();
         }
         $("#reference_no_hidden").val(reference_no);
-         
         let mat_type = $("#mat_type").val();
-        // let customer_id = $('#customer_id').val();
-        console.log("customer_id",customer_id);
-        
+        // let customer_id = $('#customer_id').val();        
         let current_stock = $('#current_stock').val();
         if(mat_cat_id == "") {
             status = false;
@@ -302,7 +331,6 @@
             $("#mat_cat_id").removeClass("is-invalid");
             $("#mat_cat_id").closest("div").find(".text-danger").addClass("d-none");
         }
-
         if(dc_no == "") {
             status = false;
             showErrorMessage("dc_no", "The Customer DC No field is required");
@@ -310,7 +338,6 @@
             $("#dc_no").removeClass("is-invalid");
             $("#dc_no").closest("div").find(".text-danger").addClass("d-none");
         }
-
         if(heat_no == "") {
             status = false;
             showErrorMessage("heat_no", "The Heat No field is required");
@@ -318,7 +345,6 @@
             $("#heat_no").removeClass("is-invalid");
             $("#heat_no").closest("div").find(".text-danger").addClass("d-none");
         }
-
         if(dc_date == "") {
             status = false;
             showErrorMessage("dc_date", "The DC Date field is required");
@@ -400,7 +426,6 @@
             return false;
         }
     });
-
     function showErrorMessage(id, message) {
         $("#" + id).addClass("is-invalid");
         const group = $("#" + id).closest(".form-group");
@@ -408,16 +433,12 @@
         errorBox.text(message);
         errorBox.removeClass("d-none");
     }
-
     function clearError(fieldId) {
         $("#" + fieldId).removeClass("is-invalid");
         $("#" + fieldId).closest("div").find(".text-danger").addClass("d-none");
     }
-
     // Delete dlt_button
     $(document).on("click", ".dlt_button", function () {
         $(this).closest("tr").remove();
-    });
-
-    
+    });    
 })(jQuery);

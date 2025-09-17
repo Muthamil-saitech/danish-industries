@@ -156,6 +156,7 @@ Route::group(['middleware' => ['XSS']], function () {
         Route::get('getProduct', [App\Http\Controllers\AjaxController::class, 'getProduct'])->name('getProduct');
         Route::post('getProductById', [App\Http\Controllers\AjaxController::class, 'getProductById'])->name('getProductById.post');
         Route::get('editTax/{id}', [App\Http\Controllers\AjaxController::class, 'editTax']);
+        Route::post('getSupplierByPurchase', [App\Http\Controllers\AjaxController::class, 'getSupplierByPurchase'])->name('getSupplierByPurchase.post');
 
         /*resource routing*/
         Route::resource('accounts', App\Http\Controllers\AccountController::class);

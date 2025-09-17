@@ -93,7 +93,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                                 <td>{{ $value->float_stock }} {{ getRMUnitById($value->unit_id) }}</td>
                                 <td>{{ getUserName($value->added_by) }}</td>
                                 <td>
-                                    <a class="button-info" id="stockAdjBtn" data-bs-toggle="modal" data-id="{{ $value->id }}" data-mat_id="{{ $value->mat_id }}" data-customer_id="{{ $value->customer_id }}" data-material="{{ getRMName($value->mat_id) }}" data-bs-target="#stockAdjModal" title="Stock Adjustment"><i class="fa fa-pencil"></i></a>
+                                    <a class="button-info" id="stockAdjBtn" data-bs-toggle="modal" data-id="{{ $value->id }}" data-mat_id="{{ $value->mat_id }}" data-stock_type="purchase" data-ref_no="{{ $value->reference_no }}"  data-line_item_no="{{ $value->line_item_no }}" data-dc_no="{{ $value->dc_no }}" data-heat_no="{{ $value->heat_no }}" data-mat_doc_no="{{ $value->mat_doc_no }}" data-customer_id="{{ $value->customer_id }}" data-material="{{ getRMName($value->mat_id) }}" data-bs-target="#stockAdjModal" title="Stock Adjustment"><i class="fa fa-pencil"></i></a>
                                     <a href="{{ url('material_stocks') }}/{{ encrypt_decrypt($value->id, 'encrypt') }}/stock_adjustments" class="button-info" data-bs-toggle="tooltip" data-bs-placement="top" title="View Stock Adjustments"><i class="fa fa-list"></i></a>
                                     @if (routePermission('material_stocks.edit') && !$value->used_in_manufacture)
                                     <a href="{{ url('material_stocks') }}/{{ encrypt_decrypt($value->id, 'encrypt') }}/edit"
@@ -518,9 +518,13 @@ if (isset($setting->base_color) && $setting->base_color) {
         let reference_no = '';
         if(ref_no!='' && line_item_no!='') {
             reference_no = ref_no+'/'+line_item_no;
+        } else if(ref_no!='' && line_item_no=='') {
+            reference_no = ref_no;
         } else {
             reference_no = '';
         }
+        console.log("reference_no",reference_no);
+        
         $('#inp_ref_no').val(reference_no);
         $('#reference_no_hidden').val(ref_no);
         $('#line_item_no').val(line_item_no);
@@ -621,7 +625,7 @@ if (isset($setting->base_color) && $setting->base_color) {
         let hsn_no = $("#hsn_no").val();
         let reference_no = "";
         if (stock_type === "purchase") {
-            reference_no = $("#reference_no").val().split('|')[0];
+            reference_no = $("#inp_ref_no").val();
         } else if (stock_type === "customer") {
             reference_no = $("#reference_no_hidden").val();
         }

@@ -45,7 +45,7 @@ class CustomerOrder extends Model
      */
     public function details()
     {
-        return $this->hasMany(CustomerOrderDetails::class, 'customer_order_id')->where('del_status', 'Live');
+        return $this->hasMany(CustomerOrderDetails::class, 'customer_order_id')->where('del_status', 'Live')->orderBy('id','DESC');
     }
 
     public function orderInvoice() {
