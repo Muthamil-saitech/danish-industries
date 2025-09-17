@@ -30,55 +30,66 @@
                         <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
                                 <label>@lang('index.reference_no') <span class="required_star">*</span></label>
-                                <input type="text" name="reference_no" id="reference_no" class="form-control" placeholder="@lang('index.reference_no')" value="{{ isset($partner_io->reference_no) ? $partner_io->reference_no : '' }}" {{ isset($partner_io->reference_no) ? 'readonly' : '' }}>
+                                <input type="text" name="reference_no" id="reference_no" 
+                                    class="form-control" placeholder="@lang('index.reference_no')" 
+                                    value="{{ old('reference_no', $partner_io->reference_no ?? '') }}" 
+                                    {{ isset($partner_io->reference_no) ? 'readonly' : '' }}>
                                 <div class="text-danger d-none"></div>
                                 @error('reference_no')
                                 <div class="text-danger">
-                                    {{ $errors->first('reference_no') }}
+                                    {{ $message }}
                                 </div>
                                 @enderror
                             </div>
                         </div>
+
                         <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
                                 <label>@lang('index.partners')(Code) <span class="required_star">*</span></label>
-                                <input type="hidden" name="partner_id" value="{{ isset($partner_io->id) ?? '' }}">
-                                <select name="partner_id" id="partner_id" class="form-control select2" >
+                                <input type="hidden" name="partner_id" value="{{ $partner_io->id ?? '' }}">
+                                <select name="partner_id" id="partner_id" class="form-control select2">
                                     <option value="">@lang('index.select')</option>
                                     @foreach($partners as $partner)
-                                        <option {{ (isset($partner_io->partner_id) && $partner_io->partner_id == $partner->id) || old('partner_io') == $partner->id ? 'selected' : '' }} value="{{ $partner->id }}">{{ $partner->name .'('.$partner->partner_id.')'}}</option>
+                                        <option value="{{ $partner->id }}"
+                                            {{ old('partner_id', $partner_io->partner_id ?? '') == $partner->id ? 'selected' : '' }}>
+                                            {{ $partner->name .'('.$partner->partner_id.')' }}
+                                        </option>
                                     @endforeach
                                 </select>
                                 <div class="text-danger d-none"></div>
                                 @error('partner_id')
                                 <div class="text-danger">
-                                    {{ $errors->first('partner_id') }}
+                                    {{ $message }}
                                 </div>
                                 @enderror
                             </div>
                         </div>
+
                         <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
                                 <label>@lang('index.date') <span class="required_star">*</span></label>
-                                {!! Form::text('io_date', old('io_date', isset($partner_io) ? $partner_io->io_date : date('d-m-Y')), [
-                                'class' => 'form-control',
-                                'id' => 'io_date',
-                                'placeholder' => 'Date',
+                                {!! Form::text('io_date', old('io_date', $partner_io->io_date ?? date('d-m-Y')), [
+                                    'class' => 'form-control',
+                                    'id' => 'io_date',
+                                    'placeholder' => 'Date',
                                 ]) !!}
                                 <div class="text-danger d-none"></div>
-                                @if ($errors->has('io_date'))
+                                @error('io_date')
                                 <div class="error_alert text-danger">
-                                    {{ $errors->first('io_date') }}
+                                    {{ $message }}
                                 </div>
-                                @endif
+                                @enderror
                             </div>
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
-                               <label>Phone Number <span class="required_star">*</span></label>
-                                <input type="text" name="phn_no" id="phn_no" class="form-control" placeholder="Phone Number" value="{{ isset($partner_detail->phone) ? $partner_detail->phone : '' }}">
+                                <label>Phone Number <span class="required_star">*</span></label>
+                                <input type="text" name="phn_no" id="phn_no" 
+                                    class="form-control" placeholder="Phone Number" 
+                                    value="{{ old('phn_no', $partner_detail->phone ?? '') }}">
                                 <div class="text-danger d-none"></div>
                                 @error('phn_no')
                                 <div class="text-danger">
@@ -87,10 +98,13 @@
                                 @enderror
                             </div>
                         </div>
-                         <div class="col-sm-12 mb-2 col-md-4">
+
+                        <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
-                               <label>Email </label>
-                                <input type="text" name="email" id="email" class="form-control" placeholder="Email" value="{{ isset($partner_detail->email) ? $partner_detail->email : '' }}">
+                                <label>Email</label>
+                                <input type="text" name="email" id="email" 
+                                    class="form-control" placeholder="Email" 
+                                    value="{{ old('email', $partner_detail->email ?? '') }}">
                                 <div class="text-danger d-none"></div>
                                 @error('email')
                                 <div class="text-danger">
@@ -99,10 +113,11 @@
                                 @enderror
                             </div>
                         </div>
+
                         <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
-                               <label>Delivery Address <span class="required_star">*</span></label>
-                                <textarea name="d_address" id="d_address" class="form-control" rows="3">{{ isset($partner_io->d_address) ? $partner_io->d_address : '' }}</textarea>
+                                <label>Delivery Address <span class="required_star">*</span></label>
+                                <textarea name="d_address" id="d_address" class="form-control" rows="3">{{ old('d_address', $partner_io->d_address ?? '') }}</textarea>
                                 <div class="text-danger d-none"></div>
                                 @error('d_address')
                                 <div class="text-danger">
@@ -112,6 +127,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="col-md-12">
                             <div class="table-responsive" id="ciofrm">

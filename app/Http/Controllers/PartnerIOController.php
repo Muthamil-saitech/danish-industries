@@ -9,6 +9,7 @@ use App\PartnerIo;
 use App\PartnerIoDetail;
 use App\InstrumentCategory;
 use App\Instrument;
+use Illuminate\Validation\Rule;
 
 class PartnerIOController extends Controller
 {
@@ -37,6 +38,8 @@ class PartnerIOController extends Controller
             'io_date' => 'required',
             'phn_no' => 'required',
             'd_address' => 'required'
+        ],[
+            'reference_no.unique' => 'Reference No already exists'
         ]);
         
         $partner_io = new \App\PartnerIo();
@@ -94,6 +97,8 @@ class PartnerIOController extends Controller
             'io_date' => 'required',
             'phn_no' => 'required',
             'd_address' => 'required'
+        ],[
+            'reference_no.unique' => 'Reference No already exists',
         ]);
         
         $file = '';

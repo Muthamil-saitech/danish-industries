@@ -54,8 +54,7 @@
                                     @endforeach
                                 </select>
                             @endif
-                            <input type="hidden" name="line_item_no" id="line_item_no"
-                                value="{{ $order_io->line_item_no ?? '' }}">
+                            <input type="hidden" name="line_item_no" id="line_item_no" value="{{ old('line_item_no', $order_io->line_item_no ?? '') }}">
 
                                 @error('po_no')
                                 <div class="text-danger">
@@ -98,7 +97,7 @@
                         <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
                                <label>Phone Number <span class="required_star">*</span></label>
-                                <input type="text" name="phn_no" id="c_phn_no" class="form-control" placeholder="Phone Number" value="{{ isset($customer->phone) ? $customer->phone : '' }}">
+                                <input type="text" name="phn_no" id="c_phn_no" class="form-control" placeholder="Phone Number" value="{{ old('phn_no', $customer->phone ?? '') }}">
                                 <div class="text-danger d-none"></div>
                                 @error('phn_no')
                                 <div class="text-danger">
@@ -110,7 +109,7 @@
                          <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
                                <label>Email </label>
-                                <input type="text" name="c_email" id="c_email" class="form-control" placeholder="Email" value="{{ isset($customer->email) ? $customer->email : '' }}">
+                                <input type="text" name="c_email" id="c_email" class="form-control" placeholder="Email" value="{{ old('c_email', $customer->email ?? '') }}">
                                 <div class="text-danger d-none"></div>
                                 @error('c_email')
                                 <div class="text-danger">
@@ -122,7 +121,7 @@
                         <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
                                <label>Delivery Address <span class="required_star">*</span></label>
-                                <textarea name="d_address" id="d_address" class="form-control" rows="3">{{ isset($order_io->d_address) ? $order_io->d_address : '' }}</textarea>
+                                <textarea name="d_address" id="d_address" class="form-control" rows="3">{{ old('d_address', $order_io->d_address ?? '') }}</textarea>
                                 @error('d_address')
                                 <div class="text-danger">
                                     {{ $message }}

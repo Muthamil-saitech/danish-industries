@@ -617,7 +617,7 @@ class AjaxController extends Controller
             ->orderBy('id', 'DESC')
             ->get();
 
-        $html = '<option value="">Select</option>';
+        $html = '<option value="">Please Select</option>';
 
         foreach ($instrument_categories as $instrument_category) {
             $selected = ($selected_category == $instrument_category->id) ? 'selected' : '';
@@ -638,7 +638,7 @@ class AjaxController extends Controller
             ->orderBy('id', 'DESC')
             ->get();
 
-        $html = '<option value="">Select</option>';
+        $html = '<option value="">Please Select</option>';
 
         foreach ($instruments as $instrument) {
             $selected = ($selected_instrument == $instrument->id) ? 'selected' : '';

@@ -65,7 +65,7 @@
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.inward_date'):</strong></span>
-                                            {{  date('d-m-Y', strtotime($partner_io_detail->inward_date)) ?? '' }}
+                                            {{ !empty($partner_io_detail->inward_date) ? date('d-m-Y', strtotime($partner_io_detail->inward_date)) : '' }}
                                         </p>
                                     </td>
                                     <td class="w-50" style="float: inline-end">

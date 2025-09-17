@@ -67,8 +67,8 @@
                                             {{ $customer_io->d_address }}
                                         </p> 
                                         <p class="pb-7 rgb-71">
-                                            <span class=""><strong>@lang('index.inward_date'):</strong></span>
-                                            {{  date('d-m-Y', strtotime($customer_io->inward_date)) ?? '' }}
+                                            <span><strong>@lang('index.inward_date'):</strong></span>
+                                            {{ !empty($customer_io->inward_date) ? date('d-m-Y', strtotime($customer_io->inward_date)) : '' }}
                                         </p>
                                     </td>
                                     <td class="w-50" style="float: inline-end">
