@@ -10,6 +10,8 @@ use App\PartnerIoDetail;
 use App\InstrumentCategory;
 use App\Instrument;
 use Illuminate\Validation\Rule;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class PartnerIOController extends Controller
 {
@@ -147,7 +149,6 @@ class PartnerIOController extends Controller
         $title = __('index.view_partner_io');
         $partner_io_detail = PartnerIoDetail::where('id',$id)->where('del_status','Live')->first();
         $partner_io = PartnerIo::find($partner_io_detail->partner_io_id)->first();
-        // dd($partner_io_detail);
         return view('pages.partner_io.view', compact('title','partner_io_detail','partner_io'));
     }
     public function destroy(PartnerIoDetail $partner_io_detail) {
@@ -155,5 +156,19 @@ class PartnerIOController extends Controller
         $partner_io_detail->del_status = 'Deleted';
         $partner_io_detail->save();
         return redirect('partner_io')->with(deleteMessage());
+    }
+    public function downloadIo($id)
+    {
+        $detail_id = encrypt_decrypt($id, 'decrypt');
+        $partner_io_detail = PartnerIoDetail::where('id',$detail_id)->where('del_status', "Live")->first();
+        $partner_io = PartnerIo::where('id',$partner_io_detail->partner_io_id)->first();
+        $pdf = PDF::loadView('pages.partner_io.print_partner_io', compact('partner_io_detail', 'partner_io'))->setPaper('a4', 'landscape');
+        return $pdf->download($partner_io->reference_no . '.pdf');
+    }
+    public function print($id)
+    {
+        $partner_io_detail = PartnerIoDetail::where('id',$id)->where('del_status', "Live")->first();
+        $partner_io = PartnerIo::where('id',$partner_io_detail->partner_io_id)->first();
+        return view('pages.partner_io.print_partner_io', compact('partner_io','partner_io_detail'));
     }
 }

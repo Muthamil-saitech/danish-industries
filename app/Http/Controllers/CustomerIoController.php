@@ -10,6 +10,8 @@ use App\CustomerIO;
 use App\CustomerIoDetail;
 use App\InstrumentCategory;
 use App\Instrument;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class CustomerIoController extends Controller
 {
@@ -171,5 +173,19 @@ class CustomerIoController extends Controller
         $customer_io->save();
         return redirect('customer_io')->with(deleteMessage());
     }
-
+    public function downloadIo($id)
+    {
+        $detail_id = encrypt_decrypt($id, 'decrypt');
+        $customer_io = CustomerIo::where('id',$detail_id)->where('del_status', "Live")->first();
+        $customer_io_details = CustomerIoDetail::where('customer_io_id',$customer_io->id)->where('del_status', "Live")->get();
+        $pdf = PDF::loadView('pages.customer_io.print_customer_io', compact('customer_io', 'customer_io_details'))->setPaper('a4', 'landscape');
+        return $pdf->download($customer_io->po_no . '.pdf');
+    }
+    public function print($id)
+    {
+        $customer_io = CustomerIo::where('id',$id)->where('del_status', "Live")->first();
+        $customer_io_details = CustomerIoDetail::where('customer_io_id',$customer_io->id)->where('del_status', "Live")->get();
+        $title = __('index.view_customer_io');
+        return view('pages.customer_io.print_customer_io', compact('title','customer_io','customer_io_details'));
+    }
 }

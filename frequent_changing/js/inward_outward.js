@@ -377,7 +377,7 @@ $(document).ready(function () {
     startDate: new Date(),
   })
   .datepicker("update", new Date());  
-  });
+});
 
   $(document).on("click", ".open-calendar", function () {
     let id = $(this).data("id");
@@ -430,5 +430,4 @@ $(document).on("change", "#partner_id", function (e) {
     error: function () {},
   });
 });
-
 

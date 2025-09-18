@@ -168,9 +168,14 @@ Route::group(['middleware' => ['XSS']], function () {
         Route::resource('partners', App\Http\Controllers\PartnerController::class)->only(['index', 'create', 'store', 'destroy', 'update', 'show', 'edit']);
         Route::resource('customer_io', App\Http\Controllers\CustomerIOController::class)->only(['index', 'create', 'store', 'destroy', 'update', 'show', 'edit']);
         Route::post('customer_io/inward-to-outward',[App\Http\Controllers\CustomerIOController::class, 'inward_to_outward'])->name('customer_io.inward_to_outward');
+        Route::get('/customer-io-download/{id}', [App\Http\Controllers\CustomerIOController::class, 'downloadIo'])->name('customer-io-download');
+        Route::get('/customer-io-print/{id}', [App\Http\Controllers\CustomerIOController::class, 'print'])->name('customer-io-print');
+
         Route::post('partner_io/inward-to-outward',[App\Http\Controllers\PartnerIOController::class, 'inward_to_outward'])->name('partner_io.inward_to_outward');
 
         Route::resource('partner_io', App\Http\Controllers\PartnerIOController::class)->only(['index', 'create', 'store', 'destroy', 'update', 'show', 'edit']);
+        Route::get('/partner-io-download/{id}', [App\Http\Controllers\PartnerIOController::class, 'downloadIo'])->name('partner-io-download');
+        Route::get('/partner-io-print/{id}', [App\Http\Controllers\PartnerIOController::class, 'print'])->name('partner-io-print');
         Route::resource('material_stocks', App\Http\Controllers\MaterialStockController::class);
         Route::get('material_stocks/{id}/stock_adjustments', [App\Http\Controllers\MaterialStockController::class, 'stock_adjustments']);
         Route::post('/materialStockAdjust', [App\Http\Controllers\MaterialStockController::class, 'materialStockAdjust'])->name('materialStockAdjust');
@@ -267,6 +272,7 @@ Route::group(['middleware' => ['XSS']], function () {
 
         Route::get('/customer-order-download/{id}', [App\Http\Controllers\CustomerOrdersController::class, 'downloadInvoice'])->name('customer-order-download');
         Route::get('/customer-order-print/{id}', [App\Http\Controllers\CustomerOrdersController::class, 'print'])->name('customer-order-print');
+
 
         //Attendance Module
         Route::resource('attendance', App\Http\Controllers\AttendanceController::class);

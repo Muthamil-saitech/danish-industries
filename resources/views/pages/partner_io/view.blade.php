@@ -25,8 +25,21 @@
                     <h2 class="top-left-header">{{ isset($title) && $title ? $title : '' }}</h2>
                 </div>
                 <div class="col-md-6">
-                        <a class="btn bg-second-btn" href="{{ route('partner_io.index') }}"><iconify-icon
-                                icon="solar:round-arrow-left-broken"></iconify-icon>@lang('index.back')</a>
+                    @if (routePermission('partner_io.print-partner-io'))
+                    <a href="javascript:void();"  class="btn bg-second-btn print_invoice"
+                        data-id="{{ isset($partner_io) ? $partner_io->id : '' }}"><iconify-icon icon="solar:printer-broken"></iconify-icon>
+                        @lang('index.print')</a>
+                    @endif
+                    @if (routePermission('partner_io.download-partner-io'))
+                    <a href="{{ route('partner-io-download', encrypt_decrypt($partner_io->id, 'encrypt')) }}"
+                        target="_blank" class="btn bg-second-btn print_btn"><iconify-icon
+                            icon="solar:cloud-download-broken"></iconify-icon>
+                        @lang('index.download')</a>
+                    @endif
+                    @if (routePermission('partner_io.index'))
+                    <a class="btn bg-second-btn" href="{{ route('partner_io.index') }}"><iconify-icon
+                            icon="solar:round-arrow-left-broken"></iconify-icon>@lang('index.back')</a>
+                    @endif
                 </div>
             </div>
         </section>
@@ -178,4 +191,27 @@
             </div>
         </section>
     </section>
+@endsection
+@section('script')
+<script src="{!! $baseURL . 'assets/datatable_custom/jquery-3.3.1.js' !!}"></script>
+<script>
+$(document).ready(function () {
+    $(document).on("click", ".print_invoice", function () {
+        console.log("test");
+        viewChallan($(this).attr("data-id"));
+    });
+    function viewChallan(id) {
+        let base_url = $("#hidden_base_url").val();
+        open(
+            base_url + "partner-io-print/" + id,
+            "Print Partner IO",
+            "width=1600,height=550"
+        );
+        newWindow.focus();
+        newWindow.onload = function () {
+            newWindow.document.body.insertAdjacentHTML("afterbegin");
+        };
+    }
+});
+</script>
 @endsection

@@ -25,8 +25,21 @@
                     <h2 class="top-left-header">{{ isset($title) && $title ? $title : '' }}</h2>
                 </div>
                 <div class="col-md-6">
-                        <a class="btn bg-second-btn" href="{{ route('customer_io.index') }}">
-                            <iconify-icon icon="solar:round-arrow-left-broken"></iconify-icon>@lang('index.back')</a>
+                    @if (routePermission('partner_io.print-customer-io'))
+                    <a href="javascript:void();"  class="btn bg-second-btn print_invoice"
+                        data-id="{{ isset($customer_io) ? $customer_io->id : '' }}"><iconify-icon icon="solar:printer-broken"></iconify-icon>
+                        @lang('index.print')</a>
+                    @endif
+                    @if(routePermission('customer_io.download-customer-io'))
+                    <a href="{{ route('customer-io-download', encrypt_decrypt($customer_io->id, 'encrypt')) }}"
+                        target="_blank" class="btn bg-second-btn print_btn"><iconify-icon
+                            icon="solar:cloud-download-broken"></iconify-icon>
+                        @lang('index.download')</a>
+                    @endif
+                    @if (routePermission('customer_io.index'))
+                    <a class="btn bg-second-btn" href="{{ route('customer_io.index') }}"><iconify-icon
+                            icon="solar:round-arrow-left-broken"></iconify-icon>@lang('index.back')</a>
+                    @endif
                 </div>
             </div>
         </section>
@@ -47,10 +60,6 @@
                                             {{ $customer_io->customer->customer_id }}
                                         </p>
                                         <p class="pb-7 rgb-71">
-                                            <span class=""><strong>@lang('index.customer_type'):</strong></span>
-                                            {{ $customer_io->customer->customer_type }}
-                                        </p>
-                                        <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.customer_name'):</strong></span>
                                             {{ $customer_io->customer->name }}
                                         </p>
@@ -66,10 +75,6 @@
                                             <span class=""><strong>@lang('index.delivery_address'):</strong></span>
                                             {{ $customer_io->d_address }}
                                         </p> 
-                                        <p class="pb-7 rgb-71">
-                                            <span><strong>@lang('index.inward_date'):</strong></span>
-                                            {{ !empty($customer_io->inward_date) ? date('d-m-Y', strtotime($customer_io->inward_date)) : '' }}
-                                        </p>
                                     </td>
                                     <td class="w-50" style="float: inline-end">
                                         <p class="pb-7 rgb-71">
@@ -81,28 +86,16 @@
                                             {{ $customer_io->customer->ecc_no }}
                                         </p>
                                         <p class="pb-7 rgb-71">
-                                            <span class=""><strong>@lang('index.landmark'):</strong></span>
-                                            {{ $customer_io->customer->area }}
-                                        </p>
-                                        <p class="pb-7 rgb-71">
-                                            <span class=""><strong>@lang('index.created_on'):</strong></span>
-                                            {{ getDateFormat($customer_io->customer->created_at) }}
-                                        </p>
-                                        <p class="pb-7 rgb-71">
-                                            <span class=""><strong>@lang('index.created_by'):</strong></span>
-                                            {{ getUserName($customer_io->customer->added_by) }}
-                                        </p>
-                                        <p class="pb-7 rgb-71">
-                                            <span class=""><strong>@lang('index.note'):</strong></span>
-                                            {{ $customer_io->customer->note}}
-                                        </p>
-                                        <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.status'):</strong></span>
                                             @if($customer_io->status == 'Inward')
                                             <span class="badge bg-secondary">Inward</span>
                                             @else
                                             <span class="badge bg-success">Outward</span>
                                             @endif
+                                        </p>
+                                        <p class="pb-7 rgb-71">
+                                            <span><strong>@lang('index.inward_date'):</strong></span>
+                                            {{ !empty($customer_io->inward_date) ? date('d-m-Y', strtotime($customer_io->inward_date)) : '' }}
                                         </p>
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.inward_notes'):</strong></span>
@@ -184,4 +177,27 @@
             </div>
         </section>
     </section>
+@endsection
+@section('script')
+<script src="{!! $baseURL . 'assets/datatable_custom/jquery-3.3.1.js' !!}"></script>
+<script>
+$(document).ready(function () {
+    $(document).on("click", ".print_invoice", function () {
+        console.log("test");
+        viewChallan($(this).attr("data-id"));
+    });
+    function viewChallan(id) {
+        let base_url = $("#hidden_base_url").val();
+        open(
+            base_url + "customer-io-print/" + id,
+            "Print Customer IO",
+            "width=1600,height=550"
+        );
+        newWindow.focus();
+        newWindow.onload = function () {
+            newWindow.document.body.insertAdjacentHTML("afterbegin");
+        };
+    }
+});
+</script>
 @endsection

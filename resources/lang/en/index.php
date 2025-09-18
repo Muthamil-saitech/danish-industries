@@ -1013,5 +1013,7 @@ return [
     'edit_partner' => 'Edit Partner',
     'edit_partner_io' => 'Edit Partner IO',
     'inward_date' => 'Inward Date',
-    'inward_notes' => 'Inward Notes'
+    'inward_notes' => 'Inward Notes',
+    'partner_info' => 'Partner Info',
+    'partner_io_details' => 'Partner IO Details'
 ];
