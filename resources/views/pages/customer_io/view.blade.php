@@ -110,22 +110,29 @@
                                         <h3 class="pt-20 pb-20">Documents</h3>
                                         <div class="d-flex flex-wrap gap-3">
                                             @php
-                                                $file = $customer_io->file;
-                                                $fileExtension = pathinfo($file, PATHINFO_EXTENSION);
+                                                $files = json_decode($customer_io->file, true);
                                             @endphp
 
-                                            @if(in_array(strtolower($fileExtension), ['pdf']))
-                                                <a class="text-decoration-none" href="{{ url('uploads/customer_io/' . $file) }}" target="_blank">
-                                                    <img src="{{ url('assets/images/pdf.png') }}" alt="PDF Preview" class="img-thumbnail rounded" width="100">
-                                                </a>
-                                            @elseif(in_array(strtolower($fileExtension), ['doc', 'docx']))
-                                                <a class="text-decoration-none" href="{{ url('uploads/customer_io/' . $file) }}" target="_blank">
-                                                    <img src="{{ url('assets/images/word.png') }}" alt="Word Preview" class="img-thumbnail rounded" width="100">
-                                                </a>
-                                            @else
-                                                <a class="text-decoration-none" href="{{ url('uploads/customer_io/' . $file) }}" target="_blank">
-                                                    <img src="{{ url('uploads/customer_io/' . $file) }}" alt="File Preview" class="img-thumbnail rounded" width="100">
-                                                </a>
+                                            @if(is_array($files))
+                                                @foreach($files as $file)
+                                                    @php
+                                                        $fileExtension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+                                                    @endphp
+
+                                                    @if(in_array($fileExtension, ['pdf']))
+                                                        <a class="text-decoration-none" href="{{ url('uploads/customer_io/' . $file) }}" target="_blank">
+                                                            <img src="{{ url('assets/images/pdf.png') }}" alt="PDF Preview" class="img-thumbnail mx-2" width="100">
+                                                        </a>
+                                                    @elseif(in_array($fileExtension, ['doc', 'docx']))
+                                                        <a class="text-decoration-none" href="{{ url('uploads/customer_io/' . $file) }}" target="_blank">
+                                                            <img src="{{ url('assets/images/word.png') }}" alt="Word Preview" class="img-thumbnail mx-2" width="100">
+                                                        </a>
+                                                    @else
+                                                        <a class="text-decoration-none" href="{{ url('uploads/customer_io/' . $file) }}" target="_blank">
+                                                            <img src="{{ url('uploads/customer_io/' . $file) }}" alt="File Preview" class="img-thumbnail mx-2" width="100">
+                                                        </a>
+                                                    @endif
+                                                @endforeach
                                             @endif
                                         </div>
                                     </div>

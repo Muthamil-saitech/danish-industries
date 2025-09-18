@@ -65,13 +65,19 @@ class CustomerIoController extends Controller
         ]);
 
         $customer_io = new \App\CustomerIo();
-        $file = '';
         if ($request->hasFile('file_button')) {
-            $file = $request->file('file_button');
-            $filename = $file->getClientOriginalName();
-            $fileName = time() . "_" . $filename;
-            $file->move(base_path('uploads/customer_io'), $fileName);
-            $customer_io->file = $fileName;
+            $uploadedFiles = $request->file('file_button');
+            $storedFiles = [];
+            $uploadPath = base_path('uploads/customer_io');
+            if (!file_exists($uploadPath)) {
+                mkdir($uploadPath, 0777, true);
+            }
+            foreach ($uploadedFiles as $file) {
+                $filename = time() . "_" . $file->getClientOriginalName();
+                $file->move(base_path('uploads/customer_io'), $filename);
+                $storedFiles[] = $filename;
+            }
+            $customer_io->file = json_encode($storedFiles);
         }
         $customer_io->po_no = null_check(escape_output($request->get('po_no')));
         $customer_io->line_item_no = null_check(escape_output($request->get('line_item_no')));
@@ -104,7 +110,7 @@ class CustomerIoController extends Controller
         $instrument_categories = InstrumentCategory::whereIn('type', $types)->orderBy('id','desc')->get();
         $categories = $customer_io_details->pluck('ins_category')->unique();
         $instruments = Instrument::whereIn('type',$types)->whereIn('category',$categories)->orderBy('id','desc')->get();
-        $title = __('index.edit_customer_order');
+        $title = __('index.edit_customer_order_io');
         return view('pages.customer_io.addEditCustomerIO', compact('title', 'customer_orders', 'order_io', 'customer', 'customer_io_details', 'instrument_categories', 'instruments'));
     }
     public function update(Request $request, CustomerIo $customer_io) {
@@ -114,19 +120,22 @@ class CustomerIoController extends Controller
             'phn_no' => 'required',
             'd_address' => 'required'
         ]);
-        $file = $request->get('file_old');
         if ($request->hasFile('file_button')) {
-            $uploadedFile = $request->file('file_button');
-            if (!empty($file)) {
-                @unlink(base_path('uploads/customer_io/' . $file));
+            $uploadedFiles = $request->file('file_button');
+            $storedFiles = [];
+            if (!empty($customer_io->file)) {
+                $storedFiles = json_decode($customer_io->file, true);
             }
-            $filename = time() . "_" . $uploadedFile->getClientOriginalName();
-            $uploadedFile->move(base_path('uploads/customer_io'), $filename);
-            $customer_io->file = $filename;
-        } else {
-            if (!empty($file)) {
-                $customer_io->file = $file;
+            $uploadPath = base_path('uploads/customer_io');
+            if (!file_exists($uploadPath)) {
+                mkdir($uploadPath, 0777, true);
             }
+            foreach ($uploadedFiles as $file) {
+                $filename = time() . "_" . $file->getClientOriginalName();
+                $file->move(base_path('uploads/customer_io'), $filename);
+                $storedFiles[] = $filename;
+            }
+            $customer_io->file = json_encode($storedFiles);
         }
         $customer_io->po_no = null_check(escape_output($request->get('po_no')));
         $customer_io->line_item_no = null_check(escape_output($request->get('line_item_no')));

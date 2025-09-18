@@ -118,28 +118,34 @@
                                     <div class="text-left">
                                         <h3 class="pt-20 pb-20">Documents</h3>
                                         <div class="d-flex flex-wrap gap-3">
-                                            @php
-                                                $file = $partner_io->file;
-                                                $fileExtension = pathinfo($file, PATHINFO_EXTENSION);
-                                            @endphp
+                                                @php
+                                                    $files = json_decode($partner_io->file, true);
+                                                @endphp
 
-                                            @if(in_array(strtolower($fileExtension), ['pdf']))
-                                                <a class="text-decoration-none" href="{{ url('uploads/partner_io/' . $file) }}" target="_blank">
-                                                    <img src="{{ url('assets/images/pdf.png') }}" alt="PDF Preview" class="img-thumbnail rounded" width="100">
-                                                </a>
-                                            @elseif(in_array(strtolower($fileExtension), ['doc', 'docx']))
-                                                <a class="text-decoration-none" href="{{ url('uploads/partner_io/' . $file) }}" target="_blank">
-                                                    <img src="{{ url('assets/images/word.png') }}" alt="Word Preview" class="img-thumbnail rounded" width="100">
-                                                </a>
-                                            @else
-                                                <a class="text-decoration-none" href="{{ url('uploads/partner_io/' . $file) }}" target="_blank">
-                                                    <img src="{{ url('uploads/partner_io/' . $file) }}" alt="File Preview" class="img-thumbnail rounded" width="100">
-                                                </a>
-                                            @endif
-                                        </div>
+                                                @foreach($files as $file)
+                                                    @php
+                                                        $fileExtension = pathinfo($file, PATHINFO_EXTENSION);
+                                                    @endphp
+
+                                                    @if(in_array($fileExtension, ['pdf']))
+                                                        <a class="text-decoration-none" href="{{ url('uploads/partner_io/' . $file) }}" target="_blank">
+                                                            <img src="{{ url('assets/images/pdf.png') }}" alt="PDF Preview" class="img-thumbnail mx-2" width="100">
+                                                        </a>
+                                                    @elseif(in_array($fileExtension, ['doc', 'docx']))
+                                                        <a class="text-decoration-none" href="{{ url('uploads/partner_io/' . $file) }}" target="_blank">
+                                                            <img src="{{ url('assets/images/word.png') }}" alt="Word Preview" class="img-thumbnail mx-2" width="100">
+                                                        </a>
+                                                    @else
+                                                        <a class="text-decoration-none" href="{{ url('uploads/partner_io/' . $file) }}" target="_blank">
+                                                            <img src="{{ url('uploads/partner_io/' . $file) }}" alt="File Preview" class="img-thumbnail mx-2" width="100">
+                                                        </a>
+                                                    @endif
+                                                @endforeach
+                                            </div>
                                     </div>
                                 </div>
                             @endif
+
                             <table>
                                 <thead>
                                     <tr>

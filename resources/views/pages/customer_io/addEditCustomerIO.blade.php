@@ -209,38 +209,46 @@
                             <div class="form-group">
                                 <label>Upload Document</label>
                                 <input type="hidden" name="file_old" value="{{ isset($order_io->file) && $order_io->file ? $order_io->file : '' }}">
-                               <input type="file" name="file_button" id="file_button"
+                               <input type="file" name="file_button[]" id="file_button"
                                     class="form-control @error('title') is-invalid @enderror file_checker_global image_preview"
-                                    accept="image/png,image/jpeg,image/jpg,application/pdf,.doc,.docx">
+                                    accept="image/png,image/jpeg,image/jpg,application/pdf,.doc,.docx" multiple>
                                 <p class="text-danger errorFile"></p>
                                 <div class="image-preview-container">
-                                    @if(isset($order_io->file) && $order_io->file != '')
+                                @if(isset($order_io->file) && $order_io->file != '')
                                     <div class="pt-10 pb-10">
                                         <div class="text-left">
                                             <h3 class="pt-20 pb-20">Documents</h3>
                                             <div class="d-flex flex-wrap gap-3">
                                                 @php
-                                                    $file = $order_io->file;
-                                                    $fileExtension = pathinfo($file, PATHINFO_EXTENSION);
+                                                    $files = json_decode($order_io->file, true);
                                                 @endphp
 
-                                                @if(in_array($fileExtension, ['pdf']))
-                                                    <a class="text-decoration-none" href="{{ url('uploads/customer_io/' . $file) }}" target="_blank">
-                                                        <img src="{{ url('assets/images/pdf.png') }}" alt="PDF Preview" class="img-thumbnail mx-2" width="100">
-                                                    </a>
-                                                @elseif(in_array($fileExtension, ['doc', 'docx']))
-                                                    <a class="text-decoration-none" href="{{ url('uploads/customer_io/' . $file) }}" target="_blank">
-                                                        <img src="{{ url('assets/images/word.png') }}" alt="Word Preview" class="img-thumbnail mx-2" width="100">
-                                                    </a>
-                                                @else
-                                                    <a class="text-decoration-none" href="{{ url('uploads/customer_io/' . $file) }}" target="_blank">
-                                                        <img src="{{ url('uploads/customer_io/' . $file) }}" alt="File Preview" class="img-thumbnail mx-2" width="100">
-                                                    </a>
+                                                @if(is_array($files))
+                                                    @foreach($files as $file)
+                                                        @php
+                                                            $fileExtension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+                                                        @endphp
+
+                                                        @if(in_array($fileExtension, ['pdf']))
+                                                            <a class="text-decoration-none" href="{{ url('uploads/customer_io/' . $file) }}" target="_blank">
+                                                                <img src="{{ url('assets/images/pdf.png') }}" alt="PDF Preview" class="img-thumbnail mx-2" width="100">
+                                                            </a>
+                                                        @elseif(in_array($fileExtension, ['doc', 'docx']))
+                                                            <a class="text-decoration-none" href="{{ url('uploads/customer_io/' . $file) }}" target="_blank">
+                                                                <img src="{{ url('assets/images/word.png') }}" alt="Word Preview" class="img-thumbnail mx-2" width="100">
+                                                            </a>
+                                                        @else
+                                                            <a class="text-decoration-none" href="{{ url('uploads/customer_io/' . $file) }}" target="_blank">
+                                                                <img src="{{ url('uploads/customer_io/' . $file) }}" alt="File Preview" class="img-thumbnail mx-2" width="100">
+                                                            </a>
+                                                        @endif
+                                                    @endforeach
                                                 @endif
                                             </div>
                                         </div>
                                     </div>
                                 @endif
+
 
                                 </div>
                             </div>

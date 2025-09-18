@@ -123,46 +123,65 @@ $baseURL = getBaseURL();
                 @endif
             </tbody>
         </table>
-        <table class="file_extension">
+       <table class="file_extension">
             <tr>
                 <td valign="top" class="w-50">
                     <div class="pt-20">
-                        <h4 class="d-block pb-20">File</h4>
+                        <h4 class="d-block pb-20">Files</h4>
                         <div class="">
-                            @if (isset($customer_io->file) && $customer_io->file)
-                            @php($file = $customer_io->file)
-                            @php($fileExtension = pathinfo($file, PATHINFO_EXTENSION))
-                            @if ($fileExtension == 'pdf')
-                            <a class="text-decoration-none"
-                                href="{{ $baseURL }}uploads/customer_io/{{ $file }}"
-                                target="_blank">
-                                <img src="{{ $baseURL }}assets/images/pdf.png"
-                                    alt="PDF Preview" class="img-thumbnail mx-2"
-                                    width="25px">
-                            </a>
-                            @elseif($fileExtension == 'doc' || $fileExtension == 'docx')
-                            <a class="text-decoration-none"
-                                href="{{ $baseURL }}uploads/customer_io/{{ $file }}"
-                                target="_blank">
-                                <img src="{{ $baseURL }}assets/images/word.png"
-                                    alt="Word Preview" class="img-thumbnail mx-2"
-                                    width="25px">
-                            </a>
-                            @else
-                            <a class="text-decoration-none"
-                                href="{{ $baseURL }}uploads/customer_io/{{ $file }}"
-                                target="_blank">
-                                <img src="{{ $baseURL }}uploads/customer_io/{{ $file }}"
-                                    alt="File Preview" class="img-thumbnail mx-2"
-                                    width="50px">
-                            </a>
-                            @endif
+                            @if (!empty($customer_io->file))
+                                @php
+                                    // Decode JSON if stored as JSON
+                                    $files = json_decode($customer_io->file, true);
+
+                                    // If not JSON, fallback to comma separated
+                                    if (!is_array($files)) {
+                                        $files = explode(',', $customer_io->file);
+                                    }
+                                @endphp
+
+                                @foreach ($files as $file)
+                                    @php
+                                        $file = trim($file);
+                                        $fileExtension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+                                    @endphp
+
+                                    @if ($fileExtension == 'pdf')
+                                        <a class="text-decoration-none" 
+                                        href="{{ $baseURL }}uploads/customer_io/{{ $file }}" 
+                                        target="_blank">
+                                            <img src="{{ $baseURL }}assets/images/pdf.png" 
+                                                alt="PDF Preview" 
+                                                class="img-thumbnail mx-2" 
+                                                width="50px">
+                                        </a>
+                                    @elseif ($fileExtension == 'doc' || $fileExtension == 'docx')
+                                        <a class="text-decoration-none" 
+                                        href="{{ $baseURL }}uploads/customer_io/{{ $file }}" 
+                                        target="_blank">
+                                            <img src="{{ $baseURL }}assets/images/word.png" 
+                                                alt="Word Preview" 
+                                                class="img-thumbnail mx-2" 
+                                                width="50px">
+                                        </a>
+                                    @else
+                                        <a class="text-decoration-none" 
+                                        href="{{ $baseURL }}uploads/customer_io/{{ $file }}" 
+                                        target="_blank">
+                                            <img src="{{ $baseURL }}uploads/customer_io/{{ $file }}" 
+                                                alt="File Preview" 
+                                                class="img-thumbnail mx-2" 
+                                                width="50px">
+                                        </a>
+                                    @endif
+                                @endforeach
                             @endif
                         </div>
                     </div>
                 </td>
             </tr>
         </table>
+
     </div>
     <script src="{{ $baseURL . ('assets/bower_components/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ $baseURL . ('frequent_changing/js/onload_print.js') }}"></script>

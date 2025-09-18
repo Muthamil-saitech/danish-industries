@@ -121,6 +121,57 @@ $baseURL = getBaseURL();
                 @endif
             </tbody>
         </table>
+         <table class="file_extension">
+            <tr>
+                <td valign="top" class="w-50">
+                    <div class="pt-20">
+                        <h4 class="d-block pb-20">File</h4>
+                        <div class="">
+                        @if (isset($partner_io->file) && $partner_io->file)
+                            @php
+                                 $files = json_decode($partner_io->file, true);
+                            @endphp
+
+                            @if(is_array($files))
+                                @foreach ($files as $file)
+                                    @php
+                                        $fileExtension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+                                    @endphp
+
+                                    @if ($fileExtension === 'pdf')
+                                        <a class="text-decoration-none"
+                                            href="{{ $baseURL }}uploads/partner_io/{{ $file }}"
+                                            target="_blank">
+                                            <img src="{{ $baseURL }}assets/images/pdf.png"
+                                                alt="PDF Preview" class="img-thumbnail mx-2"
+                                                width="25px">
+                                        </a>
+                                    @elseif (in_array($fileExtension, ['doc', 'docx']))
+                                        <a class="text-decoration-none"
+                                            href="{{ $baseURL }}uploads/partner_io/{{ $file }}"
+                                            target="_blank">
+                                            <img src="{{ $baseURL }}assets/images/word.png"
+                                                alt="Word Preview" class="img-thumbnail mx-2"
+                                                width="25px">
+                                        </a>
+                                    @else
+                                        <a class="text-decoration-none"
+                                            href="{{ $baseURL }}uploads/partner_io/{{ $file }}"
+                                            target="_blank">
+                                            <img src="{{ $baseURL }}uploads/partner_io/{{ $file }}"
+                                                alt="File Preview" class="img-thumbnail mx-2"
+                                                width="50px">
+                                        </a>
+                                    @endif
+                                @endforeach
+                            @endif
+                        @endif
+                    </div>
+
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
     <script src="{{ $baseURL . ('assets/bower_components/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ $baseURL . ('frequent_changing/js/onload_print.js') }}"></script>

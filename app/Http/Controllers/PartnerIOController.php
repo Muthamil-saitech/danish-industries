@@ -29,6 +29,7 @@ class PartnerIOController extends Controller
         return view('pages.partner_io.addEditPartner', compact('title','partners'));
     }
     public function store(Request $request) {
+        // dd($request->all());
         request()->validate([
             'reference_no' => [
                 'required',
@@ -45,14 +46,21 @@ class PartnerIOController extends Controller
         ]);
         
         $partner_io = new \App\PartnerIo();
-        $file = '';
         if ($request->hasFile('file_button')) {
-            $file = $request->file('file_button');
-            $filename = $file->getClientOriginalName();
-            $fileName = time() . "_" . $filename;
-            $file->move(base_path('uploads/partner_io'), $fileName);
-            $partner_io->file = $fileName;
+            $uploadedFiles = $request->file('file_button');
+            $storedFiles = [];
+            $uploadPath = base_path('uploads/partner_io');
+            if (!file_exists($uploadPath)) {
+                mkdir($uploadPath, 0777, true);
+            }
+            foreach ($uploadedFiles as $file) {
+                $filename = time() . "_" . $file->getClientOriginalName();
+                $file->move(base_path('uploads/partner_io'), $filename);
+                $storedFiles[] = $filename;
+            }
+            $partner_io->file = json_encode($storedFiles);
         }
+
         $partner_io->reference_no = null_check(escape_output($request->get('reference_no')));
         $partner_io->partner_id = null_check(escape_output($request->get('partner_id')));
         $partner_io->io_date =  date('Y-m-d', strtotime($request->get('io_date')));
@@ -103,14 +111,24 @@ class PartnerIOController extends Controller
             'reference_no.unique' => 'Reference No already exists',
         ]);
         
-        $file = '';
         if ($request->hasFile('file_button')) {
-            $file = $request->file('file_button');
-            $filename = $file->getClientOriginalName();
-            $fileName = time() . "_" . $filename;
-            $file->move(base_path('uploads/partner_io'), $fileName);
-            $partner_io->file = $fileName;
+            $uploadedFiles = $request->file('file_button');
+            $storedFiles = [];
+            if (!empty($partner_io->file)) {
+                $storedFiles = json_decode($partner_io->file, true);
+            }
+            $uploadPath = base_path('uploads/partner_io');
+            if (!file_exists($uploadPath)) {
+                mkdir($uploadPath, 0777, true);
+            }
+            foreach ($uploadedFiles as $file) {
+                $filename = time() . "_" . $file->getClientOriginalName();
+                $file->move(base_path('uploads/partner_io'), $filename);
+                $storedFiles[] = $filename;
+            }
+            $partner_io->file = json_encode($storedFiles);
         }
+
         $partner_io->reference_no = null_check(escape_output($request->get('reference_no')));
         $partner_io->partner_id = null_check(escape_output($request->get('partner_id')));
         $partner_io->io_date =  date('Y-m-d', strtotime($request->get('io_date')));
@@ -152,7 +170,7 @@ class PartnerIOController extends Controller
         return view('pages.partner_io.view', compact('title','partner_io_detail','partner_io'));
     }
     public function destroy(PartnerIoDetail $partner_io_detail) {
-        PartnerIo::where('id', $partner_io_detail->partner_io_id)->update(['del_status' => 'Deleted']);
+        // PartnerIo::where('id', $partner_io_detail->partner_io_id)->update(['del_status' => 'Deleted']);
         $partner_io_detail->del_status = 'Deleted';
         $partner_io_detail->save();
         return redirect('partner_io')->with(deleteMessage());
