@@ -27,11 +27,11 @@
                 <div class="col-md-6">
                     @if (routePermission('partner_io.print-partner-io'))
                     <a href="javascript:void();"  class="btn bg-second-btn print_invoice"
-                        data-id="{{ isset($partner_io) ? $partner_io->id : '' }}"><iconify-icon icon="solar:printer-broken"></iconify-icon>
+                        data-id="{{ isset($partner_io_detail) ? $partner_io_detail->id : '' }}"><iconify-icon icon="solar:printer-broken"></iconify-icon>
                         @lang('index.print')</a>
                     @endif
                     @if (routePermission('partner_io.download-partner-io'))
-                    <a href="{{ route('partner-io-download', encrypt_decrypt($partner_io->id, 'encrypt')) }}"
+                    <a href="{{ route('partner-io-download', encrypt_decrypt($partner_io_detail->id, 'encrypt')) }}"
                         target="_blank" class="btn bg-second-btn print_btn"><iconify-icon
                             icon="solar:cloud-download-broken"></iconify-icon>
                         @lang('index.download')</a>
