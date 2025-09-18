@@ -127,6 +127,8 @@
                                 <thead class="b-r-3 bg-color-000000">
                                     <tr>
                                         <th class="w-5 text-start">@lang('index.sn')</th>
+                                        <th class="w-10 text-start">@lang('index.owner')</th>
+                                        <th class="w-10 text-start">Stock Type</th>
                                         <th class="w-30 text-start">@lang('index.raw_material_name')(@lang('index.code'))</th>
                                         <th class="w-15 text-start">Heat No</th>
                                         <th class="w-15 text-start">@lang('index.stock')</th>
@@ -144,6 +146,8 @@
                                                 <td class="width_1_p">
                                                     <p class="set_sn">{{ $i++ }}</p>
                                                 </td>
+                                                <td class="text-start">{{ isset($value->owner_type) && $value->owner_type==1 ? 'Owner' : 'Customer' }}</td>
+                                                <td class="text-start">{{ isset($value->stk_user_id) && $value->owner_type == 1 ?  getSupplierNameCode($value->stk_user_id) : getCustomerNameById($value->stk_user_id).'('.getCustomerCodeById($value->stk_user_id).')' }}</td>
                                                 <td class="text-start">{{ getRMName($value->rmaterials_id) }}</td>
                                                 <td class="text-start">{{ getheatNo($value->rmaterials_id) }}</td>
                                                 <td class="text-start">{{ $value->stock }} {{ getStockUnitById($value->stock_id) }}</td>

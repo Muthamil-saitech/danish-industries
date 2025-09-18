@@ -116,7 +116,14 @@
                         </div>
                         <div class="add_pc mt-3">
                             @php
-                                $program_codes = old('program_code', isset($obj->program_code) ? json_decode($obj->program_code, true) : []);
+                            $program_codes = old(
+                                'program_code',
+                                $obj->program_code ? json_decode($obj->program_code, true) : []
+                            );
+                            $program_codes = is_array($program_codes) ? $program_codes : [];
+                            if (empty($program_codes)) {
+                                $program_codes = [''];
+                            }
                             @endphp
                             @foreach($program_codes as $key => $program_code)
                             <div class="row">

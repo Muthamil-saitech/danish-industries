@@ -153,7 +153,7 @@ class ProductionController extends Controller
         // dd($request->all());
         request()->validate([
             // 'manufacture_type' => 'required|max:150',
-            'stk_mat_type' => 'required',
+            // 'stk_mat_type' => 'required',
             /* 'reference_no' => [
                 'required',
                 'max:50',
@@ -193,8 +193,8 @@ class ProductionController extends Controller
             $obj->msale_price = null_check(escape_output($request->get('msale_price')));
             $obj->note = html_entity_decode($request->get('note'));
             $obj->stage_counter = null_check(escape_output($request->get('stage_counter')));
-            $obj->stage_name = escape_output($request->get('stage_name'));
-            $obj->stk_mat_type = escape_output($request->get('stk_mat_type'));
+            $obj->stage_name = $request->get('stage_name');
+            $obj->stk_mat_type = null_check(escape_output($request->get('stk_mat_type')));
             $obj->rev = escape_output($request->get('rev'));
             $obj->operation = escape_output($request->get('operation'));
             // $obj->dc_no = escape_output($request->get('dc_no'));
@@ -202,12 +202,15 @@ class ProductionController extends Controller
             if ($request->get('selected_customer_id') != '' && $request->get('selected_customer_order_detail_id') != '') {
                 $obj->customer_id = null_check(escape_output($request->get('selected_customer_id')));
                 $obj->customer_order_id = null_check(escape_output($request->get('selected_customer_order_detail_id')));
+                $customerOrderDetail = CustomerOrderDetails::where('id', $request->get('selected_customer_order_detail_id'))->where('del_status', 'Live')->first();
+                $customerOrder = CustomerOrder::where('id', $customerOrderDetail->customer_order_id)->where('del_status', 'Live')->first();
             } else {
                 $obj->customer_id = null_check(escape_output($request->get('customer_id')));
                 $obj->customer_order_id = null_check(escape_output($request->get('customer_order_id')));
+                $customerOrderDetail = CustomerOrderDetails::where('id', $request->get('customer_order_id'))->where('del_status', 'Live')->first();
+                $customerOrder = CustomerOrder::where('id', $customerOrderDetail->customer_order_id)->where('del_status', 'Live')->first();
             }
             // }
-            $customerOrder = CustomerOrder::where('id', $request->get('selected_customer_order_id'))->where('del_status', 'Live')->first();
             if ($customerOrder->order_type == 'Quotation') {
                 $prefix = 'L';
             } else {
@@ -242,9 +245,11 @@ class ProductionController extends Controller
                 $rmId = explode('|', $value);
                 $obj = new \App\Mrmitem();
                 $obj->rmaterials_id = null_check($rmId[0]);
-                $obj->stock_id = null_check(escape_output($_POST['stock_id'][$row]));
-                $obj->stock = null_check(escape_output($_POST['stock'][$row]));
-                $obj->consumption = null_check(escape_output($_POST['quantity_amount'][$row]));
+                $obj->owner_type = null_check($request->get('owner_type'));
+                $obj->stk_user_id = null_check($request->get('supplier_id'));
+                $obj->stock_id = null_check($_POST['stock_id'][$row]);
+                $obj->stock = null_check($_POST['stock'][$row]);
+                $obj->consumption = null_check($_POST['quantity_amount'][$row]);
                 $obj->manufacture_id = null_check($last_id);
                 $obj->save();
 
@@ -259,8 +264,8 @@ class ProductionController extends Controller
                     $noiId = explode('|', $value);
                     $obj = new \App\Mnonitem();
                     $obj->noninvemtory_id = null_check($noiId[0]);
-                    $obj->nin_cost = null_check(escape_output($_POST['total_1'][$row]));
-                    $obj->account_id = null_check(escape_output($_POST['account_id'][$row]));
+                    $obj->nin_cost = null_check($_POST['total_1'][$row]);
+                    $obj->account_id = null_check($_POST['account_id'][$row]);
                     $obj->manufacture_id = null_check($last_id);
                     $obj->save();
                 }
@@ -278,8 +283,8 @@ class ProductionController extends Controller
                     $obj->productionstage_id = null_check($value);
                     $obj->stage_month = 0;
                     $obj->stage_day = 0;
-                    $obj->stage_hours = null_check(escape_output($_POST['stage_hours'][$row]));
-                    $obj->stage_minute = null_check(escape_output($_POST['stage_minute'][$row]));
+                    $obj->stage_hours = null_check($_POST['stage_hours'][$row]);
+                    $obj->stage_minute = null_check($_POST['stage_minute'][$row]);
                     $obj->manufacture_id = null_check($last_id);
                     $obj->save();
                 }
@@ -531,9 +536,11 @@ class ProductionController extends Controller
         foreach ($rm_id as $row => $value) {
             $obj = new \App\Mrmitem();
             $obj->rmaterials_id = null_check($value);
-            $obj->stock_id = null_check(escape_output($_POST['stock_id'][$row]));
-            $obj->stock = null_check(escape_output($_POST['stock'][$row]));
-            $obj->consumption = null_check(escape_output($_POST['quantity_amount'][$row]));
+            $obj->owner_type = null_check($request->get('owner_type'));
+            $obj->stk_user_id = null_check($request->get('supplier_id'));
+            $obj->stock_id = null_check($_POST['stock_id'][$row]);
+            $obj->stock = null_check($_POST['stock'][$row]);
+            $obj->consumption = null_check($_POST['quantity_amount'][$row]);
             $obj->manufacture_id = null_check($last_id);
             $obj->save();
         }

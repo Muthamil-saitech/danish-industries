@@ -179,11 +179,19 @@
                         <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
                                 <label>@lang('index.owner') <span class="required_star">*</span></label>
+                                @if(isset($obj))
+                                <input type="hidden" name="owner_type" class="form-control" 
+                                    value="{{ !empty($m_rmaterials[0]['owner_type']) ? $m_rmaterials[0]['owner_type'] : '' }}" readonly>
+                                <input type="text" class="form-control" 
+                                    value="{{ !empty($m_rmaterials[0]['owner_type']) ? ($m_rmaterials[0]['owner_type']==1 ? 'Owner':'Customer') : '' }}" readonly>
+                                @else
                                 <select class="form-control @error('owner_type') is-invalid @enderror select2" name="owner_type" id="owner_type">
                                     <option value="">@lang('index.select')</option>
                                     <option {{ (isset($obj->owner_type) && $obj->owner_type == 1) || old('owner_type') == 1 ? 'selected' : '' }} value="1">@lang('index.owner')</option>
                                     <option {{ (isset($obj->owner_type) && $obj->owner_type == 2) || old('owner_type') == 2 ? 'selected' : '' }} value="2">@lang('index.customer')</option>
                                 </select>
+                                @endif
+                                
                                 <div class="text-danger d-none"></div>
                                 @error('owner_type')
                                     <div class="text-danger">{{ $message }}</div>
@@ -233,7 +241,7 @@
                                     <thead>
                                         <tr>
                                             <th class="w-5 text-start">@lang('index.sn')</th>
-                                            <th class="w-30">Stock</th>
+                                            <th class="w-30">Stock Type</th>
                                             <th class="w-30">@lang('index.material_name')(@lang('index.code'))</th>
                                             <th class="w-10">@lang('index.stock')</th>
                                             {{-- <th class="w-20"> @lang('index.rate_per_unit') <span class="required_star">*</span> <i
@@ -255,8 +263,8 @@
                                                         <p class="set_sn"></p>
                                                     </td>
                                                     <td>
-                                                        <input type="hidden" name="supplier_id[]" value="{{ $value->supplier_id }}">
-                                                        <label>{{ getSupplierNameCode($value->supplier_id) }}</label>
+                                                        <input type="hidden" name="supplier_id" value="{{ $value->stk_user_id }}">
+                                                        <label>{{ isset($value->stk_user_id) && $value->owner_type == 1 ?  getSupplierNameCode($value->stk_user_id) : getCustomerNameById($value->stk_user_id).'('.getCustomerCodeById($value->stk_user_id).')' }}</label>
                                                     </td>
                                                     <td><input type="hidden" value="{{ $value->stock_id }}"
                                                             name="stock_id[]">

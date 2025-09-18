@@ -356,7 +356,7 @@ class AjaxController extends Controller
                             <span>' . getRMName($value->mat_id) . '</span>
                         </td>
                         <td>
-                            <p class="show_stock"><span>'.$displayStock.' '.$uom.'</span></p>
+                            <p class="show_stock"><input type="hidden" value="'.$displayStock.'" name="stock[]" class="stock"><span>'.$displayStock.' '.$uom.'</span></p>
                         </td>
                         <td>
                             <div class="input-group">

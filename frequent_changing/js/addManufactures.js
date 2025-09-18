@@ -699,9 +699,10 @@ $(document).ready(function () {
     var stockId = $opt.data('stock-id') !== undefined ? $opt.data('stock-id') : '';
     var unitText = $row.find('.input-group-text').text().trim();
     $row.find('.stock_id').val(stockId);
+    $row.find('.stock').val(stock);
     $row.find('.show_stock span').text(stock + ' ' + unitText);
     var selectedSupplier = $('.supplier_select').val();
-    $("#supplier_id").val(selectedSupplier); 
+    $("#supplier_id").val(selectedSupplier);
     let material_id = $row.find('.rm_id').val();
     let quantity = $row.find('.qty_c').val();
     checkSingleMaterialStock(material_id,quantity);
@@ -895,10 +896,10 @@ $(document).ready(function () {
   $(document).on("submit", "#manufacture_form", function (e) {
     let status = true;
     let focus = 1;
-    let ref_no = $("#code").val();
+    // let ref_no = $("#code").val();
     let customer_id = $("#customer_id").val();
     let customer_order_id = $("#customer_order_id").val();
-    let stk_mat_type = $("#stk_mat_type").val();
+    let owner_type = $("#owner_type").val();
     let drawer_no = $("#drawer_no").val();
     let statusField = $("#m_status").val();
     let start_date = $("#start_date").val();
@@ -918,13 +919,13 @@ $(document).ready(function () {
       "-" +
       todayObj.getFullYear();
 
-    if (ref_no == "") {
+    /* if (ref_no == "") {
       status = false;
       showErrorMessage("code", "The PPCRC Number field is Required");
     } else {
       $("#code").removeClass("is-invalid");
       $("#code").closest("div").find(".text-danger").addClass("d-none");
-    }
+    } */
 
     if (customer_id == "") {
       status = false;
@@ -945,12 +946,12 @@ $(document).ready(function () {
         .addClass("d-none");
     }
 
-    if (stk_mat_type == "") {
+     if (owner_type == "") {
       status = false;
-      showErrorMessage("stk_mat_type", "The Material Type field is Required");
+      showErrorMessage("owner_type", "The Owner field is Required");
     } else {
-      $("#stk_mat_type").removeClass("is-invalid");
-      $("#stk_mat_type").closest("div").find(".text-danger").addClass("d-none");
+      $("#owner_type").removeClass("is-invalid");
+      $("#owner_type").closest("div").find(".text-danger").addClass("d-none");
     }
 
     if (statusField == "") {
