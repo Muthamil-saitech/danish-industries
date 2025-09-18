@@ -150,7 +150,7 @@
                                             <tr class="rowCount" data-id="{{ $partnerOrderDetails->id }}">
                                                 <td class="width_1_p ir_txt_center">{{ $i++ }}</td>
                                                 <td>
-                                                    <input type="hidden" name="detail_id[]" value="{{ $partnerOrderDetails->id }}">
+                                                    <input type="hidden" name="detail_id" value="{{ $partnerOrderDetails->id }}">
                                                     <input type="hidden" name="type[]" value="{{ $partnerOrderDetails->type }}">
                                                     <select class="form-control type select2" id="type_{{ $i }}" {{ isset($partnerOrderDetails) ? 'disabled' : ''  }}>
                                                         <option value="">Please Select</option>

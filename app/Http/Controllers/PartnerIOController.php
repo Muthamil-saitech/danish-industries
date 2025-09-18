@@ -96,6 +96,7 @@ class PartnerIOController extends Controller
         return view('pages.partner_io.addEditPartner', compact('title', 'partnerOrderDetails', 'partners', 'partner_io', 'partner_detail', 'instrument_categories', 'instruments'));
     }
     public function update(Request $request, PartnerIo $partner_io) {
+        // dd($request->all());
         request()->validate([
             'reference_no' => [
                 'required',
@@ -137,18 +138,40 @@ class PartnerIOController extends Controller
 
         $last_id = $partner_io->id;
         $detail_id = $request->get('detail_id');
-        PartnerIoDetail::where('partner_io_id', $last_id)->where('id',$detail_id)->update(['del_status' => "Deleted"]);
-        if(isset($_POST['type']) && is_array($_POST['type'])) {
-            foreach($_POST['type'] as $row => $type){
-                $obj = new \App\PartnerIoDetail();
-                $obj->partner_io_id = $partner_io->id;
-                $obj->type = null_check(escape_output($type));
-                $obj->ins_category = null_check(escape_output($_POST['ins_category'][$row] ?? '0')); 
-                $obj->ins_name = null_check(escape_output($_POST['ins_name'][$row] ?? '0')); 
-                $obj->qty = null_check(escape_output($_POST['qty'][$row] ?? ''));
-                $obj->remarks = escape_output($_POST['remarks'][$row] ?? ''); 
-                $obj->line_item_no = escape_output($_POST['line_item_no'][$row] ?? ''); 
-                $obj->save();
+        $partner_detail = PartnerIoDetail::where('partner_io_id', $last_id)->where('id',$detail_id)->first();
+        if($partner_detail) {
+            $partner_detail->del_status = "Deleted";
+            $partner_detail->save(); 
+            if($partner_detail->status == 'Outward') {
+                if(isset($_POST['type']) && is_array($_POST['type'])) {
+                    foreach($_POST['type'] as $row => $type){
+                        $obj = new \App\PartnerIoDetail();
+                        $obj->partner_io_id = $partner_io->id;
+                        $obj->type = null_check(escape_output($type));
+                        $obj->ins_category = null_check(escape_output($_POST['ins_category'][$row] ?? '0')); 
+                        $obj->ins_name = null_check(escape_output($_POST['ins_name'][$row] ?? '0')); 
+                        $obj->qty = null_check(escape_output($_POST['qty'][$row] ?? ''));
+                        $obj->remarks = escape_output($_POST['remarks'][$row] ?? ''); 
+                        $obj->line_item_no = escape_output($_POST['line_item_no'][$row] ?? ''); 
+                        $obj->status = 'Outward';
+                        $obj->inward_date = $partner_detail->inward_date;
+                        $obj->save();
+                    }
+                }
+            } else {
+                if(isset($_POST['type']) && is_array($_POST['type'])) {
+                    foreach($_POST['type'] as $row => $type){
+                        $obj = new \App\PartnerIoDetail();
+                        $obj->partner_io_id = $partner_io->id;
+                        $obj->type = null_check(escape_output($type));
+                        $obj->ins_category = null_check(escape_output($_POST['ins_category'][$row] ?? '0')); 
+                        $obj->ins_name = null_check(escape_output($_POST['ins_name'][$row] ?? '0')); 
+                        $obj->qty = null_check(escape_output($_POST['qty'][$row] ?? ''));
+                        $obj->remarks = escape_output($_POST['remarks'][$row] ?? ''); 
+                        $obj->line_item_no = escape_output($_POST['line_item_no'][$row] ?? '');
+                        $obj->save();
+                    }
+                }
             }
         }
         return redirect('partner_io')->with(saveMessage());
