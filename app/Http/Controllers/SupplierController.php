@@ -136,7 +136,7 @@ class SupplierController extends Controller
             foreach ($_POST['scp_name'] as $row => $value) {
                 $scp_info = new \App\SupplierContactInfo();
                 $scp_info->supplier_id = $obj->id;
-                $scp_info->scp_name = uc_words(escape_output($_POST['scp_name'][$row] ?? null));
+                $scp_info->scp_name = ucwords(escape_output($_POST['scp_name'][$row] ?? null));
                 $scp_info->scp_department = escape_output($_POST['scp_department'][$row] ?? null);
                 $scp_info->scp_designation = escape_output($_POST['scp_designation'][$row] ?? null);
                 $scp_info->scp_phone = escape_output($_POST['scp_phone'][$row] ?? null);

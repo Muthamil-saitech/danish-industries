@@ -121,6 +121,7 @@
                                             <th>Designation</th>
                                             <th>Phone Number</th>
                                             <th>Email</th>
+                                            <th>Created On</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -132,6 +133,7 @@
                                                 <td>{{ $contact->cp_designation!='' ? $contact->cp_designation : 'N/A' }}</td>
                                                 <td>{{ $contact->cp_phone!='' ? $contact->cp_phone : 'N/A' }}</td>
                                                 <td>{{ $contact->cp_email!='' ? $contact->cp_email : 'N/A' }}</td>
+                                                <td>{{ $contact->created_at!='' ? getDateFormat($contact->created_at) : 'N/A' }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>

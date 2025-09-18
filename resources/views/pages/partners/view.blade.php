@@ -105,6 +105,7 @@
                                         <th>Designation</th>
                                         <th>Phone Number</th>
                                         <th>Email</th>
+                                        <th>Created On</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -117,6 +118,7 @@
                                                 <td>{{ $partner->pcp_designation!='' ? $partner->pcp_designation : 'N/A' }}</td>
                                                 <td>{{ $partner->pcp_phone!='' ? $partner->pcp_phone : 'N/A' }}</td>
                                                 <td>{{ $partner->pcp_email!='' ? $partner->pcp_email : 'N/A' }}</td>
+                                                <td>{{ $partner->created_at!='' ? getDateFormat($partner->created_at) : 'N/A' }}</td>
                                             </tr>
                                         @endforeach
                                     </tr>

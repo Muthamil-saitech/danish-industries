@@ -111,6 +111,7 @@
                                             <th>Designation</th>
                                             <th>Phone Number</th>
                                             <th>Email</th>
+                                            <th>Created On</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -122,6 +123,7 @@
                                                 <td>{{ $contact->scp_designation!='' ? $contact->scp_designation : 'N/A' }}</td>
                                                 <td>{{ $contact->scp_phone!='' ? $contact->scp_phone : 'N/A' }}</td>
                                                 <td>{{ $contact->scp_email!='' ? $contact->scp_email : 'N/A' }}</td>
+                                                <td>{{ $contact->created_at!='' ? getDateFormat($contact->created_at) : 'N/A' }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>

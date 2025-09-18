@@ -90,7 +90,7 @@ class PartnerController extends Controller
             foreach ($_POST['scp_name'] as $row => $value) {
                 $scp_info = new \App\PartnerContactInfo();
                 $scp_info->partner_id = $obj->id;
-                $scp_info->pcp_name = uc_words(escape_output($_POST['pcp_name'][$row] ?? null));
+                $scp_info->pcp_name = ucwords(escape_output($_POST['pcp_name'][$row] ?? null));
                 $scp_info->pcp_department = escape_output($_POST['pcp_department'][$row] ?? null);
                 $scp_info->pcp_designation = escape_output($_POST['pcp_designation'][$row] ?? null);
                 $scp_info->pcp_phone = escape_output($_POST['pcp_phone'][$row] ?? null);
