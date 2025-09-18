@@ -80,3 +80,8 @@ ALTER TABLE `tbl_material_stocks` ADD `supplier_id` INT NULL DEFAULT NULL AFTER 
 =====17 sep========
 ALTER TABLE `tbl_manufactures_rmaterials` ADD `owner_type` INT NULL DEFAULT NULL AFTER `manufacture_id`;
 ALTER TABLE `tbl_manufactures_rmaterials` ADD `stk_user_id` INT NULL DEFAULT NULL AFTER `owner_type`;
+
+====18 sep====
+INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '29', 'Print Customer IO ', 'print-customer-io', 'No', 'No', NULL, NULL);
+INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '29', 'Download Customer IO', 'download-customer-io', 'No', 'No', NULL, NULL);INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '29', 'Print Partner IO ', 'print-partner-io', 'No', 'No', NULL, NULL);
+INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '29', 'Download Partner IO', 'download-partner-io', 'No', 'No', NULL, NULL);
