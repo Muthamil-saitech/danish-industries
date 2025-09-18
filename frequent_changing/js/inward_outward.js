@@ -424,7 +424,7 @@ $(document).on("change", "#partner_id", function (e) {
       if (data) {
         $("#phn_no").val(data.phone);
         $("#email").val(data.email);
-        $("#d_address").val(data.d_address);
+        $("#d_address").val(data.address);
       }
     },
     error: function () {},
