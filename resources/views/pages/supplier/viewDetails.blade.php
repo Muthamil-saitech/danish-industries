@@ -70,7 +70,7 @@
                                             {{ $obj->contact_person }}
                                         </p> --}}
                                     </td>
-                                    <td class="w-50 text-right">
+                                    <td class="w-50" style="float: inline-end">
                                         <p class="pb-7 rgb-71">
                                             <span class=""><strong>@lang('index.gst_no'):</strong></span>
                                             {{ $obj->gst_no }}
