@@ -86,8 +86,8 @@ class PartnerController extends Controller
         $obj->added_by = auth()->user()->id;
         $obj->save();
 
-        if (isset($_POST['scp_name']) && is_array($_POST['scp_name']) && !empty($_POST['scp_name'])) {
-            foreach ($_POST['scp_name'] as $row => $value) {
+        if (isset($_POST['pcp_name']) && is_array($_POST['pcp_name']) && !empty($_POST['pcp_name'])) {
+            foreach ($_POST['pcp_name'] as $row => $value) {
                 $scp_info = new \App\PartnerContactInfo();
                 $scp_info->partner_id = $obj->id;
                 $scp_info->pcp_name = ucwords(escape_output($_POST['pcp_name'][$row] ?? null));

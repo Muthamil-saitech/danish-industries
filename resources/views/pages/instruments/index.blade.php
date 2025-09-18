@@ -44,7 +44,9 @@
                                 <th class="w-20">@lang('index.range/size')</th>
                                 <th class="w-20">@lang('index.accuracy')</th>
                                 <th class="w-20">@lang('index.make')</th>
-                                <th class="w-20">@lang('index.calibration_due')</th>
+                                <th class="w-20">@lang('index.historycardno')</th>
+                                <th class="w-20">@lang('index.location')</th>
+                                <th class="w-20">@lang('index.due_date')</th>
                                 <th class="w-20">@lang('index.remarks')</th>
                                 <th class="w-10 ir_txt_center">@lang('index.actions')</th>
                             </tr>
@@ -76,7 +78,9 @@
                                     <td>{{ $value->range }}</td>
                                     <td>{{ $value->accuracy }}</td>
                                     <td>{{ $value->make }}</td>
-                                    <td>{{ getDateFormat($value->calibration_due) }}</td>
+                                    <td>{{ $value->history_card_no }}</td>
+                                    <td>{{ $value->location }}</td>
+                                    <td>{{ getDateFormat($value->due_date) }}</td>
                                     <td title="{{ $value->remarks }}">{{ substr_text(safe($value->remarks),20) }}</td>
                                     <td class="ir_txt_center">
                                         @if (routePermission('instruments.edit'))
