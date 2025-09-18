@@ -246,7 +246,7 @@ class ProductionController extends Controller
                 $obj = new \App\Mrmitem();
                 $obj->rmaterials_id = null_check($rmId[0]);
                 $obj->owner_type = null_check($request->get('owner_type'));
-                $obj->stk_user_id = null_check($request->get('supplier_id'));
+                $obj->stk_user_id = $request->get('owner_type')=="1" ? $request->get('supplier_id') : $request->get('stk_customer_id');
                 $obj->stock_id = null_check($_POST['stock_id'][$row]);
                 $obj->stock = null_check($_POST['stock'][$row]);
                 $obj->consumption = null_check($_POST['quantity_amount'][$row]);

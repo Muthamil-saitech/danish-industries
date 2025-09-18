@@ -351,7 +351,7 @@ class AjaxController extends Controller
                         <td class="width_1_p text-start"><p class="set_sn"></p></td>
                         ' . $customer_name . '
                         <td>
-                            <input type="hidden" value="" name="stock_id[]" class="stock_id">
+                            <input type="hidden" name="stock_id[]" class="stock_id" value="'.$stockId.'">
                             <input type="hidden" value="' . $value->mat_id . '" name="rm_id[]" class="rm_id"> 
                             <span>' . getRMName($value->mat_id) . '</span>
                         </td>
@@ -798,7 +798,7 @@ class AjaxController extends Controller
         $manufactureDetail->reference_no = $order->reference_no;
         $manufactureDetail->line_item_no = $order->line_item_no;
         $manufactureDetail->po_date = date('d-m-Y', strtotime($order->created_at));
-        $order_detail = CustomerOrderDetails::where('customer_order_id', $customer_order_id)->where('product_id', $product_id)->where('del_status', 'Live')->first();
+        $order_detail = CustomerOrderDetails::where('id', $customer_order_id)->where('product_id', $product_id)->where('del_status', 'Live')->first();
         $sale_price = $order_detail->sale_price;
         $discount_percent = $order_detail->discount_percent;
         if ($order_detail->discount_percent == 0) {

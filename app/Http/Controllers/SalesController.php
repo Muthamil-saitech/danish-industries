@@ -21,6 +21,7 @@ use App\Account;
 use App\AdminSettings;
 use App\Customer;
 use App\CustomerOrder;
+use App\CustomerOrderDetails;
 use App\FinishedProduct;
 use App\Manufacture;
 use App\SaleDetail;
@@ -159,11 +160,10 @@ class SalesController extends Controller
                 ->where('del_status', 'Live')
                 ->pluck('customer_order_id')
                 ->first();
-
-            $customerOrder = CustomerOrder::where('id', $customer_order_id)
+            $orderDetail = CustomerOrderDetails::where('del_status','Live')->where('id',$customer_order_id)->first();
+            $customerOrder = CustomerOrder::where('id', $orderDetail->customer_order_id)
                 ->where('del_status', 'Live')
                 ->first();
-
             $prefix = ($customerOrder->order_type == 'Quotation') ? 'L/' : 'S/';
             $currentYear = date('y');
             $nextYear = $currentYear + 1;
