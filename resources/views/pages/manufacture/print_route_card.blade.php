@@ -45,7 +45,7 @@ $whiteLabelInfo = App\WhiteLabelSettings::first();
                     <td style="border: 1px solid #222; padding: 4px; border-left: none;"> <b>PPCRC No :</b>{{ isset($obj) ? $obj->reference_no : "-" }}</td>
                     <td style="border: 1px solid #222; padding: 4px;"><b>PPCRC Date : </b> {{ isset($obj) ? getDateFormat($obj->start_date) : "-" }}</td>
                     <td style="border: 1px solid #222; padding: 4px;"><b>Delivery Date : </b> {{ isset($obj) && $obj->complete_date!='' ? getDateFormat($obj->complete_date) : "-" }}</td>
-                    <td style="border: 1px solid #222; padding: 4px;  border-right: none;"> <b>Quantity : </b>{{ isset($obj) ? $obj->product_quantity : "-" }} {{ getStockUnitById($m_rmaterial->stock_id) }}</td>
+                    <td style="border: 1px solid #222; padding: 4px;  border-right: none;"> <b>PO Quantity : </b>{{ isset($obj) ? $obj->product_quantity : "-" }} {{ getStockUnitById($m_rmaterial->stock_id) }}</td>
                 </tr>
                 <tr>
                     <td colspan="2" style="padding: 7px 5px;">Customer Name : <b>{{ isset($obj) ? getCustomerNameById($obj->customer_id) : '-'}}</b></td>
@@ -79,7 +79,7 @@ $whiteLabelInfo = App\WhiteLabelSettings::first();
                     <th style="border: 1px solid #222; padding: 4px;">Your DC &amp; Challan No.</th>
                     <th style="border: 1px solid #222; padding: 4px;">H.No./R.No.</th>
                     <th style="border: 1px solid #222; padding: 4px;">Batch No</th>
-                    <th style="border: 1px solid #222; padding: 4px;">Quantity</th>
+                    <th style="border: 1px solid #222; padding: 4px;">Material Quantity</th>
                     <th style="border: 1px solid #222; padding: 4px;">Checked By</th>
                     <th style="border: 1px solid #222; padding: 4px;  border-right: none;">Remarks</th>
                 </tr>
