@@ -161,104 +161,127 @@
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                        </div>                        
+                        </div>
                     </div>
-                    <hr>
+                    <h3 class="mb-2 mt-1">Contact Information</h3>
                     <div class="add_scp">
                         @if(isset($supplier_contact_info) && $supplier_contact_info->count() > 0)
                             {{-- Edit case: loop through existing contacts --}}
                             @foreach($supplier_contact_info as $key => $contact_info)
-                                <div class="row">
-                                    <div class="col-md-4 mb-3">
-                                        <div class="form-group">
-                                            <label>Contact Person Name </label>
-                                            <input type="hidden" name="scp_id[]" value="{{ $contact_info->id ?? '' }}">
-                                            <input type="text" name="scp_name[]" class="form-control" placeholder="Contact Person Name" value="{{ $contact_info->scp_name ?? old('scp_name') }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 mb-3">
-                                        <div class="form-group">
-                                            <label>Department </label>
-                                            <input type="text" name="scp_department[]" class="form-control" placeholder="Department" value="{{ $contact_info->scp_department ?? old('scp_department') }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 mb-3">
-                                        <div class="form-group">
-                                            <label>Designation </label>
-                                            <input type="text" name="scp_designation[]" class="form-control" placeholder="Designation" value="{{ $contact_info->scp_designation ?? old('scp_designation') }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 mb-3">
-                                        <div class="form-group">
-                                            <label>Phone Number </label>
-                                            <input type="text" name="scp_phone[]" class="form-control" placeholder="Phone Number" value="{{ $contact_info->scp_phone ?? old('scp_phone') }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 mb-3">
-                                        <div class="form-group">
-                                            <label>Email </label>
-                                            <input type="text" name="scp_email[]" class="form-control" placeholder="Email" value="{{ $contact_info->scp_email ?? old('scp_email') }}">
-                                        </div>
-                                    </div>
-                                    @if($key==0)
-                                        <div class="col-md-4 mb-3 mt-1">
-                                            <button id="supContactPerson" class="btn bg-blue-btn mt-4" type="button">@lang('index.add_more')</button>
-                                        </div>
-                                    @else
-                                        @if(isset($supplier_contact_info) && $supplier_contact_info->count() > 0)
-                                        <div class="col-md-4 mt-4">
-                                            <a href="#" class="sup_c_del button-danger"
-                                                data-contact_id="{{ $contact_info->id }}" type="submit"
-                                                data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('index.delete')">
-                                                <i class="fa fa-trash tiny-icon"></i>
-                                            </a>
-                                        </div>
-                                        @else
-                                            <div class="col-md-4 mt-4">
-                                                <button type="button" class="btn btn-xs del_row dlt_button">
-                                                    <iconify-icon icon="solar:trash-bin-minimalistic-broken"></iconify-icon>
-                                                </button>
+                                <div class="card mb-3 shadow-sm border-0 rounded-3">
+                                    <div class="card-body">
+                                        <div class="row align-items-center cp-row">
+                                            <div class="col-md-1 mb-3 d-flex align-items-center justify-content-center">
+                                                <label class="serial-no">{{ $key + 1 }}</label>
+                                                <input type="hidden" name="scp_serial[]" value="{{ $key + 1 }}">
+                                                <input type="hidden" name="scp_id[]" value="{{ $contact_info->id ?? '' }}">
                                             </div>
-                                        @endif
-                                    @endif
+                                            <div class="col-md-3 mb-3">
+                                                <div class="form-group">
+                                                    <label>Contact Person Name </label>                                                    
+                                                    <input type="text" name="scp_name[]" class="form-control" placeholder="Contact Person Name" value="{{ $contact_info->scp_name ?? old('scp_name') }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 mb-3">
+                                                <div class="form-group">
+                                                    <label>Department </label>
+                                                    <input type="text" name="scp_department[]" class="form-control" placeholder="Department" value="{{ $contact_info->scp_department ?? old('scp_department') }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 mb-3">
+                                                <div class="form-group">
+                                                    <label>Designation </label>
+                                                    <input type="text" name="scp_designation[]" class="form-control" placeholder="Designation" value="{{ $contact_info->scp_designation ?? old('scp_designation') }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 mb-3 text-center">
+                                            </div>
+                                            <div class="col-md-1 mb-3 text-center">
+                                            </div>
+                                            <div class="col-md-3 mb-3">
+                                                <div class="form-group">
+                                                    <label>Phone Number </label>
+                                                    <input type="text" name="scp_phone[]" class="form-control" placeholder="Phone Number" value="{{ $contact_info->scp_phone ?? old('scp_phone') }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 mb-3">
+                                                <div class="form-group">
+                                                    <label>Email </label>
+                                                    <input type="text" name="scp_email[]" class="form-control" placeholder="Email" value="{{ $contact_info->scp_email ?? old('scp_email') }}">
+                                                </div>
+                                            </div>
+                                            @if($key==0)
+                                                <div class="col-md-4 mb-3 mt-1">
+                                                    <button id="supContactPerson" class="btn bg-blue-btn mt-4" type="button">@lang('index.add_more')</button>
+                                                </div>
+                                            @else
+                                                @if(isset($supplier_contact_info) && $supplier_contact_info->count() > 0)
+                                                <div class="col-md-4 mt-4">
+                                                    <a href="#" class="sup_c_del button-danger"
+                                                        data-contact_id="{{ $contact_info->id }}" type="submit"
+                                                        data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('index.delete')">
+                                                        <i class="fa fa-trash tiny-icon"></i>
+                                                    </a>
+                                                </div>
+                                                @else
+                                                    <div class="col-md-4 mt-4">
+                                                        <button type="button" class="btn btn-xs del_row dlt_button">
+                                                            <iconify-icon icon="solar:trash-bin-minimalistic-broken"></iconify-icon>
+                                                        </button>
+                                                    </div>
+                                                @endif
+                                            @endif
+                                        </div>
+                                    </div>
                                 </div>
                             @endforeach
                         @else
-                            {{-- Add case: show one empty row by default --}}
-                            <div class="row">
-                                <div class="col-md-4 mb-3">
-                                    <div class="form-group">
-                                        <label>Contact Person Name </label>
-                                        <input type="hidden" name="scp_id[]" value="">
-                                        <input type="text" name="scp_name[]" class="form-control" placeholder="Contact Person Name" value="{{ old('scp_name.0') }}">
+                            <div class="card mb-3 shadow-sm border-0 rounded-3">
+                                <div class="card-body">
+                                    <div class="row align-items-center cp-row">
+                                        <div class="col-md-1 mb-3 d-flex align-items-center justify-content-center">
+                                            <label class="serial-no">1</label>
+                                            <input type="hidden" name="scp_serial[]" value="1">
+                                        </div>
+                                        <div class="col-md-3 mb-3">
+                                            <div class="form-group">
+                                                <label>Contact Person Name </label>
+                                                <input type="hidden" name="scp_id[]" value="">
+                                                <input type="text" name="scp_name[]" class="form-control" placeholder="Contact Person Name" value="{{ old('scp_name.0') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 mb-3">
+                                            <div class="form-group">
+                                                <label>Department </label>
+                                                <input type="text" name="scp_department[]" class="form-control" placeholder="Department" value="{{ old('scp_department.0') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 mb-3">
+                                            <div class="form-group">
+                                                <label>Designation </label>
+                                                <input type="text" name="scp_designation[]" class="form-control" placeholder="Designation" value="{{ old('scp_designation.0') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 mb-3 text-center">
+                                        </div>
+                                        <div class="col-md-1 mb-3 text-center">
+                                        </div>
+                                        <div class="col-md-3 mb-3">
+                                            <div class="form-group">
+                                                <label>Phone Number </label>
+                                                <input type="text" name="scp_phone[]" class="form-control" placeholder="Phone Number" value="{{ old('scp_phone.0') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 mb-3">
+                                            <div class="form-group">
+                                                <label>Email </label>
+                                                <input type="text" name="scp_email[]" class="form-control" placeholder="Email" value="{{ old('scp_email.0') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mb-3 mt-1">
+                                            <button id="supContactPerson" class="btn bg-blue-btn mt-4" type="button">@lang('index.add_more')</button>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <div class="form-group">
-                                        <label>Department </label>
-                                        <input type="text" name="scp_department[]" class="form-control" placeholder="Department" value="{{ old('scp_department.0') }}">
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <div class="form-group">
-                                        <label>Designation </label>
-                                        <input type="text" name="scp_designation[]" class="form-control" placeholder="Designation" value="{{ old('scp_designation.0') }}">
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <div class="form-group">
-                                        <label>Phone Number </label>
-                                        <input type="text" name="scp_phone[]" class="form-control" placeholder="Phone Number" value="{{ old('scp_phone.0') }}">
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <div class="form-group">
-                                        <label>Email </label>
-                                        <input type="text" name="scp_email[]" class="form-control" placeholder="Email" value="{{ old('scp_email.0') }}">
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-3 mt-1">
-                                    <button id="supContactPerson" class="btn bg-blue-btn mt-4" type="button">@lang('index.add_more')</button>
                                 </div>
                             </div>
                         @endif
@@ -282,6 +305,13 @@
 @section('script')
     <script type="text/javascript" src="{!!  $baseURL . 'assets/bower_components/jquery-ui/jquery-ui.min.js'  !!}"></script>
     <script>
+        let i = 1;
+        function updateSerialLabels() {
+            document.querySelectorAll(".serial-no").forEach((el, index) => {
+                el.textContent = index + 1;
+                el.nextElementSibling.value = index + 1;
+            });
+        }
         let base_url = $('#base_url').val();
         let hidden_base_url = $("#hidden_base_url").val();
         let hidden_alert = $(".hidden_alert").val();
@@ -289,51 +319,71 @@
         let hidden_cancel = $(".hidden_cancel").val();
         let thischaracterisnotallowed = $(".thischaracterisnotallowed").val();
         let are_you_sure = $(".are_you_sure").val();
-        let i = 0;
         $(document).on("click", "#supContactPerson", function (e) {
             ++i;
             let newRow = `
-                <div class="row mt-3" id="cp_row_${i}">
-                    <div class="col-md-4 mb-3">
-                        <div class="form-group">
-                            <label>Contact Person Name</label>
-                            <input type="text" name="scp_name[]" class="form-control" placeholder="Contact Person Name">
+                <div class="card mb-3 shadow-sm border-0 rounded-3">
+                    <div class="card-body">
+                        <div class="row mt-3" id="cp_row_${i}">
+                            <div class="col-md-1 mb-3 d-flex align-items-center justify-content-center">
+                                <label class="form-control-plaintext text-center serial-no"></label>
+                                <input type="hidden" name="scp_serial[]" value="">
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="form-group">
+                                    <label>Contact Person Name</label>
+                                    <input type="text" name="scp_name[]" class="form-control" placeholder="Contact Person Name">
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="form-group">
+                                    <label>Department</label>
+                                    <input type="text" name="scp_department[]" class="form-control" placeholder="Department">
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="form-group">
+                                    <label>Designation</label>
+                                    <input type="text" name="scp_designation[]" class="form-control" placeholder="Designation">
+                                </div>
+                            </div>
+                            <div class="col-md-2 mb-3">
+                            </div>
+                            <div class="col-md-1 mb-3">
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="form-group">
+                                    <label>Phone Number</label>
+                                    <input type="text" name="scp_phone[]" class="form-control" placeholder="Phone Number">
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="text" name="scp_email[]" class="form-control" placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3 mt-4">
+                                <button type="button" class="btn btn-xs del_row dlt_button"><iconify-icon icon="solar:trash-bin-minimalistic-broken"></iconify-icon></button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="form-group">
-                            <label>Department</label>
-                            <input type="text" name="scp_department[]" class="form-control" placeholder="Department">
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="form-group">
-                            <label>Designation</label>
-                            <input type="text" name="scp_designation[]" class="form-control" placeholder="Designation">
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="form-group">
-                            <label>Phone Number</label>
-                            <input type="text" name="scp_phone[]" class="form-control" placeholder="Phone Number">
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="text" name="scp_email[]" class="form-control" placeholder="Email">
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3 mt-4">
-                        <button type="button" class="btn btn-xs del_row dlt_button"><iconify-icon icon="solar:trash-bin-minimalistic-broken"></iconify-icon></button>
                     </div>
                 </div>
             `;
 
             $(".add_scp").append(newRow);
+            updateSerialLabels();
         });
-        $(document).on("click", ".del_row", function () {
+        /* $(document).on("click", ".del_row", function () {
             $(this).closest(".row").remove();
+        }); */
+        $(document).on("click", ".del_row", function () {
+            if ($(".add_scp .card").length > 1) {
+                $(this).closest(".card").remove();
+                updateSerialLabels();
+            } else {
+                alert("At least one contact must remain.");
+            }
         });
         $('body').on('click', '.sup_c_del', function (e) {
             e.preventDefault();

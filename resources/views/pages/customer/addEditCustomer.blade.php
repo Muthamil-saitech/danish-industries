@@ -220,102 +220,125 @@
                             </div>
                         </div>
                     </div>
-                    <hr>
+                    <h3 class="mb-2 mt-1">Contact Information</h3>
                     <div class="add_cp">
                         @if(isset($customer_contact_info) && $customer_contact_info->count() > 0)
                             {{-- Edit case: loop through existing contacts --}}
                             @foreach($customer_contact_info as $key => $contact_info)
-                                <div class="row">
-                                    <div class="col-md-4 mb-3">
-                                        <div class="form-group">
-                                            <label>Contact Person Name </label>
+                            <div class="card mb-3 shadow-sm border-0 rounded-3">
+                                <div class="card-body">
+                                    <div class="row align-items-center cp-row">
+                                        <div class="col-md-1 mb-3 d-flex align-items-center justify-content-center">
+                                            <label class="serial-no">{{ $key + 1 }}</label>
+                                            <input type="hidden" name="cp_serial[]" value="{{ $key + 1 }}">
                                             <input type="hidden" name="cp_id[]" value="{{ $contact_info->id ?? '' }}">
-                                            <input type="text" name="cp_name[]" class="form-control" placeholder="Contact Person Name" value="{{ $contact_info->cp_name ?? old('cp_name') }}">
                                         </div>
-                                    </div>
-                                    <div class="col-md-4 mb-3">
-                                        <div class="form-group">
-                                            <label>Department </label>
-                                            <input type="text" name="cp_department[]" class="form-control" placeholder="Department" value="{{ $contact_info->cp_department ?? old('cp_department') }}">
+                                        <div class="col-md-3 mb-3">
+                                            <div class="form-group">
+                                                <label>Contact Person Name </label>
+                                                <input type="text" name="cp_name[]" class="form-control" placeholder="Contact Person Name" value="{{ $contact_info->cp_name ?? old('cp_name') }}">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-4 mb-3">
-                                        <div class="form-group">
-                                            <label>Designation </label>
-                                            <input type="text" name="cp_designation[]" class="form-control" placeholder="Designation" value="{{ $contact_info->cp_designation ?? old('cp_designation') }}">
+                                        <div class="col-md-3 mb-3">
+                                            <div class="form-group">
+                                                <label>Department </label>
+                                                <input type="text" name="cp_department[]" class="form-control" placeholder="Department" value="{{ $contact_info->cp_department ?? old('cp_department') }}">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-4 mb-3">
-                                        <div class="form-group">
-                                            <label>Phone Number </label>
-                                            <input type="text" name="cp_phone[]" class="form-control" placeholder="Phone Number" value="{{ $contact_info->cp_phone ?? old('cp_phone') }}">
+                                        <div class="col-md-3 mb-3">
+                                            <div class="form-group">
+                                                <label>Designation </label>
+                                                <input type="text" name="cp_designation[]" class="form-control" placeholder="Designation" value="{{ $contact_info->cp_designation ?? old('cp_designation') }}">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-4 mb-3">
-                                        <div class="form-group">
-                                            <label>Email </label>
-                                            <input type="text" name="cp_email[]" class="form-control" placeholder="Email" value="{{ $contact_info->cp_email ?? old('cp_email') }}">
+                                        <div class="col-md-2 mb-3 text-center">
                                         </div>
+                                        <div class="col-md-1 mb-3 text-center">
+                                        </div>
+                                        <div class="col-md-3 mb-3">
+                                            <div class="form-group">
+                                                <label>Phone Number </label>
+                                                <input type="text" name="cp_phone[]" class="form-control" placeholder="Phone Number" value="{{ $contact_info->cp_phone ?? old('cp_phone') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 mb-3">
+                                            <div class="form-group">
+                                                <label>Email </label>
+                                                <input type="text" name="cp_email[]" class="form-control" placeholder="Email" value="{{ $contact_info->cp_email ?? old('cp_email') }}">
+                                            </div>
+                                        </div>
+                                        @if($key==0)
+                                            <div class="col-md-4 mb-3 mt-1">
+                                                <button id="custContactPerson" class="btn bg-blue-btn mt-4" type="button">@lang('index.add_more')</button>
+                                            </div>
+                                        @else
+                                            @if(isset($customer_contact_info) && $customer_contact_info->count() > 0)
+                                            <div class="col-md-4 mt-4">
+                                                <a href="#" class="cus_c_del button-danger"
+                                                    data-contact_id="{{ $contact_info->id }}" type="submit"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('index.delete')">
+                                                    <i class="fa fa-trash tiny-icon"></i>
+                                                </a>
+                                            </div>
+                                            @else
+                                                <div class="col-md-4 mt-4">
+                                                    <button type="button" class="btn btn-xs del_row dlt_button">
+                                                        <iconify-icon icon="solar:trash-bin-minimalistic-broken"></iconify-icon>
+                                                    </button>
+                                                </div>
+                                            @endif
+                                        @endif
                                     </div>
-                                    @if($key==0)
+                                </div>
+                            </div>
+                            @endforeach
+                        @else
+                            <div class="card mb-3 shadow-sm border-0 rounded-3">
+                                <div class="card-body">
+                                    <div class="row align-items-center cp-row">
+                                        <div class="col-md-1 mb-3 d-flex align-items-center justify-content-center">
+                                            <label class="serial-no">1</label>
+                                            <input type="hidden" name="cp_serial[]" value="1">
+                                        </div>
+                                        <div class="col-md-3 mb-3">
+                                            <div class="form-group">
+                                                <label>Contact Person Name </label>
+                                                <input type="hidden" name="cp_id[]" value="">
+                                                <input type="text" name="cp_name[]" class="form-control" placeholder="Contact Person Name" value="{{ old('cp_name.0') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 mb-3">
+                                            <div class="form-group">
+                                                <label>Department </label>
+                                                <input type="text" name="cp_department[]" class="form-control" placeholder="Department" value="{{ old('cp_department.0') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 mb-3">
+                                            <div class="form-group">
+                                                <label>Designation </label>
+                                                <input type="text" name="cp_designation[]" class="form-control" placeholder="Designation" value="{{ old('cp_designation.0') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 mb-3 text-center">
+                                        </div>
+                                        <div class="col-md-1 mb-3 text-center">
+                                        </div>
+                                        <div class="col-md-3 mb-3">
+                                            <div class="form-group">
+                                                <label>Phone Number </label>
+                                                <input type="text" name="cp_phone[]" class="form-control" placeholder="Phone Number" value="{{ old('cp_phone.0') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 mb-3">
+                                            <div class="form-group">
+                                                <label>Email </label>
+                                                <input type="text" name="cp_email[]" class="form-control" placeholder="Email" value="{{ old('cp_email.0') }}">
+                                            </div>
+                                        </div>
                                         <div class="col-md-4 mb-3 mt-1">
                                             <button id="custContactPerson" class="btn bg-blue-btn mt-4" type="button">@lang('index.add_more')</button>
                                         </div>
-                                    @else
-                                        @if(isset($customer_contact_info) && $customer_contact_info->count() > 0)
-                                        <div class="col-md-4 mt-4">
-                                            <a href="#" class="cus_c_del button-danger"
-                                                data-contact_id="{{ $contact_info->id }}" type="submit"
-                                                data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('index.delete')">
-                                                <i class="fa fa-trash tiny-icon"></i>
-                                            </a>
-                                        </div>
-                                        @else
-                                            <div class="col-md-4 mt-4">
-                                                <button type="button" class="btn btn-xs del_row dlt_button">
-                                                    <iconify-icon icon="solar:trash-bin-minimalistic-broken"></iconify-icon>
-                                                </button>
-                                            </div>
-                                        @endif
-                                    @endif
-                                </div>
-                            @endforeach
-                        @else
-                            {{-- Add case: show one empty row by default --}}
-                            <div class="row">
-                                <div class="col-md-4 mb-3">
-                                    <div class="form-group">
-                                        <label>Contact Person Name </label>
-                                        <input type="hidden" name="cp_id[]" value="">
-                                        <input type="text" name="cp_name[]" class="form-control" placeholder="Contact Person Name" value="{{ old('cp_name.0') }}">
                                     </div>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <div class="form-group">
-                                        <label>Department </label>
-                                        <input type="text" name="cp_department[]" class="form-control" placeholder="Department" value="{{ old('cp_department.0') }}">
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <div class="form-group">
-                                        <label>Designation </label>
-                                        <input type="text" name="cp_designation[]" class="form-control" placeholder="Designation" value="{{ old('cp_designation.0') }}">
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <div class="form-group">
-                                        <label>Phone Number </label>
-                                        <input type="text" name="cp_phone[]" class="form-control" placeholder="Phone Number" value="{{ old('cp_phone.0') }}">
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <div class="form-group">
-                                        <label>Email </label>
-                                        <input type="text" name="cp_email[]" class="form-control" placeholder="Email" value="{{ old('cp_email.0') }}">
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-3 mt-1">
-                                    <button id="custContactPerson" class="btn bg-blue-btn mt-4" type="button">@lang('index.add_more')</button>
                                 </div>
                             </div>
                         @endif
@@ -340,6 +363,13 @@
 @section('script')
     <script type="text/javascript" src="{!!  $baseURL . 'assets/bower_components/jquery-ui/jquery-ui.min.js'  !!}"></script>
     <script>
+        let i = 1;
+        function updateSerialLabels() {
+            document.querySelectorAll(".serial-no").forEach((el, index) => {
+                el.textContent = index + 1;
+                el.nextElementSibling.value = index + 1;
+            });
+        }
         let base_url = $('#base_url').val();
         let hidden_base_url = $("#hidden_base_url").val();
         let hidden_alert = $(".hidden_alert").val();
@@ -347,51 +377,71 @@
         let hidden_cancel = $(".hidden_cancel").val();
         let thischaracterisnotallowed = $(".thischaracterisnotallowed").val();
         let are_you_sure = $(".are_you_sure").val();
-        let i = 0;
         $(document).on("click", "#custContactPerson", function (e) {
             ++i;
             let newRow = `
-                <div class="row mt-3" id="cp_row_${i}">
-                    <div class="col-md-4 mb-3">
-                        <div class="form-group">
-                            <label>Contact Person Name</label>
-                            <input type="text" name="cp_name[]" class="form-control" placeholder="Contact Person Name">
+                <div class="card mb-3 shadow-sm border-0 rounded-3">
+                    <div class="card-body">
+                        <div class="row mt-3" id="cp_row_${i}">
+                            <div class="col-md-1 mb-3 d-flex align-items-center justify-content-center">
+                                <label class="form-control-plaintext text-center serial-no"></label>
+                                <input type="hidden" name="cp_serial[]" value="">
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="form-group">
+                                    <label>Contact Person Name</label>
+                                    <input type="text" name="cp_name[]" class="form-control" placeholder="Contact Person Name">
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="form-group">
+                                    <label>Department</label>
+                                    <input type="text" name="cp_department[]" class="form-control" placeholder="Department">
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="form-group">
+                                    <label>Designation</label>
+                                    <input type="text" name="cp_designation[]" class="form-control" placeholder="Designation">
+                                </div>
+                            </div>
+                            <div class="col-md-2 mb-3">
+                            </div>
+                            <div class="col-md-1 mb-3">
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="form-group">
+                                    <label>Phone Number</label>
+                                    <input type="text" name="cp_phone[]" class="form-control" placeholder="Phone Number">
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="text" name="cp_email[]" class="form-control" placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3 mt-4">
+                                <button type="button" class="btn btn-xs del_row dlt_button"><iconify-icon icon="solar:trash-bin-minimalistic-broken"></iconify-icon></button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="form-group">
-                            <label>Department</label>
-                            <input type="text" name="cp_department[]" class="form-control" placeholder="Department">
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="form-group">
-                            <label>Designation</label>
-                            <input type="text" name="cp_designation[]" class="form-control" placeholder="Designation">
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="form-group">
-                            <label>Phone Number</label>
-                            <input type="text" name="cp_phone[]" class="form-control" placeholder="Phone Number">
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="text" name="cp_email[]" class="form-control" placeholder="Email">
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3 mt-4">
-                        <button type="button" class="btn btn-xs del_row dlt_button"><iconify-icon icon="solar:trash-bin-minimalistic-broken"></iconify-icon></button>
                     </div>
                 </div>
             `;
-
             $(".add_cp").append(newRow);
+            updateSerialLabels();
         });
-        $(document).on("click", ".del_row", function () {
+        /* $(document).on("click", ".del_row", function () {
             $(this).closest(".row").remove();
+            updateSerialLabels();
+        }); */
+        $(document).on("click", ".del_row", function () {
+            if ($(".add_cp .card").length > 1) {
+                $(this).closest(".card").remove();
+                updateSerialLabels();
+            } else {
+                alert("At least one contact must remain.");
+            }
         });
         $('body').on('click', '.cus_c_del', function (e) {
             e.preventDefault();

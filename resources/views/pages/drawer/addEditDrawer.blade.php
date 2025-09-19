@@ -144,7 +144,7 @@
                                     </div>
                                 @else
                                     <div class="col-md-4 mt-4">
-                                        <button type="button" class="btn btn-xs del_row">
+                                        <button type="button" class="btn btn-xs del_row" style="color:red;">
                                             <iconify-icon icon="solar:trash-bin-minimalistic-broken"></iconify-icon>
                                         </button>
                                     </div>
@@ -278,7 +278,7 @@
                         </div>
                     </div>
                     <div class="col-md-4 mb-3 mt-4">
-                        <button type="button" class="btn btn-xs del_row"><iconify-icon icon="solar:trash-bin-minimalistic-broken"></iconify-icon></button>
+                        <button type="button" class="btn btn-xs del_row" style="color:red;"><iconify-icon icon="solar:trash-bin-minimalistic-broken"></iconify-icon></button>
                     </div>
                 </div>
             `;
