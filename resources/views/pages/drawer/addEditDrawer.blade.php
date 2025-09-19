@@ -144,7 +144,7 @@
                                     </div>
                                 @else
                                     <div class="col-md-4 mt-4">
-                                        <button type="button" class="btn btn-xs del_row dlt_button">
+                                        <button type="button" class="btn btn-xs del_row">
                                             <iconify-icon icon="solar:trash-bin-minimalistic-broken"></iconify-icon>
                                         </button>
                                     </div>
@@ -196,7 +196,7 @@
                                                             <td class='text-center'><input type="text" class="form-control" name="di_spec[]" maxlength='100' value="{{ $value->di_spec }}"></td>
                                                             <td class='text-center'><input type="text" class="form-control" name="di_method[]" maxlength='100' value="{{ $value->di_method }}"></td>
                                                             <td class='text-center'>
-                                                                <a class="btn btn-xs del_row remove-tr dlt_button"><iconify-icon icon="solar:trash-bin-minimalistic-broken"></iconify-icon></a>
+                                                                <a class="btn btn-xs remove-tr dlt_button"><iconify-icon icon="solar:trash-bin-minimalistic-broken"></iconify-icon></a>
                                                             </td>
                                                         </tr>
                                                     @endif
@@ -234,7 +234,7 @@
                                                             <td class='text-center'><input type="text" class="form-control" name="ap_spec[]" maxlength='100' value="{{ $value->ap_spec }}"></td>
                                                             <td class='text-center'><input type="text" class="form-control" name="ap_method[]" maxlength='100' value="{{ $value->ap_method }}"></td>
                                                             <td class='text-center'>
-                                                                <a class="btn btn-xs del_row remove-tr dlt_button"><iconify-icon icon="solar:trash-bin-minimalistic-broken"></iconify-icon></a>
+                                                                <a class="btn btn-xs remove-tr dlt_button"><iconify-icon icon="solar:trash-bin-minimalistic-broken"></iconify-icon></a>
                                                             </td>
                                                         </tr>
                                                     @endif
@@ -278,7 +278,7 @@
                         </div>
                     </div>
                     <div class="col-md-4 mb-3 mt-4">
-                        <button type="button" class="btn btn-xs del_row dlt_button"><iconify-icon icon="solar:trash-bin-minimalistic-broken"></iconify-icon></button>
+                        <button type="button" class="btn btn-xs del_row"><iconify-icon icon="solar:trash-bin-minimalistic-broken"></iconify-icon></button>
                     </div>
                 </div>
             `;
@@ -301,7 +301,7 @@
             html += "<td><input type='text' name='di_param[]' class='form-control' maxlength='30'></td>";
             html += "<td><input type='text' name='di_spec[]' class='form-control' maxlength='100'></td>";
             html += "<td><input type='text' name='di_method[]' class='form-control' maxlength='100'></td>";
-            html += '<td class="text-center"><a class="btn btn-xs del_row remove-tr dlt_button"><iconify-icon icon="solar:trash-bin-minimalistic-broken"></iconify-icon></a></td>';
+            html += '<td class="text-center"><a class="btn btn-xs remove-tr dlt_button"><iconify-icon icon="solar:trash-bin-minimalistic-broken"></iconify-icon></a></td>';
             html += "</tr>";
             $(".add_di_ins").append(html);
             resetSerialNumbers(".add_di_ins .rowDiCount");
@@ -312,7 +312,7 @@
             html += "<td><input type='text' name='ap_param[]' class='form-control'></td>";
             html += "<td><input type='text' name='ap_spec[]' class='form-control'></td>";
             html += "<td><input type='text' name='ap_method[]' class='form-control'></td>";
-            html += '<td class="text-center"><a class="btn btn-xs del_row remove-tr dlt_button"><iconify-icon icon="solar:trash-bin-minimalistic-broken"></iconify-icon></a></td>';
+            html += '<td class="text-center"><a class="btn btn-xs remove-tr dlt_button"><iconify-icon icon="solar:trash-bin-minimalistic-broken"></iconify-icon></a></td>';
             html += "</tr>";
             $(".add_ap_ins").append(html);
             resetSerialNumbers(".add_ap_ins .rowApCount");
