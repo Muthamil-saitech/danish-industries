@@ -42,7 +42,7 @@
                     <div class="row">
                         <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
-                                <label>@lang('index.production_stage') </label>
+                                <label>@lang('index.production_stage') <span class="required_star">*</span></label>
                                 <select name="production_stage" id="production_stage" class="form-control @error('production_stage') is-invalid @enderror select2">
                                     <option value="">@lang('index.select')</option>
                                     @foreach ($m_stages as $stage)
@@ -57,7 +57,7 @@
                         </div>
                         <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
-                                <label>@lang('index.employees') </label>
+                                <label>@lang('index.employees') <span class="required_star">*</span></label>
                                 <select name="user_id" id="user_id" class="form-control @error('user_id') is-invalid @enderror select2">
                                     <option value="">@lang('index.select')</option>
                                     @foreach ($employees as $emp)
@@ -87,6 +87,21 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-sm-12 mb-2 col-md-4">
+                            <div class="form-group">
+                                <label>@lang('index.incharge') <span class="required_star">*</span></label>
+                                <select name="incharge_user_id" id="incharge_user_id" class="form-control @error('incharge_user_id') is-invalid @enderror select2">
+                                    <option value="">@lang('index.select')</option>
+                                    @foreach ($consumable_users as $user)
+                                        <option value="{{ $user->id }}" {{ isset($user) && $user->id==old('incharge_user_id') ? 'selected' : '' }}>{{ getEmpCode($user->id) }}</option>
+                                    @endforeach
+                                </select>
+                                <p class="text-danger incharge_err"></p>
+                                @error('incharge_user_id')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
                         <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
                                 <label>@lang('index.quantity') <span class="required_star">*</span></label>
@@ -150,16 +165,20 @@
         $(document).on('submit', '#consumable_form', function (e) {
             let isValid = true;
             $('.is-invalid').removeClass('is-invalid');
-            $('.manufacture_err, .pro_stage_err, .user_err, .material_err, .qty_err').text('');
+            $('.manufacture_err, .pro_stage_err, .user_err, .material_err, .qty_err, .incharge_err').text('');
             let ppcrcNo  = $('#ppcrc_no').val()?.trim() || '';
             let productionStage  = $('#production_stage').val()?.trim() || '';
             let userId  = $('#user_id').val()?.trim() || '';
             let matId  = $('#mat_id').val()?.trim() || '';
             let qty  = $('#qty').val()?.trim() || '';
+            let inchargeUser  = $('#incharge_user_id').val()?.trim() || '';
             if (!ppcrcNo) $(".manufacture_err").text("The PPCRC Number field is required"), isValid=false;
+            if (!productionStage) $(".pro_stage_err").text("The Production Stage field is required"), isValid=false;
+            if (!userId) $(".user_err").text("The Task Person field is required"), isValid=false;
+            if (!inchargeUser) $(".incharge_err").text("The Incharge field is required"), isValid=false;
             if (productionStage && !userId) $(".user_err").text("If Production Stage is selected, then select Task Person."), isValid=false;
             if (!matId) $(".material_err").text("The Material Name field is required"), isValid=false;
-            if (!qty) $(".qty_err").text("The Qty field is required"), isValid=false;
+            if (!qty) $(".qty_err").text("The Quantity field is required"), isValid=false;
             if (!isValid) e.preventDefault();
         });
     </script>

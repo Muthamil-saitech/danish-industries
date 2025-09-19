@@ -87,3 +87,8 @@ INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name
 INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '29', 'Download Partner IO', 'download-partner-io', 'No', 'No', NULL, NULL);
 ALTER TABLE `tbl_customer_ios` CHANGE `file` `file` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
 ALTER TABLE `tbl_partner_ios` CHANGE `file` `file` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
+
+======19 sep======
+ALTER TABLE `tbl_manufactures` ADD `drawer_id` INT NULL DEFAULT NULL AFTER `product_id`;
+ALTER TABLE `tbl_manufactures_stages` ADD `stage_set_minute` INT NULL DEFAULT NULL AFTER `stage_minute`;
+ALTER TABLE `tbl_consumables` ADD `incharge_user_id` INT NULL DEFAULT NULL AFTER `user_id`;

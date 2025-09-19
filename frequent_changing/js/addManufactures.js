@@ -487,6 +487,8 @@ $(document).ready(function () {
       let params = $(".fproduct_id").val();
       let separate_params = params.split("|");
       let fproduct_id = separate_params[0];
+      let drawers = $("#drawer_no").val();
+      let seperate_drawers = drawers.split("|");
       $(".hidden_sec").removeClass("hidden_sec");
       $.ajax({
         type: "POST",
@@ -496,7 +498,7 @@ $(document).ready(function () {
         success: function (data) {
           $("#rev").val(data.rev);
           $("#operation").val(data.operation);
-          $("#drawer_no").val(data.drawer_no);
+          // $("#drawer_no").val(data.drawer_no);
         },
         error: function () {},
       });
@@ -551,14 +553,11 @@ $(document).ready(function () {
       $.ajax({
         type: "POST",
         url: hidden_base_url + "getFinishProductStages",
-        data: { id: fproduct_id, value: product_quantity },
+        data: { id: seperate_drawers[0] },
         dataType: "json",
         success: function (data) {
           $(".add_tstage").html(data.html);
-          $("#t_month").val(data.total_month);
-          $("#t_day").val(data.total_day);
-          $("#t_hours").val(data.total_hour);
-          $("#t_minute").val(data.total_minute);
+          $("#t_minute").val(0);
           setAttribute();
           cal_row();
           checkBoxSingle();
@@ -568,7 +567,7 @@ $(document).ready(function () {
       $.ajax({
         type: "POST",
         url: hidden_base_url + "getProductionStages",
-        data: { id: fproduct_id },
+        data: { id: seperate_drawers[0] },
         dataType: "json",
         success: function (data) {
           $("#productionstage_id").empty();
@@ -1260,7 +1259,7 @@ $(document).ready(function () {
     }
     totalMonthDaysHourMinuteCalculate();
   });
-  $(document).on("change", "#minute_limit", function (e) {
+  /* $(document).on("change", "#minute_limit", function (e) {
     let max = parseInt($(this).attr("max"));
     let min = parseInt($(this).attr("min"));
     if ($(this).val() > max) {
@@ -1275,8 +1274,32 @@ $(document).ready(function () {
       $(this).val(min);
     }
 
-    totalMonthDaysHourMinuteCalculate();
+    //totalMonthDaysHourMinuteCalculate();
+  }); */
+  $(document).on("change", "#minute_limit, #set_minute_limit", function (e) {
+    let max = parseInt($(this).attr("max"));
+    let min = parseInt($(this).attr("min"));
+    let value = parseInt($(this).val());
+    if (value > max) {
+      $(this).val(max);
+    } else if (value < min) {
+      $(this).val(min);
+    }
+    totalMinutesCalculate();
   });
+
+  function totalMinutesCalculate() {
+    let totalRequired = 0;
+    let totalSet = 0;
+    let totalM = 0;
+    $(".stage_name").each(function () {
+        totalRequired += parseInt($(this).closest("tr").find("#minute_limit").val()) || 0;
+        totalSet += parseInt($(this).closest("tr").find("#set_minute_limit").val()) || 0;
+    });
+    totalM = totalRequired + totalSet;
+    console.log("Total Minutes:", totalM);
+    $("#t_minute").val(totalM);
+  }
 
   function totalMonthDaysHourMinuteCalculate() {
     let totalMonth = 0;

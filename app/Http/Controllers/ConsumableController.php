@@ -40,9 +40,16 @@ class ConsumableController extends Controller
             ->where('del_status', 'Live')
             ->orderBy('emp_code', 'ASC')
             ->get();
+        $consumable_users = User::with('role')
+            ->whereHas('role', function ($query) {
+                $query->where('title', 'Production');
+            })
+            ->where('del_status', 'Live')
+            ->orderBy('emp_code', 'ASC')
+            ->get();
         $consumables = Consumable::where('manufacture_id', $manufacture->id)->orderBy('id', 'DESC')->get();
         $title = 'Consumable Details';
-        return view('pages.consumable.detail', compact('title', 'manufacture', 'consumable_materials', 'm_stages', 'employees', 'consumables'));
+        return view('pages.consumable.detail', compact('title', 'manufacture', 'consumable_materials', 'm_stages', 'employees', 'consumables', 'consumable_users'));
     }
     public function edit($id)
     {
@@ -58,7 +65,14 @@ class ConsumableController extends Controller
             ->where('del_status', 'Live')
             ->orderBy('emp_code', 'ASC')
             ->get();
-        return view('pages.consumable.edit', compact('title', 'employees', 'manufacture', 'consumable_materials', 'm_stages'));
+        $consumable_users = User::with('role')
+            ->whereHas('role', function ($query) {
+                $query->where('title', 'Production');
+            })
+            ->where('del_status', 'Live')
+            ->orderBy('emp_code', 'ASC')
+            ->get();
+        return view('pages.consumable.edit', compact('title', 'employees', 'manufacture', 'consumable_materials', 'm_stages', 'consumable_users'));
     }
     public function update(Request $request)
     {
@@ -75,6 +89,7 @@ class ConsumableController extends Controller
         $consumable->ppcrc_no = $request->get('ppcrc_no');
         $consumable->production_stage = $request->get('production_stage') == "" ? null : $request->get('production_stage');
         $consumable->user_id = $request->get('user_id') == "" ? null : $request->get('user_id');
+        $consumable->incharge_user_id = $request->get('incharge_user_id') == "" ? null : $request->get('incharge_user_id');
         $consumable->mat_id = $request->get('mat_id');
         $consumable->qty = $request->get('qty');
         $consumable->save();

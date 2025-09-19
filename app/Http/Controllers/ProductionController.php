@@ -174,11 +174,14 @@ class ProductionController extends Controller
         try {
             $product_id = $request->get('product_id');
             $p_id = explode('|', $product_id);
+            $drawer_no = $request->get('drawer_no');
+            $drawer = explode('|', $drawer_no);
             $obj = new \App\Manufacture();
             // $obj->manufacture_type = escape_output($request->get('manufacture_type'));
             $obj->manufacture_status = escape_output($request->get('manufacture_status'));
             $obj->product_id = null_check(escape_output($p_id[0]));
-            $obj->drawer_no = null_check(escape_output($request->get('drawer_no')));
+            $obj->drawer_id = null_check(escape_output($drawer[0]));
+            $obj->drawer_no = null_check(escape_output($drawer[1]));
             $obj->product_quantity = null_check(escape_output($request->get('product_quantity')));
             $obj->tax_type = null_check(escape_output($request->get('tax_type')));
             $obj->tax_value = null_check(escape_output($request->get('tax_value')));
@@ -273,18 +276,18 @@ class ProductionController extends Controller
 
             // $total_months = $request->t_month;
             // $total_days = $request->t_day;
-            $total_hours = $request->t_hours;
+            // $total_hours = $request->t_hours;
             $total_minutes = $request->t_minute;
             $producstage_id = $request->get('producstage_id');
-            $product_quantity = $request->get('product_quantity');
             if (isset($producstage_id) && $producstage_id) {
                 foreach ($producstage_id as $row => $value) {
                     $obj = new \App\Mstages();
                     $obj->productionstage_id = null_check($value);
                     $obj->stage_month = 0;
                     $obj->stage_day = 0;
-                    $obj->stage_hours = null_check($_POST['stage_hours'][$row]);
+                    $obj->stage_hours = 0;
                     $obj->stage_minute = null_check($_POST['stage_minute'][$row]);
+                    $obj->stage_set_minute = null_check($_POST['stage_set_minute'][$row]);
                     $obj->manufacture_id = null_check($last_id);
                     $obj->save();
                 }
@@ -307,7 +310,7 @@ class ProductionController extends Controller
                 }
             }
 
-            $str_consumed_time = " Hour(s): " . $total_hours . " Min.(s) :" . $total_minutes;
+            $str_consumed_time = " Min.(s) :" . $total_minutes;
 
             //update for consumed time
             $obj = Manufacture::find($last_id);
@@ -436,8 +439,8 @@ class ProductionController extends Controller
         $m_nonitems = Mnonitem::orderBy('id', 'ASC')->where('manufacture_id', $manufacture->id)->where('del_status', "Live")->get();
         $m_stages = Mstages::orderBy('id', 'ASC')->where('manufacture_id', $manufacture->id)->where('del_status', "Live")->get();
         $obj = $manufacture;
-        $obj2 = new FPproductionstage();
-        $finishProductStage = $obj->getProductStages($manufacture->id);
+        $obj2 = new Drawer();
+        $finishProductStage = $obj2->getDrawerStages($manufacture->drawer_id);
         $customers = Customer::orderBy('id', 'DESC')->where('del_status', "Live")->get();
         $productionScheduling = ProductionScheduling::where('manufacture_id', $manufacture->id)->where('del_status', "Live")->get();
         $selected_customer_id = $obj->customer_id;
@@ -484,10 +487,13 @@ class ProductionController extends Controller
         ]);
         // $manufacture->reference_no = null_check(escape_output($request->get('reference_no')));
         // $manufacture->manufacture_type = escape_output($request->get('manufacture_type'));
+        $drawer_no = $request->get('drawer_no');
+        $drawer = explode('|', $drawer_no);
         $manufacture->manufacture_status = escape_output($request->get('manufacture_status'));
         $manufacture->product_id = null_check(escape_output($request->get('product_id')));
         $manufacture->product_quantity = null_check(escape_output($request->get('product_quantity')));
-        $manufacture->drawer_no = null_check(escape_output($request->get('drawer_no')));
+        $manufacture->drawer_id = null_check(escape_output($drawer[0]));
+        $manufacture->drawer_no = null_check(escape_output($drawer[1]));
         $manufacture->batch_no = null_check(escape_output($request->get('batch_no')));
         $manufacture->expiry_days = null_check(escape_output($request->get('expiry_days')));
         $manufacture->start_date = date('Y-m-d', strtotime(escape_output($request->get('start_date_m'))));
@@ -558,18 +564,19 @@ class ProductionController extends Controller
         }
         // $total_months = $request->t_month;
         // $total_days = $request->t_day;
-        $total_hours = $request->t_hours;
+        // $total_hours = $request->t_hours;
         $total_minutes = $request->t_minute;
         $producstage_id = $request->get('producstage_id');
-        $product_quantity = $request->get('product_quantity');
+        // $product_quantity = $request->get('product_quantity');
         if (isset($producstage_id) && $producstage_id) {
             foreach ($producstage_id as $row => $value) {
                 $obj = new \App\Mstages();
                 $obj->productionstage_id = $value;
                 $obj->stage_month = 0;
                 $obj->stage_day = 0;
-                $obj->stage_hours = null_check(escape_output($_POST['stage_hours'][$row]));
+                $obj->stage_hours = 0;
                 $obj->stage_minute = null_check(escape_output($_POST['stage_minute'][$row]));
+                $obj->stage_set_minute = null_check(escape_output($_POST['stage_set_minute'][$row]));
                 $obj->manufacture_id = null_check($last_id);
                 $obj->save();
             }
@@ -622,7 +629,7 @@ class ProductionController extends Controller
             }
         }
 
-        $str_consumed_time = " Hour(s): " . $total_hours . " Min.(s) :" . $total_minutes;
+        $str_consumed_time = " Min.(s) :" . $total_minutes;
 
         //update for consumed time
         $obj = Manufacture::find($last_id);
@@ -1030,10 +1037,11 @@ class ProductionController extends Controller
         $quotation_id = QuotationDetail::where('customer_order_id', $manufacture->customer_order_id)->where('product_id', $manufacture->product_id)->where('del_status', 'Live')->pluck('quotation_id')->first();
         $delivery_challan = Quotation::find($quotation_id);
         $productionScheduling = ProductionScheduling::where('manufacture_id', $manufacture->id)->get();
-        $obj2 = new FPproductionstage();
-        $finishProductStages = $obj2->getFinishProductStages($manufacture->product_id);
+        $m_stages = Mstages::orderBy('id', 'ASC')->where('manufacture_id', $manufacture->id)->where('del_status', "Live")->get();
+        // $obj2 = new FPproductionstage();
+        // $finishProductStages = $obj2->getFinishProductStages($manufacture->product_id);
         $latest_form = RouteCardEntry::where('del_status', 'Live')->where('manufacture_id', $manufacture->id)->orderBy('id', 'DESC')->pluck('image')->first();
-        return view('pages.manufacture.route_card', compact('title', 'obj', 'rmaterial', 'productionScheduling', 'product', 'm_rmaterial', 'units', 'order', 'drawer', 'delivery_challan', 'finishProductStages', 'latest_form'));
+        return view('pages.manufacture.route_card', compact('title', 'obj', 'rmaterial', 'productionScheduling', 'product', 'm_rmaterial', 'units', 'order', 'drawer', 'delivery_challan', 'm_stages', 'latest_form'));
     }
     public function job_card($id)
     {
@@ -1062,10 +1070,11 @@ class ProductionController extends Controller
         $quotation_id = QuotationDetail::where('customer_order_id', $manufacture->customer_order_id)->where('product_id', $manufacture->product_id)->where('del_status', 'Live')->pluck('quotation_id')->first();
         $delivery_challan = Quotation::find($quotation_id);
         $productionScheduling = ProductionScheduling::where('manufacture_id', $manufacture->id)->get();
-        $obj2 = new FPproductionstage();
-        $finishProductStages = $obj2->getFinishProductStages($manufacture->product_id);
+        $m_stages = Mstages::orderBy('id', 'ASC')->where('manufacture_id', $manufacture->id)->where('del_status', "Live")->get();
+        // $obj2 = new FPproductionstage();
+        // $finishProductStages = $obj2->getFinishProductStages($manufacture->product_id);
         $latest_form = RouteCardEntry::where('del_status', 'Live')->where('manufacture_id', $manufacture->id)->orderBy('id', 'DESC')->pluck('image')->first();
-        return view('pages.manufacture.print_route_card', compact('title', 'obj', 'rmaterial', 'productionScheduling', 'product', 'm_rmaterial', 'units', 'order', 'drawer', 'delivery_challan', 'finishProductStages', 'latest_form'));
+        return view('pages.manufacture.print_route_card', compact('title', 'obj', 'rmaterial', 'productionScheduling', 'product', 'm_rmaterial', 'units', 'order', 'drawer', 'delivery_challan', 'm_stages', 'latest_form'));
     }
     public function downloadRouteCard($id)
     {
@@ -1081,10 +1090,11 @@ class ProductionController extends Controller
         $quotation_id = QuotationDetail::where('customer_order_id', $manufacture->customer_order_id)->where('product_id', $manufacture->product_id)->where('del_status', 'Live')->pluck('quotation_id')->first();
         $delivery_challan = Quotation::find($quotation_id);
         $productionScheduling = ProductionScheduling::where('manufacture_id', $manufacture->id)->get();
-        $obj2 = new FPproductionstage();
-        $finishProductStages = $obj2->getFinishProductStages($manufacture->product_id);
+        $m_stages = Mstages::orderBy('id', 'ASC')->where('manufacture_id', $manufacture->id)->where('del_status', "Live")->get();
+        // $obj2 = new FPproductionstage();
+        // $finishProductStages = $obj2->getFinishProductStages($manufacture->product_id);
         $latest_form = RouteCardEntry::where('del_status', 'Live')->where('manufacture_id', $manufacture->id)->orderBy('id', 'DESC')->pluck('image')->first();
-        $pdf = Pdf::loadView('pages.manufacture.print_route_card', compact('title', 'obj', 'rmaterial', 'productionScheduling', 'product', 'm_rmaterial', 'units', 'order', 'drawer', 'delivery_challan', 'finishProductStages', 'latest_form'))->setPaper('a4', 'landscape');
+        $pdf = Pdf::loadView('pages.manufacture.print_route_card', compact('title', 'obj', 'rmaterial', 'productionScheduling', 'product', 'm_rmaterial', 'units', 'order', 'drawer', 'delivery_challan', 'm_stages', 'latest_form'))->setPaper('a4', 'landscape');
         return $pdf->download($obj->reference_no . '.pdf');
     }
     public function printJobCardDetails($id)

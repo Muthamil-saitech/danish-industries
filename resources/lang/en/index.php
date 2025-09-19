@@ -1016,5 +1016,6 @@ return [
     'inward_notes' => 'Inward Notes',
     'partner_info' => 'Partner Info',
     'partner_io_details' => 'Partner IO Details',
-    'edit_customer_order_io' => 'Edit Customer IO'
+    'edit_customer_order_io' => 'Edit Customer IO',
+    'incharge' => 'Incharge',
 ];

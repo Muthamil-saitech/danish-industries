@@ -39,6 +39,7 @@
                                                     <th class="ir_w_16">@lang('index.production_stage')</th>
                                                     <th class="ir_w_16">@lang('index.employees')</th>
                                                     <th class="ir_w_16">@lang('index.material_name')(@lang('index.code'))</th>
+                                                    <th class="ir_w_16">@lang('index.incharge')</th>
                                                     <th class="ir_w_16">@lang('index.quantity')</th>
                                                     <th class="ir_w_5">@lang('index.actions')</th>
                                                 </tr>
@@ -55,6 +56,7 @@
                                                         </td>
                                                         <td>{{ getEmpCode($value->user_id) }}</td>
                                                         <td>{{ getRMName($value->mat_id) }}</td>
+                                                        <td>{{ getEmpCode($value->incharge_user_id) }}</td>
                                                         <td>{{ $value->qty }}</td>
                                                         <td>
                                                             <a class="button-success consumeBtn"
@@ -67,6 +69,7 @@
                                                             data-user_id="{{ $value->user_id }}"
                                                             data-mat_id="{{ $value->mat_id }}"
                                                             data-qty="{{ $value->qty }}"
+                                                            data-incharge_user_id="{{ $value->incharge_user_id }}"
                                                             title="Edit">
                                                                 <i class="fa fa-edit tiny-icon"></i>
                                                             </a>
@@ -140,6 +143,18 @@
                                 </div>
                                 <div class="col-sm-12 mb-2 col-md-6">
                                     <div class="form-group">
+                                        <label>@lang('index.incharge') </label>
+                                        <select name="incharge_user_id" id="incharge_user_id" class="form-control @error('incharge_user_id') is-invalid @enderror select2">
+                                            <option value="">@lang('index.select')</option>
+                                            @foreach ($consumable_users as $user)
+                                                <option value="{{ $user->id }}">{{ getEmpCode($user->id) }}</option>
+                                            @endforeach
+                                        </select>
+                                        <p class="text-danger incharge_err"></p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 mb-2 col-md-6">
+                                    <div class="form-group">
                                         <label>@lang('index.quantity') <span class="required_star">*</span></label>
                                         <input type="text" name="qty" id="qty" class="form-control @error('qty') is-invalid @enderror" placeholder="@lang('index.quantity')">
                                         <p class="text-danger qty_err"></p>
@@ -167,6 +182,9 @@
     $('#user_id').select2({
         dropdownParent: $('#consumableModal')
     });
+    $('#incharge_user_id').select2({
+        dropdownParent: $('#consumableModal')
+    });
     $('#mat_id').select2({
         dropdownParent: $('#consumableModal')
     });
@@ -174,6 +192,7 @@
         let id = $(this).data("id");
         let stage = $(this).data("production_stage");
         let user = $(this).data("user_id");
+        let incharge = $(this).data("incharge_user_id");
         let mat = $(this).data("mat_id");
         let qty = $(this).data("qty");
         let manufacture_id = $(this).data("manufacture_id");
@@ -184,6 +203,8 @@
         $("#ppcrc_no").val(ppcrc_no);
         $("#consumable_id").val(id);
         $("#user_id").data("selected", user);
+        // $("#incharge_user_id").data("selected", incharge);
+        $("#incharge_user_id").val(incharge).trigger("change");
         $("#production_stage").val(stage).trigger("change");
     });
     $(document).on("change", "#production_stage", function () {

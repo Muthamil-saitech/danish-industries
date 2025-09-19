@@ -134,11 +134,15 @@ $whiteLabelInfo = App\WhiteLabelSettings::first();
                     <th style="border: 1px solid #222; padding: 10px 5px; width: 8%;">Qty</th>
                 </tr>
                 <tbody style="text-align: center;">
-                    @if(isset($finishProductStages))
-                    @foreach ($finishProductStages as $value)
+                    @if(isset($m_stages))
+                    <?php $total_mimute = 0; ?>
+                    @foreach ($m_stages as $value)
+                    <?php
+                        $total_mimute = $value->stage_minute + $value->stage_set_minute; 
+                    ?>
                     <tr>
                         <td style="border: 1px solid #222; padding:  10px 5px;" rowspan="3">{{ getProductionStage($value->productionstage_id) }}</td>
-                        <td style="border: 1px solid #222; padding:  10px 5px;" rowspan="3">@if($value->stage_hours!=0 && $value->stage_minute==0) {{ number_format($value->stage_hours*60, 2, '.', '') }} @elseif($value->stage_minute!=0 && $value->stage_hours==0) {{ number_format($value->stage_minute, 2, '.', '') }} @else {{ number_format(($value->stage_hours * 60) + $value->stage_minute, 2, '.', '') }}@endif</td>
+                        <td style="border: 1px solid #222; padding:  10px 5px;" rowspan="3">{{ $total_mimute }}</td>
                         <td style="border: 1px solid #222; padding:  10px 5px;"></td>
                         <td style="border: 1px solid #222; padding:  10px 5px;"></td>
                         <td style="border: 1px solid #222; padding:  10px 5px;"></td>

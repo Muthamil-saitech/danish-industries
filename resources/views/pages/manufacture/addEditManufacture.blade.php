@@ -92,7 +92,7 @@
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                        </div>                        
+                        </div>
                         <div class="clearfix"></div>
                         <div class="col-sm-12 col-md-6 mb-2 col-lg-4">
                             <div class="form-group">
@@ -118,6 +118,24 @@
                                 @error('complete_date')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 mb-2 col-lg-4">
+                            <div class="form-group">
+                                <label>@lang('index.drawer_no')<span class="required_star">*</span></label>
+                                @if(isset($obj))
+                                <input type="hidden" name="drawer_no" class="form-control" value="{{ $obj->drawer_id.'|'.$obj->drawer_no }}" readonly>
+                                <input type="text" class="form-control" value="{{ $obj->drawer_no }}" readonly>
+                                @else
+                                <select class="form-control select2" name="drawer_no" id="drawer_no">
+                                    <option value="">@lang('index.select')</option>
+                                    @foreach ($drawers as $value)
+                                        <option value="{{ $value->id.'|'.$value->drawer_no }}" {{ old('drawer_no') == $value->drawer_no ? 'selected' : '' }}>
+                                            {{ $value->drawer_no }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @endif
                             </div>
                         </div>
                         <div class="clearfix"></div>
@@ -510,20 +528,21 @@
                                                 <th class="width_20_p stage_header">@lang('index.check')</th>
                                                 <th class="width_20_p stage_header text-left">
                                                     @lang('index.stage')</th>
-                                                <th class="width_20_p stage_header">@lang('index.required_time')</th>
+                                                <th class="width_20_p stage_header text-left">@lang('index.required_time')</th>
+                                                <th class="width_20_p stage_header text-left">Setup Time</th>
                                             </tr>
                                         </thead>
                                         <tbody class="add_tstage">
-                                            @if (isset($finishProductStage) && $finishProductStage)
+                                            @if (isset($m_stages) && $m_stages)
                                                 <?php
-                                                $total_month = 0;
-                                                $total_day = 0;
-                                                $total_hour = 0;
-                                                $total_mimute = 0;
+                                                $total_mimute = 0;$total_req_min = 0;$total_set_min = 0;
                                                 $i = 1;
                                                 ?>
-                                                @foreach ($finishProductStage as $key => $value)
+                                                @foreach ($m_stages as $key => $value)
                                                     <?php
+                                                    $total_req_min += $value->stage_minute;
+                                                    $total_set_min += $value->stage_set_minute;
+                                                    $total_mimute += $value->stage_minute + $value->stage_set_minute;
                                                     $checked = $disabled ='';
                                                     $tmp_key = $key + 1;
                                                     if ($obj->stage_counter == $tmp_key) {
@@ -532,26 +551,9 @@
                                                     if ($tmp_key < $obj->stage_counter) {
                                                         $disabled = 'disabled';
                                                     }
-                                                    $total_value = $value->stage_month * 2592000 + $value->stage_day * 86400 + $value->stage_hours * 3600 + $value->stage_minute * 60;
-                                                    $months = floor($total_value / 2592000);
-                                                    $hours = floor(($total_value % 86400) / 3600);
-                                                    $days = floor(($total_value % 2592000) / 86400);
-                                                    $minuts = floor(($total_value % 3600) / 60);
-                                                    
-                                                    $total_month += $months;
-                                                    $total_hour += $hours;
-                                                    $total_day += $days;
-                                                    $total_mimute += $minuts;
-                                                    
-                                                    $total_stages = $total_month * 2592000 + $total_hour * 3600 + $total_day * 86400 + $total_mimute * 60;
-                                                    $total_months = floor($total_stages / 2592000);
-                                                    $total_hours = floor(($total_stages % 86400) / 3600);
-                                                    $total_days = floor(($total_stages % 2592000) / 86400);
-                                                    $total_minutes = floor(($total_stages % 3600) / 60);
-                                                    
                                                     ?>
                                                     <tr class="rowCount2 align-baseline"
-                                                        data-id="{{ $value->productionstage_id }}">
+                                                        data-id="{{ $value->id }}">
                                                         <td class="width_1_p ir_txt_center">
                                                             <p class="set_sn2"></p>
                                                         </td>
@@ -604,7 +606,7 @@
                                                                             class="input-group-text">@lang('index.days')</span>
                                                                     </div>
                                                                 </div> --}}
-                                                                <div class="col-xl-6 col-md-6">
+                                                                {{-- <div class="col-xl-6 col-md-6">
                                                                     <div class="input-group">
                                                                         <input
                                                                             class="form-control @error('title') is-invalid @enderror stage_aligning"
@@ -615,8 +617,8 @@
                                                                             placeholder="Hours"><span
                                                                             class="input-group-text">@lang('index.hours')</span>
                                                                     </div>
-                                                                </div>
-                                                                <div class="col-xl-6 col-md-6">
+                                                                </div> --}}
+                                                                <div class="col-xl-12 col-md-12">
                                                                     <div class="input-group">
                                                                         <input
                                                                             class="form-control @error('title') is-invalid @enderror stage_aligning"
@@ -624,6 +626,22 @@
                                                                             name="stage_minute[]" min="0"
                                                                             max="60"
                                                                             value="{{ $value->stage_minute }}"
+                                                                            placeholder="Minutes"><span
+                                                                            class="input-group-text">@lang('index.minutes')</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="row">
+                                                                <div class="col-xl-12 col-md-12">
+                                                                    <div class="input-group">
+                                                                        <input
+                                                                            class="form-control @error('title') is-invalid @enderror stage_aligning"
+                                                                            type="number" id="set_minute_limit"
+                                                                            name="stage_set_minute[]" min="0"
+                                                                            max="60"
+                                                                            value="{{ $value->stage_set_minute }}"
                                                                             placeholder="Minutes"><span
                                                                             class="input-group-text">@lang('index.minutes')</span>
                                                                     </div>
@@ -663,7 +681,7 @@
                                                             <span class="input-group-text">@lang('index.days')</span>
                                                         </div>
                                                     </div> --}}
-                                                    <div class="col-md-6">
+                                                    {{-- <div class="col-md-6">
                                                         <div class="input-group">
                                                             <input
                                                                 class="form-control @error('title') is-invalid @enderror stage_aligning stage_color"
@@ -672,13 +690,13 @@
                                                                 placeholder="Hours">
                                                             <span class="input-group-text">@lang('index.hours')</span>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-6">
+                                                    </div> --}}
+                                                    <div class="col-md-12">
                                                         <div class="input-group">
                                                             <input
                                                                 class="form-control @error('title') is-invalid @enderror stage_aligning stage_color"
                                                                 readonly type="text" id="t_minute" name="t_minute"
-                                                                value="{{ isset($total_minutes) && $total_minutes ? $total_minutes : '' }}"
+                                                                value="{{ isset($total_mimute) && $total_mimute ? $total_mimute : '' }}"
                                                                 placeholder="Minutes">
                                                             <span class="input-group-text">@lang('index.minutes')</span>
                                                         </div>
@@ -865,18 +883,6 @@
                                 @enderror
                             </div>
                         </div>
-                        {{-- <div class="col-sm-12 mb-2 col-md-4">
-                            <div class="form-group">
-                                <label>DC No </label>
-                                <input type="text" name="dc_no" id="dc_no" class="form-control" maxlength="10" placeholder="DC No" value="{{ isset($obj) ? $obj->dc_no : '' }}" readonly>
-                                <div class="text-danger d-none"></div>
-                                @error('dc_no')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div> --}}
-                    </div>
-                    <div class="row">
                         <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
                                 <label>Rev </label>
@@ -897,6 +903,18 @@
                                 @enderror
                             </div>
                         </div>
+                        {{-- <div class="col-sm-12 mb-2 col-md-4">
+                            <div class="form-group">
+                                <label>DC No </label>
+                                <input type="text" name="dc_no" id="dc_no" class="form-control" maxlength="10" placeholder="DC No" value="{{ isset($obj) ? $obj->dc_no : '' }}" readonly>
+                                <div class="text-danger d-none"></div>
+                                @error('dc_no')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div> --}}
+                    </div>
+                    {{-- <div class="row">
                         <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
                                 <label>@lang('index.drawer_no') </label>
@@ -907,7 +925,7 @@
                                 @enderror
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="row">
                         <div class="col-sm-6 col-md-6 mb-2">
                             <div class="form-group">
@@ -1152,8 +1170,8 @@
                                     <select class="form-control @error('title') is-invalid @enderror select2"
                                         name="productionstage_id" id="productionstage_id">
                                         <option value="">@lang('index.select')</option>
-                                        @if (isset($p_stages) && $p_stages)
-                                            @foreach ($p_stages as $value)
+                                        @if (isset($m_stages) && $m_stages)
+                                            @foreach ($m_stages as $value)
                                                 <option value="{{ $value->productionstage_id.'|'.getProductionStage($value->productionstage_id) }}">
                                                     {{ getProductionStage($value->productionstage_id) }}</option>
                                             @endforeach

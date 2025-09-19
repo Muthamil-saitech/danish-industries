@@ -219,42 +219,29 @@
                                             <th class="w-30 text-left">@lang('index.stage')</th>
                                             {{-- <th class="w-15 text-center">@lang('index.required_months')</th> --}}
                                             {{-- <th class="w-15 text-center">@lang('index.required_days')</th> --}}
-                                            <th class="w-15 text-center">@lang('index.required_hour')</th>
-                                            <th class="w-15 text-center">@lang('index.required_minute')</th>
+                                            <th class="w-15 text-center">@lang('index.required_time')</th>
+                                            <th class="w-15 text-center">Setup Time</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @if (isset($m_stages) && $m_stages)
                                             <?php
                                             $k = 1;
-                                            $total_month = 0;
-                                            $total_day = 0;
-                                            $total_hour = 0;
-                                            $total_mimute = 0;
+                                            // $total_month = 0;
+                                            // $total_day = 0;
+                                            // $total_hour = 0;
+                                            $total_mimute = 0;$total_req_min = 0;$total_set_min = 0;
                                             ?>
                                             @foreach ($m_stages as $key => $value)
                                                 <?php
+                                                $total_req_min += $value->stage_minute;
+                                                $total_set_min += $value->stage_set_minute;
+                                                $total_mimute += $value->stage_minute + $value->stage_set_minute;
                                                 $checked = '';
                                                 $tmp_key = $key + 1;
                                                 if ($obj->stage_counter == $tmp_key) {
                                                     $checked = 'checked=checked';
                                                 }
-                                                $total_value = $value->stage_month * 2592000 + $value->stage_day * 86400 + $value->stage_hours * 3600 + $value->stage_minute * 60;
-                                                $months = floor($total_value / 2592000);
-                                                $hours = floor(($total_value % 86400) / 3600);
-                                                $days = floor(($total_value % 2592000) / 86400);
-                                                $minuts = floor(($total_value % 3600) / 60);
-                                                
-                                                $total_month += $months;
-                                                $total_hour += $hours;
-                                                $total_day += $days;
-                                                $total_mimute += $minuts;
-                                                
-                                                $total_stages = $total_month * 2592000 + $total_hour * 3600 + $total_day * 86400 + $total_mimute * 60;
-                                                $total_months = floor($total_stages / 2592000);
-                                                $total_hours = floor(($total_stages % 86400) / 3600);
-                                                $total_days = floor(($total_stages % 2592000) / 86400);
-                                                $total_minutes = floor(($total_stages % 3600) / 60);
                                                 
                                                 ?>
                                                 <tr class="rowCount">
@@ -266,9 +253,9 @@
                                                     {{-- <td class="text-center">{{ $value->stage_month }}</td> --}}
                                                     {{-- <td class="text-center">{{ $value->stage_day }}
                                                     </td> --}}
-                                                    <td class="text-center">{{ $value->stage_hours }}
-                                                    </td>
                                                     <td class="text-center">{{ $value->stage_minute }}
+                                                    </td>
+                                                    <td class="text-center">{{ $value->stage_set_minute }}
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -282,10 +269,10 @@
                                             {{-- <td class="text-center">
                                                 {{ isset($total_days) && $total_days ? $total_days : '' }}
                                             </td> --}}
+                                            {{-- <td class="text-center">
+                                                {{ isset($total_hours) && $total_hours ? $total_hours : '' }}</td> --}}
                                             <td class="text-center">
-                                                {{ isset($total_hours) && $total_hours ? $total_hours : '' }}</td>
-                                            <td class="text-center">
-                                                {{ isset($total_minutes) && $total_minutes ? $total_minutes : '' }}
+                                                {{ isset($total_mimute) && $total_mimute ? $total_mimute : '' }}
                                             </td>
                                         </tr>
                                     </tfoot>

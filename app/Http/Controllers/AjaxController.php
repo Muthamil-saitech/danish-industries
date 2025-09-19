@@ -22,6 +22,7 @@ use App\Customer;
 use App\CustomerOrder;
 use App\CustomerOrderDetails;
 use App\CustomerOrderInvoice;
+use App\Drawer;
 use App\FinishedProduct;
 use App\FPnonitem;
 use App\FPproductionstage;
@@ -413,6 +414,44 @@ class AjaxController extends Controller
     }
 
     public function getFinishProductStages(Request $request)
+    {
+        $drawer_id = escape_output($request->post('id'));
+        $obj2 = new Drawer();
+        $finishProductStage = $obj2->getDrawerStages($drawer_id);
+        // dd($finishProductStage);
+        $htmlstages = '';
+        $i = 1;
+        foreach ($finishProductStage as $key => $value) {
+            $htmlstages .= '<tr class="rowCount2 align-baseline" data-id="' . $key . '">
+                            <td class="width_1_p"><p class="set_sn2"></p></td>
+                            <td class="width_1_p">
+                                <input type="hidden" value="' . $value->id . '" name="producstage_id[]">
+                                <input class="form-check-input set_class custom_checkbox" data-stage_name="' . getProductionStage($value->id) . '" type="radio" id="checkboxNoLabel" name="stage_check" value="' . $i . '">
+                            </td>
+                            <td class="stage_name" style="text-align: left;"> <span>' . getProductionStage($value->id) . '</span></td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-xl-12 col-md-12 getLowRMStock">
+                                        <div class="input-group"><input class="form-control stage_aligning" type="text" id="minute_limit" name="stage_minute[]" min="1" max="60" value="" placeholder="Minutes"><span class="input-group-text">Minutes</span></div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-xl-12 col-md-12">
+                                        <div class="input-group"><input class="form-control stage_aligning" type="text" id="set_minute_limit" name="stage_set_minute[]" min="1" max="60" value="" placeholder="Minutes"><span class="input-group-text">Minutes</span></div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>';
+            $i++;
+        }
+
+        $data_arr['html'] = $htmlstages;
+        echo json_encode($data_arr);
+    }
+
+    public function getFinishProductStages2(Request $request)
     {
         $fproduct_id = escape_output($request->post('id'));
         $product_quantity = escape_output($request->post('value'));
@@ -1124,6 +1163,18 @@ class AjaxController extends Controller
         }
     }
     public function getProductionStages(Request $request)
+    {
+        $drawer_id = escape_output($request->post('id'));
+        $obj2 = new Drawer();
+        $finishProductStage = $obj2->getDrawerStages($drawer_id);
+        $html = '<option value="">Select</option>';
+        foreach ($finishProductStage as $key => $value) {
+            $html .= '<option value="' . $value->id . '|' . getProductionStage($value->id) . '">' . getProductionStage($value->id) . '</option>';
+        }
+        $data_arr['html'] = $html;
+        echo json_encode($data_arr);
+    }
+    public function getProductionStages2(Request $request)
     {
         $fproduct_id = escape_output($request->post('id'));
         $obj2 = new FPproductionstage();
