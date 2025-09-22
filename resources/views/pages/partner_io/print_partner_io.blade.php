@@ -81,7 +81,7 @@ $baseURL = getBaseURL();
                 </td>
             </tr>
         </table>
-        <table class="w-100 mt-20 order_partner_io_details" style="border: 1px solid #000;">
+        <table class="w-100 mt-20 order_details" style="border: 1px solid #000;">
             <thead class="b-r-3">
                 <tr>
                     <th class="w-5 text-start" style="border:1px solid #000;">@lang('index.sn')</th>
