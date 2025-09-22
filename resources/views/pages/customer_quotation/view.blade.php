@@ -53,14 +53,14 @@
                                     </td>
                                 </tr>
                             </table>
-                            <table class="w-100 mt-20">
-                                <thead class="b-r-3 bg-color-000000">
+                            <table class="w-100 mt-20" style="border: 1px solid #000;">
+                                <thead class="b-r-3" >
                                     <tr>
-                                        <th class="w-5 text-start">@lang('index.sn')</th>
-                                        <th class="w-30 text-start">@lang('index.part_name')(@lang('index.part_no'))</th>
-                                        <th class="w-15 text-center">@lang('index.unit_price')</th>
-                                        <th class="w-15 text-center">@lang('index.quantity')</th>
-                                        <th class="w-20 text-right pr-5">@lang('index.total')</th>
+                                        <th class="w-5 text-start" style="border: 1px solid #000;">@lang('index.sn')</th>
+                                        <th class="w-30 text-start" style="border: 1px solid #000;">@lang('index.part_name')(@lang('index.part_no'))</th>
+                                        <th class="w-15 text-center" style="border: 1px solid #000;">@lang('index.unit_price')</th>
+                                        <th class="w-15 text-center" style="border: 1px solid #000;">@lang('index.quantity')</th>
+                                        <th class="w-20 text-right pr-5" style="border: 1px solid #000;">@lang('index.total')</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -72,11 +72,11 @@
                                             $productInfo = getFinishedProductInfo($value->product_id);
                                             ?>
                                             <tr class="rowCount" data-id="{{ $productInfo->id }}">
-                                                <td class="width_1_p">{{ $i }}</td>
-                                                <td class="text-center">{{ $productInfo->name }}({{ $productInfo->code }})</td>
-                                                <td class="text-center" style="font-family: DejaVu Sans, sans-serif;">₹ {{ numberFormat($value->unit_price) }}</td>
-                                                <td class="text-center">{{ $value->quantity }}KG</td>
-                                                <td class="text-right" style="font-family: DejaVu Sans, sans-serif;">₹ {{ numberFormat($value->total) }}</td>
+                                                <td class="width_1_p" style="border: 1px solid #000;">{{ $i }}</td>
+                                                <td class="text-center" style="border: 1px solid #000;">{{ $productInfo->name }}({{ $productInfo->code }})</td>
+                                                <td class="text-center" style="font-family: DejaVu Sans, sans-serif;border: 1px solid #000;">₹ {{ numberFormat($value->unit_price) }}</td>
+                                                <td class="text-center" style="border: 1px solid #000;">{{ $value->quantity }}KG</td>
+                                                <td class="text-right" style="font-family: DejaVu Sans, sans-serif;border: 1px solid #000;">₹ {{ numberFormat($value->total) }}</td>
                                             </tr>
                                         @endforeach
                                     @endif
