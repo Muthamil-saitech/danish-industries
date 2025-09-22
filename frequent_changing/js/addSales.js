@@ -1012,7 +1012,7 @@ $(document).ready(function () {
                         const product = data.product;
                         let tax_amount = data.tax_value;
                         let rowCount = $(".add_tr .rowCount").length + 1;
-                        let finalPrice;
+                        let finalPrice, disabled;
                         let taxHtml = '';
                         if (product.inter_state === 'Y') {
                             taxHtml = `
@@ -1033,25 +1033,26 @@ $(document).ready(function () {
                                 <td class="w-30">-</td>
                             `;
                         }
-                        // if(data.nob === 1) {
-                        //     finalPrice = '';
-                        //     // disabled = '';
-                        // } else {
-                        //     finalPrice = data.sale_price;
-                        //     // disabled = 'readonly';
-                        // }
+                        if(data.nob === 1) {
+                            finalPrice = '';
+                            disabled = '';
+                        } else {
+                            finalPrice = data.sale_price;
+                            disabled = 'readonly';
+                        }
 
                         let html = `
                             <tr class="rowCount" data-id="${product.id}">
                                 <td class="w-5 text-start">${rowCount}</td>
-                                <td class="w-30">${product.code}<input type="hidden" name="part_no[]" value="${data.code}"></td>                                
-                                <td class="w-50">${product.name} (${product.code})</td>                                
-                                <td class="w-15">${data.product_quantity} ${data.unit_name}<input type="hidden" name="product_quantity[]" value="${data.product_quantity}"><input type="hidden" name="unit_id[]" value="${data.unit_id}"><input type="hidden" name="po_no[]" value="${data.reference_no}"><input type="hidden" name="line_item_no[]" value="${data.line_item_no}"><input type="hidden" name="po_date[]" value="${data.po_date}"></td>
-                                <td class="w-15">${product.hsn_sac_no}</td>
-                                <td class="w-15"><textarea class="form-control" name="dc_ref[]" placeholder="DC Reference" rows="3" cols="50" maxlength="50"></textarea></td>
-                                <td class="w-15"><input type="text" name="dc_ref_date[]" class="form-control dc-ref-date" placeholder="Delivery Challan Reference Date"></td>
-                                <td class="w-15"><textarea class="form-control" name="challan_ref[]" placeholder="Challan Reference" rows="3" cols="50" maxlength="50"></textarea></td>
-                                <td class="w-15"><textarea class="form-control" name="description[]" placeholder="Description" rows="3" cols="50" maxlength="50"></textarea></td>
+                                <td class="w-10">${product.code}<input type="hidden" name="part_no[]" value="${data.code}"></td>           
+                                <td class="w-30"><input type="text" name="price[]" class="form-control" value="${finalPrice}" placeholder="Rate" ${disabled} style="min-width: 120px;" ></td>                       
+                                <td class="w-20">${product.name} (${product.code})</td>                                
+                                <td class="w-5">${data.product_quantity} ${data.unit_name}<input type="hidden" name="product_quantity[]" value="${data.product_quantity}"><input type="hidden" name="unit_id[]" value="${data.unit_id}"><input type="hidden" name="po_no[]" value="${data.reference_no}"><input type="hidden" name="line_item_no[]" value="${data.line_item_no}"><input type="hidden" name="po_date[]" value="${data.po_date}"></td>
+                                <td class="w-5">${product.hsn_sac_no}</td>
+                                <td class="w-10"><textarea class="form-control" name="dc_ref[]" placeholder="DC Reference" rows="3" cols="50" maxlength="50" style="min-width: 180px;"></textarea></td>
+                                <td class="w-5"><input type="text" name="dc_ref_date[]" class="form-control dc-ref-date" placeholder="Delivery Challan Reference Date" style="min-width: 110px;"></td>
+                                <td class="w-10"><textarea class="form-control" name="challan_ref[]" placeholder="Challan Reference" rows="3" cols="50" maxlength="50" style="min-width: 180px;"></textarea></td>
+                                <td class="w-20"><textarea class="form-control" name="description[]" placeholder="Description" rows="3" cols="50" maxlength="50" style="min-width: 180px;"></textarea></td>
                                 <td class="width_3_p text-end"><a class="btn btn-xs del_dc_row dlt_button"><iconify-icon icon="solar:trash-bin-minimalistic-broken"></iconify-icon></a></td>
                             </tr>
                         `;

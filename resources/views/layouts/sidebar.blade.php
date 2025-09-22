@@ -296,6 +296,28 @@
                     </ul>
                 </li>
             @endif
+            @if (menuPermission('Quotation'))
+                <li
+                    class="parent-menu treeview menu__cidirp_10{{ request()->is('quotation*') ? ' menu-open active_sub_menu' : '' }}">
+                    <a href="#">
+                        <iconify-icon icon="solar:ruler-pen-broken"></iconify-icon>
+                        <span class="match_bold">@lang('index.quotation')</span>
+                    </a>
+                    
+                    <ul class="treeview-menu">
+                        @if (routePermission('quotation.create'))
+                            <li class="menu_assign_class {{ request()->routeIs('quotation.create') ? ' treeMenuActive' : '' }}" data-menu__cid="irp_10"><a
+                                    href="{{ route('quotation.create') }}">@lang('index.add_quotion')</a>
+                            </li>
+                        @endif
+                        @if (routePermission('quotation.index'))
+                            <li class="menu_assign_class {{ request()->routeIs('quotation.index') ? ' treeMenuActive' : '' }}" data-menu__cid="irp_10"><a
+                                    href="{{ route('quotation.index') }}">@lang('index.quotion_list')</a>
+                            </li>
+                        @endif
+                    </ul>
+                </li>
+            @endif
             @if (menuPermission('Purchases'))
                 <li
                     class="parent-menu treeview menu__cidirp_10{{ request()->is('rawmaterialpurchases*') || request()->is('purchase-generate') ? ' menu-open active_sub_menu' : '' }}">
@@ -426,21 +448,21 @@
             @endif
             @if (menuPermission('Delivery Challan'))
                 <li
-                    class="parent-menu treeview menu__cidirp_10{{ request()->is('quotation*') ? ' menu-open active_sub_menu' : '' }}">
+                    class="parent-menu treeview menu__cidirp_10{{ request()->is('delivery-challan*') ? ' menu-open active_sub_menu' : '' }}">
                     <a href="#">
                         <iconify-icon icon="solar:ruler-pen-broken"></iconify-icon>
                         <span class="match_bold">@lang('index.delivery_challan')</span>
                     </a>
                     
                     <ul class="treeview-menu">
-                        @if (routePermission('quotations.create'))
-                            <li class="menu_assign_class {{ request()->routeIs('quotation.create') ? ' treeMenuActive' : '' }}" data-menu__cid="irp_10"><a
-                                    href="{{ route('quotation.create') }}">@lang('index.add_dc')</a>
+                        @if (routePermission('delivery-challan.create'))
+                            <li class="menu_assign_class {{ request()->routeIs('delivery-challan.create') ? ' treeMenuActive' : '' }}" data-menu__cid="irp_10"><a
+                                    href="{{ route('delivery-challan.create') }}">@lang('index.add_dc')</a>
                             </li>
                         @endif
-                        @if (routePermission('quotations.index'))
-                            <li class="menu_assign_class {{ request()->routeIs('quotation.index') ? ' treeMenuActive' : '' }}" data-menu__cid="irp_10"><a
-                                    href="{{ route('quotation.index') }}">@lang('index.dc_list')</a>
+                        @if (routePermission('delivery-challan.index'))
+                            <li class="menu_assign_class {{ request()->routeIs('delivery-challan.index') ? ' treeMenuActive' : '' }}" data-menu__cid="irp_10"><a
+                                    href="{{ route('delivery-challan.index') }}">@lang('index.dc_list')</a>
                             </li>
                         @endif
                     </ul>

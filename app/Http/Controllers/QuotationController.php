@@ -196,9 +196,9 @@ class QuotationController extends Controller
                     'line_item_no' => $request->line_item_no[$key],
                     'po_date' => date('Y-m-d', strtotime($request->po_date[$key])),
                     'dc_ref' => $request->dc_ref[$key],
-                    'dc_ref_date' => $request->dc_ref_date[$key] != '' ? date('Y-m-d', strtotime($request->dc_ref_date[$key])) : date('Y-m-d'),
+                    'dc_ref_date' => $request->dc_ref_date[$key] != '' ? date('Y-m-d', strtotime($request->dc_ref_date[$key])) : null,
                     'challan_ref' => $request->challan_ref[$key],
-                    'price' => 0.00,
+                    'price' => $request->price[$key],
                     'quotation_id' => $quotation->id,
                     'description' => $request->description[$key]
                 ]);
@@ -224,7 +224,7 @@ class QuotationController extends Controller
             return redirect()->action('QuotationController@print', ['id' => $quotation->id]);
         }
 
-        return redirect()->route('quotation.index')->with(saveMessage());
+        return redirect()->route('delivery-challan.index')->with(saveMessage());
     }
 
     /**
@@ -289,7 +289,7 @@ class QuotationController extends Controller
      */
     public function update(Request $request, Quotation $quotation)
     {
-        // dd($request->all());
+        // dd($quotation->id);
         $request->validate(
             [
                 'challan_date' => 'required',
@@ -376,9 +376,9 @@ class QuotationController extends Controller
                         'line_item_no' => $quotation_detail->line_item_no,
                         'po_date' => $quotation_detail->po_date,
                         'dc_ref' => $request->dc_ref[$key],
-                        'dc_ref_date' => $request->dc_ref_date[$key] != '' ? date('Y-m-d', strtotime($request->dc_ref_date[$key])) : date('Y-m-d'),
+                        'dc_ref_date' => $request->dc_ref_date[$key] != '' ? date('Y-m-d', strtotime($request->dc_ref_date[$key])) : null,
                         'challan_ref' => $request->challan_ref[$key],
-                        'price' => 0.00,
+                        'price' => $request->price[$key],
                         // 'sale_price' => $quotation_detail->sale_price,
                         // 'disc_val' => $quotation_detail->disc_val,
                         // 'tax_amount' => $quotation_detail->tax_amount,
@@ -398,9 +398,9 @@ class QuotationController extends Controller
                         'po_no' => $quotation_detail->po_no,
                         'po_date' => $quotation_detail->po_date,
                         'dc_ref' => $request->dc_ref[$key],
-                        'dc_ref_date' => $request->dc_ref_date[$key] != '' ? date('Y-m-d', strtotime($request->dc_ref_date[$key])) : date('Y-m-d'),
+                        'dc_ref_date' => $request->dc_ref_date[$key] != '' ? date('Y-m-d', strtotime($request->dc_ref_date[$key])) : null,
                         'challan_ref' => $request->challan_ref[$key],
-                        'price' => 0.00,
+                        'price' => $request->price[$key],
                         // 'sale_price' => $quotation_detail->sale_price,
                         // 'disc_val' => $quotation_detail->disc_val,
                         // 'tax_amount' => $quotation_detail->tax_amount,
@@ -428,7 +428,7 @@ class QuotationController extends Controller
         if ($request->button_click_type == 'print') {
             return redirect()->action('QuotationController@print', ['id' => $quotation->id]);
         }
-        return redirect()->route('quotation.index')->with(updateMessage());
+        return redirect()->route('delivery-challan.index')->with(updateMessage());
     }
 
     /**
@@ -443,7 +443,7 @@ class QuotationController extends Controller
             'del_status' => 'Deleted',
         ]);
         QuotationDetail::where('quotation_id', $quotation->id)->update(['del_status' => 'Deleted']);
-        return redirect()->route('quotation.index')->with(deleteMessage());
+        return redirect()->route('delivery-challan.index')->with(deleteMessage());
     }
 
     /**

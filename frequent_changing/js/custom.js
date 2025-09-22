@@ -66,6 +66,12 @@ $("#expense_date").datepicker({
     autoclose: true,
     todayHighlight: true,
 });
+$("#quote_date").datepicker({
+    format: "dd-mm-yyyy",
+    autoclose: true,
+    todayHighlight: true,
+    startDate: new Date()
+});
 $("#dc_date").datepicker({
     format: "dd-mm-yyyy",
     autoclose: true,

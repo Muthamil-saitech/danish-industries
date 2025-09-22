@@ -207,12 +207,16 @@
         if(owner_type === "2") {
             $("#cust_div").removeClass('d-none');
             $("#customer_id").val("").change();
+            $("#stock_type").val("customer").trigger("change").prop("disabled", true);
+            $("#stock_type_hidden").val("customer");
         } else {
             $("#cust_div").addClass('d-none');
             $("#customer_id").val(null);
+            $("#stock_type").val("purchase").trigger("change").prop("disabled", true);
+            $("#stock_type_hidden").val("purchase");
         }
     });
-    $(document).on("change", "#stock_type", function (e) {
+    $(document).on("change", "#stock_type,#customer_id", function (e) {
         let hidden_base_url = $("#hidden_base_url").val();
         let stock_type = $("#stock_type").val();
         var mat_id = $("#mat_id").val();
@@ -234,9 +238,9 @@
                     $("#inp_ref_no").val("");
                     $("#line_item_no_hidden").val("");
                     $("#current_stock").val("");
-                    /* $("#supplier_div").addClass("d-none");
+                    $("#supplier_div").removeClass("d-none");
                     $("#supplier").val("");
-                    $("#supplier_id").val("");   */
+                    $("#supplier_id").val("");
                 } else {
                     if(data.html == "" && data.line_item_no == "") {
                         line_item_no = "";             
@@ -250,9 +254,9 @@
                     $("#line_item_no_hidden").val(data.line_item_no);
                     $("#current_stock").val(data.qty);
                     $("#current_stock").attr("max", data.qty);
-                    /* $("#supplier_div").addClass("d-none");
+                    $("#supplier_div").addClass("d-none");
                     $("#supplier").val("");
-                    $("#supplier_id").val("");   */
+                    $("#supplier_id").val("");
                 }                
             },
             error: function () {

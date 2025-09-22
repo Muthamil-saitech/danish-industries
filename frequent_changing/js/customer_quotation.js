@@ -2,14 +2,14 @@ $(document).ready(function () {
     "use strict";
     let inputField = $("#button_click_type");
     let baseUrl = $("#hidden_base_url").val();
-    $(document).on("click", ".print_challan_invoice", function () {
+    $(document).on("click", ".print_invoice", function () {
         viewChallan($(this).attr("data-id"));
     });
 
     function viewChallan(id) {
         open(
-            baseUrl + "print-delivery-challan/" + id,
-            "Print Delivery Challan",
+            baseUrl + "print-customer-quotation/" + id,
+            "Print Quotation",
             "width=1600,height=550"
         );
         newWindow.focus();

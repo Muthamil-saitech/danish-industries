@@ -338,10 +338,15 @@ Route::group(['middleware' => ['XSS']], function () {
         // Product Stock
         Route::get('/product-stock', [App\Http\Controllers\ProductStockController::class, 'productStock'])->name('product-stock');
 
-        // Quotation Controller
-        Route::resource('quotation', App\Http\Controllers\QuotationController::class);
-        Route::get('/download-quotation/{id}', [App\Http\Controllers\QuotationController::class, 'downloadInvoice'])->name('download-quotation');
-        Route::get('/print-quotation/{id}', [App\Http\Controllers\QuotationController::class, 'print'])->name('print-quotation');
+        // Delivery Challan Controller
+        Route::resource('delivery-challan', App\Http\Controllers\QuotationController::class);
+        Route::get('/download-delivery-challan/{id}', [App\Http\Controllers\QuotationController::class, 'downloadInvoice'])->name('download-quotation');
+        Route::get('/print-delivery-challan/{id}', [App\Http\Controllers\QuotationController::class, 'print'])->name('print-quotation');
+
+        //Quotation Controller[CustomerQuotationController]
+        Route::resource('quotation', App\Http\Controllers\CustomerQuotationController::class);
+        Route::get('/download-customer-quotation/{id}', [App\Http\Controllers\CustomerQuotationController::class, 'downloadInvoice'])->name('download-customer-quotation');
+        Route::get('/print-customer-quotation/{id}', [App\Http\Controllers\CustomerQuotationController::class, 'print'])->name('print-customer-quotation');
         // Role Controller
         Route::resource('role', RoleController::class);
 

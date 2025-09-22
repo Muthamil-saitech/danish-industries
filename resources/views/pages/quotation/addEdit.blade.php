@@ -25,7 +25,7 @@
                     'id' => 'dc_form',
                     'method' => isset($obj) && $obj ? 'PATCH' : 'POST',
                     'enctype' => 'multipart/form-data',
-                    'route' => ['quotation.update', isset($obj->id) && $obj->id ? $obj->id : ''],
+                    'route' => ['delivery-challan.update', isset($obj->id) && $obj->id ? $obj->id : ''],
                 ]) !!}
 
                 @csrf
@@ -161,7 +161,7 @@
                                             <th class="w-5 text-start">@lang('index.sn')</th>
                                             {{-- <th class="w-30">@lang('index.finished_product')(@lang('index.code'))</th> --}}
                                             <th class="w-10">@lang('index.part_no')</th>
-                                            {{-- <th class="w-50">Rate</th> --}}
+                                            <th class="w-30">Rate</th>
                                             <th class="w-20">@lang('index.description')</th>
                                             <th class="w-5">@lang('index.prod_quantity')</th>
                                             {{-- <th class="w-15">@lang('index.raw_quantity')</th> --}}
@@ -201,10 +201,10 @@
                                                     <td>
                                                         <span>{{ $productInfo->code }}</span>
                                                     </td>
-                                                    {{-- <td>
-                                                        <span><input type="text" name="price[]" class="form-control" placeholder="Rate" value="{{ $value->price }}" id="finalPrice"></span>
+                                                    <td>
+                                                        <span><input type="text" name="price[]" class="form-control" placeholder="Rate" value="{{ $value->price }}" id="finalPrice" style="min-width: 120px;"></span>
                                                         <div class="text-danger d-none"></div>
-                                                    </td> --}}
+                                                    </td>
                                                     <td>
                                                         <input type="hidden" value="{{ $productInfo->id.'|'. $value->customer_order_id }}" name="selected_product_id[]">
                                                         <span>{{ $productInfo->name }} ({{ $productInfo->code }})</span>
@@ -234,16 +234,16 @@
                                                         <span>{{ $productInfo->hsn_sac_no }}</span>
                                                     </td>
                                                     <td>
-                                                        <textarea class="form-control" name="dc_ref[]" placeholder="DC Reference" rows="3" cols="50">{{ $value->dc_ref }}</textarea>
+                                                        <textarea class="form-control" name="dc_ref[]" placeholder="DC Reference" rows="3" cols="50" style="min-width: 180px;">{{ $value->dc_ref }}</textarea>
                                                     </td>
                                                     <td>
-                                                        <input type="text" name="dc_ref_date[]" class="form-control dc-ref-date" value="{{ $value->dc_ref_date!='' ? date('d-m-Y',strtotime($value->dc_ref_date)) : date('d-m-Y') }}">
+                                                        <input type="text" name="dc_ref_date[]" class="form-control dc-ref-date" value="{{ $value->dc_ref_date!='' ? date('d-m-Y',strtotime($value->dc_ref_date)) : '' }}">
                                                     </td>
                                                     <td>
-                                                        <textarea class="form-control" name="challan_ref[]" placeholder="Challan Reference" rows="3" cols="50">{{ $value->challan_ref }}</textarea>
+                                                        <textarea class="form-control" name="challan_ref[]" placeholder="Challan Reference" rows="3" cols="50" style="min-width: 180px;">{{ $value->challan_ref }}</textarea>
                                                     </td>
                                                     <td>
-                                                        <textarea class="form-control" name="description[]" placeholder="Remarks" rows="3" cols="50">{{ $value->description ?? '' }}</textarea>
+                                                        <textarea class="form-control" name="description[]" placeholder="Remarks" rows="3" cols="50" style="min-width: 180px;">{{ $value->description ?? '' }}</textarea>
                                                     </td>
                                                     {{-- <td>
                                                         <span>{{ $value->sale_price }}</span>
@@ -440,7 +440,7 @@
                             <button type="button" name="button" id="print_btn" value="button"
                                 class="btn bg-blue-btn"><iconify-icon
                                     icon="solar:printer-2-broken"></iconify-icon>@lang('index.save_print')</button> --}}
-                            <a class="btn bg-second-btn" href="{{ route('quotation.index') }}"><iconify-icon
+                            <a class="btn bg-second-btn" href="{{ route('delivery-challan.index') }}"><iconify-icon
                                     icon="solar:round-arrow-left-broken"></iconify-icon>@lang('index.back')</a>
                         </div>
                     </div>

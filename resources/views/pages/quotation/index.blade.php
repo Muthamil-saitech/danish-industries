@@ -73,18 +73,18 @@ if (isset($setting->base_color) && $setting->base_color) {
                                     <button id="dc_qc_add" data-bs-toggle="modal" data-challan_id="{{ $value->id }}" data-bs-target="#dcQcScheduling" class="btn bg-blue-btn w-20" title="QC Check" type="button"><i class="fa fa-list-check"></i></button>&nbsp;
                                     @endif
                                     <button id="dc_qc_view" data-bs-toggle="modal" data-challan_id="{{ $value->id }}" data-bs-target="#dcQcView" class="btn bg-blue-btn w-20" title="QC Assignment History" type="button"><i class="fa fa-user"></i></button>&nbsp;
-                                    <a href="{{ url('quotation') }}/{{ encrypt_decrypt($value->id, 'encrypt') }}" class="button-info" data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('index.view_details')"><i class="fa fa-eye"></i></a>
-                                    @if (routePermission('quotations.edit') && $value->challan_status!="3")
-                                    <a href="{{ url('quotation') }}/{{ encrypt_decrypt($value->id, 'encrypt') }}/edit" class="button-success" data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('index.edit')"><i class="fa fa-edit"></i></a>
+                                    <a href="{{ url('delivery-challan') }}/{{ encrypt_decrypt($value->id, 'encrypt') }}" class="button-info" data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('index.view_details')"><i class="fa fa-eye"></i></a>
+                                    @if (routePermission('delivery-challan.edit') && $value->challan_status!="3")
+                                    <a href="{{ url('delivery-challan') }}/{{ encrypt_decrypt($value->id, 'encrypt') }}/edit" class="button-success" data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('index.edit')"><i class="fa fa-edit"></i></a>
                                     @endif
                                     {{-- <a href="{{ route('download-quotation', encrypt_decrypt($value->id, 'encrypt')) }}" class="button-info"
                                     data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('index.download')"><i
                                         class="fa fa-download"></i></a> --}}
-                                    @if (routePermission('quotations.delete') && $value->challan_status!="3")
+                                    @if (routePermission('delivery-challan.delete') && $value->challan_status!="3")
                                     <a href="#" class="delete button-danger"
                                         data-form_class="alertDelete{{ $value->id }}" type="submit"
                                         data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('index.delete')">
-                                        <form action="{{ route('quotation.destroy', $value->id) }}"
+                                        <form action="{{ route('delivery-challan.destroy', $value->id) }}"
                                             class="alertDelete{{ $value->id }}" method="post">
                                             @csrf
                                             @method('DELETE')
@@ -201,7 +201,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                 'id' => 'add_form',
                 'method' => 'GET',
                 'enctype' => 'multipart/form-data',
-                'route' => ['quotation.index'],
+                'route' => ['delivery-challan.index'],
                 ]) !!}
                 @csrf
                 <div class="row">
@@ -236,7 +236,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                             class="btn w-100 bg-blue-btn">@lang('index.submit')</button>
                     </div>
                     <div class="col-md-4 mt-3">
-                        <a href="{{ route('quotation.index') }}" style="text-decoration: none;color:white;"><button type="button" value="reset" class="btn bg-second-btn w-100">Reset</button></a>
+                        <a href="{{ route('delivery-challan.index') }}" style="text-decoration: none;color:white;"><button type="button" value="reset" class="btn bg-second-btn w-100">Reset</button></a>
                     </div>
                 </div>
             </div>

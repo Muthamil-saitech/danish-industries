@@ -92,3 +92,15 @@ ALTER TABLE `tbl_partner_ios` CHANGE `file` `file` TEXT CHARACTER SET utf8mb4 CO
 ALTER TABLE `tbl_manufactures` ADD `drawer_id` INT NULL DEFAULT NULL AFTER `product_id`;
 ALTER TABLE `tbl_manufactures_stages` ADD `stage_set_minute` INT NULL DEFAULT NULL AFTER `stage_minute`;
 ALTER TABLE `tbl_consumables` ADD `incharge_user_id` INT NULL DEFAULT NULL AFTER `user_id`;
+
+
+=====22 sep=====
+INSERT INTO `tbl_menus` (`id`, `title`, `description`, `created_at`, `updated_at`) VALUES (NULL, 'Quotation', NULL, NULL, NULL);
+
+UPDATE `tbl_menu_activities` SET `route_name` = 'delivery-challan.create', `created_at` = NULL, `updated_at` = NULL WHERE `tbl_menu_activities`.`id` = 76;
+UPDATE `tbl_menu_activities` SET `route_name` = 'delivery-challan.index', `created_at` = NULL, `updated_at` = NULL WHERE `tbl_menu_activities`.`id` = 77;
+UPDATE `tbl_menu_activities` SET `route_name` = 'delivery-challan.edit', `created_at` = NULL, `updated_at` = NULL WHERE `tbl_menu_activities`.`id` = 78;
+INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '31', 'Add Quotation', 'quotation.create', 'No', 'No', NULL, NULL);
+INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '31', 'Edit Quotation', 'quotation.edit', 'No', 'No', NULL, NULL);
+INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '31', 'List Quotation', 'quotation.index', 'No', 'No', NULL, NULL);
+INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '31', 'Delete Quotation', 'quotation.delete', 'No', 'No', NULL, NULL);

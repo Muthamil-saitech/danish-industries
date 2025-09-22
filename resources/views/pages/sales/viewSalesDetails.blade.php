@@ -144,11 +144,11 @@ $baseURL = getBaseURL();
                                         {{-- {{ getRMUnitById($unit_id) }} --}}
                                     </td>
                                     <td class="text-start">
-                                        {{-- {{ getCurrency(getOrderPrice($quote_price,$orderInfo->sale_price,$orderInfo->tax_type))  }} --}}
-                                        {{ getCurrency(number_format($orderInfo->sale_price, 2, '.', '')) }}
+                                        {{ getCurrency(number_format(getOrderPrice($quote_price,$orderInfo->sale_price,$orderInfo->tax_type),2, '.', ''))  }}
+                                        {{-- {{ getCurrency(number_format($orderInfo->sale_price, 2, '.', '')) }} --}}
                                     </td>   
-                                    <?php /* $sale_rate = getOrderPrice($quote_price,$orderInfo->sale_price,$orderInfo->tax_type);  */ $sale_rate = $orderInfo->sale_price;
-                                    ?>                                 
+                                    <?php  $sale_rate = getOrderPrice($quote_price,$orderInfo->sale_price,$orderInfo->tax_type);  /*$sale_rate = $orderInfo->sale_price;*/ 
+                                    ?>
                                     <td class="text-right pr-10">
                                         {{ getCurrency(getSalePrice($sale_rate,$value->product_quantity)) }}
                                     </td>

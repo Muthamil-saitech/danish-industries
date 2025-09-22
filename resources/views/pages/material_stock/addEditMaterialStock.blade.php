@@ -236,7 +236,8 @@
                         <div class="col-sm-12 mb-2 col-md-4">
                             <div class="form-group">
                                 <label>@lang('index.stock_type') <span class="required_star">*</span></label>
-                                <select class="form-control @error('stock_type') is-invalid @enderror select2" name="stock_type" id="stock_type">
+                                <input type="hidden" name="stock_type" id="stock_type_hidden" value="{{ isset($obj->stock_type) ? $obj->stock_type : old('stock_type') }}">
+                                <select class="form-control @error('stock_type') is-invalid @enderror select2" id="stock_type">
                                     <option value="">@lang('index.select')</option>
                                     <option value="purchase" {{ (isset($obj->stock_type) && $obj->stock_type == 'purchase') || old('stock_type') == 'purchase' ? 'selected' : '' }}>@lang('index.purchase_order')</option>
                                     <option value="customer" {{ (isset($obj->stock_type) && $obj->stock_type == 'customer') || old('stock_type') == 'customer' ? 'selected' : '' }}>@lang('index.customer_order_no')</option>

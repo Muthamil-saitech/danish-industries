@@ -23,7 +23,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                 {{-- <a href="{{ route('download-quotation', encrypt_decrypt($obj->id, 'encrypt')) }}" target="_blank"
                 class="btn bg-second-btn print_btn"><iconify-icon icon="solar:cloud-download-broken"></iconify-icon>
                 @lang('index.download')</a> --}}
-                <a class="btn bg-second-btn" href="{{ route('quotation.index') }}"><iconify-icon
+                <a class="btn bg-second-btn" href="{{ route('delivery-challan.index') }}"><iconify-icon
                         icon="solar:round-arrow-left-broken"></iconify-icon>@lang('index.back')</a>
             </div>
         </div>
@@ -98,7 +98,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                         <th style="border:1px solid #000; padding:4px;">Description</th>
                         <th style="border:1px solid #000; padding:4px;">Qty</th>
                         <th style="border:1px solid #000; padding:4px;">UOM</th>
-                        {{-- <th style="border:1px solid #000; padding:4px;">Rate</th> --}}
+                        <th style="border:1px solid #000; padding:4px;">Rate</th>
                         <th style="border:1px solid #000; padding:4px;">PO No</th>
                         <th style="border:1px solid #000; padding:4px;">HSN/SAC</th>
                         <th style="border:1px solid #000; padding:4px;">DC Ref</th>
@@ -121,7 +121,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                         <td style="border:1px solid #000; padding:4px; border-bottom: none;">{{ $productInfo->name }} </td>
                         <td style="border:1px solid #000; padding:4px; border-bottom: none; text-align:center;">{{ $value->product_quantity }}</td>
                         <td style="border:1px solid #000; padding:4px; border-bottom: none; text-align:start;">{{ getRMUnitById($value->unit_id) }}</td>
-                        {{-- <td style="border:1px solid #000; padding:4px; border-bottom: none; text-align:start;">{{ getOrderPrice($value->price,$orderDetail->sale_price,$orderDetail->tax_type) }}</td> --}}
+                        <td style="border:1px solid #000; padding:4px; border-bottom: none; text-align:start;">{{ getOrderPrice($value->price,$orderDetail->sale_price,$orderDetail->tax_type) }}</td>
                         <td style="border:1px solid #000; padding:4px; border-bottom: none; text-align:start;">{{ $value->po_no.'/'.$value->line_item_no }}
                         </td>
                         <td style="border:1px solid #000; padding:4px; border-bottom: none; text-align:start;">{{ $productInfo->hsn_sac_no!='' ? $productInfo->hsn_sac_no : ' ' }}</td>
@@ -135,7 +135,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                         <td style="border-left: 1px solid #000;"></td>
                         <td style="border-left: 1px solid #000;"></td>
                         <td style="border-left: 1px solid #000;"></td>
-                        {{-- <td style="border-left: 1px solid #000;"></td> --}}
+                        <td style="border-left: 1px solid #000;"></td>
                         <td style="border-left: 1px solid #000;">{{ $value->po_date!='' ? date('d-m-Y',strtotime($value->po_date)) : '' }}</td>
                         <td style="border-left: 1px solid #000;"></td>
                         <td style="border-left: 1px solid #000;">{{ $value->dc_ref_date!='' ? date('d-m-Y',strtotime($value->dc_ref_date)) : '' }}</td>
@@ -147,7 +147,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                         <td style="border-left: 1px solid #000; padding: 0 4px;"></td>
                         <td style="border-left: 1px solid #000;"></td>
                         <td style="border-left: 1px solid #000;"></td>
-                        {{-- <td style="border-left: 1px solid #000;"></td> --}}
+                        <td style="border-left: 1px solid #000;"></td>
                         <td style="border-left: 1px solid #000;"></td>
                         <td style="border-left: 1px solid #000;"></td>
                         <td style="border-left: 1px solid #000;"></td>
@@ -160,7 +160,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                         <td style="border-left: 1px solid #000;  padding: 5px 5px 7px;"></td>
                         <td style="border-left: 1px solid #000; "></td>
                         <td style="border-left: 1px solid #000; "></td>
-                        {{-- <td style="border-left: 1px solid #000; "></td> --}}
+                        <td style="border-left: 1px solid #000; "></td>
                         <td style="border-left: 1px solid #000; "></td>
                         <td style="border-left: 1px solid #000; "></td>
                         <td style="border-left: 1px solid #000; "></td>
@@ -176,7 +176,7 @@ if (isset($setting->base_color) && $setting->base_color) {
                             <td style="border-right: 1px solid #000;"></td>
                             <td style="border-right: 1px solid #000;padding-bottom:35px;"><b>Total Quantity</b></td>
                             <td style="border-right: 1px solid #000;padding-bottom:35px;"><b>{{ $totalQty }}</b></td>
-                            {{-- <td style="border-right: 1px solid #000;"></td> --}}
+                            <td style="border-right: 1px solid #000;"></td>
                             <td style="border-right: 1px solid #000;"></td>
                             <td style="border-right: 1px solid #000;"></td>
                             <td style="border-right: 1px solid #000;"></td>
