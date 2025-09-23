@@ -102,17 +102,21 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-sm-12 mb-2 col-md-4">
-                            <div class="form-group">
-                                <label>@lang('index.quantity') <span class="required_star">*</span></label>
-                                <input type="text" name="qty" id="qty" class="form-control @error('qty') is-invalid @enderror" placeholder="@lang('index.quantity')" value="{{ old('qty') }}">
+                        <div class="col-sm-12 mb-2 col-md-4 mt-1">
+                            {{-- <div class="form-group"> --}}
+                                <label class="mb-1">@lang('index.quantity') <span class="required_star">*</span></label>
+                                <div class="input-group">
+                                    <input type="text" name="qty" id="qty" class="form-control @error('qty') is-invalid @enderror" placeholder="@lang('index.quantity')" value="{{ old('qty') }}">
+                                    <span class="input-group-text" id="unit_span">NOS</span>
+                                </div>
                                 <p class="text-danger qty_err"></p>
                                 @error('qty')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
-                            </div>
+                            {{-- </div> --}}
                         </div>
                     </div>
+                    <input type="hidden" name="unit" id="unit_hidden">
                     <div class="row mt-2">
                         <div class="col-sm-12 col-md-6 mb-2 d-flex gap-3">
                             <button type="submit" name="submit" value="submit" class="btn bg-blue-btn"><iconify-icon
@@ -156,6 +160,24 @@
                         }
                     });
                     // $(".select2").select2();
+                },
+                error: function () {
+                    console.error("Failed to fetch product details.");
+                },
+            });
+        });
+        $(document).on("change", "#mat_id", function () {
+            let mat_id = $(this).find(":selected").val();
+            let manufacture_id = $("#manufacture_id").val();
+            let hidden_base_url = $("#hidden_base_url").val();
+            $.ajax({
+                type: "POST",
+                url: hidden_base_url + "getUnitByMat",
+                data: { manufacture_id: manufacture_id },
+                dataType: "json",
+                success: function (data) {
+                    $(".input-group-text#unit_span").text(data ? data : "NOS");
+                    $("#unit_hidden").val(data);
                 },
                 error: function () {
                     console.error("Failed to fetch product details.");

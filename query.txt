@@ -104,3 +104,8 @@ INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name
 INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '31', 'Edit Quotation', 'quotation.edit', 'No', 'No', NULL, NULL);
 INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '31', 'List Quotation', 'quotation.index', 'No', 'No', NULL, NULL);
 INSERT INTO `tbl_menu_activities` (`id`, `menu_id`, `activity_name`, `route_name`, `is_dependant`, `auto_select`, `created_at`, `updated_at`) VALUES (NULL, '31', 'Delete Quotation', 'quotation.delete', 'No', 'No', NULL, NULL);
+
+
+=====23 sep=====
+ALTER TABLE `tbl_consumables` ADD `unit` VARCHAR(30) NULL DEFAULT NULL AFTER `qty`;
+ALTER TABLE `tbl_customer_quotations` ADD `discount` FLOAT NULL DEFAULT NULL AFTER `other`;

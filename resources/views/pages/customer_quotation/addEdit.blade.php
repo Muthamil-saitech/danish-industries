@@ -143,14 +143,11 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <div class="input-group">
-                                                            <input type="number" data-countid="1" id="qty_1"
-                                                                name="quantity[]" onfocus="this.select();"
-                                                                class="check_required form-control integerchk input_aligning qty_c cal_row"
-                                                                value="{{ $value->quantity }}"
-                                                                placeholder="Quantity">
-                                                            <span class="input-group-text">KG</span>
-                                                        </div>
+                                                        <input type="number" data-countid="1" id="qty_1"
+                                                            name="quantity[]" onfocus="this.select();"
+                                                            class="check_required form-control integerchk input_aligning qty_c cal_row"
+                                                            value="{{ $value->quantity }}"
+                                                            placeholder="Quantity">
                                                     </td>
                                                     <td>
                                                         <div class="input-group">
@@ -211,15 +208,15 @@
                                     <span class="input-group-text">{{ $setting->currency }}</span>
                                 </div>
                             </div>
-                            {{-- <div class="form-group">
-                                <label>@lang('index.discount')</label>
+                            <div class="form-group">
+                                <label class="text-dark">Without Material</label>
                                 {!! Form::text('discount', isset($obj->discount) && $obj->discount ? $obj->discount : null, [
                                     'class' => 'form-control discount cal_row',
                                     'data-special_ignore' => 'ignore',
                                     'id' => 'discount',
-                                    'placeholder' => 'Discount',
+                                    'placeholder' => 'Material Amount',
                                 ]) !!}
-                            </div> --}}
+                            </div>
                             <div class="row">
                                 <label>@lang('index.g_total') <span class="required_star">*</span></label>
                                 <div class="input-group">
@@ -289,12 +286,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="custom_label">@lang('index.quantity') <span class="required_star">*</span></label>
-                                <div class="input-group">
-                                    <input type="number" autocomplete="off" min="1" class="form-control integerchk1"
-                                        onfocus="select();" name="qty_modal" id="qty_modal" placeholder="Quantity"
-                                        value="1">
-                                    <span class="input-group-text modal_unit_name"></span>
-                                </div>
+                                <input type="number" autocomplete="off" min="1" class="form-control integerchk1" onfocus="select();" name="qty_modal" id="qty_modal" placeholder="Quantity" value="1">
                             </div>
                         </div>
                     </form>

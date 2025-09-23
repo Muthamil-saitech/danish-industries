@@ -71,7 +71,7 @@
                             <td class="width_1_p" style="border: 1px solid #000;">{{ $i }}</td>
                             <td class="text-center" style="border: 1px solid #000;">{{ $productInfo->name }}({{ $productInfo->code }})</td>
                             <td class="text-center" style="font-family: DejaVu Sans, sans-serif;border: 1px solid #000;">₹ {{ numberFormat($value->unit_price) }}</td>
-                            <td class="text-center" style="border: 1px solid #000;">{{ $value->quantity }}KG</td>
+                            <td class="text-center" style="border: 1px solid #000;">{{ $value->quantity }}</td>
                             <td class="text-right" style="font-family: DejaVu Sans, sans-serif;border: 1px solid #000;">₹ {{ numberFormat($value->total) }}</td>
                         </tr>
                     @endforeach
@@ -108,6 +108,16 @@
                             </td>
                             <td class="w-50 text-right pr-0" >
                                 <p style="font-family: DejaVu Sans, sans-serif;">₹ {{ numberFormat($obj->other) }}</p>
+                            </td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr>
+                            <td class="w-50">
+                                <p class="f-w-600">Without Material</p>
+                            </td>
+                            <td class="w-50 text-right pr-0" >
+                                <p style="font-family: DejaVu Sans, sans-serif;">₹ {{ numberFormat($obj->discount) }}</p>
                             </td>
                         </tr>
                     </table>

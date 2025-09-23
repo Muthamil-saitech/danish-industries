@@ -95,7 +95,7 @@
                                                 <td class="width_1_p">{{ $i }}</td>
                                                 <td class="text-start">{{ $productInfo->name }}({{ $productInfo->code }})</td>
                                                 <td class="text-center">{{ $setting->currency }}{{ $value->unit_price }}</td>
-                                                <td class="text-center">{{ $value->quantity }} KG</td>
+                                                <td class="text-center">{{ $value->quantity }}</td>
                                                 <td class="text-end">{{ $setting->currency }}{{ $value->total }}</td>
                                             </tr>
                                         @endforeach
@@ -132,6 +132,16 @@
                                                 </td>
                                                 <td class="w-50 text-right pr-0">
                                                     <p>{{ $setting->currency }}{{ safe_integer($obj->other) }}</p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <table>
+                                            <tr>
+                                                <td class="w-50">
+                                                    <p class="f-w-600">Without Material</p>
+                                                </td>
+                                                <td class="w-50 text-right pr-0">
+                                                    <p>{{ $setting->currency }}{{ safe_integer($obj->discount) }}</p>
                                                 </td>
                                             </tr>
                                         </table>

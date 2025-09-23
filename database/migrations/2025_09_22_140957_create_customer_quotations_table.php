@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('quote_date');
             $table->float('subtotal',10,2);
             $table->float('other',10,2);
+            $table->float('discount',10,2);
             $table->float('grand_total',10,2);
             $table->string('note',255);
             $table->integer('user_id');

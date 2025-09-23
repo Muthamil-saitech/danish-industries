@@ -153,10 +153,12 @@ Route::group(['middleware' => ['XSS']], function () {
         Route::post('getFefoFProduct', [App\Http\Controllers\AjaxController::class, 'getFefoFProduct'])->name('getFefoFProduct.post');
         Route::get('getBatchControlProduct', [App\Http\Controllers\AjaxController::class, 'getBatchControlProduct'])->name('getBatchControlProduct.post');
         Route::get('getProductDetails', [App\Http\Controllers\AjaxController::class, 'getProductDetails'])->name('getProductDetails.post');
+        Route::get('getOrderDetail', [App\Http\Controllers\AjaxController::class, 'getOrderDetail'])->name('getOrderDetail.post');
         Route::get('getProduct', [App\Http\Controllers\AjaxController::class, 'getProduct'])->name('getProduct');
         Route::post('getProductById', [App\Http\Controllers\AjaxController::class, 'getProductById'])->name('getProductById.post');
         Route::get('editTax/{id}', [App\Http\Controllers\AjaxController::class, 'editTax']);
         Route::post('getSupplierByPurchase', [App\Http\Controllers\AjaxController::class, 'getSupplierByPurchase'])->name('getSupplierByPurchase.post');
+        Route::post('getUnitByMat', [App\Http\Controllers\AjaxController::class, 'getUnitByMat'])->name('getUnitByMat.post');
 
         /*resource routing*/
         Route::resource('accounts', App\Http\Controllers\AccountController::class);

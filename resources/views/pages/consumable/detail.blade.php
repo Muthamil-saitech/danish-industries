@@ -57,7 +57,7 @@
                                                         <td>{{ getEmpCode($value->user_id) }}</td>
                                                         <td>{{ getRMName($value->mat_id) }}</td>
                                                         <td>{{ getEmpCode($value->incharge_user_id) }}</td>
-                                                        <td>{{ $value->qty }}</td>
+                                                        <td>{{ $value->qty.' '.$value->unit }}</td>
                                                         <td>
                                                             <a class="button-success consumeBtn"
                                                             data-bs-toggle="modal"
@@ -69,6 +69,7 @@
                                                             data-user_id="{{ $value->user_id }}"
                                                             data-mat_id="{{ $value->mat_id }}"
                                                             data-qty="{{ $value->qty }}"
+                                                            data-unit="{{ $value->unit }}"
                                                             data-incharge_user_id="{{ $value->incharge_user_id }}"
                                                             title="Edit">
                                                                 <i class="fa fa-edit tiny-icon"></i>
@@ -102,12 +103,17 @@
                     <div class="modal-body">
                         <form class="form-horizontal" id="consumableForm">
                             <div class="row">
-                                <div class="col-sm-12 mb-2 col-md-6">
+                                <input type="hidden" name="consumable_id" id="consumable_id">
+                                <input type="hidden" name="manufacture_id" id="manufacture_id">
+                                <input type="hidden" name="ppcrc_no" id="ppcrc_no">
+                                <input type="hidden" name="production_stage" id="production_stage">
+                                <input type="hidden" name="user_id" id="user_id">
+                                <input type="hidden" name="mat_id" id="mat_id">
+                                <input type="hidden" name="unit" id="unit">
+                                <input type="hidden" name="incharge_user_id" id="incharge_user_id">
+                                {{-- <div class="col-sm-12 mb-2 col-md-6">
                                     <div class="form-group">
-                                        <label>@lang('index.production_stage') </label>
-                                        <input type="hidden" name="consumable_id" id="consumable_id">
-                                        <input type="hidden" name="manufacture_id" id="manufacture_id">
-                                        <input type="hidden" name="ppcrc_no" id="ppcrc_no">
+                                        <label>@lang('index.production_stage') </label>                                        
                                         <select name="production_stage" id="production_stage" class="form-control @error('production_stage') is-invalid @enderror select2">
                                             <option value="">@lang('index.select')</option>
                                             @foreach ($m_stages as $stage)
@@ -116,20 +122,17 @@
                                         </select>
                                         <p class="text-danger stage_err"></p>
                                     </div>
-                                </div>
-                                <div class="col-sm-12 mb-2 col-md-6">
+                                </div> --}}
+                                {{-- <div class="col-sm-12 mb-2 col-md-6">
                                     <div class="form-group">
                                         <label>@lang('index.employees') </label>
                                         <select name="user_id" id="user_id" class="form-control @error('user_id') is-invalid @enderror select2">
                                             <option value="">@lang('index.select')</option>
-                                            {{-- @foreach ($employees as $emp)
-                                                <option value="{{ $emp->id }}">{{ getEmpCode($emp->id) }}</option>
-                                            @endforeach --}}
                                         </select>
                                         <p class="text-danger user_err"></p>
                                     </div>
-                                </div>
-                                <div class="col-sm-12 mb-2 col-md-6">
+                                </div> --}}
+                                {{-- <div class="col-sm-12 mb-2 col-md-6">
                                     <div class="form-group">
                                         <label>@lang('index.material_name') (Code) <span class="required_star">*</span></label>
                                         <select name="mat_id" id="mat_id" class="form-control @error('mat_id') is-invalid @enderror select2">
@@ -140,8 +143,8 @@
                                         </select>
                                         <p class="text-danger mat_err"></p>
                                     </div>
-                                </div>
-                                <div class="col-sm-12 mb-2 col-md-6">
+                                </div> --}}
+                                {{-- <div class="col-sm-12 mb-2 col-md-6">
                                     <div class="form-group">
                                         <label>@lang('index.incharge') </label>
                                         <select name="incharge_user_id" id="incharge_user_id" class="form-control @error('incharge_user_id') is-invalid @enderror select2">
@@ -152,10 +155,12 @@
                                         </select>
                                         <p class="text-danger incharge_err"></p>
                                     </div>
+                                </div> --}}
+                                <div class="col-sm-12 mb-2 col-md-3">
+                                    <label>@lang('index.quantity') <span class="required_star">*</span></label>
                                 </div>
                                 <div class="col-sm-12 mb-2 col-md-6">
                                     <div class="form-group">
-                                        <label>@lang('index.quantity') <span class="required_star">*</span></label>
                                         <input type="text" name="qty" id="qty" class="form-control @error('qty') is-invalid @enderror" placeholder="@lang('index.quantity')">
                                         <p class="text-danger qty_err"></p>
                                     </div>
@@ -176,7 +181,7 @@
     <script type="text/javascript" src="{!! $baseURL . 'assets/bower_components/gantt/js/jquery.fn.gantt.js' !!}"></script>
     <script type="text/javascript" src="{!! $baseURL . 'assets/bower_components/gantt/js/jquery.cookie.min.js' !!}"></script>
     <script>
-    $('#production_stage').select2({
+    /* $('#production_stage').select2({
         dropdownParent: $('#consumableModal')
     });
     $('#user_id').select2({
@@ -187,7 +192,7 @@
     });
     $('#mat_id').select2({
         dropdownParent: $('#consumableModal')
-    });
+    }); */
     $(document).on("click", ".consumeBtn", function () {
         let id = $(this).data("id");
         let stage = $(this).data("production_stage");
@@ -195,17 +200,19 @@
         let incharge = $(this).data("incharge_user_id");
         let mat = $(this).data("mat_id");
         let qty = $(this).data("qty");
+        let unit = $(this).data("unit");
         let manufacture_id = $(this).data("manufacture_id");
         let ppcrc_no = $(this).data("ppcrc_no");
-        $("#mat_id").val(mat).trigger("change");
+        $("#mat_id").val(mat);
         $("#qty").val(qty);
         $("#manufacture_id").val(manufacture_id);
         $("#ppcrc_no").val(ppcrc_no);
         $("#consumable_id").val(id);
-        $("#user_id").data("selected", user);
+        $("#user_id").val(user);
+        $("#unit").val(unit);
         // $("#incharge_user_id").data("selected", incharge);
-        $("#incharge_user_id").val(incharge).trigger("change");
-        $("#production_stage").val(stage).trigger("change");
+        $("#incharge_user_id").val(incharge);
+        $("#production_stage").val(stage);
     });
     $(document).on("change", "#production_stage", function () {
         let production_stage = $(this).find(":selected").val();
@@ -245,22 +252,22 @@
         let hidden_base_url = $("#hidden_base_url").val();
         let consumable_id = $("#consumable_id").val();
         let manufacture_id = $("#manufacture_id").val();
-        let production_stage = $("#production_stage").val();
+        // let production_stage = $("#production_stage").val();
         let user_id = $("#user_id").val();
-        let mat_id = $("#mat_id").val();
+        // let mat_id = $("#mat_id").val();
         let qty = $("#qty").val();
-        if(production_stage != "" && user_id == "") {
-            $(".user_err").text("If Production Stage is selected, then select Task Person.");
-            status = false;
-        } else {
-            $(".user_err").text("");
-        }
-        if(mat_id == "") {
-            $(".mat_err").text("The Material Name field is required");
-            status = false;
-        } else {
-            $(".mat_err").text("");
-        }
+        // if(production_stage != "" && user_id == "") {
+        //     $(".user_err").text("If Production Stage is selected, then select Task Person.");
+        //     status = false;
+        // } else {
+        //     $(".user_err").text("");
+        // }
+        // if(mat_id == "") {
+        //     $(".mat_err").text("The Material Name field is required");
+        //     status = false;
+        // } else {
+        //     $(".mat_err").text("");
+        // }
         if(qty == "") {
             $(".qty_err").text("The Quantity field is required");
             status = false;

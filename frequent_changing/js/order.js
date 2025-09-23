@@ -1424,23 +1424,21 @@ $(document).ready(function () {
 
     let hasError = false;
 
-    /* if (order_type === "Work Order") {
-      $("input[name='delivery_date_product[]']").each(function () {
-        let deliveryDate = $(this).val();
-        if (deliveryDate === "") {
-          $(this).addClass("is-invalid");
-          if (!$(this).next(".text-danger").length) {
-            $(this).after(
-              '<div class="text-danger">Delivery date is required</div>'
-            );
-          }
-          hasError = true;
-        } else {
-          $(this).removeClass("is-invalid");
-          $(this).next(".text-danger").remove();
+    $("input[name='delivery_date_product[]']").each(function () {
+      let deliveryDate = $(this).val();
+      if (deliveryDate === "") {
+        $(this).addClass("is-invalid");
+        if (!$(this).next(".text-danger").length) {
+          $(this).after(
+            '<div class="text-danger">Delivery date is required</div>'
+          );
         }
-      });
-    } */
+        hasError = true;
+      } else {
+        $(this).removeClass("is-invalid");
+        $(this).next(".text-danger").remove();
+      }
+    });
     /* let hasError = false;
         $("select[name='tax_type[]']").each(function () {
             let taxType = $(this).val();

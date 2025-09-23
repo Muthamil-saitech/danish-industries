@@ -65,7 +65,7 @@ class CustomerQuotationController extends Controller
             'subtotal' => null_check($request->subtotal),
             'other' => null_check($request->other),
             'grand_total' => null_check($request->grand_total),
-            // 'discount' => null_check($request->discount),
+            'discount' => null_check($request->discount),
             'note' => ($request->note),
             'user_id' => auth()->user()->id,
         ]);
@@ -123,6 +123,7 @@ class CustomerQuotationController extends Controller
             'quote_date' => date('Y-m-d',strtotime($request->quote_date)),
             'subtotal' => null_check($request->subtotal),
             'other' => null_check($request->other),
+            'discount' => null_check($request->discount),
             'grand_total' => null_check($request->grand_total),
             'note' => $request->note,
             'user_id' => auth()->user()->id,

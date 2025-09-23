@@ -503,6 +503,24 @@ $(document).ready(function () {
         error: function () {},
       });
       $.ajax({
+        type: "GET",
+        url: hidden_base_url + "getOrderDetail",
+        data: { product_id: fproduct_id, customer_order_id: customer_order_id },
+        dataType: "json",
+        success: function (data) {
+          if (data.delivery_date) {
+            let dateObj = new Date(data.delivery_date);
+            let day = String(dateObj.getDate()).padStart(2, '0');
+            let month = String(dateObj.getMonth() + 1).padStart(2, '0');
+            let year = dateObj.getFullYear();
+            let formattedDate = `${day}-${month}-${year}`;
+            $("#complete_date").val(formattedDate);
+            $("#complete_date_hidden").val(formattedDate);
+          }
+        },
+        error: function () {},
+      });
+      $.ajax({
         type: "POST",
         url: hidden_base_url + "getFinishProductRManufacture",
         data: {

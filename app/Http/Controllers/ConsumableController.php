@@ -92,6 +92,7 @@ class ConsumableController extends Controller
         $consumable->incharge_user_id = $request->get('incharge_user_id') == "" ? null : $request->get('incharge_user_id');
         $consumable->mat_id = $request->get('mat_id');
         $consumable->qty = $request->get('qty');
+        $consumable->unit = $request->get('unit');
         $consumable->save();
         if ($request->consumable_id) {
             return response()->json(['status' => true, 'message' => 'Consumable updated successfully.']);

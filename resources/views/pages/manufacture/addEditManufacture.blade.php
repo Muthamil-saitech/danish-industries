@@ -97,10 +97,11 @@
                         <div class="col-sm-12 col-md-6 mb-2 col-lg-4">
                             <div class="form-group">
                                 <label>@lang('index.start_date') <span class="required_star">*</span></label>
-                                <input type="text" name="start_date_m" id="start_date"
-                                    class="form-control @error('start_date') is-invalid @enderror" readonly
+                                <input type="hidden" name="start_date_m" value="{{ isset($obj->start_date) ? date('d-m-Y', strtotime($obj->start_date)) : (old('start_date_m') ? old('start_date_m') : date('d-m-Y')) }}">
+                                <input type="text" id="start_date"
+                                    class="form-control @error('start_date') is-invalid @enderror"
                                     placeholder="Start Date"
-                                    value="{{ isset($obj->start_date) ? date('d-m-Y',strtotime($obj->start_date)) : old('start_date_m') }}">
+                                    value="{{ isset($obj->start_date) ? date('d-m-Y', strtotime($obj->start_date)) : (old('start_date_m') ? old('start_date_m') : date('d-m-Y')) }}" disabled>
                                 <div class="text-danger d-none"></div>
                                 @error('start_date')
                                     <div class="text-danger">{{ $message }}</div>
@@ -110,10 +111,11 @@
                         <div class="col-sm-12 col-md-6 mb-2 col-lg-4">
                             <div class="form-group">
                                 <label>@lang('index.delivery_date') </label>
-                                <input type="text" name="complete_date_m" id="complete_date"
+                                <input type="hidden" name="complete_date_m" value="{{ isset($obj->complete_date) ? date('d-m-Y',strtotime($obj->complete_date)) : old('complete_date_m') }}" id="complete_date_hidden">
+                                <input type="text" id="complete_date"
                                     class="form-control @error('complete_date') is-invalid @enderror"
                                     placeholder="@lang('index.delivery_date')"
-                                    value="{{ isset($obj->complete_date) ? date('d-m-Y',strtotime($obj->complete_date)) : old('complete_date_m') }}">
+                                    value="{{ isset($obj->complete_date) ? date('d-m-Y',strtotime($obj->complete_date)) : old('complete_date_m') }}" disabled>
                                 <div class="text-danger d-none"></div>
                                 @error('complete_date')
                                     <div class="text-danger">{{ $message }}</div>
@@ -318,8 +320,7 @@
                                                                 class="check_required form-control @error('title') is-invalid @enderror integerchk  qty_c cal_row"
                                                                 value="{{ $value->consumption }}"
                                                                 placeholder="Consumption" readonly>
-                                                            <span
-                                                                class="input-group-text">{{ getStockUnitById($value->stock_id) }}</span>
+                                                            <span class="input-group-text">{{ getStockUnitById($value->stock_id) }}</span>
                                                         </div>
                                                     </td>
                                                     {{-- <td>

@@ -436,10 +436,7 @@ $(document).ready(function () {
                     <span class='text-danger'></span>
                 </td>
                 <td>
-                    <div class="input-group">
-                        <input type="number" data-countid="1" tabindex="51" id="quantity_1" name="quantity[]" onfocus="this.select();" class="check_required form-control integerchk input_aligning qty_c cal_row" value="${qty_modal}" placeholder="Quantity">
-                        <span class="input-group-text">KG</span>
-                    </div>
+                    <input type="number" data-countid="1" tabindex="51" id="quantity_1" name="quantity[]" onfocus="this.select();" class="check_required form-control integerchk input_aligning qty_c cal_row" value="${qty_modal}" placeholder="Quantity">
                     <span class='text-danger'></span>
                 </td>
                 <td>

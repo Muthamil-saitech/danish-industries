@@ -858,6 +858,7 @@ class AjaxController extends Controller
         $manufactureDetail->raw_qty = $order_detail->raw_qty;
         $manufactureDetail->disc_val = $disc_val;
         $manufactureDetail->nob = $order_detail->tax_type; //nature of business
+        $manufactureDetail->delivery_date = $order_detail->delivery_date;
         echo $manufactureDetail;
     }
 
@@ -1294,5 +1295,21 @@ class AjaxController extends Controller
         $supplier_id = RawMaterialPurchase::where('del_status', "Live")->where('reference_no', $purchase_no)->pluck('supplier')->first();
         $supplier = Supplier::where('del_status', "Live")->where('id', $supplier_id)->first();
         echo json_encode($supplier);
+    }
+    public function getUnitByMat(Request $request)
+    {
+        $manufacture_id = escape_output($request->post('manufacture_id'));
+        $stock_id = Mrmitem::where('del_status', "Live")->where('manufacture_id', $manufacture_id)->pluck('stock_id')->first();
+        $stockUnit = getStockUnitById($stock_id);
+        return response()->json($stockUnit);
+    }
+    public function getOrderDetail(Request $request)
+    {
+        $product_id = escape_output($request->get('product_id'));
+        $customer_order_id = escape_output($request->get('customer_order_id'));
+        $order_detail = CustomerOrderDetails::where('id', $customer_order_id)->where('product_id', $product_id)->where('del_status', 'Live')->first();
+        return response()->json([
+            'delivery_date' => $order_detail->delivery_date ?? null
+        ]);
     }
 }
