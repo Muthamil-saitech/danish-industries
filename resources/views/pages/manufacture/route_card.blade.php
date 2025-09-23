@@ -104,11 +104,10 @@ $baseURL = getBaseURL();
                 @if(isset($rmaterial))
                 <tr style="text-align: left;">
                     <td style="border: 1px solid #222; padding: 4px; text-align: center;  border-left: none;">1</td>
-                    <td style="border: 1px solid #222; padding: 4px;">{{ isset($product) ? $product->scope : '-' }}</td>
-                    <td style="border: 1px solid #222; padding: 4px;">{{ $rmaterial->name.'-'.$rmaterial->code }} {{ $rmaterial->diameter!='' ? '_DIA'.$rmaterial->diameter : '' }}{{ isset($product) ? '_'.$product->name : '-' }}{{ isset($m_rmaterial->materialStock) ? '_'.$m_rmaterial->materialStock->heat_no : '' }}</td>
-                    <td style="border: 1px solid #222; padding: 4px;">{{ isset($delivery_challan) && $delivery_challan!='' ? $delivery_challan->challan_no.'/'.date('d-M-Y',strtotime($delivery_challan->challan_date)) : ' ' }}</td>
-                    <td style="border: 1px solid #222; padding: 4px;">&nbsp;</td>
-                    <td style="border: 1px solid #222; padding: 4px;"></td>
+                    <td style="border: 1px solid #222; padding: 4px;">{{ isset($product) ? $product->scope : '-' }}</td> <td style="border: 1px solid #222; padding: 4px;">{{ $rmaterial->code.' '.$rmaterial->name }}{{ $rmaterial->diameter!='' ? '_DIA'.$rmaterial->diameter : '' }}{{ isset($product) ? '_'.$product->name : ' ' }}{{ isset($rmaterial->remarks) && $rmaterial->remarks!='' ? '_'.$rmaterial->remarks : ' ' }}{{ isset($m_rmaterial->materialStock) ? '_'.$m_rmaterial->materialStock->heat_no : '' }}{{ isset($rmaterial->old_mat_no) ? '_'.$rmaterial->old_mat_no : '' }}</td>
+                    <td style="border: 1px solid #222; padding: 4px;">{{ isset($m_rmaterial->materialStock)  ? $m_rmaterial->materialStock->dc_no.'/'.date('d-M-Y',strtotime($m_rmaterial->materialStock->dc_date)) : ' ' }}</td>
+                    <td style="border: 1px solid #222; padding: 4px;">{{ isset($m_rmaterial->materialStock) ? $m_rmaterial->materialStock->heat_no : '&nbsp;' }}</td>
+                    <td style="border: 1px solid #222; padding: 4px;">&nbsp;&nbsp;</td>
                     <td style="border: 1px solid #222; padding: 4px;">{{ isset($m_rmaterial) ? $m_rmaterial->stock : '' }}</td>
                     <td style="border: 1px solid #222; padding: 4px;"></td>
                     <td style="border: 1px solid #222; padding: 4px;  border-right: none;">
